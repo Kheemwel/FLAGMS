@@ -70,7 +70,6 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-default" style="color: white; background-color: #080743; font-size: 12px; width: 100px; margin-left: 70rem; margin-top: 5rem; margin-bottom: 2rem;" wire:click='logout()'><iconify-icon icon="fa6-solid:right-from-bracket"></iconify-icon> Logout</button>
             </div>
         </div>
     </div>
