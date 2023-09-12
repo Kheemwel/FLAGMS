@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Route;
 
 if (!function_exists('debugMessage')) {
     function debugMessage($message)
@@ -50,5 +51,12 @@ if (!function_exists('generatePassword')) {
         }
 
         return $password;
+    }
+}
+
+if (!function_exists('setActiveLink')) {
+    function setActiveLink($page)
+    {
+        return Route::is($page) ? 'active' : '';
     }
 }
