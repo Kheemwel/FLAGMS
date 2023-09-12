@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('hashed_password');
             $table->unsignedBigInteger('profile_picture_id')->nullable();
             $table->boolean('is_archive')->default(false);
+            $table->dateTime('archived_at')->nullable();
             $table->integer('total_login')->default(0);
             $table->dateTime('last_login')->nullable();
             $table->foreign('role_id')->references('id')->on('roles');
