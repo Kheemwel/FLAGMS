@@ -64,7 +64,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link" wire:click='logout()'>
+                    <a href="#" class="nav-link" wire:click.prevent='logout()'>
                         <iconify-icon icon="majesticons:logout" style="color: #252525;"></iconify-icon>
                         <p style="color: #252525;">
                         Logout

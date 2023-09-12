@@ -13,7 +13,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                     with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('user-dashboard-page') }}">
+                    <a class="nav-link {{ setActiveLink('user-dashboard-page') }}" href="{{ route('user-dashboard-page') }}">
                         <iconify-icon icon="clarity:dashboard-solid" style="color: #252525;"></iconify-icon>
                         <p style="color: #252525;">
                             Dashboard
@@ -21,20 +21,20 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link {{ setActiveLink('user-accounts-page') }}" href="{{ route('user-accounts-page') }}">
+                        <iconify-icon icon="fa6-solid:users" style="color: #252525;"></iconify-icon>
+                        <p style="color: #252525;">Accounts</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="#">
                         <iconify-icon icon="fa6-solid:users" style="color: #252525;"></iconify-icon>
                         <p style="color: #252525;">
-                            Profiling
+                            Users
                             <i class="right fas fa-angle-left" style="color: #252525;"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('user-accounts-page') }}">
-                                <i class="far fa-circle nav-icon" style="color: #252525;"></i>
-                                <p style="color: #252525;">User Accounts</p>
-                            </a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
                                 <i class="far fa-circle nav-icon" style="color: #252525;"></i>
@@ -42,7 +42,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('students-page') }}">
+                            <a class="nav-link {{ setActiveLink('students-page') }}" href="{{ route('students-page') }}">
                                 <i class="far fa-circle nav-icon" style="color: #252525;"></i>
                                 <p style="color: #252525;">
                                     Students
@@ -79,13 +79,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('roles-page') }}">
+                            <a class="nav-link {{ setActiveLink('roles-page') }}" href="{{ route('roles-page') }}">
                                 <i class="far fa-circle nav-icon" style="color: #252525;"></i>
                                 <p style="color: #252525;">Roles</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('profile-pictures-page') }}">
+                            <a class="nav-link {{ setActiveLink('profile-pictures-page') }}" href="{{ route('profile-pictures-page') }}">
                                 <i class="far fa-circle nav-icon" style="color: #252525;"></i>
                                 <p style="color: #252525;">Profile Pictures</p>
                             </a>
@@ -103,13 +103,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('item-types-page') }}">
+                            <a class="nav-link" href="#">
                                 <i class="far fa-circle nav-icon" style="color: #252525;"></i>
                                 <p style="color: #252525;">Item Images</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('item-types-page') }}">
+                            <a class="nav-link {{ setActiveLink('item-types-page') }}" href="{{ route('item-types-page') }}">
                                 <i class="far fa-circle nav-icon" style="color: #252525;"></i>
                                 <p style="color: #252525;">Item Types</p>
                             </a>
@@ -118,6 +118,12 @@
                             <a class="nav-link" href="#">
                                 <i class="far fa-circle nav-icon" style="color: #252525;"></i>
                                 <p style="color: #252525;">Guidance Records</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="far fa-circle nav-icon" style="color: #252525;"></i>
+                                <p style="color: #252525;">Database</p>
                             </a>
                         </li>
                     </ul>
@@ -142,25 +148,25 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('anecdotal-records-page') }}">
+                            <a class="nav-link {{ setActiveLink('anecdotal-records-page') }}" href="{{ route('anecdotal-records-page') }}">
                                 <i class="far fa-circle nav-icon" style="color: #252525;"></i>
                                 <p style="color: #252525;">Anecdotal Records</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('violation-forms-page') }}">
+                            <a class="nav-link {{ setActiveLink('violation-forms-page') }}" href="{{ route('violation-forms-page') }}">
                                 <i class="far fa-circle nav-icon" style="color: #252525;"></i>
                                 <p style="color: #252525;">Violation Forms</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home-visitation-forms-page') }}">
+                            <a class="nav-link {{ setActiveLink('home-visitations-page') }}" href="{{ route('home-visitation-forms-page') }}">
                                 <i class="far fa-circle nav-icon" style="color: #252525;"></i>
                                 <p style="color: #252525;">Home Visitation Forms</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('individual-inventory-page') }}">
+                            <a class="nav-link {{ setActiveLink('individual-inventory-page') }}" href="{{ route('individual-inventory-page') }}">
                                 <i class="far fa-circle nav-icon" style="color: #252525;"></i>
                                 <p style="color: #252525;">Individual Inventory</p>
                             </a>
@@ -168,7 +174,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('guidance-program-page') }}">
+                    <a class="nav-link {{ setActiveLink('guidance-program-page') }}" href="{{ route('guidance-program-page') }}">
                         <iconify-icon icon="bx:calendar" style="color: #252525;"></iconify-icon>
                         <p style="color: #252525;">
                             Guidance Program
@@ -176,7 +182,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('lost-and-found-page') }}">
+                    <a class="nav-link {{ setActiveLink('lost-and-found-page') }}" href="{{ route('lost-and-found-page') }}">
                         <iconify-icon icon="guidance:lost-and-found" style="color: #252525;"></iconify-icon>
                         <p style="color: #252525;">
                             Lost and Found
@@ -193,13 +199,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('approve-forms-page') }}">
+                            <a class="nav-link {{ setActiveLink('approval-forms-page') }}" href="{{ route('approval-forms-page') }}">
                                 <i class="far fa-circle nav-icon" style="color: #252525;"></i>
-                                <p style="color: #252525;">Approve Forms</p>
+                                <p style="color: #252525;">Approval Forms</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('fill-out-forms-page') }}">
+                            <a class="nav-link {{ setActiveLink('fill-out-forms-page') }}" href="{{ route('fill-out-forms-page') }}">
                                 <i class="far fa-circle nav-icon" style="color: #252525;"></i>
                                 <p style="color: #252525;">Fill Out Forms</p>
                             </a>
@@ -207,7 +213,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="" wire:click='logout()'>
+                    <a class="nav-link" href="#" wire:click.prevent='logout()'>
                         <iconify-icon icon="majesticons:logout" style="color: #252525;"></iconify-icon>
                         <p style="color: #252525;">
                             Logout
