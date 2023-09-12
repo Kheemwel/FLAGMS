@@ -89,4 +89,5 @@
             <!-- /.card -->
         </div>
     </div>
+    @include('livewire.file_management.roles.add-role')
 </div>

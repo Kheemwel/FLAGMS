@@ -38,7 +38,7 @@
                     <input class="form-control float-right" name="table_search" placeholder="Search" style="height: 35px;" type="text" wire:model.live='search'>
                 </div>
                 <!--ADD ROLE BUTTON-->
-                <button class="btn btn-default" data-target="#addRoleModal" data-toggle="modal" style="font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button">
+                <button class="btn btn-default" data-target="#addTypeModal" data-toggle="modal" style="font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button">
                     <i aria-hidden="true" class="fa fa-plus"></i> 
                     Define New Item Type
                 </button>
@@ -84,4 +84,5 @@
             <!-- /.card -->
         </div>
     </div>
+    @include('livewire.file_management.item_types.add-type')
 </div>
