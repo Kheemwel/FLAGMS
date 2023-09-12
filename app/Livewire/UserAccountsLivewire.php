@@ -122,10 +122,10 @@ class UserAccountsLivewire extends Component
     public function import()
     {
         $this->validate([
-            'batch_file' => 'required|file|mimes:xlsx,csv|max:10240',
+            'batch_file' => 'required|file|mimes:csv|max:10240',
         ],[
             'batch_file.required' => 'You must upload a file before submitting.',
-            'batch_file.mimes' => 'The file must be in .xlsx or .csv format.',
+            'batch_file.mimes' => 'The file must be in .csv format.',
             'batch_file.max' => 'The file must be at least 10MB.'
         ]);
 

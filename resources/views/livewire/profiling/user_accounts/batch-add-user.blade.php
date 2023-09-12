@@ -15,7 +15,7 @@
                     <div x-data="{ uploading: false, progress: 0 }" x-on:livewire-upload-error="uploading = false" x-on:livewire-upload-finish="uploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress" x-on:livewire-upload-start="uploading = true">
                         <!-- File Input -->
                         <div class="custom-file" style="border: 1px solid #252525; border-radius: 5px; margin-bottom: 2rem;">
-                            <input accept='.xlsx, .csv' class="custom-file-input" id="uploadFile" type="file" wire:model="batch_file">
+                            <input accept='.csv' class="custom-file-input" id="uploadFile" type="file" wire:model="batch_file">
                             <label class="custom-file-label" for="uploadFile"></label>
                         </div>
 
