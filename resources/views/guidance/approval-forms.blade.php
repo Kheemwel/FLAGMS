@@ -98,7 +98,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6" style="padding-left: 2rem; padding-top: 1rem;">
-                            <h1 style="font-weight: bold;">Request Forms</h1>
+                            <h1 style="font-weight: bold;">Approval Forms</h1>
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->

@@ -43,7 +43,7 @@ Route::middleware([CheckUserCredentials::class])->group(function () {
     Route::view('/home-visitation-forms', 'guidance.home-visitation-forms')->name('home-visitation-forms-page');
     Route::view('/individual-inventory', 'guidance.individual-inventory')->name('individual-inventory-page');
     Route::view('/guidance-program', 'guidance.guidance-program')->name('guidance-program-page');
-    Route::view('/approve-forms', 'guidance.approve-forms')->name('approve-forms-page');
+    Route::view('/approval-forms', 'guidance.approval-forms')->name('approval-forms-page');
     Route::view('/lost-and-found', 'guidance.lost-and-found')->name('lost-and-found-page');
 
     //Student
