@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use App\Models\ProfilePictures;
-use App\Models\Roles;
 use App\Models\UserAccounts;
 use Livewire\Component;
 

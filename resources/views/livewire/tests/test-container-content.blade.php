@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('livewire.tests.test-container')
 
-<head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="ie=edge" http-equiv="X-UA-Compatible">
-    <title>Livewire | Test</title>
+@section('css')
     <style>
         .hideMe {
             display: none;
@@ -15,14 +10,13 @@
             color: yellow;
         }
     </style>
-    @livewireStyles()
-</head>
+@endsection
 
-<body>
-    <h1>_______________The Body___________________</h1>
+@section('content')
     @livewire('test-livewire')
-    @livewireScripts()
-    @stack('scripts')
+@endsection
+
+@section('scripts')
     <script>
         function changeHTMLContent() {
             var newContent = "<p id='targetID'>New HTML content</p>";
@@ -65,6 +59,4 @@
             }
         });
     </script>
-</body>
-
-</html>
+@endsection

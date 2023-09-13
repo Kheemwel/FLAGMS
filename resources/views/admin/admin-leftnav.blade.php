@@ -22,7 +22,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ setActiveLink('user-accounts-page') }}" href="{{ route('user-accounts-page') }}">
-                        <iconify-icon icon="fa6-solid:users" style="color: #252525;"></iconify-icon>
+                        <iconify-icon icon="mdi:account-box-multiple-outline" style="color: black;" width="20" height="20"></iconify-icon>
                         <p style="color: #252525;">Accounts</p>
                     </a>
                 </li>

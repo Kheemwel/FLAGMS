@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Middleware\CheckUserCredentials;
+use App\Livewire\TestLivewire;
+use App\Livewire\UserDashboardLivewire;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,10 +22,15 @@ Route::get('/', function () {
 Route::view('/about', 'about')->name('about-page');
 
 Route::view('/test', 'livewire.tests.test_livewire')->name('test-livewire-page');
+Route::view('/test-content', 'livewire.tests.test-container-content')->name('test-content-page');
+Route::view('/test-livewire', 'livewire.tests.test-livewire')->name('test-livewire-page');
+
+
+Route::get('/test.livewire', TestLivewire::class)->name('test.livewire-page');
 
 Route::middleware([CheckUserCredentials::class])->group(function () {
     //Common
-    Route::view('/user-dashboard', 'common.user-dashboard')->name('user-dashboard-page');
+    Route::get('/user-dashboard', UserDashboardLivewire::class)->name('user-dashboard-page');
     Route::view('/profile', 'common.profile')->name('profile-page');
     Route::view('/notification', 'common.notification')->name('notification-page');
     Route::view('/user-guidance-program', 'common.user-guidance-program')->name('user-guidance-program-page');

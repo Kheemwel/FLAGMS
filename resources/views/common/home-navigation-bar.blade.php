@@ -11,7 +11,7 @@
         <!-------------- RIGHT HAND UPPER SIDE NAVIGATION -------->
         <!-------HOME BUTTON--------->
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('home-page') }}">
+            <a class="nav-link" href="/">
                 <p style="color: white; font-size: 18px;">
                     Home
                 </p>
@@ -19,7 +19,7 @@
         </li>
         <!-------ABOUT BUTTON--------->
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('about-page') }}">
+            <a class="nav-link" href="/about">
                 <p style="color: white; font-size: 18px;">
                     About
                 </p>
