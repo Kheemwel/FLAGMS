@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Livewire;
+
+use App\Models\WebsiteLogo;
+use App\Models\WebsiteTitle;
+use Livewire\Attributes\Layout;
+use Livewire\Component;
+
+#[Layout('components.layouts.landing-page')]
+class HomeLivewire extends Component
+{
+    public $title, $logo;
+    public function render()
+    {
+        $this->title = WebsiteTitle::find(1)->first()->title;
+        $this->logo = imageBinaryToSRC(WebsiteLogo::find(1)->first()->logo);
+        return view('livewire.content_management.home-livewire');
+    }
+}

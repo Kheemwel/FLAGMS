@@ -12,7 +12,7 @@
     <!-- overlayScrollbars -->
     <link href="adminLTE-3.2/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" rel="stylesheet">
     <!-- Toastr -->
-    <link href="../../plugins/toastr/toastr.min.css" rel="stylesheet">
+    <link href="adminLTE-3.2/plugins/toastr/toastr.min.css" rel="stylesheet">
     <!--iconify icons-->
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <!-- Theme style -->

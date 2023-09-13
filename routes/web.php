@@ -1,9 +1,14 @@
 <?php
 
 use App\Http\Middleware\CheckUserCredentials;
+use App\Http\Livewire\ProfileLivewire;
+use App\Livewire\ContentManagementLivewire;
 use App\Livewire\GuidanceLivewire;
+use App\Livewire\HomeLivewire;
 use App\Livewire\ParentsLivewire;
 use App\Livewire\PrincipalsLivewire;
+use App\Livewire\ProfileLivewire as LivewireProfileLivewire;
+use App\Livewire\StudentsLivewire;
 use App\Livewire\TeachersLivewire;
 use App\Livewire\Test\TestLivewire;
 use App\Livewire\UserAccountsLivewire;
@@ -21,10 +26,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home-page');
-Route::view('/about', 'about')->name('about-page');
+// Route::get('/', function () {
+//     return view('home');
+// })->name('home-page');
+// Route::view('/about', 'about')->name('about-page');
+
+Route::get('/', HomeLivewire::class)->name('home-page');
 
 Route::view('/test', 'livewire.tests.test_livewire')->name('test-livewire-page');
 Route::view('/test-content', 'livewire.tests.test-container-content')->name('test-content-page');
@@ -34,7 +41,7 @@ Route::get('/test.livewire', TestLivewire::class)->name('test.livewire-page');
 Route::middleware([CheckUserCredentials::class])->group(function () {
     //Common
     Route::get('/user-dashboard', UserDashboardLivewire::class)->name('user-dashboard-page');
-    Route::view('/profile', 'common.profile')->name('profile-page');
+    Route::get('/profile', LivewireProfileLivewire::class)->name('profile-page');
     Route::view('/notification', 'common.notification')->name('notification-page');
     Route::view('/user-guidance-program', 'common.user-guidance-program')->name('user-guidance-program-page');
     Route::view('/fill-out-forms', 'common.fill-out-forms')->name('fill-out-forms-page');
@@ -46,7 +53,7 @@ Route::middleware([CheckUserCredentials::class])->group(function () {
     Route::get('/parents', ParentsLivewire::class)->name('parents-page');
     Route::get('/teachers', TeachersLivewire::class)->name('teachers-page');
     Route::get('/principals', PrincipalsLivewire::class)->name('principals-page');
-    Route::view('/content-managemet', 'admin.content-management')->name('content-management-page');
+    Route::get('/content-management', ContentManagementLivewire::class)->name('content-management-page');
     Route::view('/roles', 'admin.roles')->name('roles-page');
     Route::view('/profile-pictures', 'admin.profile-pictures')->name('profile-pictures-page');
     Route::view('/offenses', 'admin.offenses')->name('offenses-page');
@@ -57,7 +64,7 @@ Route::middleware([CheckUserCredentials::class])->group(function () {
     Route::view('/database', 'admin.database')->name('database-page');
 
     //Guidance
-    Route::view('/students', 'guidance.students')->name('students-page');
+    Route::get('/students', StudentsLivewire::class)->name('students-page');
     Route::view('anecdotal-records', 'guidance.anecdotal-records')->name('anecdotal-records-page');
     Route::view('/violation-forms', 'guidance.violation-forms')->name('violation-forms-page');
     Route::view('/home-visitation-forms', 'guidance.home-visitation-forms')->name('home-visitation-forms-page');

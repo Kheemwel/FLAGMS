@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand navbar-white navbar-light"
     style="border: 1px solid rgb(213, 212, 212); background: linear-gradient(180deg, #000000 -129.53%, #0A0863 100%);">
     <!-- Brand Logo -->
-    <a class="brand-link" href="{{ route('home-page') }}" style="border: transparent;">
-        <img alt="AdminLTE Logo" class="brand-image img-circle" src="images/fiat.png" style="width: auto; height: auto;">
+    <a class="brand-link" href="#" style="border: transparent;">
+        <img alt="AdminLTE Logo" class="brand-image img-circle" src="{{ $logo }}" style="width: auto; height: auto;">
         <span class="brand-text" style="color: white;">Fiat Lux Academe</span>
     </a>
 
@@ -10,21 +10,21 @@
     <ul class="navbar-nav ml-auto">
         <!-------------- RIGHT HAND UPPER SIDE NAVIGATION -------->
         <!-------HOME BUTTON--------->
-        <li class="nav-item">
-            <a class="nav-link" href="/">
+        {{-- <li class="nav-item">
+            <a class="nav-link" href="{{ route('home-page') }}">
                 <p style="color: white; font-size: 18px;">
                     Home
                 </p>
             </a>
-        </li>
+        </li> --}}
         <!-------ABOUT BUTTON--------->
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link" href="/about">
                 <p style="color: white; font-size: 18px;">
                     About
                 </p>
             </a>
-        </li>
+        </li> --}}
 
         <!-------LOGIN BUTTON--------->
         <li class="nav-item">
