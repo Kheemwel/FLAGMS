@@ -1,7 +1,12 @@
 <?php
 
 use App\Http\Middleware\CheckUserCredentials;
-use App\Livewire\TestLivewire;
+use App\Livewire\GuidanceLivewire;
+use App\Livewire\ParentsLivewire;
+use App\Livewire\PrincipalsLivewire;
+use App\Livewire\TeachersLivewire;
+use App\Livewire\Test\TestLivewire;
+use App\Livewire\UserAccountsLivewire;
 use App\Livewire\UserDashboardLivewire;
 use Illuminate\Support\Facades\Route;
 
@@ -24,8 +29,6 @@ Route::view('/about', 'about')->name('about-page');
 Route::view('/test', 'livewire.tests.test_livewire')->name('test-livewire-page');
 Route::view('/test-content', 'livewire.tests.test-container-content')->name('test-content-page');
 Route::view('/test-livewire', 'livewire.tests.test-livewire')->name('test-livewire-page');
-
-
 Route::get('/test.livewire', TestLivewire::class)->name('test.livewire-page');
 
 Route::middleware([CheckUserCredentials::class])->group(function () {
@@ -38,7 +41,12 @@ Route::middleware([CheckUserCredentials::class])->group(function () {
     Route::view('/user-lost-and-found', 'common.user-lost-and-found')->name('user-lost-and-found-page');
 
     //Admin
-    Route::view('/user-accounts', 'admin.user-accounts')->name('user-accounts-page');
+    Route::get('/user-accounts', UserAccountsLivewire::class)->name('user-accounts-page');
+    Route::get('/guidance', GuidanceLivewire::class)->name('guidance-page');
+    Route::get('/parents', ParentsLivewire::class)->name('parents-page');
+    Route::get('/teachers', TeachersLivewire::class)->name('teachers-page');
+    Route::get('/principals', PrincipalsLivewire::class)->name('principals-page');
+    Route::view('/content-managemet', 'admin.content-management')->name('content-management-page');
     Route::view('/roles', 'admin.roles')->name('roles-page');
     Route::view('/profile-pictures', 'admin.profile-pictures')->name('profile-pictures-page');
     Route::view('/item-types', 'admin.item-types')->name('item-types-page');

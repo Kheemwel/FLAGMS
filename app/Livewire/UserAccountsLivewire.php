@@ -57,7 +57,7 @@ class UserAccountsLivewire extends Component
         $this->renderSelect2();
         $this->roles = Roles::all();
         
-        $this->students = Students::whereHas('userAccount', function ($query) {
+        $this->students = Students::whereHas('getUserAccount', function ($query) {
             // Filter students where the associated user account is not archived
             $query->where('is_archive', false);
         })->get();
@@ -391,7 +391,7 @@ class UserAccountsLivewire extends Component
             $principal = Principals::where('user_account_id', $this->user_id)->first();
 
             if ($principal) {
-                $this->principal_position = $principal->principalPosition->position;
+                $this->principal_position = $principal->getPrincipalPosition->position;
             }
         }
         if ($this->role == 'Parent') {

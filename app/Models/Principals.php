@@ -15,12 +15,12 @@ class Principals extends Model
         'user_account_id', 'principal_position_id'
     ];
 
-    public function userAccount() : BelongsTo
+    public function getUserAccount() : BelongsTo
     {
         return $this->belongsTo(UserAccounts::class, 'user_account_id');
     }
 
-    public function principalPosition() : BelongsTo
+    public function getPrincipalPosition() : BelongsTo
     {
         return $this->belongsTo(PrincipalPositions::class, 'principal_position_id');
     }

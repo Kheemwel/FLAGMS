@@ -1,9 +1,7 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Test;
 
-use Livewire\Attributes\Layout;
-use Livewire\Attributes\Title;
 use Livewire\Component;
 
 class TestLivewire extends Component

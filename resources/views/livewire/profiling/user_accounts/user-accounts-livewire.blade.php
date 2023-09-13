@@ -1,3 +1,64 @@
+@section('head')
+    <title>Admin | Profiling</title>
+
+    <!-- Select2 CSS -->
+    <link href="adminLTE-3.2/plugins/select2/css/select2.min.css" rel="stylesheet">
+    <link href="adminLTE-3.2/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css" rel="stylesheet">
+
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="adminLTE-3.2/plugins/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <!-- overlayScrollbars -->
+    <link href="adminLTE-3.2/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" rel="stylesheet">
+    <!-- Toastr -->
+    <link href="../../plugins/toastr/toastr.min.css" rel="stylesheet">
+    <!--iconify icons-->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <!-- Theme style -->
+    <link href="adminLTE-3.2/dist/css/adminlte.min.css" rel="stylesheet">
+
+    <style>
+        /* For Eye Icons of Anecdotal and Summary Section inside the table */
+        .btn-primary.action-btn {
+            background-color: transparent;
+            border-color: transparent;
+        }
+
+        .btn-primary.action-btn i {
+            color: #252525;
+        }
+
+        /* Hover styles */
+        .btn-primary.action-btn:hover {
+            background-color: transparent;
+        }
+
+        .btn-primary.action-btn:hover i {
+            color: #0A0863;
+        }
+
+        /********************************/
+    </style>
+    <!-- jQuery -->
+    <script src="adminLTE-3.2/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 JS -->
+    <script src="adminLTE-3.2/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="adminLTE-3.2/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="adminLTE-3.2/dist/js/adminlte.min.js"></script>
+    <!-- ChartJS -->
+    <script src="adminLTE-3.2/plugins/chart.js/Chart.min.js"></script>
+    <!-- bs-custom-file-input -->
+    <script src="adminLTE-3.2/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+    <!-- Toastr -->
+    <script src="adminLTE-3.2/plugins/toastr/toastr.min.js"></script>
+
+    {{-- Select2 JS --}}
+    <script src="adminLTE-3.2/plugins/select2/js/select2.full.min.js"></script>
+@endsection
+
 <div class="content-wrapper" style="background-color:  rgb(253, 253, 253); padding-left: 2rem;">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -48,17 +109,17 @@
                 </div>
                 <!--ADD USER BUTTON-->
                 <button class="btn btn-default" data-target="#addUserModal" data-toggle="modal" style="max-width: 7%; font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button">
-                    <i aria-hidden="true" class="fa fa-plus"></i> 
+                    <i aria-hidden="true" class="fa fa-plus"></i>
                     Add User
                 </button>
                 <!--BATCH ADD USER BUTTON-->
                 <button class="btn btn-default" data-target="#batchAddUserModal" data-toggle="modal" style="font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button">
-                    <iconify-icon icon="mdi:file-multiple" style="color: white;" width="14" height="14"></iconify-icon>
+                    <iconify-icon height="14" icon="mdi:file-multiple" style="color: white;" width="14"></iconify-icon>
                     Batch Add Users
                 </button>
                 <!--DOWNLOAD TABLE BUTTON-->
                 <button class="btn btn-default" style="font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button">
-                    <iconify-icon icon="mdi:file-export" style="color: white;" width="14" height="14"></iconify-icon>
+                    <iconify-icon height="14" icon="mdi:file-export" style="color: white;" width="14"></iconify-icon>
                     Export User Acounts Table
                 </button>
             </div>
@@ -123,3 +184,27 @@
         </div>
     </div>
 </div>
+
+@section('scripts')
+    <script>
+        Livewire.on('showToast', () => {
+            setTimeout(function() {
+                $('.toast').toast('show');
+            });
+        });
+        Livewire.on('parentForm', () => {
+            setTimeout(function() {
+                $('#multiple-select-optgroup-clear-field').select2({
+                    theme: "bootstrap4",
+                    placeholder: $(this).data('placeholder'),
+                    allowClear: true,
+                });
+
+                $('#multiple-select-optgroup-clear-field').on('change', function(e) {
+                    let data = new Array($(this).val());
+                    Livewire.dispatch('setSelectedStudents', data);
+                });
+            });
+        });
+    </script>
+@endsection

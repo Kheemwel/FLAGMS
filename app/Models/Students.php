@@ -17,9 +17,9 @@ class Students extends Model
         'user_account_id', 'school_level_id', 'grade_level_id'
     ];
 
-    public function userAccount(): BelongsTo
+    public function getUserAccount(): BelongsTo
     {
-        return $this->belongsTo(UserAccounts::class);
+        return $this->belongsTo(UserAccounts::class, 'user_account_id');
     }
 
     public function schoolLevel(): BelongsTo

@@ -17,6 +17,6 @@ class Guidance extends Model
 
     public function getUserAccount() : BelongsTo
     {
-        return $this->belongsTo(UserAccounts::class);
+        return $this->belongsTo(UserAccounts::class, 'user_account_id');
     }
 }

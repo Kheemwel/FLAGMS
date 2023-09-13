@@ -17,9 +17,9 @@ class Parents extends Model
         'user_account_id'
     ];
 
-    public function userAccount(): BelongsTo
+    public function getUserAccount(): BelongsTo
     {
-        return $this->belongsTo(UserAccounts::class);
+        return $this->belongsTo(UserAccounts::class, 'user_account_id');
     }
     
     public function children() : BelongsToMany

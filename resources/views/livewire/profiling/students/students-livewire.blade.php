@@ -123,7 +123,7 @@
                         @foreach ($students as $student)
                         <tr>
                             <th scope="row">{{ $student->id }}</th>
-                            <td>{{ $student->userAccount->first_name . ' ' . $student->userAccount->last_name }}</td>
+                            <td>{{ $student->getUserAccount->first_name . ' ' . $student->getUserAccount->last_name }}</td>
                             <td>{{ $student->schoolLevel->school_level }}</td>
                             <td>Grade {{ $student->gradeLevel->grade_level }}</td>
                             <td>

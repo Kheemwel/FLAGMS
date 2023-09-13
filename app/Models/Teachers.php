@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Teachers extends Model
 {
@@ -13,4 +14,9 @@ class Teachers extends Model
     protected $fillable = [
         'user_account_id'
     ];
+
+    public function getUserAccount(): BelongsTo
+    {
+        return $this->belongsTo(UserAccounts::class, 'user_account_id');
+    }
 }

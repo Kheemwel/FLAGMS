@@ -36,7 +36,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link {{ setActiveLink('guidance-page') }}" href="{{ route('guidance-page') }}">
                                 <i class="far fa-circle nav-icon" style="color: #252525;"></i>
                                 <p style="color: #252525;">Guidance</p>
                             </a>
@@ -50,19 +50,19 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link {{ setActiveLink('parents-page') }}" href="{{ route('parents-page') }}">
                                 <i class="far fa-circle nav-icon" style="color: #252525;"></i>
                                 <p style="color: #252525;">Parents</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link {{ setActiveLink('teachers-page') }}" href="{{ route('teachers-page') }}">
                                 <i class="far fa-circle nav-icon" style="color: #252525;"></i>
                                 <p style="color: #252525;">Teachers</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link {{ setActiveLink('principals-page') }}" href="{{ route('principals-page') }}">
                                 <i class="far fa-circle nav-icon" style="color: #252525;"></i>
                                 <p style="color: #252525;">Principals</p>
                             </a>
@@ -129,7 +129,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link {{ setActiveLink('content-management-page') }}" href="{{ route('content-management-page') }}">
                         <iconify-icon icon="solar:gallery-bold" style="color: black;" width="20" height="20"></iconify-icon>
                         <p style="color: #252525;">
                             Content Management

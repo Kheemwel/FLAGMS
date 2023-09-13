@@ -13,10 +13,8 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     <!-- Site wrapper -->
     <div class="wrapper">
-
         @livewire('left-navigation-livewire')
         @livewire('top-navigation-livewire')
-        {{-- @livewire('user-dashboard-livewire') --}}
         {{ $slot }}
     </div>
     @livewireScripts()

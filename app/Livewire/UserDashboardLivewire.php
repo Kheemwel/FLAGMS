@@ -3,12 +3,9 @@
 namespace App\Livewire;
 
 use App\Models\ProfilePictures;
-use App\Models\Roles;
 use App\Models\UserAccounts;
-use Livewire\Attributes\Layout;
 use Livewire\Component;
 
-#[Layout('common.user-dashboard')]
 class UserDashboardLivewire extends Component
 {
     public $user_id, $role, $first_name, $profile_picture_id;
