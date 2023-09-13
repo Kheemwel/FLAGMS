@@ -49,7 +49,12 @@ Route::middleware([CheckUserCredentials::class])->group(function () {
     Route::view('/content-managemet', 'admin.content-management')->name('content-management-page');
     Route::view('/roles', 'admin.roles')->name('roles-page');
     Route::view('/profile-pictures', 'admin.profile-pictures')->name('profile-pictures-page');
+    Route::view('/offenses', 'admin.offenses')->name('offenses-page');
+    Route::view('/calendar-colors', 'admin.calendar-colors')->name('calendar-colors-page');
+    Route::view('/item-images', 'admin.item-images')->name('item-images-page');
     Route::view('/item-types', 'admin.item-types')->name('item-types-page');
+    Route::view('/guidance-records', 'admin.guidance-records')->name('guidance-records-page');
+    Route::view('/database', 'admin.database')->name('database-page');
 
     //Guidance
     Route::view('/students', 'guidance.students')->name('students-page');

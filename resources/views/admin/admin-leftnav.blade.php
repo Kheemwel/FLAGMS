@@ -91,19 +91,19 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link {{ setActiveLink('offenses-page') }}" href="{{ route('offenses-page') }}">
                                 <i class="far fa-circle nav-icon" style="color: #252525;"></i>
                                 <p style="color: #252525;">Offenses</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link {{ setActiveLink('calendar-colors-page') }}" href="{{ route('calendar-colors-page') }}">
                                 <i class="far fa-circle nav-icon" style="color: #252525;"></i>
                                 <p style="color: #252525;">Calendar Colors</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link {{ setActiveLink('item-images-page') }}" href="{{ route('item-images-page') }}">
                                 <i class="far fa-circle nav-icon" style="color: #252525;"></i>
                                 <p style="color: #252525;">Item Images</p>
                             </a>
@@ -115,13 +115,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link {{ setActiveLink('guidance-records-page') }}" href="{{ route('guidance-records-page') }}">
                                 <i class="far fa-circle nav-icon" style="color: #252525;"></i>
                                 <p style="color: #252525;">Guidance Records</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link {{ setActiveLink('database-page') }}" href="{{ route('database-page') }}">
                                 <i class="far fa-circle nav-icon" style="color: #252525;"></i>
                                 <p style="color: #252525;">Database</p>
                             </a>
