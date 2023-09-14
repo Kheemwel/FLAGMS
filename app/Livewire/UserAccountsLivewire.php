@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Exports\UsersAccountsExport;
 use App\Imports\UserAccountsImport;
 use App\Models\GradeLevels;
 use App\Models\Guidance;
@@ -140,6 +141,11 @@ class UserAccountsLivewire extends Component
 
         // Clear the file input field
         $this->batch_file = null;
+    }
+
+    public function export() 
+    {
+        return Excel::download(new UsersAccountsExport, 'user_accounts.xlsx');
     }
 
     public function store($anotherRule)

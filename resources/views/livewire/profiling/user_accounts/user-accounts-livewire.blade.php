@@ -118,7 +118,7 @@
                     Batch Add Users
                 </button>
                 <!--DOWNLOAD TABLE BUTTON-->
-                <button class="btn btn-default" style="font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button">
+                <button wire:click='export()' class="btn btn-default" style="font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button">
                     <iconify-icon height="14" icon="mdi:file-export" style="color: white;" width="14"></iconify-icon>
                     Export User Acounts Table
                 </button>
