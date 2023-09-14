@@ -38,7 +38,7 @@
                     <input class="form-control float-right" name="table_search" placeholder="Search" style="height: 35px;" type="text" wire:model.live='search'>
                 </div>
                 <!--ADD ROLE BUTTON-->
-                <button class="btn btn-default" data-target="#addRoleModal" data-toggle="modal" style="max-width: 7%; font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button">
+                <button class="btn btn-default" data-target="#addRoleModal" data-toggle="modal" style="font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button">
                     <i aria-hidden="true" class="fa fa-plus"></i> 
                     Add Role
                 </button>
@@ -75,7 +75,7 @@
                                     </button>
 
                                     {{-- DELETE PROFILE --}}
-                                    <button class="btn btn-primary action-btn">
+                                    <button class="btn btn-primary action-btn" wire:click="delete({{ $role->id }})">
                                         <i aria-hidden="true" class="fa fa-trash"></i>
                                     </button>
                                 </td>
