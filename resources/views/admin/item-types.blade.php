@@ -85,6 +85,14 @@
     <script>
         //Livewire Signals
     </script>
+
+    <script>
+        Livewire.on('showToast', () => {
+            setTimeout(function() {
+                $('.toast').toast('show');
+            });
+        });
+    </script>
 </body>
 
 </html>

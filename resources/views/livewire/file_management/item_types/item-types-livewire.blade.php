@@ -70,7 +70,7 @@
                                     <!-------------------------------------------------------------------------------------------------------------------------->
 
                                     {{-- DELETE PROFILE --}}
-                                    <button class="btn btn-primary action-btn">
+                                    <button class="btn btn-primary action-btn" wire:click="delete({{ $type->id }})">
                                         <i aria-hidden="true" class="fa fa-trash"></i>
                                     </button>
                                 </td>
