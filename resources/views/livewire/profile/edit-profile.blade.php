@@ -31,15 +31,6 @@
                             <input accept=".png, .jpg, .jpeg" class="custom-file-input d-none" id="editPic" type="file" wire:model="profile_picture">
                         </div>
                     </div>
-                    <!--CHANGE AND REMOVE BUTTON-->
-                    <div class="row" style="margin-bottom: 2rem;">
-                        <div class="form-group col-sm-6" style="text-align: right;">
-                            <button class="btn btn-default" data-target="#" data-toggle="modal" style="max-width: 5rem; height: 35px; font-size: 12px; background-color: #0A0863; color: white;" type="button"><i class="fa fa-solid fa-pen"></i> Change</button>
-                        </div>
-                        <div class="form-group col-sm-6 float-left" style="text-align: left;">
-                            <button class="btn btn-default" data-target="#" data-toggle="modal" style="max-width: 5rem; height: 35px; font-size: 12px; background-color: #0A0863; color: white;" type="button"><i class="fa fa-solid fa-trash"></i> Remove</button>
-                        </div>
-                    </div>
 
                     <!--USERNAME-->
                     <div class="form-group col-sm-13" style="font-size: 14px; color: #252525; text-align: left;">
