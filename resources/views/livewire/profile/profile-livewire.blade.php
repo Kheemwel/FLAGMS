@@ -156,24 +156,6 @@
 </div>
 
 @section('scripts')
-    <footer class="main-footer">
-        <div class="float-right d-none d-sm-block">
-            <b>Version</b>
-            1.0
-        </div>
-        <strong>Copyright
-            &copy;
-            2023.</strong>
-        All
-        rights
-        reserved.
-    </footer>
-
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar">
-        <!-- Control sidebar content goes here -->
-    </aside>
-
     <!-- jQuery -->
     <script src="adminLTE-3.2/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
