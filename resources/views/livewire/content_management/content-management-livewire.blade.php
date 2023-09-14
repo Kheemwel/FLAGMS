@@ -112,9 +112,9 @@
         <div class="card-body">
             <h1 class="card-title"><strong>Website Logo</strong></h1>
             <br>
-            <div>
-                <img src="{{ $logo }}" alt="" width='100px' height="100px">
-            </div>
+            <img src="{{ $logo }}" alt="" width='100px' height="100px">
+            <br>
+            <br>
             <button class="btn btn-primary" data-target='#updateLogoModal' data-toggle='modal'>Update</button>
         </div>
     </div>
