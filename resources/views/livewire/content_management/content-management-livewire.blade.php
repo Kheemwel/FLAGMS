@@ -112,6 +112,7 @@
         <div class="card-body">
             <h1 class="card-title"><strong>Website Logo</strong></h1>
             <br>
+            <br>
             <img src="{{ $logo }}" alt="" width='100px' height="100px">
             <br>
             <br>
@@ -122,15 +123,35 @@
         <div class="card-body">
             <h1 class="card-title"><strong>Website Title</strong></h1>
             <br>
-            <div>
-                <p>{{ $title }}</p>
-            </div>
+            <br>
+            <p>{{ $title }}</p>
             <button class="btn btn-primary" data-target='#updateTitleModal' data-toggle='modal'>Update</button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title"><strong>Website Subtitle</strong></h1>
+            <br>
+            <br>
+            <p>{{ $subtitle }}</p>
+            <button class="btn btn-primary" data-target='#updateSubtitleModal' data-toggle='modal'>Update</button>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title"><strong>Website School Name</strong></h1>
+            <br>
+            <br>
+            <p>{{ $school_name }}</p>
+            <button class="btn btn-primary" data-target='#updateSchoolNameModal' data-toggle='modal'>Update</button>
         </div>
     </div>
 
     @include('livewire.content_management.update-logo')
     @include('livewire.content_management.update-title')
+    @include('livewire.content_management.update-subtitle')
+    @include('livewire.content_management.update-school-name')
 </div>
 
 @section('scripts')

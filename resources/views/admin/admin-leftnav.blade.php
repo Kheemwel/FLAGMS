@@ -1,8 +1,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #FFFF; font-size: 16px;">
     <!-- Brand Logo -->
     <a class="brand-link" href="#" style="border: transparent;">
-        <img alt="AdminLTE Logo" class="brand-image img-circle" src="images/fiat.png" style="width: auto; height: auto;">
-        <span class="brand-text font-weight-bold" style="color: #080743;">Fiat Lux Academe</span>
+        <img alt="AdminLTE Logo" class="brand-image img-circle" src="{{ $logo }}" style="width: auto; height: auto;">
+        <span class="brand-text font-weight-bold" style="color: #080743;">{{ $school_name }}</span>
     </a>
 
     <!-- Sidebar -->

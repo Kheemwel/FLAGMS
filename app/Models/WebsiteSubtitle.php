@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class WebsiteTitle extends Model
+class WebsiteSubtitle extends Model
 {
     use HasFactory;
-    protected $table = 'website_title';
+    protected $table = 'website_subtitle';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'title'
+        'subtitle'
     ];
 }

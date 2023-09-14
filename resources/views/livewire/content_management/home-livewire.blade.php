@@ -18,8 +18,9 @@
                             <p style="font-weight: bold; font-size: 50px; color: #0A0863;">{{ $title }}</p>
                         </row>
                         <row>
-                            <p style="font-size: 35px; font-weight: 800px;">(Fiat Lux Academe Guidance
-                                Management System)</p>
+                            <p style="font-size: 35px; font-weight: 800px;">
+                                {{ $subtitle }}
+                            </p>
                         </row>
                         <row>
                             <p style="font-size: 24px; line-height: 30px;">A web-based hybrid guidance
@@ -45,10 +46,12 @@
                             <p style="font-size: 40px; color: white;">Mrs. Josephine “Ma’am Josie” Amador</p>
                         </row>
                         <row>
-                            <p style="font-size: 24px; font-weight: 800px; color: white;">THE GUIDANCE ASSOCIATE
+                            <p style="font-size: 24px; font-weight: 800px; color: white;">
+                                THE GUIDANCE ASSOCIATE
                             </p>
-                            <p style="font-size: 24px; font-weight: 800px; color: white; line-height: 2px;"> OF
-                                FIAT LUX ACADEME DASMARIÑAS</p>
+                            <p style="font-size: 24px; font-weight: 800px; color: white; line-height: 2px;"> 
+                                OF FIAT LUX ACADEME DASMARIÑAS
+                            </p>
                         </row>
                     </div>
                 </div>

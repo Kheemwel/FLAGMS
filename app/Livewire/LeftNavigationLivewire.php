@@ -3,11 +3,13 @@
 namespace App\Livewire;
 
 use App\Models\UserAccounts;
+use App\Models\WebsiteLogo;
+use App\Models\WebsiteSchoolName;
 use Livewire\Component;
 
 class LeftNavigationLivewire extends Component
 {
-    public $role;
+    public $role, $logo, $school_name;
 
     public function mount()
     {
@@ -16,6 +18,8 @@ class LeftNavigationLivewire extends Component
             $user = UserAccounts::find($userId);
             $this->role = $user->getRole->role;
         }
+        $this->school_name = WebsiteSchoolName::find(1)->school_name;
+        $this->logo = imageBinaryToSRC(WebsiteLogo::find(1)->logo);
     }
     public function logout()
     {

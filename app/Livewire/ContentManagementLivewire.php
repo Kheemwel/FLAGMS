@@ -3,6 +3,8 @@
 namespace App\Livewire;
 
 use App\Models\WebsiteLogo;
+use App\Models\WebsiteSchoolName;
+use App\Models\WebsiteSubtitle;
 use App\Models\WebsiteTitle;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -10,13 +12,15 @@ use Livewire\WithFileUploads;
 class ContentManagementLivewire extends Component
 {
     use WithFileUploads;
-    public $title, $logo;
+    public $title, $logo, $subtitle, $school_name;
     public $uploadedLogo;
 
     public function render()
     {
         $this->title = WebsiteTitle::find(1)->title;
         $this->logo = imageBinaryToSRC(WebsiteLogo::find(1)->logo);
+        $this->subtitle = WebsiteSubtitle::find(1)->subtitle;
+        $this->school_name = WebsiteSchoolName::find(1)->school_name;
         return view('livewire.content_management.content-management-livewire');
     }
 
@@ -44,6 +48,30 @@ class ContentManagementLivewire extends Component
         ]);
 
         $this->showToast('Website Logo Updated Successfully');
+    }
+    public function updateSubtitle()
+    {
+        $this->validate([
+            'subtitle' => 'required|max:255'
+        ]);
+
+        WebsiteSubtitle::find(1)->update([
+            'subtitle' => $this->subtitle
+        ]);
+
+        $this->showToast('Website Subtitle Updated Successfully');
+    }
+    public function updateSchoolName()
+    {
+        $this->validate([
+            'school_name' => 'required|max:255'
+        ]);
+
+        WebsiteSchoolName::find(1)->update([
+            'school_name' => $this->school_name
+        ]);
+
+        $this->showToast('Website School Name Updated Successfully');
     }
 
     public function showToast($message)
