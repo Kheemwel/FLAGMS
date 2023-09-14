@@ -99,7 +99,7 @@ class UserAccountsLivewire extends Component
 
         if ($this->grade_level and !$this->school_level) {
             $school_level = GradeLevels::where('grade_level', $this->grade_level)->first();
-            $this->school_level = $school_level->schoolLevels->first()->school_level;
+            $this->school_level = $school_level->hasSchoolLevel->schoolLevel->school_level;
         }
 
         $users = $query_normal->orderBy('id', 'asc')->paginate(self::PAGINATE);
