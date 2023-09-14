@@ -221,7 +221,6 @@
                     </table>
                 </div>
             </div>
-            <button wire:click='counter()'>Click</button>{{ $count }}
 
             @include('livewire.profiling.students.anecdotal-window')
             @include('livewire.profiling.students.summary-window')
