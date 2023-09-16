@@ -22,7 +22,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ setActiveLink('user-accounts-page') }}" href="{{ route('user-accounts-page') }}">
-                        <iconify-icon icon="mdi:account-box-multiple-outline" style="color: black;" width="20" height="20"></iconify-icon>
+                        <iconify-icon height="20" icon="mdi:account-box-multiple-outline" style="color: black;" width="20"></iconify-icon>
                         <p style="color: #252525;">Accounts</p>
                     </a>
                 </li>
@@ -71,7 +71,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        <iconify-icon icon="ic:baseline-snippet-folder" style="color: black;" width="20" height="20"></iconify-icon>
+                        <iconify-icon icon="solar:folder-with-files-bold" style="color: #252525;"></iconify-icon>
                         <p style="color: #252525;">
                             File Management
                             <i class="right fas fa-angle-left" style="color: #252525;"></i>
@@ -130,7 +130,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ setActiveLink('content-management-page') }}" href="{{ route('content-management-page') }}">
-                        <iconify-icon icon="solar:gallery-bold" style="color: black;" width="20" height="20"></iconify-icon>
+                        <iconify-icon icon="ph:files-fill" style="color: #252525;"></iconify-icon>
                         <p style="color: #252525;">
                             Content Management
                         </p>
@@ -138,9 +138,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        <iconify-icon
-                            icon="streamline:interface-file-clipboard-text-edition-form-task-checklist-edit-clipboard"
-                            style="color: #252525;"></iconify-icon>
+                        <iconify-icon icon="streamline:interface-file-clipboard-text-edition-form-task-checklist-edit-clipboard" style="color: #252525;"></iconify-icon>
                         <p style="color: #252525;">
                             Records
                             <i class="right fas fa-angle-left" style="color: #252525;"></i>
@@ -183,7 +181,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ setActiveLink('lost-and-found-page') }}" href="{{ route('lost-and-found-page') }}">
-                        <iconify-icon icon="guidance:lost-and-found" style="color: #252525;"></iconify-icon>
+                        <iconify-icon icon="fluent:box-search-16-filled" style="color: #252525;"></iconify-icon>
                         <p style="color: #252525;">
                             Lost and Found
                         </p>
