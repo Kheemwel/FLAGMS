@@ -77,7 +77,7 @@
         <li class="nav-item">
             <div class="image">
                 <a href="{{ route('profile-page') }}">
-                    <img alt="User Image" class="img-circle elevation-2" src="{{ $this->viewProfile() }}" width="30px">
+                    <img alt="User Image" class="img-circle elevation-2" src="{{ $this->viewProfile() }}" width="30px" height="30px">
                 </a>
             </div>
         </li>

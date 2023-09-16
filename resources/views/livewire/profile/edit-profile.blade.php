@@ -16,19 +16,25 @@
                     <!--IMPORTANT USER DETAILS FORM SECTION-->
                     <!--------------------USER'S INFORMATION------------------------>
                     <div class="row">
-                        <!--PROFILE PICTURE-->
+                        <!--PROFILE PICTURE-->      
                         <div class="form-group col-sm-12" style="margin-bottom: 3rem; text-align: center;">
                             <div onclick="$('#editPic').trigger('click')">
-                                <div>
-                                    @if ($profile_picture)
-                                        <img src="{{ $profile_picture->temporaryUrl() }}">
-                                    @else
-                                        <img alt="user profile" src="{{ $this->viewProfile() }}">
-                                    @endif
-                                </div>
-                                <div wire:loading wire:target="profile_picture">Uploading...</div>
+                                @if ($profile_picture)
+                                    <img src="{{ $profile_picture->temporaryUrl() }}" width='150px' height="150px">
+                                @else
+                                    <img alt="user profile" src="{{ $this->viewProfile() }}" width='150px' height="150px">
+                                @endif
+                                <i class="fa fa-solid fa-camera" style="vertical-align: bottom;"></i>
                             </div>
-                            <input accept=".png, .jpg, .jpeg" class="custom-file-input d-none" id="editPic" type="file" wire:model="profile_picture">
+                            <div x-data="{ uploading: false, progress: 0 }" x-on:livewire-upload-error="uploading = false" x-on:livewire-upload-finish="uploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress" x-on:livewire-upload-start="uploading = true">
+                                <!-- File Input -->
+                                <input accept=".png, .jpg, .jpeg" class="custom-file-input d-none" id="editPic" type="file" wire:model="profile_picture">
+        
+                                <!-- Progress Bar -->
+                                <div x-show="uploading" class="progress">
+                                    <div class="progress-bar" role="progressbar" x-bind:style="`width: ${progress}%;`" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
