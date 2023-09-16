@@ -4,20 +4,6 @@
     <!-- Select2 CSS -->
     <link href="adminLTE-3.2/plugins/select2/css/select2.min.css" rel="stylesheet">
     <link href="adminLTE-3.2/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css" rel="stylesheet">
-
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="adminLTE-3.2/plugins/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <!-- overlayScrollbars -->
-    <link href="adminLTE-3.2/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" rel="stylesheet">
-    <!-- Toastr -->
-    <link href="adminLTE-3.2/plugins/toastr/toastr.min.css" rel="stylesheet">
-    <!--iconify icons-->
-    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-    <!-- Theme style -->
-    <link href="adminLTE-3.2/dist/css/adminlte.min.css" rel="stylesheet">
-
     <style>
         /* For Eye Icons of Anecdotal and Summary Section inside the table */
         .btn-primary.action-btn {
@@ -40,21 +26,9 @@
 
         /********************************/
     </style>
-    <!-- jQuery -->
-    <script src="adminLTE-3.2/plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 JS -->
-    <script src="adminLTE-3.2/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- overlayScrollbars -->
-    <script src="adminLTE-3.2/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="adminLTE-3.2/dist/js/adminlte.min.js"></script>
-    <!-- ChartJS -->
-    <script src="adminLTE-3.2/plugins/chart.js/Chart.min.js"></script>
-    <!-- bs-custom-file-input -->
-    <script src="adminLTE-3.2/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
-    <!-- Toastr -->
-    <script src="adminLTE-3.2/plugins/toastr/toastr.min.js"></script>
+@endsection
 
+@section('head-scripts')
     {{-- Select2 JS --}}
     <script src="adminLTE-3.2/plugins/select2/js/select2.full.min.js"></script>
 @endsection
@@ -118,7 +92,7 @@
                     Batch Add Users
                 </button>
                 <!--DOWNLOAD TABLE BUTTON-->
-                <button wire:click='export()' class="btn btn-default" style="font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button">
+                <button class="btn btn-default" style="font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button" wire:click='export()'>
                     <iconify-icon height="14" icon="mdi:file-export" style="color: white;" width="14"></iconify-icon>
                     Export User Acounts Table
                 </button>

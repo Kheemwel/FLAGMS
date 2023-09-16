@@ -1,3 +1,7 @@
+@section('head')
+    <title>Admin | Item Types</title>
+@endsection
+
 <div class="content-wrapper" style="background-color:  rgb(253, 253, 253); padding-left: 2rem;">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -39,7 +43,7 @@
                 </div>
                 <!--ADD ROLE BUTTON-->
                 <button class="btn btn-default" data-target="#addTypeModal" data-toggle="modal" style="font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button">
-                    <i aria-hidden="true" class="fa fa-plus"></i> 
+                    <i aria-hidden="true" class="fa fa-plus"></i>
                     Define New Item Type
                 </button>
             </div>
@@ -58,23 +62,23 @@
                         </thead>
                         <tbody>
                             @foreach ($item_types as $type)
-                            <tr>
-                                <th scope="row">{{ $type->id }}</th>
-                                <td>{{ $type->item_type }}</td>
-                                {{-- <td>{{ '' }}</td> --}}
-                                <td>
-                                    <!--EDIT PROFILE-->
-                                    <button class="btn btn-primary action-btn" data-target="#stud-info-edit" data-toggle="modal">
-                                        <i class="fa fa-solid fa-pen"></i>
-                                    </button>
-                                    <!-------------------------------------------------------------------------------------------------------------------------->
+                                <tr>
+                                    <th scope="row">{{ $type->id }}</th>
+                                    <td>{{ $type->item_type }}</td>
+                                    {{-- <td>{{ '' }}</td> --}}
+                                    <td>
+                                        <!--EDIT PROFILE-->
+                                        <button class="btn btn-primary action-btn" data-target="#stud-info-edit" data-toggle="modal">
+                                            <i class="fa fa-solid fa-pen"></i>
+                                        </button>
+                                        <!-------------------------------------------------------------------------------------------------------------------------->
 
-                                    {{-- DELETE PROFILE --}}
-                                    <button class="btn btn-primary action-btn" wire:click="delete({{ $type->id }})">
-                                        <i aria-hidden="true" class="fa fa-trash"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                                        {{-- DELETE PROFILE --}}
+                                        <button class="btn btn-primary action-btn" wire:click="delete({{ $type->id }})">
+                                            <i aria-hidden="true" class="fa fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -86,3 +90,13 @@
     </div>
     @include('livewire.file_management.item_types.add-type')
 </div>
+
+@section('scripts')
+    <script>
+        Livewire.on('showToast', () => {
+            setTimeout(function() {
+                $('.toast').toast('show');
+            });
+        });
+    </script>
+@endsection

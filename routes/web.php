@@ -5,9 +5,14 @@ use App\Http\Livewire\ProfileLivewire;
 use App\Livewire\ContentManagementLivewire;
 use App\Livewire\GuidanceLivewire;
 use App\Livewire\HomeLivewire;
+use App\Livewire\ItemTypesLivewire;
+use App\Livewire\LostFoundLivewire;
+use App\Livewire\NotificationLivewire;
 use App\Livewire\ParentsLivewire;
 use App\Livewire\PrincipalsLivewire;
 use App\Livewire\ProfileLivewire as LivewireProfileLivewire;
+use App\Livewire\ProfilePicturesLivewire;
+use App\Livewire\RolesLivewire;
 use App\Livewire\StudentsLivewire;
 use App\Livewire\TeachersLivewire;
 use App\Livewire\Test\TestLivewire;
@@ -42,7 +47,7 @@ Route::middleware([CheckUserCredentials::class])->group(function () {
     //Common
     Route::get('/user-dashboard', UserDashboardLivewire::class)->name('user-dashboard-page');
     Route::get('/profile', LivewireProfileLivewire::class)->name('profile-page');
-    Route::view('/notification', 'common.notification')->name('notification-page');
+    Route::get('/notification', NotificationLivewire::class)->name('notification-page');
     Route::view('/user-guidance-program', 'common.user-guidance-program')->name('user-guidance-program-page');
     Route::view('/fill-out-forms', 'common.fill-out-forms')->name('fill-out-forms-page');
     Route::view('/user-lost-and-found', 'common.user-lost-and-found')->name('user-lost-and-found-page');
@@ -54,12 +59,12 @@ Route::middleware([CheckUserCredentials::class])->group(function () {
     Route::get('/teachers', TeachersLivewire::class)->name('teachers-page');
     Route::get('/principals', PrincipalsLivewire::class)->name('principals-page');
     Route::get('/content-management', ContentManagementLivewire::class)->name('content-management-page');
-    Route::view('/roles', 'admin.roles')->name('roles-page');
-    Route::view('/profile-pictures', 'admin.profile-pictures')->name('profile-pictures-page');
+    Route::get('/roles', RolesLivewire::class)->name('roles-page');
+    Route::get('/profile-pictures', ProfilePicturesLivewire::class)->name('profile-pictures-page');
     Route::view('/offenses', 'admin.offenses')->name('offenses-page');
     Route::view('/calendar-colors', 'admin.calendar-colors')->name('calendar-colors-page');
     Route::view('/item-images', 'admin.item-images')->name('item-images-page');
-    Route::view('/item-types', 'admin.item-types')->name('item-types-page');
+    Route::get('/item-types', ItemTypesLivewire::class)->name('item-types-page');
     Route::view('/guidance-records', 'admin.guidance-records')->name('guidance-records-page');
     Route::view('/database', 'admin.database')->name('database-page');
 
@@ -71,7 +76,7 @@ Route::middleware([CheckUserCredentials::class])->group(function () {
     Route::view('/individual-inventory', 'guidance.individual-inventory')->name('individual-inventory-page');
     Route::view('/guidance-program', 'guidance.guidance-program')->name('guidance-program-page');
     Route::view('/approval-forms', 'guidance.approval-forms')->name('approval-forms-page');
-    Route::view('/lost-and-found', 'guidance.lost-and-found')->name('lost-and-found-page');
+    Route::get('/lost-and-found', LostFoundLivewire::class)->name('lost-and-found-page');
 
     //Student
     Route::view('/student-anecdotal-record', 'student.student-anecdotal-record')->name('student-anecdotal-record-page');

@@ -1,3 +1,7 @@
+@section('head')
+    <title>Admin | Roles</title>
+@endsection
+
 <div class="content-wrapper" style="background-color:  rgb(253, 253, 253); padding-left: 2rem;">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -91,3 +95,14 @@
     </div>
     @include('livewire.file_management.roles.add-role')
 </div>
+
+@section('scripts')
+    <script>
+        Livewire.on('showToast', () => {
+            setTimeout(function() {
+                $('.toast').toast('show');
+            });
+        });
+    </script>
+@endsection
+

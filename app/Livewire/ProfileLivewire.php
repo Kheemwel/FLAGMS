@@ -75,11 +75,9 @@ class ProfileLivewire extends Component
             $profileImageContent = file_get_contents($this->profile_picture->getRealPath());
 
             // Create a new profile picture record
-            $newProfile = ProfilePictures::create([
+            ProfilePictures::find($this->profile_picture_id)->update([
                 'profile_picture' => $profileImageContent
             ]);
-
-            $this->profile_picture_id = $newProfile->id;
         }
 
         $user->update([
