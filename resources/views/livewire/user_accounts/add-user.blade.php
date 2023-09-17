@@ -47,17 +47,17 @@
                     <!--FIRSTNAME-->
                     <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
                         <label for="inputFN" style="font-weight: normal;">First Name</label>
-                        <input class="form-control" id="inputFN" style="border: 1px solid #252525" type="text" wire:model="first_name">
-                        @if ($errors->has('first_name') || !$first_name)
+                        <input class="form-control" id="inputFN" style="border: 1px solid #252525" type="text" wire:model.live="first_name">
+                        @if ($errors->has('first_name') && !$first_name)
                             <span class="text-danger">{{ $errors->first('first_name') }}</span>
                         @endif
                     </div>
                     <!--LASTNAME-->
                     <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
                         <label for="inputLN" style="font-weight: normal;">Last Name</label>
-                        <input class="form-control" id="inputLN" style="border: 1px solid #252525" type="text" wire:model="last_name">
-                        @if ($errors->has('last_name') && !$last_name)
-                            <span class="text-danger">{{ $errors->first('last_name') }}</span>
+                        <input class="form-control" id="inputLN" style="border: 1px solid #252525" type="text" wire:model.live="last_name">
+                        @if ($errors->has('first_name') && !$first_name)
+                            <span class="text-danger">{{ $errors->first('first_name') }}</span>
                         @endif
                     </div>
                 </div>
