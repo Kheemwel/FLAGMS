@@ -116,7 +116,7 @@
                 </form>
             </div> <!-- /.card-body -->
             <div class="card-footer">
-                <button class="btn btn-primary" style="width: 450px; margin-left: 5px; background-color: #0A0863; color: white; font-size: 14px;" type="submit" wire:click="update()">Save</button>
+                <button class="btn btn-primary" style="width: 450px; margin-left: 5px; background-color: #0A0863; color: white; font-size: 14px;" type="submit" wire:click="update()" data-dismiss="modal">Save</button>
             </div>
         </div>
         <!-- /.modal-content -->
