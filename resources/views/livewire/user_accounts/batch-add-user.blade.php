@@ -8,6 +8,11 @@
                 </button>
             </div>
             <form wire:submit.prevent="import()">
+                <div wire:loading wire:target='import'>
+                    <div class="overlay"><i class="fas fa-3x fa-sync-alt fa-spin"></i>
+                        <div class="text-bold pt-2">Adding Users...</div>
+                    </div>
+                </div>
                 <div class="modal-body" style="margin-left: 1rem; max-height: 500px; overflow-y: auto;">
                     <!--MODAL FORM TITLE-->
                     <p class="card-title" style="color: #0A0863; font-weight: bold; font-size: 22px;">Batch Add User</p> <br><br><br>
@@ -20,8 +25,8 @@
                         </div>
 
                         <!-- Progress Bar -->
-                        <div x-show="uploading" class="progress">
-                            <div class="progress-bar" role="progressbar" x-bind:style="`width: ${progress}%;`" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress" x-show="uploading">
+                            <div aria-valuemax="100" aria-valuemin="0" class="progress-bar" role="progressbar" x-bind:style="`width: ${progress}%;`"></div>
                             {{-- <progress max="100" x-bind:value="progress"></progress> --}}
                         </div>
                     </div>

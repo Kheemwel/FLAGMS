@@ -3,16 +3,20 @@
 namespace App\Imports;
 
 use App\Models\UserAccounts;
+use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
+use Maatwebsite\Excel\Concerns\WithProgressBar;
 
-class UserAccountsImport implements ToModel, WithBatchInserts
+class UserAccountsImport implements ToModel, WithBatchInserts, WithProgressBar
 {
     /**
     * @param array $row
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
+
+    use Importable;
     public function model(array $row)
     {
         $username = $row[2] ? $row[2] : generateUsername($row[0], $row[1]);
