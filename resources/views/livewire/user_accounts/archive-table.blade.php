@@ -37,7 +37,7 @@
                             </button>
 
                             {{-- DELETE USER --}}
-                            <button class="btn btn-primary action-btn" wire:click="delete({{ $user->id }})">
+                            <button class="btn btn-primary action-btn" data-target="#deleteModal" data-toggle="modal" wire:click.prevent="get_data({{ $user->id }})">
                                 <i aria-hidden="true" class="fa fa-trash"></i>
                             </button>
                         </td>

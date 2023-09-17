@@ -102,7 +102,7 @@
             </div>
             <!--PROFILING TABLE SECTION-->
             @if ($showArchivedAccounts)
-                @include('livewire.user_accounts.user_accounts.archive-table')
+                @include('livewire.user_accounts.archive-table')
             @else
                 <div class="card" style="margin-left: 2rem; margin-right: 2rem;">
                     <!-- /.card-header -->
@@ -154,6 +154,7 @@
             @include('livewire.user_accounts.edit-user')
             @include('livewire.user_accounts.view-user')
             @include('livewire.user_accounts.batch-add-user')
+            @include('livewire.user_accounts.confirm-delete')
             <!-- /.card -->
         </div>
     </div>
@@ -163,7 +164,7 @@
     <script>
         Livewire.on('showToast', () => {
             setTimeout(function() {
-                $('.toast').toast('show');
+                // $('.toast').toast('show');
             });
         });
         Livewire.on('parentForm', () => {

@@ -406,9 +406,9 @@ class UserAccountsLivewire extends Component
         }
     }
 
-    public function delete($id)
+    public function delete()
     {
-        $user = UserAccounts::find($id);
+        $user = UserAccounts::find($this->user_id);
         if ($user && $user->is_archive) {
             $role = $user->getRole->role;
             if ($role == 'Guidance') {
