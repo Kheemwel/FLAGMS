@@ -137,6 +137,7 @@
             @include('livewire.user_accounts.view-user')
             @include('livewire.user_accounts.batch-add-user')
             @include('livewire.user_accounts.confirm-delete')
+            @include('livewire.user_accounts.confirm-save')
             <!-- /.card -->
         </div>
     </div>

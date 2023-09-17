@@ -17,22 +17,23 @@
                     <!--IMPORTANT USER DETAILS FORM SECTION-->
                     <!--------------------USER'S INFORMATION------------------------>
                     <div class="row">
-                        <!--PROFILE PICTURE--><div class="form-group col-sm-12" style="margin-bottom: 3rem; text-align: center;">
+                        <!--PROFILE PICTURE-->
+                        <div class="form-group col-sm-12" style="margin-bottom: 3rem; text-align: center;">
                             <div onclick="$('#editPic').trigger('click')">
                                 @if ($profile_picture)
-                                    <img src="{{ $profile_picture->temporaryUrl() }}" width='150px' height="150px">
+                                    <img height="150px" src="{{ $profile_picture->temporaryUrl() }}" width='150px'>
                                 @else
-                                    <img alt="user profile" src="{{ $this->viewProfile() }}" width='150px' height="150px">
+                                    <img alt="user profile" height="150px" src="{{ $this->viewProfile() }}" width='150px'>
                                 @endif
                                 <i class="fa fa-solid fa-camera" style="vertical-align: bottom;"></i>
                             </div>
                             <div x-data="{ uploading: false, progress: 0 }" x-on:livewire-upload-error="uploading = false" x-on:livewire-upload-finish="uploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress" x-on:livewire-upload-start="uploading = true">
                                 <!-- File Input -->
                                 <input accept=".png, .jpg, .jpeg" class="custom-file-input d-none" id="editPic" type="file" wire:model="profile_picture">
-        
+
                                 <!-- Progress Bar -->
-                                <div x-show="uploading" class="progress">
-                                    <div class="progress-bar" role="progressbar" x-bind:style="`width: ${progress}%;`" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress" x-show="uploading">
+                                    <div aria-valuemax="100" aria-valuemin="0" class="progress-bar" role="progressbar" x-bind:style="`width: ${progress}%;`"></div>
                                 </div>
                             </div>
                         </div>
@@ -111,12 +112,11 @@
                             <label class="form-check-label" for="cbPass">Show Password</label>
                         </div>
                     </div>
-
                     <!------------------------------------------------------------------------------>
                 </form>
             </div> <!-- /.card-body -->
             <div class="card-footer">
-                <button class="btn btn-primary" style="width: 450px; margin-left: 5px; background-color: #0A0863; color: white; font-size: 14px;" type="submit" wire:click="update()" data-dismiss="modal">Save</button>
+                <button  data-dismiss='modal' class="btn btn-primary" data-target='#saveModal' data-toggle='modal' style="width: 450px; margin-left: 5px; background-color: #0A0863; color: white; font-size: 14px;" type="submit">Save</button>
             </div>
         </div>
         <!-- /.modal-content -->
