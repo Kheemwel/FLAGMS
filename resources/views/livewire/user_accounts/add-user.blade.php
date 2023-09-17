@@ -62,11 +62,11 @@
                     </div>
                 </div>
                 @if ($role == 'Student')
-                    @include('livewire.profiling.user_accounts.add-student')
+                    @include('livewire.user_accounts.user_accounts.add-student')
                 @elseif ($role == 'Parent')
-                    @include('livewire.profiling.user_accounts.add-parent')
+                    @include('livewire.user_accounts.user_accounts.add-parent')
                 @elseif ($role == 'Principal')
-                    @include('livewire.profiling.user_accounts.add-principal')
+                    @include('livewire.user_accounts.user_accounts.add-principal')
                 @endif
                 <!--USERNAME-->
                 <div class="row">

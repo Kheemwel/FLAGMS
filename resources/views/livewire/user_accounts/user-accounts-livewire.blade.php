@@ -102,7 +102,7 @@
             </div>
             <!--PROFILING TABLE SECTION-->
             @if ($showArchivedAccounts)
-                @include('livewire.profiling.user_accounts.archive-table')
+                @include('livewire.user_accounts.user_accounts.archive-table')
             @else
                 <div class="card" style="margin-left: 2rem; margin-right: 2rem;">
                     <!-- /.card-header -->
@@ -150,10 +150,10 @@
                 {{ $users->links('components.pagination') }}
             @endif
 
-            @include('livewire.profiling.user_accounts.add-user')
-            @include('livewire.profiling.user_accounts.edit-user')
-            @include('livewire.profiling.user_accounts.view-user')
-            @include('livewire.profiling.user_accounts.batch-add-user')
+            @include('livewire.user_accounts.add-user')
+            @include('livewire.user_accounts.edit-user')
+            @include('livewire.user_accounts.view-user')
+            @include('livewire.user_accounts.batch-add-user')
             <!-- /.card -->
         </div>
     </div>

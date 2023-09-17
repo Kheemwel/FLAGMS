@@ -11,6 +11,6 @@ class GuidanceLivewire extends Component
     public function render()
     {
         $this->guidances = Guidance::all();
-        return view('livewire.profiling.guidance.guidance-livewire');
+        return view('livewire.users.guidance.guidance-livewire');
     }
 }

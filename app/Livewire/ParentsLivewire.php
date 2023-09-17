@@ -11,6 +11,6 @@ class ParentsLivewire extends Component
     public function render()
     {
         $this->parents = Parents::all();
-        return view('livewire.profiling.parents.parents-livewire');
+        return view('livewire.users.parents.parents-livewire');
     }
 }

@@ -105,7 +105,7 @@ class UserAccountsLivewire extends Component
 
         $users = $query_normal->orderBy('id', 'asc')->paginate(self::PAGINATE);
         $archived_users = $query_archives->oldest()->paginate(self::PAGINATE);
-        return view('livewire.profiling.user_accounts.user-accounts-livewire', compact('users', 'archived_users'));
+        return view('livewire.user_accounts.user-accounts-livewire', compact('users', 'archived_users'));
     }
 
     public function renderSelect2()

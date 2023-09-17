@@ -222,9 +222,9 @@
                 </div>
             </div>
 
-            @include('livewire.profiling.students.anecdotal-window')
-            @include('livewire.profiling.students.summary-window')
-            @include('livewire.profiling.students.edit-student')
+            @include('livewire.users.students.anecdotal-window')
+            @include('livewire.users.students.summary-window')
+            @include('livewire.users.students.edit-student')
         </div>
     </div>
 </div> <!-- /.card-body -->

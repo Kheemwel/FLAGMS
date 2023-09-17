@@ -11,6 +11,6 @@ class TeachersLivewire extends Component
     public function render()
     {
         $this->teachers = Teachers::all();
-        return view('livewire.profiling.teachers.teachers-livewire');
+        return view('livewire.users.teachers.teachers-livewire');
     }
 }

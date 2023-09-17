@@ -11,6 +11,6 @@ class PrincipalsLivewire extends Component
     public function render()
     {
         $this->principals = Principals::all();
-        return view('livewire.profiling.principals.principals-livewire');
+        return view('livewire.users.principals.principals-livewire');
     }
 }
