@@ -15,7 +15,7 @@ use App\Models\SchoolLevels;
 use App\Models\Students;
 use App\Models\Teachers;
 use App\Models\UserAccounts;
-use App\Traits\Debuggable;
+use App\Traits\Toasts;
 use Exception;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
@@ -25,7 +25,7 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class UserAccountsLivewire extends Component
 {
-    use Debuggable;
+    use Toasts;
     use WithFileUploads;
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
@@ -133,11 +133,11 @@ class UserAccountsLivewire extends Component
         try {
             Excel::import(new UserAccountsImport, $this->batch_file);
         } catch (\Throwable $th) {
-            debugMessage($th);
+            $this->showToast('error', $th);
         }
 
         // Add any additional logic or feedback messages here
-        $this->showToast('Users Are Added Successfully');
+        $this->showToast('success', 'Users Are Added Successfully');
 
         // Clear the file input field
         $this->batch_file = null;
@@ -193,7 +193,7 @@ class UserAccountsLivewire extends Component
                 'profile_picture_id' => $profile_picture_id
             ]);
         } catch (Exception $ex) {
-            debugMessage($ex);
+            $this->showToast('error', $ex);
         }
 
         return $user;
@@ -204,7 +204,7 @@ class UserAccountsLivewire extends Component
     {
         $user = $this->store([]);
         if ($user) {
-            $this->showToast('User Added Successfully');
+            $this->showToast('success', 'User Added Successfully');
             $this->resetInputFields();
         }
     }
@@ -229,9 +229,9 @@ class UserAccountsLivewire extends Component
                     'grade_level_id' => $grade_level_id,
                 ]);
             } catch (\Throwable $th) {
-                debugMessage($th);
+                $this->showToast('error', $th);
             }
-            $this->showToast('Student Added Successfully');
+            $this->showToast('success', 'Student Added Successfully');
             $this->resetInputFields();
         }
     }
@@ -249,7 +249,7 @@ class UserAccountsLivewire extends Component
 
             $parent->children()->attach($this->selectedStudents);
 
-            $this->showToast('Parent Added Successfully');
+            $this->showToast('success', 'Parent Added Successfully');
             $this->resetInputFields();
         }
     }
@@ -268,7 +268,7 @@ class UserAccountsLivewire extends Component
                 'user_account_id' => $user->id,
                 'principal_position_id' => $position->id
             ]);
-            $this->showToast('Principal Added Successfully');
+            $this->showToast('success', 'Principal Added Successfully');
             $this->resetInputFields();
         }
     }
@@ -280,7 +280,7 @@ class UserAccountsLivewire extends Component
             Guidance::create([
                 'user_account_id' => $user->id
             ]);
-            $this->showToast('Guidance Associate Added Successfully');
+            $this->showToast('success', 'Guidance Associate Added Successfully');
             $this->resetInputFields();
         }
     }
@@ -292,7 +292,7 @@ class UserAccountsLivewire extends Component
             Teachers::create([
                 'user_account_id' => $user->id
             ]);
-            $this->showToast('Teacher Added Successfully');
+            $this->showToast('success', 'Teacher Added Successfully');
             $this->resetInputFields();
         }
     }
@@ -347,7 +347,7 @@ class UserAccountsLivewire extends Component
             'profile_picture_id' => $this->profile_picture_id
         ]);
 
-        $this->showToast('User Updated Successfully');
+        $this->showToast('success', 'User Updated Successfully');
         $this->resetInputFields();
     }
 
@@ -426,7 +426,7 @@ class UserAccountsLivewire extends Component
             }
             $user->delete();
             $user->getProfilePicture()->delete();
-            $this->showToast('User Deleted Successfully');
+            $this->showToast('success', 'User Deleted Successfully');
         }
     }
 
@@ -442,7 +442,6 @@ class UserAccountsLivewire extends Component
 
     public function archive($id)
     {
-
         $user = UserAccounts::find($id);
 
         if (!$user->is_archive) {
@@ -451,7 +450,7 @@ class UserAccountsLivewire extends Component
                 'archived_at' => now(), // Set 'archived_at' to the current date and time
             ]);
 
-            $this->showToast('User Archived Successfully');
+            $this->showToast('success', 'User Archived Successfully');
         }
     }
 
@@ -465,7 +464,7 @@ class UserAccountsLivewire extends Component
                 'is_archive' => false,
             ]);
 
-            $this->showToast('User Unarchived Successfully');
+            $this->showToast('success', 'User Unarchived Successfully');
         }
 
     }
@@ -478,10 +477,5 @@ class UserAccountsLivewire extends Component
     public function generatePassword()
     {
         $this->password = generatePassword();
-    }
-
-    public function showToast($message) {
-        session()->flash('message', $message);
-        $this->dispatch('showToast');
     }
 }

@@ -6,11 +6,13 @@ use App\Models\WebsiteLogo;
 use App\Models\WebsiteSchoolName;
 use App\Models\WebsiteSubtitle;
 use App\Models\WebsiteTitle;
+use App\Traits\Toasts;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
 class ContentManagementLivewire extends Component
 {
+    use Toasts;
     use WithFileUploads;
     public $title, $logo, $subtitle, $school_name;
     public $uploadedLogo;
@@ -34,7 +36,7 @@ class ContentManagementLivewire extends Component
             'title' => $this->title
         ]);
 
-        $this->showToast('Website Title Updated Successfully');
+        $this->showToast('success', 'Website Title Updated Successfully');
     }
 
     public function updateLogo()
@@ -47,7 +49,7 @@ class ContentManagementLivewire extends Component
             'logo' => file_get_contents($this->uploadedLogo->getRealPath())
         ]);
 
-        $this->showToast('Website Logo Updated Successfully');
+        $this->showToast('success', 'Website Logo Updated Successfully');
     }
     public function updateSubtitle()
     {
@@ -59,7 +61,7 @@ class ContentManagementLivewire extends Component
             'subtitle' => $this->subtitle
         ]);
 
-        $this->showToast('Website Subtitle Updated Successfully');
+        $this->showToast('success', 'Website Subtitle Updated Successfully');
     }
     public function updateSchoolName()
     {
@@ -71,13 +73,7 @@ class ContentManagementLivewire extends Component
             'school_name' => $this->school_name
         ]);
 
-        $this->showToast('Website School Name Updated Successfully');
-    }
-
-    public function showToast($message)
-    {
-        session()->flash('message', $message);
-        $this->dispatch('showToast');
+        $this->showToast('success', 'Website School Name Updated Successfully');
     }
 
     public function resetInputFields()

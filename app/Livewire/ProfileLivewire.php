@@ -5,12 +5,14 @@ namespace App\Livewire;
 use App\Models\ProfilePictures;
 use App\Models\Roles;
 use App\Models\UserAccounts;
+use App\Traits\Toasts;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
 class ProfileLivewire extends Component
 {
+    use Toasts;
     use WithFileUploads;
     public $user_id, $username, $role, $first_name, $last_name, $name, $password;
     public  $profile_picture_id, $profile_picture;
@@ -86,7 +88,7 @@ class ProfileLivewire extends Component
             'hashed_password' => $validatedData['hashed_password'],
             'profile_picture_id' => $this->profile_picture_id
         ]);
-        $this->showToast('Your Profile Updated Successfully');
+        $this->showToast('success', 'Your Profile Updated Successfully');
         $this->updateProfile($this->profile_picture_id);
         $this->resetInputs();
     }
@@ -102,9 +104,4 @@ class ProfileLivewire extends Component
         return redirect()->route('home-page');
     }
 
-    public function showToast($message)
-    {
-        session()->flash('message', $message);
-        $this->dispatch('showToast');
-    }
 }

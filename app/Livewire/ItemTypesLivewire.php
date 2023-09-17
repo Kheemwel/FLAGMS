@@ -3,10 +3,12 @@
 namespace App\Livewire;
 
 use App\Models\ItemTypes;
+use App\Traits\Toasts;
 use Livewire\Component;
 
 class ItemTypesLivewire extends Component
 {
+    use Toasts;
     public $item_types, $type;
     public function render()
     {
@@ -24,14 +26,14 @@ class ItemTypesLivewire extends Component
             'item_type' => $this->type
         ]);
 
-        $this->showToast('New Item Type Added Successfully');
+        $this->showToast('success', 'New Item Type Added Successfully');
     }
 
     public function delete($id)
     {
         $type = ItemTypes::find($id);
         $type->delete();
-        $this->showToast('Item Type Deleted Successfully');
+        $this->showToast('success', 'Item Type Deleted Successfully');
     }
 
     public function resetInputFields()
@@ -39,9 +41,4 @@ class ItemTypesLivewire extends Component
         $this->type = null;
     }
 
-    public function showToast($message)
-    {
-        session()->flash('message', $message);
-        $this->dispatch('showToast');
-    }
 }

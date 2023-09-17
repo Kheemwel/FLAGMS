@@ -21,7 +21,7 @@
     <!-- Theme style -->
     <link href="adminLTE-3.2/dist/css/adminlte.min.css" rel="stylesheet">
 
-    
+
     <style>
         /* For Eye Icons of Anecdotal and Summary Section inside the table */
         .btn-primary.action-btn {
@@ -45,7 +45,7 @@
         /********************************/
     </style>
 
-    
+
     <!-- jQuery -->
     <script src="adminLTE-3.2/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 JS -->
@@ -90,7 +90,41 @@
         <!-- Control sidebar content goes here -->
     </aside>
     @livewireScripts()
+    <script>
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "0",
+            "hideDuration": "0",
+            "timeOut": "3000",
+            "extendedTimeOut": "0",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        Livewire.on('showToast', (data) => {
+            const type = data[0];
+            const message = data[1];
+
+            if (type == 'success') {
+                toastr.success(message)
+            } else if (type == 'error') {
+                toastr.error(message)
+            } else if (type == 'info') {
+                toastr.info(message)
+            } else if (type == 'warning') {
+                toastr.warning(message)
+            }
+        });
+    </script>
     @yield('scripts')
 </body>
 <!-- ./wrapper -->
+
 </html>

@@ -2,7 +2,7 @@
 use Illuminate\Support\Facades\Route;
 
 if (!function_exists('debugMessage')) {
-    function debugMessage($message)
+    function debugMessag($message)
     {
         dd(['helperMessage' => $message]);
     }

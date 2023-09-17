@@ -3,10 +3,12 @@
 namespace App\Livewire;
 
 use App\Models\Roles;
+use App\Traits\Toasts;
 use Livewire\Component;
 
 class RolesLivewire extends Component
 {
+    use Toasts;
     public $roles, $role;
     public function render()
     {
@@ -24,7 +26,7 @@ class RolesLivewire extends Component
             'role' => $this->role
         ]);
 
-        $this->showToast('New Role Added Successfully');
+        $this->showToast('success', 'New Role Added Successfully');
     }
 
     public function delete($id)
@@ -32,7 +34,7 @@ class RolesLivewire extends Component
         $role = Roles::find($id);
         $role->getUserAccounts()->delete();
         $role->delete();
-        $this->showToast('Role Deleted Successfully');
+        $this->showToast('success', 'Role Deleted Successfully');
     }
 
     public function resetInputFields()
@@ -40,9 +42,4 @@ class RolesLivewire extends Component
         $this->role = null;
     }
 
-    public function showToast($message)
-    {
-        session()->flash('message', $message);
-        $this->dispatch('showToast');
-    }
 }

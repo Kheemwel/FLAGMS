@@ -46,24 +46,6 @@
         <!-- /.container-fluid -->
     </section>
 
-    <div class="position-fixed p-3" style="z-index: 1100; right: 0; top: 0;">
-        <div aria-atomic="true" aria-live="assertive" class="toast hide" data-delay="3000" id="liveToast" role="alert">
-            <div class="toast-header">
-                <img class="rounded mr-2" src="favicon.ico" width="24">
-                <strong class="mr-auto">FLAGMS</strong>
-                <small>{{ now()->format('h:i A') }}</small>
-                <button aria-label="Close" class="ml-2 mb-1 close" data-dismiss="toast" type="button">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="toast-body bg-success">
-                @if (session()->has('message'))
-                    {{ session('message') }}
-                @endif
-            </div>
-        </div>
-    </div>
-
     <div class="row">
         <div class="col-12">
             <div class="card-tools" style="display: flex; justify-content: flex-end; margin-bottom: 2rem; margin-right: 2rem;">
@@ -162,11 +144,6 @@
 
 @section('scripts')
     <script>
-        Livewire.on('showToast', () => {
-            setTimeout(function() {
-                // $('.toast').toast('show');
-            });
-        });
         Livewire.on('parentForm', () => {
             setTimeout(function() {
                 $('#multiple-select-optgroup-clear-field').select2({

@@ -1,15 +1,5 @@
 @section('head')
     <title>Admin | Content Management</title>
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="adminLTE-3.2/plugins/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <!-- overlayScrollbars -->
-    <link href="adminLTE-3.2/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" rel="stylesheet">
-    <!--iconify icons-->
-    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-    <!-- Theme style -->
-    <link href="adminLTE-3.2/dist/css/adminlte.min.css" rel="stylesheet">
 
     <style>
         /* For Eye Icons of Home Visitation and Summary Section inside the table */
@@ -90,23 +80,6 @@
         <!-- /.container-fluid -->
     </section>
 
-    <div class="position-fixed p-3" style="z-index: 1100; right: 0; top: 0;">
-        <div aria-atomic="true" aria-live="assertive" class="toast hide" data-delay="3000" id="liveToast" role="alert">
-            <div class="toast-header">
-                <img class="rounded mr-2" src="favicon.ico" width="24">
-                <strong class="mr-auto">FLAGMS</strong>
-                <small>{{ now()->format('h:i A') }}</small>
-                <button aria-label="Close" class="ml-2 mb-1 close" data-dismiss="toast" type="button">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="toast-body bg-success">
-                @if (session()->has('message'))
-                    {{ session('message') }}
-                @endif
-            </div>
-        </div>
-    </div>
 
     <div class="card">
         <div class="card-body">
@@ -153,24 +126,3 @@
     @include('livewire.content_management.update-subtitle')
     @include('livewire.content_management.update-school-name')
 </div>
-
-@section('scripts')
-    <!-- jQuery -->
-    <script src="adminLTE-3.2/plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="adminLTE-3.2/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- overlayScrollbars -->
-    <script src="adminLTE-3.2/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="adminLTE-3.2/dist/js/adminlte.min.js"></script>
-    <!-- bs-custom-file-input -->
-    <script src="adminLTE-3.2/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
-
-    <script>
-        Livewire.on('showToast', () => {
-            setTimeout(function() {
-                $('.toast').toast('show');
-            });
-        });
-    </script>
-@endsection
