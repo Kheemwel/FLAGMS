@@ -64,6 +64,13 @@
             color: #ffffff;
         }
     </style>
+    <!-- summernote -->
+    <link href="adminLTE-3.2/plugins/summernote/summernote-bs4.min.css" rel="stylesheet">
+@endsection
+
+@section('head-scripts')
+    <!-- Summernote -->
+    <script src="adminLTE-3.2/plugins/summernote/summernote-bs4.min.js"></script>
 @endsection
 
 <!-- Content Wrapper. Contains page content -->
@@ -86,43 +93,56 @@
             <h1 class="card-title"><strong>Website Logo</strong></h1>
             <br>
             <br>
-            <img src="{{ $logo }}" alt="" width='100px' height="100px">
+            <img alt="" height="100px" src="{{ $logo }}" width='100px'>
             <br>
             <br>
             <button class="btn btn-primary" data-target='#updateLogoModal' data-toggle='modal'>Update</button>
         </div>
     </div>
     <div class="card">
-        <div class="card-body">
+        <div class="card-body" wire:ignore>
             <h1 class="card-title"><strong>Website Title</strong></h1>
             <br>
-            <br>
-            <p>{{ $title }}</p>
-            <button class="btn btn-primary" data-target='#updateTitleModal' data-toggle='modal'>Update</button>
+            <textarea class="summernote" id='titleEditor' name="editordata" wire:model.live='title'></textarea>
+            <button class="btn btn-primary" wire:click='updateTitle()'>Update</button>
         </div>
     </div>
     <div class="card">
         <div class="card-body">
             <h1 class="card-title"><strong>Website Subtitle</strong></h1>
             <br>
-            <br>
-            <p>{{ $subtitle }}</p>
+            <textarea class="summernote" name="editordata" wire:model.live='subtitle'></textarea>
             <button class="btn btn-primary" data-target='#updateSubtitleModal' data-toggle='modal'>Update</button>
         </div>
     </div>
-    
+
     <div class="card">
         <div class="card-body">
             <h1 class="card-title"><strong>Website School Name</strong></h1>
             <br>
-            <br>
-            <p>{{ $school_name }}</p>
+            <textarea class="summernote" name="editordata" wire:model.live='school_name'></textarea>
             <button class="btn btn-primary" data-target='#updateSchoolNameModal' data-toggle='modal'>Update</button>
         </div>
     </div>
+
+
 
     @include('livewire.content_management.update-logo')
     @include('livewire.content_management.update-title')
     @include('livewire.content_management.update-subtitle')
     @include('livewire.content_management.update-school-name')
 </div>
+
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#titleEditor').summernote({
+                callbacks: {
+                    onChange: function(contents, $editable) {
+                        Livewire.dispatch('titleChange', [contents]);
+                    }
+                }
+            });
+        });
+    </script>
+@endsection

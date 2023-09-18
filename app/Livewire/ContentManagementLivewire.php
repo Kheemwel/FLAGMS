@@ -17,12 +17,18 @@ class ContentManagementLivewire extends Component
     public $title, $logo, $subtitle, $school_name;
     public $uploadedLogo;
 
-    public function render()
+    protected $listeners = ['titleChange'];
+
+    public function mount()
     {
         $this->title = WebsiteTitle::find(1)->title;
         $this->logo = imageBinaryToSRC(WebsiteLogo::find(1)->logo);
         $this->subtitle = WebsiteSubtitle::find(1)->subtitle;
         $this->school_name = WebsiteSchoolName::find(1)->school_name;
+    }
+
+    public function render()
+    {
         return view('livewire.content_management.content-management-livewire');
     }
 
@@ -79,5 +85,10 @@ class ContentManagementLivewire extends Component
     public function resetInputFields()
     {
         $this->uploadedLogo = null;
+    }
+
+    public function titleChange($value)
+    {
+        $this->title = $value;
     }
 }

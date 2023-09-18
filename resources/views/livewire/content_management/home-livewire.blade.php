@@ -15,7 +15,8 @@
                 <div class="row mb-2" style="text-align: left;">
                     <div class="col-6 d-flex flex-column justify-content-center">
                         <row>
-                            <p style="font-weight: bold; font-size: 50px; color: #0A0863;">{{ $title }}</p>
+                            {{-- <p style="font-weight: bold; font-size: 50px; color: #0A0863;">{{ $title }}</p> --}}
+                            {!! $title !!}
                         </row>
                         <row>
                             <p style="font-size: 35px; font-weight: 800px;">
