@@ -17,7 +17,7 @@ class ContentManagementLivewire extends Component
     public $title, $logo, $subtitle, $school_name;
     public $uploadedLogo;
 
-    protected $listeners = ['titleChange'];
+    protected $listeners = ['titleChange', 'subtitleChange', 'schoolNameChange'];
 
     public function mount()
     {
@@ -56,6 +56,8 @@ class ContentManagementLivewire extends Component
         ]);
 
         $this->showToast('success', 'Website Logo Updated Successfully');
+
+        $this->logo = imageBinaryToSRC(WebsiteLogo::find(1)->logo);
     }
     public function updateSubtitle()
     {
@@ -90,5 +92,15 @@ class ContentManagementLivewire extends Component
     public function titleChange($value)
     {
         $this->title = $value;
+    }
+
+    public function subtitleChange($value)
+    {
+        $this->subtitle = $value;
+    }
+
+    public function schoolNameChange($value)
+    {
+        $this->school_name = $value;
     }
 }

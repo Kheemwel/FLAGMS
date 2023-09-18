@@ -103,25 +103,25 @@
         <div class="card-body" wire:ignore>
             <h1 class="card-title"><strong>Website Title</strong></h1>
             <br>
-            <textarea class="summernote" id='titleEditor' name="editordata" wire:model.live='title'></textarea>
+            <textarea id='titleEditor' name="editordata" wire:model='title'></textarea>
             <button class="btn btn-primary" wire:click='updateTitle()'>Update</button>
         </div>
     </div>
     <div class="card">
-        <div class="card-body">
+        <div class="card-body" wire:ignore>
             <h1 class="card-title"><strong>Website Subtitle</strong></h1>
             <br>
-            <textarea class="summernote" name="editordata" wire:model.live='subtitle'></textarea>
-            <button class="btn btn-primary" data-target='#updateSubtitleModal' data-toggle='modal'>Update</button>
+            <textarea id='subtitleEditor' name="editordata" wire:model='subtitle'></textarea>
+            <button class="btn btn-primary" wire:click='updateSubtitle()'>Update</button>
         </div>
     </div>
 
     <div class="card">
-        <div class="card-body">
+        <div class="card-body" wire:ignore>
             <h1 class="card-title"><strong>Website School Name</strong></h1>
             <br>
-            <textarea class="summernote" name="editordata" wire:model.live='school_name'></textarea>
-            <button class="btn btn-primary" data-target='#updateSchoolNameModal' data-toggle='modal'>Update</button>
+            <textarea id='schoolNameEditor' name="editordata" wire:model='school_name'></textarea>
+            <button class="btn btn-primary" wire:click='updateSchoolName()'>Update</button>
         </div>
     </div>
 
@@ -136,10 +136,45 @@
 @section('scripts')
     <script>
         $(document).ready(function() {
+            const toolbar = [
+                // [groupName, [list of button]]
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['fontname', ['fontname']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']]
+            ];
+
+            const fontSizes = ['8', '9', '10', '11', '12', '14', '16', '18', '20', '22', '24', '26', '28',
+                '36', '48', '72'
+            ];
+
             $('#titleEditor').summernote({
+                toolbar: toolbar,
+                fontSizes: fontSizes,
                 callbacks: {
                     onChange: function(contents, $editable) {
                         Livewire.dispatch('titleChange', [contents]);
+                    }
+                }
+            });
+            $('#subtitleEditor').summernote({
+                toolbar: toolbar,
+                fontSizes: fontSizes,
+                callbacks: {
+                    onChange: function(contents, $editable) {
+                        Livewire.dispatch('subtitleChange', [contents]);
+                    }
+                }
+            });
+            $('#schoolNameEditor').summernote({
+                toolbar: toolbar,
+                fontSizes: fontSizes,
+                callbacks: {
+                    onChange: function(contents, $editable) {
+                        Livewire.dispatch('schoolNameChange', [contents]);
                     }
                 }
             });

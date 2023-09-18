@@ -3,7 +3,8 @@
     <!-- Brand Logo -->
     <a class="brand-link" href="#" style="border: transparent;">
         <img alt="AdminLTE Logo" class="brand-image img-circle" src="{{ $logo }}" style="width: auto; height: auto;">
-        <span class="brand-text" style="color: white;">{{ $school_name }}</span>
+        {{-- <span class="brand-text" style="color: white;">{{ $school_name }}</span> --}}
+        {!! $school_name !!}
     </a>
 
     <!-- Right navbar links -->

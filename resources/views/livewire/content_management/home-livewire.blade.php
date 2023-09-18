@@ -19,13 +19,15 @@
                             {!! $title !!}
                         </row>
                         <row>
-                            <p style="font-size: 35px; font-weight: 800px;">
+                            {{-- <p style="font-size: 35px; font-weight: 800px;">
                                 {{ $subtitle }}
-                            </p>
+                            </p> --}}
+                            {!! $subtitle !!}
                         </row>
                         <row>
-                            <p style="font-size: 24px; line-height: 30px;">A web-based hybrid guidance
-                                management system for Fiat Lux Academe Dasmariñas.</p>
+                            <p style="font-size: 24px; line-height: 30px;">
+                                A web-based hybrid guidance management system for Fiat Lux Academe Dasmariñas.
+                            </p>
                         </row>
                     </div>
                     <div class="col-6" style="padding-top: 1rem;">

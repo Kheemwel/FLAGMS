@@ -2,7 +2,7 @@
     <!-- Brand Logo -->
     <a class="brand-link" href="#" style="border: transparent;">
         <img alt="AdminLTE Logo" class="brand-image img-circle" src="{{ $logo }}" style="width: auto; height: auto;">
-        <span class="brand-text font-weight-bold" style="color: #080743;">{{ $school_name }}</span>
+        <span class="brand-text font-weight-bold" style="color: #080743;">Fiat Lux Academe</span>
     </a>
 
     <!-- Sidebar -->
