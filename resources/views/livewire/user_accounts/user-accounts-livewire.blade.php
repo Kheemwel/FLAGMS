@@ -45,7 +45,7 @@
         </div>
         <!-- /.container-fluid -->
     </section>
-    
+
     <div class="row">
         <div class="col-12">
             <div class="card-tools" style="display: flex; justify-content: flex-end; margin-bottom: 2rem; margin-right: 2rem;">
