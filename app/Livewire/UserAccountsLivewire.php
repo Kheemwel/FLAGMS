@@ -29,7 +29,7 @@ class UserAccountsLivewire extends Component
     use WithFileUploads;
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $user_id, $first_name, $last_name, $username, $password, $hashed_password;
+    public $user_id, $first_name, $last_name, $username, $password, $hashed_password, $email;
     public $roles, $role_id, $role;
     public $profile_picture_id, $profile_picture;
     private $default_profile = 'images/default_profile.png';
@@ -156,7 +156,8 @@ class UserAccountsLivewire extends Component
             'username' => 'required|unique:user_accounts,username|max:255',
             'password' => 'required|max:255',
             'role' => 'required|max:255',
-            'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg|max:1024'
+            'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
+            'email' => 'nullable|max:255'
         ];
 
         $customMessages = [
@@ -190,7 +191,8 @@ class UserAccountsLivewire extends Component
                 'password' => $validatedData['password'],
                 'hashed_password' => $validatedData['hashed_password'],
                 'role_id' => $role_id->id,
-                'profile_picture_id' => $profile_picture_id
+                'profile_picture_id' => $profile_picture_id,
+                'email' => $validatedData['email']
             ]);
         } catch (Exception $ex) {
             $this->showToast('error', $ex);
@@ -361,6 +363,7 @@ class UserAccountsLivewire extends Component
         $this->hashed_password = null;
         $this->role = null;
         $this->profile_picture = null;
+        $this->email = null;
         $this->school_level = null;
         $this->grade_level = null;
         $this->principal_position = null;
@@ -378,6 +381,7 @@ class UserAccountsLivewire extends Component
         $this->last_name = $user->last_name;
         $this->password = $user->password;
         $this->hashed_password = $user->hashed_password;
+        $this->email = $user->email;
         $this->role_id = $user->role_id;
         $this->role = $user->getRole->role;
         $this->profile_picture_id = $user->profile_picture_id;

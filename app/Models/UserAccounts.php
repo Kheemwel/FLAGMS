@@ -13,8 +13,8 @@ class UserAccounts extends Model
     protected $table = 'user_accounts';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'username', 'role_id', 'first_name', 'last_name', 'password', 'hashed_password', 'profile_picture_id', 'is_archive', 
-        'archived_at', 'total_login', 'last_login'
+        'username', 'role_id', 'first_name', 'last_name', 'password', 'hashed_password', 'email', 'profile_picture_id', 
+        'is_archive', 'archived_at', 'total_login', 'last_login'
     ];
 
     public function getProfilePicture() : BelongsTo

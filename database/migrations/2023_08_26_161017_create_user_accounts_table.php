@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('user_accounts', function (Blueprint $table) {
             $table->id();
             $table->string('username')->unique();
-            $table->unsignedBigInteger('role_id');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('password');
             $table->string('hashed_password');
+            $table->string('email')->nullable();
+            $table->unsignedBigInteger('role_id');
             $table->unsignedBigInteger('profile_picture_id')->nullable();
             $table->boolean('is_archive')->default(false);
             $table->dateTime('archived_at')->nullable();

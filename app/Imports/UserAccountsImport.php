@@ -27,7 +27,8 @@ class UserAccountsImport implements ToModel, WithBatchInserts, WithProgressBar
             'username' => $username,
             'password' => $password,
             'hashed_password' => bcrypt($password), // You can hash the password here
-            'role_id' => $row[4]
+            'role_id' => $row[4],
+            'email' => $row[5]
         ]);
     }
     public function batchSize(): int

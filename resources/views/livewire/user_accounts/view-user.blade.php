@@ -123,6 +123,15 @@
                     </div>
                 </div>
                 <div class="row" style="margin-bottom: 1rem;">
+                    <!--EMAIL-->
+                    <div class="form-group col-sm-5" style="font-size: 14px; color: #252525;">
+                        <p class="card-title">Email</p>
+                    </div>
+                    <div class="form-group col-sm-4" style="font-size: 14px; color: #252525;">
+                        <p class="card-title" style="font-weight: bold;">{{ $email ? $email : 'There is no registered email.' }}</p>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 1rem;">
                     <!--PASSWORD-->
                     <div class="form-group col-sm-5" style="font-size: 14px; color: #252525;">
                         <p class="card-title">Password</p>

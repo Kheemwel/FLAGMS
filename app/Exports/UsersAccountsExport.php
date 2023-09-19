@@ -14,7 +14,10 @@ class UsersAccountsExport implements FromCollection
     {
         // return UserAccounts::all();
         return UserAccounts::join('roles', 'user_accounts.role_id', '=', 'roles.id')
-        ->select('user_accounts.id','user_accounts.first_name', 'user_accounts.last_name', 'user_accounts.username', 'user_accounts.password', 'roles.role as role')
+        ->select(
+            'user_accounts.id','user_accounts.first_name', 'user_accounts.last_name', 'user_accounts.username', 'user_accounts.password', 
+            'user_accounts.email', 'roles.role as role'
+            )
         ->where('is_archive', false)
         ->orderBy('id', 'asc')
         ->get();

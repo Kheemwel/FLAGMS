@@ -81,6 +81,15 @@
                         <button class="btn btn-default" style=" font-size: 10px; margin-top: 35px; background-color: #0A0863; color: white;" type="button" wire:click='generateUsername()'>Generate Username</button>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
+                        <label for="inputEmail" style="font-weight: normal;">Email</label>
+                        <input class="form-control" id="inputEmail" style="border: 1px solid #252525" type="email" wire:model="email">
+                        @if ($errors->has('email'))
+                            <span class="text-danger">{{ $errors->first('email') }}</span>
+                        @endif
+                    </div>
+                </div>
                 <!--PASSWORD-->
                 <div x-data="{ showPassword: false }">
                     <div class="row">
