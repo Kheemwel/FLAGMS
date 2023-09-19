@@ -1,11 +1,11 @@
 <nav class="navbar navbar-expand navbar-white navbar-light"
     style="border: 1px solid rgb(213, 212, 212); background: linear-gradient(180deg, #000000 -129.53%, #0A0863 100%);">
     <!-- Brand Logo -->
-    <a class="brand-link" href="#" style="border: transparent;">
-        <img alt="AdminLTE Logo" class="brand-image img-circle" src="{{ $logo }}" style="width: auto; height: auto;">
+    <div style="border: transparent;">
+        <img alt="AdminLTE Logo" class="brand-image img-circle" src="{{ $logo }}" style="width: 45px; height: 45px;">
         {{-- <span class="brand-text" style="color: white;">{{ $school_name }}</span> --}}
         {!! $school_name !!}
-    </a>
+    </div>
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
@@ -36,10 +36,10 @@
         </li>
 
         <!--Interface FullScreen-->
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                 <i class="fas fa-expand-arrows-alt" style="color: white;"></i>
             </a>
-        </li>
+        </li> --}}
     </ul>
 </nav>
