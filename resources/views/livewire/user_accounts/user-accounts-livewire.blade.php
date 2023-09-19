@@ -71,12 +71,12 @@
                 <!--BATCH ADD USER BUTTON-->
                 <button class="btn btn-default" data-target="#batchAddUserModal" data-toggle="modal" style="font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button">
                     <iconify-icon height="14" icon="mdi:file-multiple" style="color: white;" width="14"></iconify-icon>
-                    Batch Add Users
+                    Import User Accounts
                 </button>
                 <!--DOWNLOAD TABLE BUTTON-->
                 <button class="btn btn-default" style="font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button" wire:click='export()'>
                     <iconify-icon height="14" icon="mdi:file-export" style="color: white;" width="14"></iconify-icon>
-                    Export User Acounts Table
+                    Export User Accounts
                 </button>
             </div>
             <div>
