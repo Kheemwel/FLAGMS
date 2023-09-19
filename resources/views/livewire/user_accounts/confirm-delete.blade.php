@@ -1,13 +1,13 @@
 <!--DELETE MODAL-->
 <div class="modal fade" id="deleteModal" wire:ignore.self>
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
         <div class="modal-content">
             <div class="modal-body" style="margin-left: 1rem; margin-right: 1rem; text-align: center;">
                 <!--MODAL TITLE-->
                 <div style="display: flex; flex-direction: column;">
                     <div class="input-group-prepend justify-content-center">
                         <p class="card-title" style="font-size: 20px; color: #252525; font-weight: bold; margin-bottom: 1rem; margin-top:1rem;">
-                          Delet Account?
+                          Delete Account?
                         </p>
                     </div>
                 </div>
