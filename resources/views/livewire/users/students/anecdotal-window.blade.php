@@ -1,5 +1,5 @@
 <div class="modal fade anecdotal-modal" id="anecdotal-btn">
-    <div class="modal-dialog anecdotal-dialog">
+    <div class="modal-dialog anecdotal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header" style="border: transparent; padding: 10px;">
                 <button aria-label="Close" class="close" data-dismiss="modal" type="button">
