@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('offenses', function (Blueprint $table) {
+        Schema::create('offenses_sanctions', function (Blueprint $table) {
             $table->id();
-            $table->string('offense_name');
-            $table->text('description')->nullable();
+            $table->string('offenses_sanction');
+            $table->text('description');
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('offenses');
+        Schema::dropIfExists('offenses_sanctions');
     }
 };
