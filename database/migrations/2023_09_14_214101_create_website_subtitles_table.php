@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('website_subtitle', function (Blueprint $table) {
             $table->id();
-            $table->string('subtitle');
+            $table->mediumText('subtitle');
             $table->timestamps();
         });
 

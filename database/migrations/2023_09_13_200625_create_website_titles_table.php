@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('website_title', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->mediumText('title');
             $table->timestamps();
         });
 
