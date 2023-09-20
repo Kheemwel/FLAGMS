@@ -3,6 +3,7 @@
 use App\Models\WebsiteLogo;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 
@@ -18,6 +19,8 @@ return new class extends Migration
             $table->binary('logo');
             $table->timestamps();
         });
+
+        DB::statement("ALTER TABLE website_logo MODIFY logo MEDIUMBLOB");
 
         WebsiteLogo::create([
             'logo' => file_get_contents(public_path('images/fiat.png'))
