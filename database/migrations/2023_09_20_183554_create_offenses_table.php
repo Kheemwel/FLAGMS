@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('offenses', function (Blueprint $table) {
             $table->id();
-            $table->string('offense_name');
+            $table->string('offense_name')->unique();
             $table->text('description')->nullable();
             $table->unsignedBigInteger('offenses_category_id');
             $table->foreign('offenses_category_id')->references('id')->on('offenses_categories');

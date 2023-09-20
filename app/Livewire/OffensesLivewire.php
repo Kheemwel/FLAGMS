@@ -27,7 +27,7 @@ class OffensesLivewire extends Component
     public function addOffense()
     {
         $validatedData = $this->validate([
-            'offense' => 'required|max:255',
+            'offense' => 'required|max:255|unique:offenses,offense_name',
             'offense_description' => 'nullable',
             'category_id' => 'required|integer'
         ]);
@@ -44,7 +44,7 @@ class OffensesLivewire extends Component
     public function addCategory()
     {
         $validatedData = $this->validate([
-            'category' => 'required|max:255',
+            'category' => 'required|max:255|unique:offenses_categories,offenses_category',
             'category_description' => 'nullable',
         ]);
 
@@ -60,7 +60,7 @@ class OffensesLivewire extends Component
     public function addSanction()
     {
         $validatedData = $this->validate([
-            'sanction' => 'required|max:255',
+            'sanction' => 'required|max:255|unique:offenses_sanctions,offenses_sanction',
             'sanction_description' => 'nullable',
         ]);
 
