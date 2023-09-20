@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\WebsiteTitle;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,16 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('website_title', function (Blueprint $table) {
+        Schema::create('offenses', function (Blueprint $table) {
             $table->id();
-            $table->mediumText('title');
+            $table->string('offense_name');
+            $table->text('description')->nullable();
+            $table->unsignedBigInteger('offenses_category_id');
+            $table->foreign('offenses_category_id')->references('id')->on('offenses_categories');
             $table->timestamps();
         });
-
-        // Insert data after the table created
-        WebsiteTitle::create([
-            'title' => 'FLAGMS'
-        ]);
     }
 
     /**
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('website_title');
+        Schema::dropIfExists('offenses');
     }
 };
