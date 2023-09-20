@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\WebsiteSubtitle;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,6 +17,11 @@ return new class extends Migration
             $table->string('subtitle');
             $table->timestamps();
         });
+
+        // Insert data after the table created
+        WebsiteSubtitle::create([
+            'subtitle' => 'Guidance Management System'
+        ]);
     }
 
     /**
@@ -23,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('website_subtitles');
+        Schema::dropIfExists('website_subtitle');
     }
 };

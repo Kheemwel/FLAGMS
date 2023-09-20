@@ -1,8 +1,10 @@
 <?php
 
+use App\Models\WebsiteLogo;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Storage;
 
 return new class extends Migration
 {
@@ -16,6 +18,10 @@ return new class extends Migration
             $table->binary('logo');
             $table->timestamps();
         });
+
+        WebsiteLogo::create([
+            'logo' => file_get_contents(public_path('images/fiat.png'))
+        ]);
     }
 
     /**
@@ -23,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('website_logos');
+        Schema::dropIfExists('website_logo');
     }
 };

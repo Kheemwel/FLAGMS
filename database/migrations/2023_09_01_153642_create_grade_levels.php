@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\GradeLevels;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,6 +17,28 @@ return new class extends Migration
             $table->integer('grade_level')->unique();
             $table->timestamps();
         });
+
+        // Insert data after the table created
+        GradeLevels::insert([
+            [
+                'grade_level' => 7
+            ],
+            [
+                'grade_level' => 8
+            ],
+            [
+                'grade_level' => 9
+            ],
+            [
+                'grade_level' => 10
+            ],
+            [
+                'grade_level' => 11
+            ],
+            [
+                'grade_level' => 12
+            ]
+        ]);
     }
 
     /**

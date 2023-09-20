@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Roles;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,6 +17,30 @@ return new class extends Migration
             $table->string('role')->unique();
             $table->timestamps();
         });
+
+        Roles::insert([
+            [
+                'role' => 'Admin'
+            ],
+            [
+                'role' => 'Guidance'
+            ],
+            [
+                'role' => 'Admin/Guidance'
+            ],
+            [
+                'role' => 'Student'
+            ],
+            [
+                'role' => 'Parent'
+            ],
+            [
+                'role' => 'Teacher'
+            ],
+            [
+                'role' => 'Principal'
+            ]
+        ]);
     }
 
     /**

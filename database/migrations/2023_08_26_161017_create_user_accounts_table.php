@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Roles;
+use App\Models\UserAccounts;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -29,6 +31,15 @@ return new class extends Migration
             $table->foreign('profile_picture_id')->references('id')->on('profile_pictures');
             $table->timestamps();
         });
+
+        UserAccounts::create([
+            'username' => 'admin',
+            'first_name' => 'admin',
+            'last_name' => 'admin', 
+            'password' => 'admin',
+            'hashed_password' => bcrypt('admin'),
+            'role' => 1,
+        ]);
     }
 
     /**

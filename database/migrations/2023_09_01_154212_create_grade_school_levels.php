@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\GradeLevels;
+use App\Models\GradeSchoolLevels;
+use App\Models\SchoolLevels;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,6 +22,41 @@ return new class extends Migration
             $table->foreign('grade_level_id')->references('id')->on('grade_levels');
             $table->timestamps();
         });
+
+        $junior_highschool = SchoolLevels::find(1);
+        $senior_highschool = SchoolLevels::find(2);
+
+        if ($junior_highschool) {
+            $grade7 = GradeLevels::find(1);
+            $grade8 = GradeLevels::find(2);
+            $grade9 = GradeLevels::find(3);
+            $grade10 = GradeLevels::find(4);
+
+            if ($grade7) {
+                $junior_highschool->gradeLevels()->attach($grade7);
+            }
+            if ($grade8) {
+                $junior_highschool->gradeLevels()->attach($grade8);
+            }
+            if ($grade9) {
+                $junior_highschool->gradeLevels()->attach($grade9);
+            }
+            if ($grade10) {
+                $junior_highschool->gradeLevels()->attach($grade10);
+            }
+        }
+
+        if ($senior_highschool) {
+            $grade11 = GradeLevels::find(5);
+            $grade12 = GradeLevels::find(6);
+
+            if ($grade11) {
+                $senior_highschool->gradeLevels()->attach($grade11);
+            }
+            if ($grade12) {
+                $senior_highschool->gradeLevels()->attach($grade12);
+            }
+        }
     }
 
     /**

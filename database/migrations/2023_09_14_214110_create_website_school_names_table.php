@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\WebsiteSchoolName;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,6 +17,11 @@ return new class extends Migration
             $table->string('school_name');
             $table->timestamps();
         });
+
+        // Insert data after the table created
+        WebsiteSchoolName::create([
+            'school_name' => 'Fiat Lux Academe'
+        ]);
     }
 
     /**
@@ -23,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('website_school_names');
+        Schema::dropIfExists('website_school_name');
     }
 };
