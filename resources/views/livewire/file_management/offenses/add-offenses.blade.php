@@ -20,10 +20,25 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
+
+                    <div class="form-group" style="font-size: 14px; color: #252525;">
+                        <label for="select-category">Offense Name</label>
+                        <select class="form-select form-select-sm mb-2" id="select-category" wire:model.live="category_id">
+                            @if ($category_id == '')
+                                <option selected>Select Offense Category</option>
+                            @endif
+                            @foreach ($categories as $cat)
+                                <option value="{{ $cat->id }}">{{ $cat->offenses_category }}</option>
+                            @endforeach
+                        </select>
+                        @error('category_id')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
                     <div class="form-group" style="font-size: 14px; color: #252525;">
                         <label for="description">Description</label>
-                        <textarea class="form-control" id="description" style="border: 1px solid #252525" type="text" wire:model="description"></textarea>
-                        @error('description')
+                        <textarea class="form-control" id="description" style="border: 1px solid #252525" type="text" wire:model="offense_description"></textarea>
+                        @error('offense_description')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>

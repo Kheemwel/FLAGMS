@@ -19,6 +19,7 @@
                 <tr>
                     <th style="border-right: 1px solid #252525;">ID</th>
                     <th style="border-right: 1px solid #252525;">Offenses</th>
+                    <th style="border-right: 1px solid #252525;">Category</th>
                     <th style="border-right: 1px solid #252525;">Description</th>
                     <th>Action</th>
                 </tr>
@@ -28,6 +29,7 @@
                     <tr>
                         <th scope="row">{{ $offense->id }}</th>
                         <td>{{ $offense->offense_name }}</td>
+                        <td>{{ $offense->getCategory->offenses_category }}</td>
                         <td>{{ $offense->description }}</td>
                         <td>
                             <!--EDIT PROFILE-->
