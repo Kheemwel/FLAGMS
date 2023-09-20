@@ -19,7 +19,7 @@ class UserAccountsImport implements ToModel, WithBatchInserts, WithProgressBar
     use Importable;
     public function model(array $row)
     {
-        $username = $row[2] ? $row[2] : generateUsername($row[0], $row[1]);
+        $username = $this->checkUsername($row[2], $row[0], $row[1]);
         $password = $row[3] ? $row[3] : generatePassword();
         return new UserAccounts([
             'first_name' => $row[0],
@@ -31,6 +31,16 @@ class UserAccountsImport implements ToModel, WithBatchInserts, WithProgressBar
             'email' => $row[5]
         ]);
     }
+
+    public function checkUsername($username, $firstname, $lastname)
+    {
+        $valid_username = $username ? $username : generateUsername($firstname, $lastname);
+        while(UserAccounts::where('username', $valid_username)->exists()) {
+            $valid_username = generateUsername($firstname, $lastname);
+        }
+        return $valid_username;
+    }
+
     public function batchSize(): int
     {
         return 1000;
