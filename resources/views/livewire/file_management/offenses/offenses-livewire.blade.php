@@ -35,19 +35,23 @@
             </li>
         </ul>
     </div>
-    <div class="card-body">
+    <div class="card-body" wire:ignore.self>
         <div class="tab-content" id="custom-tabs-one-tabContent" style="padding-right: 2rem;">
             <div aria-labelledby="custom-tabs-one-offense-tab" class="tab-pane fade active show" id="custom-tabs-one-offenses" role="tabpanel">
                 @include('livewire.file_management.offenses.offenses-table')
             </div>
             <div aria-labelledby="custom-tabs-one-categories-tab" class="tab-pane fade" id="custom-tabs-one-categories" role="tabpanel">
-                {{-- @include('livewire.file_management.offenses.offenses-table') --}}
+                @include('livewire.file_management.offenses.offenses-categories')
             </div>
             <div aria-labelledby="custom-tabs-one-sanctions-tab" class="tab-pane fade" id="custom-tabs-one-sanctions" role="tabpanel">
-                {{-- @include('livewire.file_management.offenses.offenses-table') --}}
+                @include('livewire.file_management.offenses.offenses-sanctions')
             </div>
         </div>
     </div>
     <!-- /.card -->
-</div>
+
+    
+@include('livewire.file_management.offenses.add-offenses')
+@include('livewire.file_management.offenses.add-offenses-category')
+@include('livewire.file_management.offenses.add-sanctions')
 </div>

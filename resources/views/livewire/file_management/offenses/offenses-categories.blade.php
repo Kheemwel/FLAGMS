@@ -5,9 +5,9 @@
         <input class="form-control float-right" name="table_search" placeholder="Search" style="height: 35px;" type="text" wire:model.live='search'>
     </div>
     <!--ADD ROLE BUTTON-->
-    <button class="btn btn-default" data-target="#addOffenseModal" data-toggle="modal" style="font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button">
+    <button class="btn btn-default" data-target="#addOffenseCategoryModal" data-toggle="modal" style="font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button">
         <i aria-hidden="true" class="fa fa-plus"></i> 
-        Add New Offense
+        Add New Offense Category
     </button>
 </div>
 
@@ -18,19 +18,17 @@
             <thead style="background-color: #7684B9; color: white;">
                 <tr>
                     <th style="border-right: 1px solid #252525;">ID</th>
-                    <th style="border-right: 1px solid #252525;">Offenses</th>
-                    <th style="border-right: 1px solid #252525;">Category</th>
+                    <th style="border-right: 1px solid #252525;">Categories</th>
                     <th style="border-right: 1px solid #252525;">Description</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($offenses as $offense)
+                @foreach ($categories as $category)
                     <tr>
-                        <th scope="row">{{ $offense->id }}</th>
-                        <td>{{ $offense->offense_name }}</td>
-                        <td>{{ $offense->getCategory->offenses_category }}</td>
-                        <td>{{ $offense->description }}</td>
+                        <th scope="row">{{ $category->id }}</th>
+                        <td>{{ $category->offenses_category }}</td>
+                        <td>{{ $category->description }}</td>
                         <td>
                             <!--EDIT PROFILE-->
                             <button class="btn btn-primary action-btn" data-target="#stud-info-edit" data-toggle="modal">
@@ -44,7 +42,7 @@
                             </button>
 
                             {{-- DELETE PROFILE --}}
-                            <button class="btn btn-primary action-btn" wire:click="deleteOffense({{ $offense->id }})">
+                            <button class="btn btn-primary action-btn" wire:click="deleteCategory({{ $category->id }})">
                                 <i aria-hidden="true" class="fa fa-trash"></i>
                             </button>
                         </td>
