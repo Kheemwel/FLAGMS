@@ -18,20 +18,24 @@ class CheckUserCredentials
     {
         if (!$request->session()->has('user_id')) {
             return redirect()->route('home-page');
+        } else {
+            $user_id = session('user_id');
         }
 
-        $userRole = UserAccounts::find(session('user_id'))->getRole->role;
-        $allowedPages = [
-            'user-accounts-page' => ['Admin', 'Admin/Guidance'],
-            'student-anecdotal-record-page' => ['Students']
-        ];
+        if ($user_id) {
+            $userRole = UserAccounts::find($user_id)->getRole->role;
+            $allowedPages = [
+                'user-accounts-page' => ['Admin', 'Admin/Guidance'],
+                'student-anecdotal-record-page' => ['Students']
+            ];
 
-        $currentRoute = $request->route()->getName();
+            $currentRoute = $request->route()->getName();
 
-        if (isset($allowedPages[$currentRoute])) {
-            if (!in_array($userRole, $allowedPages[$currentRoute])) {
-                // Redirect back to the previous page
-                return redirect()->back();
+            if (isset($allowedPages[$currentRoute])) {
+                if (!in_array($userRole, $allowedPages[$currentRoute])) {
+                    // Redirect back to the previous page
+                    return redirect()->back();
+                }
             }
         }
 
