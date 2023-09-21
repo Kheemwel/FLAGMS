@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Exports\UsersAccountsExport;
 use App\Imports\UserAccountsImport;
+use App\Mail\AccountCreationMail;
 use App\Models\GradeLevels;
 use App\Models\Guidance;
 use App\Models\Parents;
@@ -16,12 +17,13 @@ use App\Models\Students;
 use App\Models\Teachers;
 use App\Models\UserAccounts;
 use App\Traits\Toasts;
-use Exception;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;
+use Throwable;
 
 class UserAccountsLivewire extends Component
 {
@@ -57,7 +59,7 @@ class UserAccountsLivewire extends Component
     {
         $this->renderSelect2();
         $this->roles = Roles::all();
-        
+
         $this->students = Students::whereHas('getUserAccount', function ($query) {
             // Filter students where the associated user account is not archived
             $query->where('is_archive', false);
@@ -68,7 +70,7 @@ class UserAccountsLivewire extends Component
         $query_archives = UserAccounts::join('roles', 'user_accounts.role_id', '=', 'roles.id')
             ->select('user_accounts.*', 'roles.role as role')
             ->where('is_archive', true);
-        
+
         $this->filterRole = $this->filterRole == 'All' ? '' : $this->filterRole;
         if (!empty($this->filterRole)) {
             $query_normal->where('role', $this->filterRole);
@@ -119,12 +121,12 @@ class UserAccountsLivewire extends Component
     {
         $this->selectedStudents = $value;
     }
-    
+
     public function import()
     {
         $this->validate([
             'batch_file' => 'required|file|mimes:csv|max:10240',
-        ],[
+        ], [
             'batch_file.required' => 'You must upload a file before submitting.',
             'batch_file.mimes' => 'The file must be in .csv format.',
             'batch_file.max' => 'The file must be at least 10MB.'
@@ -132,7 +134,7 @@ class UserAccountsLivewire extends Component
 
         try {
             Excel::import(new UserAccountsImport, $this->batch_file);
-        } catch (\Throwable $th) {
+        } catch (Throwable $th) {
             $this->showToast('error', $th);
         }
 
@@ -143,7 +145,7 @@ class UserAccountsLivewire extends Component
         $this->batch_file = null;
     }
 
-    public function export() 
+    public function export()
     {
         return Excel::download(new UsersAccountsExport, 'user_accounts.xlsx');
     }
@@ -179,7 +181,7 @@ class UserAccountsLivewire extends Component
             $newProfile = ProfilePictures::create([
                 'profile_picture' => $profileImageContent
             ]);
-    
+
             $profile_picture_id = $newProfile->id;
         }
 
@@ -194,8 +196,17 @@ class UserAccountsLivewire extends Component
                 'profile_picture_id' => $profile_picture_id,
                 'email' => $validatedData['email']
             ]);
-        } catch (Exception $ex) {
-            $this->showToast('error', $ex);
+        } catch (Throwable $th) {
+            $this->showToast('error', $th->getMessage());
+        }
+
+        if ($user->email) {
+            try {
+                Mail::to($user->email)->send(new AccountCreationMail($user->username, $user->password));
+                $this->showToast('success', 'The username and password are now sent to the email.');
+            } catch (Throwable $th) {
+                $this->showToast('error', $th->getMessage());
+            }
         }
 
         return $user;
@@ -230,7 +241,7 @@ class UserAccountsLivewire extends Component
                     'school_level_id' => $school_level_id,
                     'grade_level_id' => $grade_level_id,
                 ]);
-            } catch (\Throwable $th) {
+            } catch (Throwable $th) {
                 $this->showToast('error', $th);
             }
             $this->showToast('success', 'Student Added Successfully');
@@ -470,7 +481,6 @@ class UserAccountsLivewire extends Component
 
             $this->showToast('success', 'User Unarchived Successfully');
         }
-
     }
 
     public function generateUsername()
