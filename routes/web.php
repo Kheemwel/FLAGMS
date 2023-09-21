@@ -4,6 +4,7 @@ use App\Http\Middleware\CheckUserCredentials;
 use App\Livewire\ContentManagementLivewire;
 use App\Livewire\GuidanceLivewire;
 use App\Livewire\HomeLivewire;
+use App\Livewire\ItemImagesLivewire;
 use App\Livewire\ItemTypesLivewire;
 use App\Livewire\LostFoundLivewire;
 use App\Livewire\NotificationLivewire;
@@ -63,7 +64,7 @@ Route::middleware([CheckUserCredentials::class])->group(function () {
     Route::get('/profile-pictures', ProfilePicturesLivewire::class)->name('profile-pictures-page');
     Route::get('/offenses', OffensesLivewire::class)->name('offenses-page');
     Route::view('/calendar-colors', 'admin.calendar-colors')->name('calendar-colors-page');
-    Route::view('/item-images', 'admin.item-images')->name('item-images-page');
+    Route::get('/item-images', ItemImagesLivewire::class)->name('item-images-page');
     Route::get('/item-types', ItemTypesLivewire::class)->name('item-types-page');
     Route::view('/guidance-records', 'admin.guidance-records')->name('guidance-records-page');
     Route::view('/database', 'admin.database')->name('database-page');
