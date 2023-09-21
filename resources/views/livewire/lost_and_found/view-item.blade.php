@@ -7,7 +7,7 @@
                     <i class="fa fa-solid fa-pen"></i>
                 </button>
 
-                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button" wire:click='resetInputs()'>
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -24,27 +24,17 @@
                             <p style="font-size: 14px;">Item Type</p>
                         </div>
                         <div class="form-group col-sm-4" style="font-size: 16px; color: #252525;">
-                            <p style="font-weight: bold;">Electronic Devices</p>
+                            <p style="font-weight: bold;">{{ $selected_item_type }}</p>
                         </div>
                     </div>
 
                     <div class="row">
-                        <!--DATE-->
+                        <!--DATE AND TIME FOUND-->
                         <div class="form-group col-sm-5" style="color: #252525;">
-                            <p style="font-size: 14px;">Date</p>
+                            <p style="font-size: 14px;">Date and Time Found</p>
                         </div>
                         <div class="form-group col-sm-4" style="font-size: 16px; color: #252525;">
-                            <p style="font-weight: bold;">6/10/23</p>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <!--TIME-->
-                        <div class="form-group col-sm-5" style=" color: #252525;">
-                            <p style="font-size: 14px;">Time</p>
-                        </div>
-                        <div class="form-group col-sm-4" style="font-size: 16px; color: #252525;">
-                            <p style="font-weight: bold;">4:00 PM</p>
+                            <p style="font-weight: bold;">{{ date('F d,Y   h:i A', strtotime($datetime_found)) }}</p>
                         </div>
                     </div>
 
@@ -54,7 +44,7 @@
                             <p style="font-size: 14px;">Item Name</p>
                         </div>
                         <div class="form-group col-sm-4" style="font-size: 16px; color: #252525;">
-                            <p style="font-weight: bold;">Airpods</p>
+                            <p style="font-weight: bold;">{{ $item_name }}</p>
                         </div>
                     </div>
 
@@ -64,7 +54,7 @@
                             <p style="font-size: 14px;">Location Found</p>
                         </div>
                         <div class="form-group col-sm-4" style="font-size: 16px; color: #252525;">
-                            <p style="font-weight: bold;">Canteen</p>
+                            <p style="font-weight: bold;">{{ $location_found }}</p>
                         </div>
                     </div>
 
@@ -74,7 +64,7 @@
                             <p style="font-size: 14px;">Finder's Name</p>
                         </div>
                         <div class="form-group col-sm-4" style="font-size: 16px; color: #252525;">
-                            <p style="font-weight: bold;">Del Medina</p>
+                            <p style="font-weight: bold;">{{ $finder_name }}</p>
                         </div>
                     </div>
 
@@ -87,7 +77,9 @@
 
                     <div class="row">
                         <div class="form-group col-sm-12" style="font-size: 16px; color: #252525;">
-                            <p style="font-weight: bold;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+                            <p style="font-weight: bold;">
+                                {{ $description ? $description : 'There is no written description for this item.' }}
+                            </p>
                         </div>
                     </div>
                     <!-------------------------------------------------------->
@@ -98,36 +90,38 @@
                     </div>
                     <div class="form-group col-sm-13 col-md-6" style="padding-left: 0;">
                         <div class="input-group">
-                            <img alt="lost item" class="img-responsive" src="images/sample item.png" style="max-height: 215px; width: auto;">
+                            <img alt="lost item" class="img-responsive" src="{{ $this->viewImage() }}" style="height: 150px; width: 150px;">
                         </div>
                     </div>
 
-                    <!--CLAIMED DETAILS-->
-                    <div class="row">
-                        <div class="form-group col-sm-6" style="text-align: left; margin-top: 2rem;">
-                            <p style="color: #0A0863; font-size: 22px;">Claimed Details</p>
+                    @if ($is_claimed)
+                        <!--CLAIMED DETAILS-->
+                        <div class="row">
+                            <div class="form-group col-sm-6" style="text-align: left; margin-top: 2rem;">
+                                <p style="color: #0A0863; font-size: 22px;">Claimed Details</p>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <!--DATE CLAIMED-->
-                        <div class="form-group col-sm-5" style="color: #252525;">
-                            <p style="font-size: 14px;">Date</p>
+                        <div class="row">
+                            <!--DATE AND TIME CLAIMED-->
+                            <div class="form-group col-sm-5" style="color: #252525;">
+                                <p style="font-size: 14px;">Date and Time Claimed</p>
+                            </div>
+                            <div class="form-group col-sm-4" style="font-size: 16px; color: #252525;">
+                                <p style="font-weight: bold;">{{ date('F d,Y   h:i A', strtotime($claimed_datetime)) }}</p>
+                            </div>
                         </div>
-                        <div class="form-group col-sm-4" style="font-size: 16px; color: #252525;">
-                            <p style="font-weight: bold;">6/15/23</p>
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <!--OWNER'S NAME-->
-                        <div class="form-group col-sm-5" style="color: #252525;">
-                            <p style="font-size: 14px;">Owner's Name</p>
+                        <div class="row">
+                            <!--OWNER'S NAME-->
+                            <div class="form-group col-sm-5" style="color: #252525;">
+                                <p style="font-size: 14px;">Owner's Name</p>
+                            </div>
+                            <div class="form-group col-sm-4" style="font-size: 16px; color: #252525;">
+                                <p style="font-weight: bold;">{{ $owner_name }}</p>
+                            </div>
                         </div>
-                        <div class="form-group col-sm-4" style="font-size: 16px; color: #252525;">
-                            <p style="font-weight: bold;">Del Medina</p>
-                        </div>
-                    </div>
+                    @endif
 
                 </div> <!-- /.card-body -->
             </form>

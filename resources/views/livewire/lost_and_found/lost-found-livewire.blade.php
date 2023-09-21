@@ -38,47 +38,16 @@
                                     <form>
                                         <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
                                             <!--MODAL FORM TITLE-->
-                                            <p class="card-title" style="color: #252525; font-size: 16px; font-weight: bold;">Item Type</p> <br><br>
+                                            <p class="card-title" style="color: #252525; font-size: 16px; font-weight: bold;">Item Types</p> <br><br>
                                             <!--ITEM TYPES-->
                                             <div class="row">
-                                                <div class="form-group col-sm-6" style="font-size: 10px; color: #252525; font-weight: bold;">
-                                                    <button class="btn btn-block btn-default" style="border-color: transparent; background-color: rgb(184, 184, 184); color: #252525;">Wallets and purses</button>
-                                                </div>
-                                                <div class="form-group col-sm-6" style="font-size: 10px; color: #252525; font-weight: bold;">
-                                                    <button class="btn btn-block btn-default" style="border-color: transparent; background-color: rgb(184, 184, 184); color: #252525;"> Jewelry and watches</button>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="form-group col-sm-6" style="font-size: 10px; color: #252525;">
-                                                    <button class="btn btn-block btn-default" style="border-color: transparent; background-color: rgb(184, 184, 184); color: #252525;"> Keys</button>
-                                                </div>
-                                                <div class="form-group col-sm-6" style="font-size: 10px; color: #252525;">
-                                                    <button class="btn btn-block btn-default" style="border-color: transparent; background-color: rgb(184, 184, 184); color: #252525;"> Books and notebooks</button>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="form-group col-sm-6" style="font-size: 10px; color: #252525;">
-                                                    <button class="btn btn-block btn-default" style="border-color: transparent; background-color: rgb(184, 184, 184); color: #252525;"> Eyewear</button>
-                                                </div>
-                                                <div class="form-group col-sm-6" style="font-size: 10px; color: #252525;">
-                                                    <button class="btn btn-block btn-default" style="border-color: transparent; background-color: rgb(184, 184, 184); color: #252525;"> Miscellaneous items</button>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="form-group col-sm-6" style="font-size: 10px; color: #252525;">
-                                                    <button class="btn btn-block btn-default" style="border-color: transparent; background-color: rgb(184, 184, 184); color: #252525;"> Bags and luggage</button>
-                                                </div>
-                                                <div class="form-group col-sm-6" style="font-size: 10px; color: #252525;">
-                                                    <button class="btn btn-block btn-default" style="border-color: transparent; background-color: rgb(184, 184, 184); color: #252525;"> Toys and stuffed animals</button>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="form-group col-sm-6" style="font-size: 10px; color: #252525;">
-                                                    <button class="btn btn-block btn-default" style="border-color: transparent; background-color: rgb(184, 184, 184); color: #252525;"> Clothing and Accessories</button>
-                                                </div>
-                                                <div class="form-group col-sm-6" style="font-size: 10px; color: #252525;">
-                                                    <button class="btn btn-block btn-default" style="border-color: transparent; background-color: rgb(184, 184, 184); color: #252525;"> Electronic devices</button>
-                                                </div>
+                                                @foreach ($item_types as $type)
+                                                    <div class="form-group col-sm-6" style="font-size: 10px; color: #252525; font-weight: bold;">
+                                                        <button class="btn btn-block btn-default" style="border-color: transparent; background-color: rgb(184, 184, 184); color: #252525;">
+                                                            {{ $type->item_type }}
+                                                        </button>
+                                                    </div>
+                                                @endforeach
                                             </div>
                                             <div class="row">
                                                 <!--RESET-->
@@ -118,36 +87,38 @@
                         <th style="border-right: 1px solid #252525;">ID</th>
                         <th style="border-right: 1px solid #252525;">Item Type</th>
                         <th style="border-right: 1px solid #252525;">Item Name</th>
-                        <th style="border-right: 1px solid #252525;">Time Found</th>
-                        <th style="border-right: 1px solid #252525;">Date Found</th>
+                        <th style="border-right: 1px solid #252525;">Date and Time Found</th>
                         <th style="border-right: 1px solid #252525;">Location Found</th>
                         <th style="border-right: 1px solid #252525;">Finder's Name</th>
-                        <th style="border-right: 1px solid #252525;">Owner's Name</th>
-                        <th style="border-right: 1px solid #252525;">Claimed Date</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($items as $item)
+                        
                     <tr>
-                        <td>1</td>
-                        <td>Electronic Devices</td>
-                        <td>Airpods</td>
-                        <td>4:00 PM</td>
-                        <td>6/10/23</td>
-                        <td>Canteen</td>
-                        <td>Del Medina</td>
-                        <td>Cris Santos</td>
-                        <td>6/15/23</td>
+                        <td>{{ $item->id }}</td>
+                        <td>{{ $item->getType->item_type }}</td>
+                        <td>{{ $item->item_name }}</td>
+                        <td>{{ date('F d,Y   h:i A', strtotime($item->datetime_found)) }}</td>
+                        <td>{{ $item->location_found }}</td>
+                        <td>{{ $item->finder_name }}</td>
                         <td>
                             <!--EDIT LOST ITEM BUTTON-->
-                            <a class="btn btn-primary action-btn" data-target="#edit-lost-item" data-toggle="modal" href="#">
+                            <button class="btn btn-primary action-btn" data-target="#edit-lost-item" data-toggle="modal">
                                 <i class="fa fa-solid fa-pen"></i>
-                            </a>
+                            </button>
                             <!--VIEW LOST ITEM DETAILS BUTTON-->
-                            <a class="btn btn-primary action-btn" data-target="#view-lost-item" data-toggle="modal" href="#">
+                            <button class="btn btn-primary action-btn" data-target="#view-lost-item" data-toggle="modal" wire:click='get_data({{ $item->id }})'>
                                 <i aria-hidden="true" class="fa fa-eye"></i>
-                            </a>
+                            </button>
+                            {{-- DELETE USER --}}
+                            <button class="btn btn-primary action-btn" wire:click='delete({{ $item->id }})'>
+                                <i aria-hidden="true" class="fa fa-trash"></i>
+                            </button>
                         </td>
+                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
