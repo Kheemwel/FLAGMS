@@ -16,6 +16,7 @@ class LostFoundLivewire extends Component
     public $items, $item_types;
     public $selected_item_type, $upload_item_image, $item_name, $item_image_id, $description;
     public $datetime_found, $finder_name, $location_found, $is_claimed, $owner_name, $claimed_datetime;
+
     public function render()
     {
         $this->item_types = ItemTypes::all();

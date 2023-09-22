@@ -76,22 +76,24 @@
                     </div>
 
                     <!--IMAGE OF THE LOST ITEM-->
-                    <div class="form-group col-sm-13" style="font-size: 14px; color: #252525; text-align: left; padding-left: 0;">
+                    <div class="form-group col-sm-13" style="font-size: 14px; color: #252525; text-align: left;">
                         <label for="input-item-desc" style="font-weight: normal;">Image of the Lost Item</label>
 
-                        <div class="form-group col-sm-12" onclick="$('#uploadPic').trigger('click')" style="border: 1px dashed gray; padding-top: 3rem; padding-bottom: 5rem; display: flex; flex-direction: column; align-items: center;">
-                            @if ($upload_item_image)
-                                <img height="150px" src="{{ $upload_item_image->temporaryUrl() }}" width='150px'>
-                            @else
-                                <div>
-                                    <label style="color: gray; font-size: 14px; font-weight: 300; text-align: center;">Drag an image here <br> or </label>
-                                </div>
-                                <div>
-                                    <button class="btn btn-block btn-primary" style=" width: 8rem; font-size: 12px; background-color: #0A0863; border: transparent;" type="button">Upload Image</button>
-                                </div>
-                            @endif
+                        <div class="form-group col-sm-12" style="border: 1px dashed gray; display: flex; flex-direction: column; align-items: center;">
+                            <input accept=".png, .jpg, .jpeg" class="custom-file-input position-absolute z-50 m-0 p-0 w-100 h-100 border border-black" id="uploadPic" type="file" wire:model="upload_item_image">
+                            <div style="padding-top: 3rem; padding-bottom: 5rem;">
+                                @if ($upload_item_image && in_array($upload_item_image->getClientOriginalExtension(), ['png', 'jpg', 'jpeg']) && strpos($upload_item_image->getMimeType(), 'image/') === 0)
+                                    <img height="150px" src="{{ $upload_item_image->temporaryUrl() }}" width='150px'>
+                                @else
+                                    <div>
+                                        <label style="color: gray; font-size: 14px; font-weight: 300; text-align: center;">Drag an image here <br> or </label>
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-block btn-primary" style=" width: 8rem; font-size: 12px; background-color: #0A0863; border: transparent;" type="button">Upload Image</button>
+                                    </div>
+                                @endif
+                            </div>
                         </div>
-                        <input accept=".png, .jpg, .jpeg" class="custom-file-input d-none" id="uploadPic" type="file" wire:model="upload_item_image">
                         @error('upload_item_image')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror

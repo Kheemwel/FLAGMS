@@ -2,7 +2,6 @@
     <title>Admin | Roles</title>
 @endsection
 
-
 <div class="content-wrapper" style="background-color:  rgb(253, 253, 253); padding-left: 2rem;">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -95,29 +94,28 @@
                 </thead>
                 <tbody>
                     @foreach ($items as $item)
-                        
-                    <tr>
-                        <td>{{ $item->id }}</td>
-                        <td>{{ $item->getType->item_type }}</td>
-                        <td>{{ $item->item_name }}</td>
-                        <td>{{ date('F d,Y   h:i A', strtotime($item->datetime_found)) }}</td>
-                        <td>{{ $item->location_found }}</td>
-                        <td>{{ $item->finder_name }}</td>
-                        <td>
-                            <!--EDIT LOST ITEM BUTTON-->
-                            <button class="btn btn-primary action-btn" data-target="#edit-lost-item" data-toggle="modal">
-                                <i class="fa fa-solid fa-pen"></i>
-                            </button>
-                            <!--VIEW LOST ITEM DETAILS BUTTON-->
-                            <button class="btn btn-primary action-btn" data-target="#view-lost-item" data-toggle="modal" wire:click='get_data({{ $item->id }})'>
-                                <i aria-hidden="true" class="fa fa-eye"></i>
-                            </button>
-                            {{-- DELETE USER --}}
-                            <button class="btn btn-primary action-btn" wire:click='delete({{ $item->id }})'>
-                                <i aria-hidden="true" class="fa fa-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>{{ $item->id }}</td>
+                            <td>{{ $item->getType->item_type }}</td>
+                            <td>{{ $item->item_name }}</td>
+                            <td>{{ date('F d,Y   h:i A', strtotime($item->datetime_found)) }}</td>
+                            <td>{{ $item->location_found }}</td>
+                            <td>{{ $item->finder_name }}</td>
+                            <td>
+                                <!--EDIT LOST ITEM BUTTON-->
+                                <button class="btn btn-primary action-btn" data-target="#edit-lost-item" data-toggle="modal">
+                                    <i class="fa fa-solid fa-pen"></i>
+                                </button>
+                                <!--VIEW LOST ITEM DETAILS BUTTON-->
+                                <button class="btn btn-primary action-btn" data-target="#view-lost-item" data-toggle="modal" wire:click='get_data({{ $item->id }})'>
+                                    <i aria-hidden="true" class="fa fa-eye"></i>
+                                </button>
+                                {{-- DELETE USER --}}
+                                <button class="btn btn-primary action-btn" wire:click='delete({{ $item->id }})'>
+                                    <i aria-hidden="true" class="fa fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
