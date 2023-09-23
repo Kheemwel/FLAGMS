@@ -4,7 +4,7 @@
         <label for="multiple-select-optgroup-clear-field" style="font-weight: normal;">Select Children</label>
         <select class="form-select" data-placeholder="Select Children" id="multiple-select-optgroup-clear-field" multiple style="border: 1px solid #252525; width: 200%;">
             @foreach ($students as $student)
-                <option value="{{ $student->id }}">{{ $student->getUserAccount->first_name . ' ' . $student->getUserAccount->last_name }}</option>
+                <option value="{{ $student->id }}">{{ $student->getUserAccount->name }}</option>
             @endforeach
         </select>
         @error('selectedStudents')

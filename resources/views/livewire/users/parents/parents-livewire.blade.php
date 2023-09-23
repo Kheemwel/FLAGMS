@@ -100,11 +100,11 @@
                             @foreach ($parents as $parent)
                                 <tr>
                                     <th scope="row">{{ $parent->id }}</th>
-                                    <td>{{ $parent->getUserAccount->first_name . ' ' . $parent->getUserAccount->last_name }}</td>
+                                    <td>{{ $parent->getUserAccount->name }}</td>
                                     <td>{{ $parent->getUserAccount->username }}</td>
                                     <td>
                                         @foreach ($parent->children as $child)
-                                            <p>{{ $child->getUserAccount->first_name . ' ' . $child->getUserAccount->last_name}}</p>
+                                            <p>{{ $child->getUserAccount->name}}</p>
                                         @endforeach
                                     </td>
                                     <td>{{ $parent->created_at->format('F d,Y   h:i A') }}</td>

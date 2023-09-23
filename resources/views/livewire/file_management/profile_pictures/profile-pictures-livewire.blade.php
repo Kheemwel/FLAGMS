@@ -46,7 +46,7 @@
                                 <td>
                                     <img src="{{ imageBinaryToSRC($profile->profile_picture) }}" width="50">
                                 </td>
-                                <td>{{ $profile->hasUserAccount->first_name . ' ' . $profile->hasUserAccount->last_name }}</td>
+                                <td>{{ $profile->hasUserAccount->name }}</td>
                                 <td>{{ $profile->updated_at->format('F d,Y   h:i A') }}</td>
                                 <td>
                                     <!--EDIT PROFILE-->

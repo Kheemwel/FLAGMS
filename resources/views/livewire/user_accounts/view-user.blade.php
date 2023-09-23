@@ -51,7 +51,7 @@
                         <p class="card-title">Name</p>
                     </div>
                     <div class="form-group col-sm-4" style="font-size: 12px; color: #252525;">
-                        <p class="card-title" style="font-weight: bold;">{{ $first_name . ' ' . $last_name }}</p>
+                        <p class="card-title" style="font-weight: bold;">{{ $name }}</p>
                     </div>
                 </div>
                 @if ($role == 'Student')
@@ -83,7 +83,7 @@
                                 </p>
                                 @foreach ($parents as $parent)
                                     <p class="card-title" style="font-weight: bold;">
-                                        {{ $parent->getUserAccount->first_name . ' ' . $parent->getUserAccount->last_name }}
+                                        {{ $parent->getUserAccount->name }}
                                     </p>
                                 @endforeach
                             @endif
@@ -98,7 +98,7 @@
                         <div class="form-group col-sm-4" style="font-size: 14px; color: #252525;">
                             @if ($children)
                                 @foreach ($children as $child)
-                                    <p class="card-title" style="font-weight: bold;">{{ $child->getUserAccount->first_name . ' ' . $child->getUserAccount->last_name }}</p>
+                                    <p class="card-title" style="font-weight: bold;">{{ $child->getUserAccount->name }}</p>
                                 @endforeach
                             @endif
                         </div>

@@ -13,41 +13,46 @@ class UserAccounts extends Model
     protected $table = 'user_accounts';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'username', 'role_id', 'first_name', 'last_name', 'password', 'hashed_password', 'email', 'profile_picture_id', 
+        'username', 'role_id', 'first_name', 'last_name', 'password', 'hashed_password', 'email', 'profile_picture_id',
         'is_archive', 'archived_at', 'total_login', 'last_login'
     ];
 
-    public function getProfilePicture() : BelongsTo
+    public function getNameAttribute()
+    {
+        return $this->attributes['first_name'] . ' ' . $this->attributes['last_name'];
+    }
+
+    public function getProfilePicture(): BelongsTo
     {
         return $this->belongsTo(ProfilePictures::class, 'profile_picture_id');
     }
 
-    public function getRole() : BelongsTo
+    public function getRole(): BelongsTo
     {
         return $this->belongsTo(Roles::class, 'role_id');
     }
 
-    public function hasGuidance() : HasOne
+    public function hasGuidance(): HasOne
     {
         return $this->hasOne(Guidance::class, 'user_account_id');
     }
 
-    public function hasStudent() : HasOne
+    public function hasStudent(): HasOne
     {
         return $this->hasOne(Students::class, 'user_account_id');
     }
 
-    public function hasParent() : HasOne
+    public function hasParent(): HasOne
     {
         return $this->hasOne(Parents::class, 'user_account_id');
     }
 
-    public function hasTeacher() : HasOne
+    public function hasTeacher(): HasOne
     {
         return $this->hasOne(Teachers::class, 'user_account_id');
     }
 
-    public function hasPrincipal() : HasOne
+    public function hasPrincipal(): HasOne
     {
         return $this->hasOne(Principals::class, 'user_account_id');
     }

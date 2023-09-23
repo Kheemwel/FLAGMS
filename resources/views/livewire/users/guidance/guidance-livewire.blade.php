@@ -42,7 +42,7 @@
                             @foreach ($guidances as $guidance)
                                 <tr>
                                     <th scope="row">{{ $guidance->id }}</th>
-                                    <td>{{ $guidance->getUserAccount->first_name . ' ' . $guidance->getUserAccount->last_name }}</td>
+                                    <td>{{ $guidance->getUserAccount->name }}</td>
                                     <td>{{ $guidance->getUserAccount->username }}</td>
                                     <td>{{ $guidance->created_at->format('F d,Y   h:i A') }}</td>
                                     <td>

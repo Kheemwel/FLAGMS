@@ -99,7 +99,7 @@
                             @foreach ($teachers as $teacher)
                                 <tr>
                                     <th scope="row">{{ $teacher->id }}</th>
-                                    <td>{{ $teacher->getUserAccount->first_name . ' ' . $teacher->getUserAccount->last_name }}</td>
+                                    <td>{{ $teacher->getUserAccount->name }}</td>
                                     <td>{{ $teacher->getUserAccount->username }}</td>
                                     <td>{{ $teacher->created_at->format('F d,Y   h:i A') }}</td>
                                     <td>

@@ -100,7 +100,7 @@
                             @foreach ($principals as $principal)
                                 <tr>
                                     <th scope="row">{{ $principal->id }}</th>
-                                    <td>{{ $principal->getUserAccount->first_name . ' ' . $principal->getUserAccount->last_name }}</td>
+                                    <td>{{ $principal->getUserAccount->name }}</td>
                                     <td>{{ $principal->getUserAccount->username }}</td>
                                     <td>{{ $principal->getPrincipalPosition->position }}</td>
                                     <td>{{ $principal->created_at->format('F d,Y   h:i A') }}</td>
