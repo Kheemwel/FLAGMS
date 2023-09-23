@@ -1,45 +1,21 @@
-<nav class="navbar navbar-expand navbar-white navbar-light"
-    style="border: 1px solid rgb(213, 212, 212); background: linear-gradient(180deg, #000000 -129.53%, #0A0863 100%);">
+<nav class="navbar navbar-expand navbar-white navbar-light" style="padding: 4rem;">
     <!-- Brand Logo -->
-    <div style="border: transparent;">
-        <img alt="AdminLTE Logo" class="brand-image img-circle" src="{{ $logo }}" style="width: 45px; height: 45px;">
-        {{-- <span class="brand-text" style="color: white;">{{ $school_name }}</span> --}}
-        {!! $school_name !!}
+    <div style="border: transparent; display: flex; align-items: center;">
+        <img src="{{ $logo }}" alt="AdminLTE Logo" class="brand-image img-circle" style="width: 50px; height: 50px; margin-right: 10px;">
+        <div>
+            {{-- <span style="color: #0A0863; font-weight: bold; font-family: 'Inria Serif', serif; font-size: 22px;">Fiat Lux Academe</span>
+            <span style="color: #0A0863; font-size: 16px; font-weight: bold; font-family: 'Inria Serif', serif;">Cavite</span> --}}
+            {!! $school_name !!}
+        </div>
     </div>
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-        <!-------------- RIGHT HAND UPPER SIDE NAVIGATION -------->
-        <!-------HOME BUTTON--------->
-        {{-- <li class="nav-item">
-            <a class="nav-link" href="{{ route('home-page') }}">
-                <p style="color: white; font-size: 18px;">
-                    Home
-                </p>
-            </a>
-        </li> --}}
-        <!-------ABOUT BUTTON--------->
-        {{-- <li class="nav-item">
-            <a class="nav-link" href="/about">
-                <p style="color: white; font-size: 18px;">
-                    About
-                </p>
-            </a>
-        </li> --}}
-
         <!-------LOGIN BUTTON--------->
         <li class="nav-item">
-            <a class="nav-link" data-target="#login-modal" data-toggle="modal" href="">
-                <p style="color: white; font-size: 18px;"><i class="fa fa-solid fa-user"></i> Log In</p>
-            </a>
-            @livewire('login-livewire')
+            <button class="nav-link btn" data-target="#login-modal" data-toggle="modal">
+                <p style="color: white; font-size: 14px; background-color: #0A0863; border-radius: 15px; padding: 5px; padding-left: 30px; padding-right: 30px;"> Login</p>
+            </button>
         </li>
-
-        <!--Interface FullScreen-->
-        {{-- <li class="nav-item">
-            <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                <i class="fas fa-expand-arrows-alt" style="color: white;"></i>
-            </a>
-        </li> --}}
     </ul>
-</nav>
+</nav><!--------------- /.navbar ----------------------->

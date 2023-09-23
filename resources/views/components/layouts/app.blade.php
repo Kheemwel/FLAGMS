@@ -44,6 +44,7 @@
 
         /********************************/
     </style>
+    @livewireStyles()
 
 
     <!-- jQuery -->
@@ -62,7 +63,6 @@
     <script src="adminLTE-3.2/plugins/toastr/toastr.min.js"></script>
 
     @yield('head-scripts')
-    @livewireStyles()
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
