@@ -34,7 +34,6 @@ class UserAccountsLivewire extends Component
     public $user_id, $first_name, $last_name, $username, $password, $hashed_password, $email;
     public $roles, $role_id, $role;
     public $profile_picture_id, $profile_picture;
-    private $default_profile = 'images/default_profile.png';
     public $showArchivedAccounts = false;
     public $search = '', $filterRole;
     public $school_levels, $grade_levels, $school_level, $grade_level;
@@ -108,6 +107,11 @@ class UserAccountsLivewire extends Component
         $users = $query_normal->orderBy('id', 'asc')->paginate(self::PAGINATE);
         $archived_users = $query_archives->oldest()->paginate(self::PAGINATE);
         return view('livewire.user_accounts.user-accounts-livewire', compact('users', 'archived_users'));
+    }
+
+    public function hydrate()
+    {
+        $this->dispatch('renderDataTable');
     }
 
     public function renderSelect2()

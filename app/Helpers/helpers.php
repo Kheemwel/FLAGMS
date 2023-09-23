@@ -17,7 +17,7 @@ if (!function_exists('printMessage')) {
 
 if (!function_exists('defaultProfilePicture')) {
     function defaultProfilePicture() {
-        return asset('images/default_profile.png'); // Update the path as needed
+        return asset('images/default_profile.jpg'); // Update the path as needed
     }
 }
 
