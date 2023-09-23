@@ -1,39 +1,35 @@
-<div class="card" style="margin-left: 2rem; margin-right: 2rem;">
+<div class="card" style="margin-left: 2rem; margin-right: 2rem;border-radius: 10px;">
     <!-- /.card-header -->
-    <div class="card-body table-responsive p-0" style="border: 1px solid #252525;">
-        <table class="table text-nowrap" style="text-align: center;">
-            <thead style="background-color: #7684B9; color: white;">
+    <div class="card-body table-responsive p-0" style="border: 1px solid #252525; border-radius: 10px;">
+        <table class="table table-hover">
+            <thead style="color: #252525; text-align: center;">
                 <tr>
-                    <th style="border-right: 1px solid #252525;">ID</th>
-                    <th style="border-right: 1px solid #252525;">Name</th>
-                    <th style="border-right: 1px solid #252525;">Username</th>
-                    <th style="border-right: 1px solid #252525;">Role</th>
-                    <th style="border-right: 1px solid #252525;">Archived At</th>
+                    <x-table-column-header :direction="$sortField === 'id' ? $sortDirection : null" click="sortBy('id')" label='ID' sortable />
+                    <x-table-column-header :direction="$sortField === 'name' ? $sortDirection : null" click="sortBy('name')" label='Name' sortable />
+                    <x-table-column-header :direction="$sortField === 'role' ? $sortDirection : null" click="sortBy('role')" label='Role' sortable />
+                    <x-table-column-header :direction="$sortField === 'archived_at' ? $sortDirection : null" click="sortBy('archived_at')" label='Archived At' sortable />
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody style="text-align: center;">
                 @foreach ($archived_users as $user)
                     <tr>
                         <th scope="row">{{ $user->id }}</th>
-                        <td>{{ $user->first_name . ' ' . $user->last_name }}</td>
-                        <td>{{ $user->username }}</td>
+                        <td>{{ $user->name }}</td>
                         <td>{{ $user->role }}</td>
                         <td>{{ date('F d,Y   h:i A', strtotime($user->archived_at)) }}</td>
                         <td>
+                            <!--USER INFO VIEW BUTTON-->
+                            <p class="btn btn-primary action-btn" data-target="#view-user-btn" data-toggle="modal" style="color: #3C58FF;  text-decoration: underline;" wire:click="get_data({{ $user->id }})">View</p>
+
                             <!--USER INFO EDIT BUTTON-->
                             <button class="btn btn-primary action-btn" data-target="#stud-info-edit" data-toggle="modal" wire:click="get_data({{ $user->id }})">
                                 <i class="fa fa-solid fa-pen"></i>
                             </button>
-                            <!-------------------------------------------------------------------------------------------------------------------------->
-                            <!--USER INFO VIEW BUTTON-->
-                            <button class="btn btn-primary action-btn" data-target="#view-user-btn" data-toggle="modal" wire:click="get_data({{ $user->id }})">
-                                <i aria-hidden="true" class="fa fa-eye"></i>
-                            </button>
 
                             {{-- UNARCHIVE USER --}}
                             <button class="btn btn-primary action-btn" wire:click="unArchive({{ $user->id }})">
-                                <i class="fa fa-undo" aria-hidden="true"></i>
+                                <i aria-hidden="true" class="fa fa-undo"></i>
                             </button>
 
                             {{-- DELETE USER --}}

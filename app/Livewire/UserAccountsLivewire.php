@@ -17,6 +17,7 @@ use App\Models\Students;
 use App\Models\Teachers;
 use App\Models\UserAccounts;
 use App\Traits\Toasts;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
@@ -31,17 +32,19 @@ class UserAccountsLivewire extends Component
     use WithFileUploads;
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $user_id, $first_name, $last_name, $username, $password, $hashed_password, $email;
+    public $user_id, $name, $first_name, $last_name, $username, $password, $hashed_password, $email;
     public $roles, $role_id, $role;
     public $profile_picture_id, $profile_picture;
-    public $showArchivedAccounts = false;
-    public $search = '', $filterRole;
     public $school_levels, $grade_levels, $school_level, $grade_level;
     public $principal_positions, $principal_position;
     public $students, $selectedStudents;
     public $parents, $children;
     public $total_login, $last_login;
     public $batch_file;
+
+    public $showArchivedAccounts = false;
+    public $search = '', $filterRole;
+    public $sortField = 'id', $sortDirection = 'asc';
 
     const PAGINATE = 30;
 
@@ -64,10 +67,10 @@ class UserAccountsLivewire extends Component
             $query->where('is_archive', false);
         })->get();
         $query_normal = UserAccounts::join('roles', 'user_accounts.role_id', '=', 'roles.id')
-            ->select('user_accounts.*', 'roles.role as role')
+            ->select('user_accounts.*', 'roles.role as role', DB::raw("CONCAT(first_name, ' ', last_name) as name"))
             ->where('is_archive', false);
         $query_archives = UserAccounts::join('roles', 'user_accounts.role_id', '=', 'roles.id')
-            ->select('user_accounts.*', 'roles.role as role')
+            ->select('user_accounts.*', 'roles.role as role', DB::raw("CONCAT(first_name, ' ', last_name) as name"))
             ->where('is_archive', true);
 
         $this->filterRole = $this->filterRole == 'All' ? '' : $this->filterRole;
@@ -104,14 +107,17 @@ class UserAccountsLivewire extends Component
             $this->school_level = $school_level->hasSchoolLevel->schoolLevel->school_level;
         }
 
-        $users = $query_normal->orderBy('id', 'asc')->paginate(self::PAGINATE);
-        $archived_users = $query_archives->oldest()->paginate(self::PAGINATE);
+        $users = $query_normal->orderBy($this->sortField, $this->sortDirection)->paginate(self::PAGINATE);
+        $archived_users = $query_archives->orderBy($this->sortField, $this->sortDirection)->paginate(self::PAGINATE);
         return view('livewire.user_accounts.user-accounts-livewire', compact('users', 'archived_users'));
     }
 
-    public function hydrate()
+    public function sortBy($field)
     {
-        $this->dispatch('renderDataTable');
+        $this->sortDirection = $this->sortField === $field ? 
+        $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc' : 'asc';
+
+        $this->sortField = $field;
     }
 
     public function renderSelect2()
@@ -394,6 +400,7 @@ class UserAccountsLivewire extends Component
         $this->username = $user->username;
         $this->first_name = $user->first_name;
         $this->last_name = $user->last_name;
+        $this->name = $user->name;
         $this->password = $user->password;
         $this->hashed_password = $user->hashed_password;
         $this->email = $user->email;

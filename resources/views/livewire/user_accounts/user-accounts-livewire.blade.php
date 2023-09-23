@@ -4,6 +4,7 @@
     <!-- Select2 CSS -->
     <link href="adminLTE-3.2/plugins/select2/css/select2.min.css" rel="stylesheet">
     <link href="adminLTE-3.2/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css" rel="stylesheet">
+
     <style>
         /* For Eye Icons of Anecdotal and Summary Section inside the table */
         .btn-primary.action-btn {
@@ -31,6 +32,9 @@
 @section('head-scripts')
     {{-- Select2 JS --}}
     <script src="adminLTE-3.2/plugins/select2/js/select2.full.min.js"></script>
+
+    <!--Sorting Table-->
+    <script src="adminLTE-3.2/plugins/datatables/jquery.dataTables.min.js"></script>
 @endsection
 
 <div class="content-wrapper" style="background-color:  rgb(253, 253, 253); padding-left: 2rem;">
@@ -86,35 +90,34 @@
             @if ($showArchivedAccounts)
                 @include('livewire.user_accounts.archive-table')
             @else
-                <div class="card" style="margin-left: 2rem; margin-right: 2rem;">
+                <div class="card" style="margin-left: 2rem; margin-right: 2rem;border-radius: 10px;">
                     <!-- /.card-header -->
-                    <div class="card-body table-responsive p-0" style="border: 1px solid #252525;">
-                        <table class="table text-nowrap" style="text-align: center;">
-                            <thead style="background-color: #7684B9; color: white;">
+                    <div class="card-body table-responsive p-0" style="border: 1px solid #252525; border-radius: 10px;">
+                        <table class="table table-hover">
+                            <thead style="color: #252525; text-align: center;">
                                 <tr>
-                                    <th style="border-right: 1px solid #252525;">ID</th>
-                                    <th style="border-right: 1px solid #252525;">Name</th>
-                                    <th style="border-right: 1px solid #252525;">Username</th>
-                                    <th style="border-right: 1px solid #252525;">Role</th>
+                                    <x-table-column-header :direction="$sortField === 'id' ? $sortDirection : null" click="sortBy('id')" label='ID' sortable />
+                                    <x-table-column-header :direction="$sortField === 'name' ? $sortDirection : null" click="sortBy('name')" label='Name' sortable />
+                                    <x-table-column-header :direction="$sortField === 'username' ? $sortDirection : null" click="sortBy('username')" label='Username' sortable />
+                                    <x-table-column-header :direction="$sortField === 'role' ? $sortDirection : null" click="sortBy('role')" label='Role' sortable />
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody style="text-align: center;">
                                 @foreach ($users as $user)
                                     <tr>
                                         <th scope="row">{{ $user->id }}</th>
-                                        <td>{{ $user->first_name . ' ' . $user->last_name }}</td>
+                                        <td>{{ $user->name }}</td>
                                         <td>{{ $user->username }}</td>
                                         <td>{{ $user->role }}</td>
                                         <td>
+
+                                            <!--USER INFO VIEW BUTTON-->
+                                            <p class="btn btn-primary action-btn" data-target="#view-user-btn" data-toggle="modal" style="color: #3C58FF;  text-decoration: underline;" wire:click="get_data({{ $user->id }})">View</p>
+
                                             <!--USER INFO EDIT BUTTON-->
                                             <button class="btn btn-primary action-btn" data-target="#stud-info-edit" data-toggle="modal" wire:click="get_data({{ $user->id }})">
                                                 <i class="fa fa-solid fa-pen"></i>
-                                            </button>
-                                            <!-------------------------------------------------------------------------------------------------------------------------->
-                                            <!--USER INFO VIEW BUTTON-->
-                                            <button class="btn btn-primary action-btn" data-target="#view-user-btn" data-toggle="modal" wire:click="get_data({{ $user->id }})">
-                                                <i aria-hidden="true" class="fa fa-eye"></i>
                                             </button>
 
                                             {{-- ARCHIVE USER --}}
