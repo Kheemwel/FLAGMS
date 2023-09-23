@@ -135,7 +135,7 @@ class UserAccountsLivewire extends Component
         try {
             Excel::import(new UserAccountsImport, $this->batch_file);
         } catch (Throwable $th) {
-            $this->showToast('error', $th);
+            $this->showToast('error', $th->getMessage());
         }
 
         // Add any additional logic or feedback messages here

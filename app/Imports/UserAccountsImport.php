@@ -2,11 +2,15 @@
 
 namespace App\Imports;
 
+use App\Mail\AccountCreationMail;
 use App\Models\UserAccounts;
+use App\Traits\Toasts;
+use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithProgressBar;
+use Throwable;
 
 class UserAccountsImport implements ToModel, WithBatchInserts, WithProgressBar
 {
@@ -17,11 +21,12 @@ class UserAccountsImport implements ToModel, WithBatchInserts, WithProgressBar
     */
 
     use Importable;
+    use Toasts;
     public function model(array $row)
     {
         $username = $this->checkUsername($row[2], $row[0], $row[1]);
         $password = $row[3] ? $row[3] : generatePassword();
-        return new UserAccounts([
+        $user = new UserAccounts([
             'first_name' => $row[0],
             'last_name' => $row[1],
             'username' => $username,
@@ -30,6 +35,15 @@ class UserAccountsImport implements ToModel, WithBatchInserts, WithProgressBar
             'role_id' => $row[4],
             'email' => $row[5]
         ]);
+
+        if ($user->email) {
+            try {
+                Mail::to($user->email)->send(new AccountCreationMail($user->username, $user->password));
+            } catch (Throwable $th) {
+                //
+            }
+        }
+        return $user;
     }
 
     public function checkUsername($username, $firstname, $lastname)
