@@ -2,6 +2,7 @@
 
 use App\Http\Middleware\CheckUserCredentials;
 use App\Livewire\ContentManagementLivewire;
+use App\Livewire\DatabaseLivewire;
 use App\Livewire\GuidanceLivewire;
 use App\Livewire\HomeLivewire;
 use App\Livewire\ItemImagesLivewire;
@@ -19,6 +20,7 @@ use App\Livewire\TeachersLivewire;
 use App\Livewire\Test\TestLivewire;
 use App\Livewire\UserAccountsLivewire;
 use App\Livewire\UserDashboardLivewire;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -67,7 +69,7 @@ Route::middleware([CheckUserCredentials::class])->group(function () {
     Route::get('/item-images', ItemImagesLivewire::class)->name('item-images-page');
     Route::get('/item-types', ItemTypesLivewire::class)->name('item-types-page');
     Route::view('/guidance-records', 'admin.guidance-records')->name('guidance-records-page');
-    Route::view('/database', 'admin.database')->name('database-page');
+    Route::get('/database', DatabaseLivewire::class)->name('database-page');
 
     //Guidance
     Route::get('/students', StudentsLivewire::class)->name('students-page');
