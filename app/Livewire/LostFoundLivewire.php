@@ -17,12 +17,47 @@ class LostFoundLivewire extends Component
     public $items, $item_types, $item_id, $item_type_id;
     public $selected_item_type, $upload_item_image, $item_name, $item_image_id, $description;
     public $datetime_found, $finder_name, $location_found, $is_claimed, $owner_name, $claimed_datetime;
+    public $filterItemTypes = [];
+    public $search = '';
 
-    public function render()
+    public function mount()
     {
         $this->item_types = ItemTypes::all();
         $this->items = LostAndFound::all();
-        return view('livewire.lost_and_found.lost-found-livewire');
+    }
+
+    public function render()
+    {
+        return view('livewire.lost_and_found.lost-found-livewire', ['items' => $this->items]);
+    }
+
+    public function updatedSearch()
+    {
+        $this->applyFilter();
+    }
+
+    public function applyFilter()
+    {
+        $query = LostAndFound::select('lost_and_found.*');
+
+        if (!empty($this->filterItemTypes)) {
+            $query->whereIn('item_type_id', $this->filterItemTypes);
+        }
+
+        if ($this->search) {
+            $query->where('item_name', 'like', '%' . $this->search . '%')
+                ->orWhere('location_found', 'like', '%' . $this->search . '%')
+                ->orWhere('finder_name', 'like', '%' . $this->search . '%')
+                ->orWhere('owner_name', 'like', '%' . $this->search . '%');
+        }
+
+        $this->items = $query->oldest()->get();
+    }
+
+    public function resetFilter()
+    {
+        $this->filterItemTypes = [];
+        $this->applyFilter();
     }
 
     public function addItem()
@@ -43,7 +78,7 @@ class LostFoundLivewire extends Component
             $itemImage = ItemImages::create([
                 'item_image' => $image
             ]);
-    
+
             $this->item_image_id = $itemImage->id;
         }
 
@@ -99,7 +134,8 @@ class LostFoundLivewire extends Component
         $this->resetInputs();
     }
 
-    public function get_data($id) {
+    public function get_data($id)
+    {
         $item = LostAndFound::find($id);
         $this->item_id = $item->id;
         $this->item_name = $item->item_name;
