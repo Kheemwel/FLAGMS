@@ -6,6 +6,7 @@ use App\Models\ItemImages;
 use App\Models\ItemTypes;
 use App\Models\LostAndFound;
 use App\Traits\Toasts;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -13,7 +14,7 @@ class LostFoundLivewire extends Component
 {
     use WithFileUploads;
     use Toasts;
-    public $items, $item_types;
+    public $items, $item_types, $item_id, $item_type_id;
     public $selected_item_type, $upload_item_image, $item_name, $item_image_id, $description;
     public $datetime_found, $finder_name, $location_found, $is_claimed, $owner_name, $claimed_datetime;
 
@@ -59,9 +60,50 @@ class LostFoundLivewire extends Component
         $this->resetInputs();
     }
 
+    public function updateItem()
+    {
+        $validateData = $this->validate([
+            'item_type_id' => 'required|integer',
+            'upload_item_image' => 'nullable|image|mimes:jpeg,png,jpg|max:1024|',
+            'item_name' => 'required|max:255',
+            'description' => 'nullable',
+            'datetime_found' => 'required',
+            'finder_name' => 'required|max:255',
+            'location_found' => 'required|max:255',
+            'is_claimed' => 'nullable|boolean',
+            'claimed_datetime' => Rule::requiredIf($this->is_claimed),
+            'owner_name' => Rule::requiredIf($this->is_claimed),
+        ]);
+
+        if ($this->upload_item_image) {
+            $image = file_get_contents($this->upload_item_image->getRealPath());
+
+            ItemImages::find($this->item_image_id)->update([
+                'item_image' => $image
+            ]);
+        }
+
+        LostAndFound::find($this->item_id)->update([
+            'item_name' => $validateData['item_name'],
+            'item_type_id' => $validateData['item_type_id'],
+            'item_image_id' => $this->item_image_id,
+            'description' => $validateData['description'],
+            'datetime_found' => $validateData['datetime_found'],
+            'finder_name' => $validateData['finder_name'],
+            'location_found' => $validateData['location_found'],
+            'is_claimed' => $validateData['is_claimed'],
+            'claimed_datetime' => $validateData['claimed_datetime'],
+            'owner_name' => $validateData['owner_name']
+        ]);
+        $this->showToast('success', 'The item is updated successfully.');
+        $this->resetInputs();
+    }
+
     public function get_data($id) {
         $item = LostAndFound::find($id);
+        $this->item_id = $item->id;
         $this->item_name = $item->item_name;
+        $this->item_type_id = $item->item_type_id;
         $this->selected_item_type = $item->getType->item_type;
         $this->item_image_id = $item->item_image_id;
         $this->description = $item->description;

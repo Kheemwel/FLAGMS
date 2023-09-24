@@ -73,6 +73,9 @@
                     <div class="form-group col-sm-13" style="font-size: 14px; color: #252525; text-align: left; padding-left: 0;">
                         <label for="input-item-desc" style="font-weight: normal;">Item Description</label>
                         <textarea class="form-control" id="input-item-desc" style="border: 1px solid #252525; height: 100px;" wire:model='description'></textarea>
+                        @error('description')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <!--IMAGE OF THE LOST ITEM-->

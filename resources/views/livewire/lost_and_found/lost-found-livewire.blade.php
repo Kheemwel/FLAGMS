@@ -102,14 +102,14 @@
                             <td>{{ $item->location_found }}</td>
                             <td>{{ $item->finder_name }}</td>
                             <td>
+                                <!--USER INFO VIEW BUTTON-->
+                                <p class="btn btn-primary action-btn" data-target="#view-lost-item" data-toggle="modal" style="color: #3C58FF;  text-decoration: underline;" wire:click="get_data({{ $item->id }})">View</p>
+                                
                                 <!--EDIT LOST ITEM BUTTON-->
-                                <button class="btn btn-primary action-btn" data-target="#edit-lost-item" data-toggle="modal">
+                                <button class="btn btn-primary action-btn" data-target="#edit-lost-item" data-toggle="modal" wire:click="get_data({{ $item->id }})">
                                     <i class="fa fa-solid fa-pen"></i>
                                 </button>
-                                <!--VIEW LOST ITEM DETAILS BUTTON-->
-                                <button class="btn btn-primary action-btn" data-target="#view-lost-item" data-toggle="modal" wire:click='get_data({{ $item->id }})'>
-                                    <i aria-hidden="true" class="fa fa-eye"></i>
-                                </button>
+                                
                                 {{-- DELETE USER --}}
                                 <button class="btn btn-primary action-btn" wire:click='delete({{ $item->id }})'>
                                     <i aria-hidden="true" class="fa fa-trash"></i>
@@ -127,14 +127,3 @@
         @include('livewire.lost_and_found.view-item')
     </div>
 </div>
-
-
-@section('scripts')
-    <script>
-        Livewire.on('showToast', () => {
-            setTimeout(function() {
-                $('.toast').toast('show');
-            });
-        });
-    </script>
-@endsection

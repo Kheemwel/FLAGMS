@@ -1,6 +1,11 @@
 <div class="modal fade" id="view-lost-item" style="max-width: 100%;" wire:ignore.self>
     <div class="modal-dialog">
         <div class="modal-content">
+            <div wire:loading wire:target='get_data'>
+                <div class="overlay bg-white">
+                    <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+                </div>
+            </div>
             <div class="modal-header" style="border: transparent; padding: 10px;">
                 <!--EDIT USER INFORMATION-->
                 <button data-target="#edit-lost-item" data-toggle="modal" style="background-color: transparent; border-color: transparent;" type="button">
@@ -73,10 +78,7 @@
                         <div class="form-group col-sm-5" style="color: #252525;">
                             <p style="font-size: 14px;">Item Description</p>
                         </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group col-sm-12" style="font-size: 16px; color: #252525;">
+                        <div class="form-group col-sm-4" style="font-size: 16px; color: #252525;">
                             <p style="font-weight: bold;">
                                 {{ $description ? $description : 'There is no written description for this item.' }}
                             </p>
@@ -88,10 +90,8 @@
                     <div class="form-group col-sm-13" style="font-size: 14px; color: #252525; text-align: left; padding-left: 0;">
                         <label for="input-item-desc" style="font-weight: normal;">Image of the Lost Item</label>
                     </div>
-                    <div class="form-group col-sm-13 col-md-6" style="padding-left: 0;">
-                        <div class="input-group">
-                            <img alt="lost item" class="img-responsive" src="{{ $this->viewImage() }}" style="height: 150px; width: 150px;">
-                        </div>
+                    <div class="form-group col-sm-12" style="margin-bottom: 3rem; text-align: center;">
+                        <img alt="lost item" class="img-responsive" src="{{ $this->viewImage() }}" style="height: 150px; width: 150px;">
                     </div>
 
                     @if ($is_claimed)
