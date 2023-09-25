@@ -1,17 +1,17 @@
 <div class="modal fade" id="edit-lost-item" wire:ignore.self>
     <div class="modal-dialog">
         <div class="modal-content">
+            <div wire:loading wire:target='get_data'>
+                <div class="overlay bg-white">
+                    <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+                </div>
+            </div>
             <div class="modal-header" style="border: transparent; padding: 10px;">
                 <button aria-label="Close" class="close" data-dismiss="modal" type="button">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <form wire:submit.prevent='updateItem()'>
-                <div wire:loading wire:target='get_data'>
-                    <div class="overlay bg-white">
-                        <i class="fas fa-3x fa-sync-alt fa-spin"></i>
-                    </div>
-                </div>
                 <div class="modal-body" style="margin-left: 1rem; max-height: 500px; overflow-y: auto;">
                     <!--MODAL FORM TITLE-->
                     <p class="card-title" style="color: #0A0863; font-weight: bold; font-size: 22px;">EDIT LOST ITEM</p> <br><br><br>
