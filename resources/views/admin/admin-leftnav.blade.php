@@ -129,7 +129,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ setActiveLink('content-management-page') }}" href="{{ route('content-management-page') }}">
+                    <a class="nav-link {{ setActiveLink('content-management-page') }}" href="{{ route('content-management-page') }}" target="blank">
                         <iconify-icon icon="ph:files-fill" style="color: #252525;"></iconify-icon>
                         <p style="color: #252525;">
                             Content Management

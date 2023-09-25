@@ -1,8 +1,6 @@
-@section('title')
-    <title>Home</title>
-@endsection
-@section('icon')
+@section('head')
     <link href="{{ $logo }}" rel="icon" type="image/x-icon">
+    <title>Home</title>
 @endsection
 
 <!-- Site wrapper -->
@@ -29,11 +27,11 @@
                             <p style="font-size: 24px; line-height: 30px; font-family: 'Karla', sans-serif;">A web-based hybrid guidance management system for Fiat Lux Academe Dasmariñas.</p>
                         </div>
                     </div>
-                    
+
                     <div class="col-6" style="padding-top: 1rem; display: flex; justify-content: center; align-items: center;">
-                        <img src="images/Home and About/hiraya.png" alt="Hiraya Building" style="width: 90%;">
+                        <img alt="Hiraya Building" src="images/Home and About/hiraya.png" style="width: 90%;">
                     </div>
-                    
+
                 </div>
             </div><!-- /.container-fluid -->
         </section>
@@ -46,18 +44,18 @@
             <div class="container-fluid" style="padding: 5rem;">
                 <div class="row mb-2" style="text-align: left;">
                     <div class="col-6 justify-content-center" style="padding-top: 1rem; text-align: center;">
-                        <img src="images/Home and About/Embracing Luxians.png" alt="Embraing Luxians.png" width="50%">           
+                        <img alt="Embraing Luxians.png" src="images/Home and About/Embracing Luxians.png" width="50%">
                     </div>
-                    <div class="col-6 d-flex flex-column justify-content-end" style="padding: 5rem;">   
+                    <div class="col-6 d-flex flex-column justify-content-end" style="padding: 5rem;">
                         <div class="row">
                             <p style="font-size: 30px; color: #252525; font-weight: bold; font-family: 'Lato', sans-serif; text-align: left;">Embracing All Luxians</p>
-                        </div>      
+                        </div>
                         <div class="row">
-                            <p style="font-size: 20px; line-height: 30px; color: #252525; font-family: 'Lato', sans-serif; text-align: left;">“Every Luxian should be reminded that no matter who they are, they are accepted.”</p>    
+                            <p style="font-size: 20px; line-height: 30px; color: #252525; font-family: 'Lato', sans-serif; text-align: left;">“Every Luxian should be reminded that no matter who they are, they are accepted.”</p>
                             <p style="font-size: 20px; line-height: 30px; color: #252525; font-family: 'Lato', sans-serif; text-align: left;">
                                 Mrs. Josephine “Ma’am Josie” Amador (Guidance Associate)
-                            </p>    
-                        </div>  
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -70,26 +68,26 @@
         <section class="content-header">
             <div class="container-fluid" style="padding: 5rem;">
                 <div class="row mb-2" style="text-align: left;">
-                    <div class="col-6 d-flex flex-column justify-content-center">   
+                    <div class="col-6 d-flex flex-column justify-content-center">
                         <row>
                             <p style="font-size: 30px; color: #252525; font-weight: bold;">Nurturing Luxian Well-being</p>
-                        </row>      
+                        </row>
                         <row>
-                            <p style="font-size: 20px; line-height: 30px; color: #252525;">“The role and responsibility of the guidance associate of Fiat Lux Academe Dasmariñas is to assure the Luxians’ mental health. For them to be free of stress and to have the sense of belongingness to the community of Fiat Lux Academe, for them to feel accepted.” 
+                            <p style="font-size: 20px; line-height: 30px; color: #252525;">“The role and responsibility of the guidance associate of Fiat Lux Academe Dasmariñas is to assure the Luxians’ mental health. For them to be free of stress and to have the sense of belongingness to the community of Fiat Lux Academe, for them to feel accepted.”
                                 Mrs. Josephine “Ma’am Josie” Amador
-                                (Guidance Associate)</p>    
-                        </row>  
+                                (Guidance Associate)</p>
+                        </row>
                         <row>
                             <p style="font-size: 20px; line-height: 10px; color: #252525;">
                                 Mrs. Josephine “Ma’am Josie” Amador
-                            </p>    
+                            </p>
                             <p style="font-size: 20px; line-height: 10px; color: #252525;">
                                 (Guidance Associate)
-                            </p> 
-                        </row> 
+                            </p>
+                        </row>
                     </div>
                     <div class="col-6 d-flex justify-content-center" style="padding-top: 1rem;">
-                        <img src="images/Home and About/Nurturing Luxians.png" alt="Nurturing Luxian.png" style="width: 70%;">
+                        <img alt="Nurturing Luxian.png" src="images/Home and About/Nurturing Luxians.png" style="width: 70%;">
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -103,9 +101,9 @@
             <div class="container-fluid" style="padding: 5rem;">
                 <div class="row mb-2" style="text-align: left;">
                     <div class="col-6 d-flex justify-content-center" style="padding-top: 1rem;">
-                        <img src="images/Home and About/vision.png" alt="Embraing Luxians.png" style="width: 50%;">
+                        <img alt="Embraing Luxians.png" src="images/Home and About/vision.png" style="width: 50%;">
                     </div>
-                    
+
                     <div class="col-6 d-flex flex-column justify-content-center align-items-center" style="padding: 5rem; text-align: left;">
                         <div class="row justify-content-center">
                             <div class="col-12 text-center">
@@ -129,24 +127,24 @@
         <section class="content-header">
             <div class="container-fluid" style="padding: 5rem;">
                 <div class="row mb-2" style="text-align: left;">
-                    <div class="col-6 d-flex flex-column justify-content-center">   
+                    <div class="col-6 d-flex flex-column justify-content-center">
                         <row>
                             <p style="font-size: 30px; color: #252525; font-weight: bold; font-family: 'Lato', sans-serif;">Our Mission</p>
-                        </row>      
+                        </row>
                         <row>
-                            <p style="font-size: 20px; line-height: 30px; color: #252525; font-family: 'Lato', sans-serif;">To provide a robust, fully functioning, and user-friendlyhybrid guidance management system that empowers Fiat Lux Academe’s guidance office to achieve their goals efficiently and effectively.</p>    
-                        </row>  
+                            <p style="font-size: 20px; line-height: 30px; color: #252525; font-family: 'Lato', sans-serif;">To provide a robust, fully functioning, and user-friendlyhybrid guidance management system that empowers Fiat Lux Academe’s guidance office to achieve their goals efficiently and effectively.</p>
+                        </row>
                         <row>
                             <p style="font-size: 20px; line-height: 10px; color: #252525; font-family: 'Lato', sans-serif;">
                                 Mrs. Josephine “Ma’am Josie” Amador
-                            </p>    
+                            </p>
                             <p style="font-size: 20px; line-height: 10px; color: #252525; font-family: 'Lato', sans-serif;">
                                 (Guidance Associate)
-                            </p> 
-                        </row> 
+                            </p>
+                        </row>
                     </div>
                     <div class="col-6 d-flex justify-content-center" style="padding-top: 1rem;">
-                        <img src="images/Home and About/mission.png" alt="Nurturing Luxian.png" style="width: 60%;">
+                        <img alt="Nurturing Luxian.png" src="images/Home and About/mission.png" style="width: 60%;">
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -155,7 +153,7 @@
 
     <div class="container d-flex justify-content-center align-items-center" style="background-color: white; padding: 5rem; padding-bottom: 10rem;">
         <section class="content-header">
-                    <p style="font-size: 30px; color: #252525; font-weight: 500px; font-family: 'Lato', sans-serif; text-align: center;">With the use of FLAGMS, the guidance office can provide a better and more efficient service to all Luxians.</p>
+            <p style="font-size: 30px; color: #252525; font-weight: 500px; font-family: 'Lato', sans-serif; text-align: center;">With the use of FLAGMS, the guidance office can provide a better and more efficient service to all Luxians.</p>
         </section>
     </div>
 </div>

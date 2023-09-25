@@ -7,14 +7,17 @@ use App\Models\WebsiteSchoolName;
 use App\Models\WebsiteSubtitle;
 use App\Models\WebsiteTitle;
 use App\Traits\Toasts;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
+#[Layout('components.layouts.landing-page')]
 class ContentManagementLivewire extends Component
 {
     use Toasts;
     use WithFileUploads;
     public $title, $logo, $subtitle, $school_name;
+    public $old_contents = [];
     public $uploadedLogo;
 
     protected $listeners = ['titleChange', 'subtitleChange', 'schoolNameChange'];
@@ -25,6 +28,13 @@ class ContentManagementLivewire extends Component
         $this->logo = imageBinaryToSRC(WebsiteLogo::find(1)->logo);
         $this->subtitle = WebsiteSubtitle::find(1)->subtitle;
         $this->school_name = WebsiteSchoolName::find(1)->school_name;
+
+        $this->old_contents = [
+            'logo' => $this->logo,
+            'title' => $this->title,
+            'subtitle' => $this->subtitle,
+            'school_name' => $this->school_name
+        ];
     }
 
     public function render()
@@ -35,7 +45,7 @@ class ContentManagementLivewire extends Component
     public function updateTitle()
     {
         $this->validate([
-            'title' => 'required|max:255'
+            'title' => 'required'
         ]);
 
         WebsiteTitle::find(1)->update([
@@ -43,6 +53,8 @@ class ContentManagementLivewire extends Component
         ]);
 
         $this->showToast('success', 'Website Title Updated Successfully');
+
+        $this->old_contents['title'] = $this->title;
     }
 
     public function updateLogo()
@@ -58,11 +70,12 @@ class ContentManagementLivewire extends Component
         $this->showToast('success', 'Website Logo Updated Successfully');
 
         $this->logo = imageBinaryToSRC(WebsiteLogo::find(1)->logo);
+        $this->old_contents['logo'] = $this->logo;
     }
     public function updateSubtitle()
     {
         $this->validate([
-            'subtitle' => 'required|max:255'
+            'subtitle' => 'required'
         ]);
 
         WebsiteSubtitle::find(1)->update([
@@ -70,11 +83,12 @@ class ContentManagementLivewire extends Component
         ]);
 
         $this->showToast('success', 'Website Subtitle Updated Successfully');
+        $this->old_contents['subtitle'] = $this->subtitle;
     }
     public function updateSchoolName()
     {
         $this->validate([
-            'school_name' => 'required|max:255'
+            'school_name' => 'required'
         ]);
 
         WebsiteSchoolName::find(1)->update([
@@ -82,11 +96,16 @@ class ContentManagementLivewire extends Component
         ]);
 
         $this->showToast('success', 'Website School Name Updated Successfully');
+        $this->old_contents['school_name'] = $this->school_name;
     }
 
     public function resetInputFields()
     {
         $this->uploadedLogo = null;
+        $this->logo = $this->old_contents['logo'];
+        $this->title = $this->old_contents['title'];
+        $this->subtitle = $this->old_contents['subtitle'];
+        $this->school_name = $this->old_contents['school_name'];
     }
 
     public function titleChange($value)

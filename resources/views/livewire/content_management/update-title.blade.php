@@ -7,16 +7,13 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form wire:submit.prevent="updateTitle()">
+            <form wire:submit="updateTitle()">
                 <div class="modal-body" style="margin-left: 1rem; max-height: 500px; overflow-y: auto;">
                     <!--MODAL FORM TITLE-->
                     <p class="card-title" style="color: #0A0863; font-weight: bold; font-size: 22px;">Update Website Title</p> <br><br><br>
 
-                    <div class="input-group">
-                        <div class="custom-file" style="border: 1px solid #252525; border-radius: 5px; margin-bottom: 2rem;">
-                            <input class="form-control" id="input-Section" style="border: 1px solid #252525" type="text" wire:model="title">
-                            <label for="updateTitle"></label>
-                        </div>
+                    <div class="input-group" wire:ignore>
+                        <textarea id='titleEditor' name="editordata" wire:model.live='title'></textarea>
                     </div>
                     @if ($errors->has('title'))
                         <span class="text-danger">{{ $errors->first('title') }}</span>

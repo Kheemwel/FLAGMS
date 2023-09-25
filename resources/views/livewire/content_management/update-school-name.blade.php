@@ -12,11 +12,8 @@
                     <!--MODAL FORM TITLE-->
                     <p class="card-title" style="color: #0A0863; font-weight: bold; font-size: 22px;">Update Website School Name</p> <br><br><br>
 
-                    <div class="input-group">
-                        <div class="custom-file" style="border: 1px solid #252525; border-radius: 5px; margin-bottom: 2rem;">
-                            <input class="form-control" id="input-Section" style="border: 1px solid #252525" type="text" wire:model="school_name">
-                            <label for="updateTitle"></label>
-                        </div>
+                    <div class="input-group" wire:ignore>
+                        <textarea id='schoolNameEditor' name="editordata" wire:model='school_name'></textarea>
                     </div>
                     @if ($errors->has('school_name'))
                         <span class="text-danger">{{ $errors->first('school_name') }}</span>
