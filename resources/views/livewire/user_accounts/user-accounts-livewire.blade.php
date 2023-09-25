@@ -84,7 +84,22 @@
                 </button>
             </div>
             <div>
-                <input type="checkbox" wire:model.live="showArchivedAccounts">View Archived Accounts
+                <div class="row">
+                    <input type="checkbox" wire:model.live="showArchivedAccounts">View Archived Accounts
+                </div>
+
+                <div class="row">
+                    <label for="per-page" style="font-weight: normal; margin-top: 1rem;">Per Page:</label>
+                    <select class="form-select form-select-sm mb-2" id='per-page' selected wire:model.live="per_page">
+                        <option>10</option>
+                        <option>15</option>
+                        <option>20</option>
+                        <option>25</option>
+                        <option selected>30</option>
+                        <option>50</option>
+                        <option>100</option>
+                    </select>
+                </div>
             </div>
             <!--PROFILING TABLE SECTION-->
             @if ($showArchivedAccounts)

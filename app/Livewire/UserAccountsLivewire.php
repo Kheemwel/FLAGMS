@@ -45,8 +45,7 @@ class UserAccountsLivewire extends Component
     public $showArchivedAccounts = false;
     public $search = '', $filterRole;
     public $sortField = 'id', $sortDirection = 'asc';
-
-    const PAGINATE = 30;
+    public $per_page = 30;
 
     protected $listeners = ['setSelectedStudents'];
 
@@ -107,8 +106,8 @@ class UserAccountsLivewire extends Component
             $this->school_level = $school_level->hasSchoolLevel->schoolLevel->school_level;
         }
 
-        $users = $query_normal->orderBy($this->sortField, $this->sortDirection)->paginate(self::PAGINATE);
-        $archived_users = $query_archives->orderBy($this->sortField, $this->sortDirection)->paginate(self::PAGINATE);
+        $users = $query_normal->orderBy($this->sortField, $this->sortDirection)->paginate($this->per_page);
+        $archived_users = $query_archives->orderBy($this->sortField, $this->sortDirection)->paginate($this->per_page);
         return view('livewire.user_accounts.user-accounts-livewire', compact('users', 'archived_users'));
     }
 
