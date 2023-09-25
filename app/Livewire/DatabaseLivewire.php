@@ -52,7 +52,7 @@ class DatabaseLivewire extends Component
 
     private function loadBackups()
     {
-        $this->backups = collect(Storage::disk('local')->files('Laravel'))
+        $this->backups = collect(Storage::disk('local')->files(config('app.name')))
             ->map(function ($file) {
                 return [
                     'name' => basename($file),
