@@ -18,7 +18,7 @@
         <div style="border: transparent; display: flex; align-items: center;">
             <div class="d-flex justify-content-between align-items-start">
                 <img alt="AdminLTE Logo" class="brand-image img-circle" src="{{ $logo }}" style="width: 50px; height: 50px; margin-right: 10px;">
-                <i class="fa fa-solid fa-pen" data-target='#updateLogoModal' data-toggle="modal" title="Edit School Name"></i>
+                <i class="fa fa-solid fa-pen" data-target='#updateLogoModal' data-toggle="modal" title="Edit Logo"></i>
             </div>
             <div class="d-flex justify-content-between align-items-start">
                 {!! $school_name !!}
