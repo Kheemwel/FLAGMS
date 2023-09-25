@@ -85,36 +85,34 @@
             <!----------------------------------------------------------------------------------------->
             <!--User Personal Details-->
             <div class="col-lg-13">
-                <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; margin-left: 1rem; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); border-radius: 10px; display: flex; flex-direction: row;">
-                    <div class="inner" style="padding-left: 3rem; padding-top: 3%; padding-bottom: 1%">
-                        <div style="display: flex; flex-direction: column;">
-                            <label style="font-size: 18px; color: #060554;">Personal Information</label>
-                            <div class="row">
-                                <!--NAME-->
-                                <div class="form-group col-sm-4">
-                                    <label style="font-size: 18px; font-weight: bold;">Name</label>
-                                </div>
-                                <div class="form-group col-sm-8">
-                                    <label style="font-size: 18px; font-weight: normal; margin-left: 2rem;">{{ $name }}</label>
-                                </div>
+                <div class="row">
+                    <div class="col-12" style="background-color: white !important; color: #252525 !important; margin-left: 1rem; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); border-radius: 10px; padding-left: 3rem; padding-top: 2rem; padding-bottom: 1rem; margin-bottom: 3rem; margin-right: 7rem;">
+                        <label style="font-size: 18px; color: #060554;">Personal Information</label>
+                        <div class="row">
+                            <!--NAME-->
+                            <div class="form-group col-sm-4">
+                                <label style="font-size: 18px; font-weight: bold;">Name</label>
                             </div>
-                            <div class="row" style="line-height: 5%;">
-                                <!--ROLE-->
-                                <div class="form-group col-sm-4">
-                                    <label style="font-size: 18px; font-weight: bold;">Role</label>
-                                </div>
-                                <div class="form-group col-sm-8">
-                                    <label style="font-size: 18px; font-weight: normal; margin-left: 2rem;">{{ $role }}</label>
-                                </div>
+                            <div class="form-group col-sm-8">
+                                <label style="font-size: 18px; font-weight: normal; margin-left: 2rem;">{{ $name }}</label>
                             </div>
-                            <div class="row">
-                                <!--USERNAME-->
-                                <div class="form-group col-sm-4">
-                                    <label style="font-size: 18px; font-weight: bold; margin-right: 2;">Username</label>
-                                </div>
-                                <div class="form-group col-sm-8">
-                                    <label style="font-size: 18px; font-weight: normal; margin-left: 2rem;">{{ $username }}</label>
-                                </div>
+                        </div>
+                        <div class="row" style="line-height: 5%;">
+                            <!--ROLE-->
+                            <div class="form-group col-sm-4">
+                                <label style="font-size: 18px; font-weight: bold;">Role</label>
+                            </div>
+                            <div class="form-group col-sm-8">
+                                <label style="font-size: 18px; font-weight: normal; margin-left: 2rem;">{{ $role }}</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!--USERNAME-->
+                            <div class="form-group col-sm-4">
+                                <label style="font-size: 18px; font-weight: bold; margin-right: 2;">Username</label>
+                            </div>
+                            <div class="form-group col-sm-8">
+                                <label style="font-size: 18px; font-weight: normal; margin-left: 2rem;">{{ $username }}</label>
                             </div>
                         </div>
                     </div>
