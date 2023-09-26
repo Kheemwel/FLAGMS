@@ -8,21 +8,24 @@
 @section('head-scripts')
     <!-- Summernote -->
     <script src="adminLTE-3.2/plugins/summernote/summernote-bs4.min.js"></script>
+
+    {{-- For Tooltip --}}
+    <script src="adminLTE-3.2/plugins/popper/popper.min.js"></script>
 @endsection
 
 <!-- Site wrapper -->
 <div class="wrapper">
     <!-- Navbar -->
-    <nav class="navbar navbar-expand navbar-white navbar-light" style="padding: 4rem;">
+    <nav class="navbar navbar-expand navbar-white navbar-light" style="padding: 4rem; padding-left: 8rem;">
         <!-- Brand Logo -->
         <div style="border: transparent; display: flex; align-items: center;">
             <div class="d-flex justify-content-between align-items-start">
                 <img alt="AdminLTE Logo" class="brand-image img-circle" src="{{ $logo }}" style="width: 50px; height: 50px; margin-right: 10px;">
-                <i class="fa fa-solid fa-pen" data-target='#updateLogoModal' data-toggle="modal" title="Edit Logo"></i>
+                <i class="fa fa-solid fa-pen" data-target='#updateLogoModal' data-toggle="modal" tooltip="enable" title="Edit Logo"></i>
             </div>
             <div class="d-flex justify-content-between align-items-start">
                 {!! $school_name !!}
-                <i class="fa fa-solid fa-pen" data-target='#updateSchoolNameModal' data-toggle="modal" title="Edit School Name"></i>
+                <i class="fa fa-solid fa-pen" data-target='#updateSchoolNameModal' data-toggle="modal" tooltip="enable" title="Edit School Name"></i>
             </div>
         </div>
     </nav><!--------------- /.navbar ----------------------->
@@ -37,11 +40,11 @@
                     <div class="col-6 d-flex flex-column justify-content-center" style="padding: 50px;">
                         <div class="row">
                             {!! $title !!}
-                            <i class="fa fa-solid fa-pen" data-target='#updateTitleModal' data-toggle="modal"title="Edit Title"></i>
+                            <i class="fa fa-solid fa-pen" data-target='#updateTitleModal' data-toggle="modal" tooltip="enable" title="Edit Title"></i>
                         </div>
                         <div class="row">
                             {!! $subtitle !!}
-                            <i class="fa fa-solid fa-pen" data-target='#updateSubtitleModal' data-toggle="modal"title="Edit Subtitle"></i>
+                            <i class="fa fa-solid fa-pen" data-target='#updateSubtitleModal' data-toggle="modal" tooltip="enable" title="Edit Subtitle"></i>
                         </div>
                         <div class="row">
                             <p style="font-size: 24px; line-height: 30px; font-family: 'Karla', sans-serif;">A web-based hybrid guidance management system for Fiat Lux Academe Dasmariñas.</p>
@@ -213,12 +216,14 @@
 @section('scripts')
     <script>
         $(document).ready(function() {
+            $("[tooltip='enable']").tooltip();
+
             const toolbar = [
                 // [groupName, [list of button]]
-                ['style', ['bold', 'italic', 'underline', 'clear']],
-                ['font', ['strikethrough', 'superscript', 'subscript']],
                 ['fontname', ['fontname']],
                 ['fontsize', ['fontsize']],
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough', 'superscript', 'subscript']],
                 ['color', ['color']],
                 ['para', ['ul', 'ol', 'paragraph']],
                 ['height', ['height']]
@@ -229,6 +234,7 @@
             ];
 
             $('#titleEditor').summernote({
+                disableDragAndDrop: true,
                 toolbar: toolbar,
                 fontSizes: fontSizes,
                 callbacks: {
