@@ -2,6 +2,11 @@
 <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="view-user-btn" role='dialog' style="max-width: 100%;" wire:ignore.self>
     <div class="modal-dialog">
         <div class="modal-content">
+            <div wire:loading wire:target='get_data'>
+                <div class="overlay bg-white">
+                    <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+                </div>
+            </div>
             <div class="modal-header" style="border: transparent; padding: 10px;">
                 <!--EDIT USER INFORMATION-->
                 <button data-target="#stud-info-edit" data-toggle="modal" style="background-color: transparent; border-color: transparent;" type="button">
