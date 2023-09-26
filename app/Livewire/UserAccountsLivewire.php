@@ -16,6 +16,7 @@ use App\Models\SchoolLevels;
 use App\Models\Students;
 use App\Models\Teachers;
 use App\Models\UserAccounts;
+use App\Traits\SortTable;
 use App\Traits\Toasts;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -29,6 +30,7 @@ use Throwable;
 class UserAccountsLivewire extends Component
 {
     use Toasts;
+    use SortTable;
     use WithFileUploads;
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
@@ -44,7 +46,6 @@ class UserAccountsLivewire extends Component
 
     public $showArchivedAccounts = false;
     public $search = '', $filterRole;
-    public $sortField = 'id', $sortDirection = 'asc';
     public $per_page = 30;
 
     protected $listeners = ['setSelectedStudents'];
@@ -109,14 +110,6 @@ class UserAccountsLivewire extends Component
         $users = $query_normal->orderBy($this->sortField, $this->sortDirection)->paginate($this->per_page);
         $archived_users = $query_archives->orderBy($this->sortField, $this->sortDirection)->paginate($this->per_page);
         return view('livewire.user_accounts.user-accounts-livewire', compact('users', 'archived_users'));
-    }
-
-    public function sortBy($field)
-    {
-        $this->sortDirection = $this->sortField === $field ? 
-        $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc' : 'asc';
-
-        $this->sortField = $field;
     }
 
     public function renderSelect2()
