@@ -102,8 +102,10 @@
                             <td>{{ $item->location_found }}</td>
                             <td>{{ $item->finder_name }}</td>
                             <td>
-                                <!--USER INFO VIEW BUTTON-->
-                                <p class="btn btn-primary action-btn" data-target="#view-lost-item" data-toggle="modal" style="color: #3C58FF;  text-decoration: underline;" wire:click="get_data({{ $item->id }})">View</p>
+                                <!--VIEW PROFILE-->
+                                <button class="btn btn-primary action-btn" data-target="#view-user-btn" data-toggle="modal" wire:click="get_data({{ $user->id }})" tooltip='enable' title='View'>
+                                    <i aria-hidden="true" class="fa fa-eye"></i>
+                                </button>
 
                                 <!--EDIT LOST ITEM BUTTON-->
                                 <button class="btn btn-primary action-btn" data-target="#edit-lost-item" data-toggle="modal" wire:click="get_data({{ $item->id }})">

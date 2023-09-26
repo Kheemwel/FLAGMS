@@ -19,21 +19,23 @@
                         <td>{{ $user->role }}</td>
                         <td>{{ date('F d,Y   h:i A', strtotime($user->archived_at)) }}</td>
                         <td>
-                            <!--USER INFO VIEW BUTTON-->
-                            <p class="btn btn-primary action-btn" data-target="#view-user-btn" data-toggle="modal" style="color: #3C58FF;  text-decoration: underline;" wire:click="get_data({{ $user->id }})">View</p>
+                            <!--VIEW PROFILE-->
+                            <button class="btn btn-primary action-btn" data-target="#view-user-btn" data-toggle="modal" wire:click="get_data({{ $user->id }})" tooltip='enable' title='View Account'>
+                                <i aria-hidden="true" class="fa fa-eye"></i>
+                            </button>
 
                             <!--USER INFO EDIT BUTTON-->
-                            <button class="btn btn-primary action-btn" data-target="#stud-info-edit" data-toggle="modal" wire:click="get_data({{ $user->id }})">
+                            <button class="btn btn-primary action-btn" data-target="#stud-info-edit" data-toggle="modal" wire:click="get_data({{ $user->id }})" tooltip='enable' title='Edit Account'>
                                 <i class="fa fa-solid fa-pen"></i>
                             </button>
 
                             {{-- UNARCHIVE USER --}}
-                            <button class="btn btn-primary action-btn" wire:click="unArchive({{ $user->id }})">
+                            <button class="btn btn-primary action-btn" wire:click="unArchive({{ $user->id }})" tooltip='enable' title='Unarchive Account'>
                                 <i aria-hidden="true" class="fa fa-undo"></i>
                             </button>
 
                             {{-- DELETE USER --}}
-                            <button class="btn btn-primary action-btn" data-target="#deleteModal" data-toggle="modal" wire:click.prevent="get_data({{ $user->id }})">
+                            <button class="btn btn-primary action-btn" data-target="#deleteModal" data-toggle="modal" wire:click.prevent="get_data({{ $user->id }})" tooltip='enable' title='Delete Account'>
                                 <i aria-hidden="true" class="fa fa-trash"></i>
                             </button>
                         </td>

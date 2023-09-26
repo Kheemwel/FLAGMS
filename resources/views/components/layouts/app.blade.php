@@ -61,6 +61,8 @@
     <script src="adminLTE-3.2/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
     <!-- Toastr -->
     <script src="adminLTE-3.2/plugins/toastr/toastr.min.js"></script>
+    {{-- For Tooltip --}}
+    <script src="adminLTE-3.2/plugins/popper/popper.min.js"></script>
 
     @yield('head-scripts')
 </head>
@@ -91,6 +93,10 @@
     </aside>
     @livewireScripts()
     <script>
+        $(function() {
+            $("[tooltip='enable']").tooltip();
+        });
+
         toastr.options = {
             "closeButton": false,
             "debug": false,

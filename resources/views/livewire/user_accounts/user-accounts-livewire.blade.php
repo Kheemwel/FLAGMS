@@ -126,17 +126,18 @@
                                         <td>{{ $user->username }}</td>
                                         <td>{{ $user->role }}</td>
                                         <td>
-
-                                            <!--USER INFO VIEW BUTTON-->
-                                            <p class="btn btn-primary action-btn" data-target="#view-user-btn" data-toggle="modal" style="color: #3C58FF;  text-decoration: underline;" wire:click="get_data({{ $user->id }})">View</p>
+                                            <!--VIEW PROFILE-->
+                                            <button class="btn btn-primary action-btn" data-target="#view-user-btn" data-toggle="modal" wire:click="get_data({{ $user->id }})" tooltip='enable' title='View Account'>
+                                                <i aria-hidden="true" class="fa fa-eye"></i>
+                                            </button>
 
                                             <!--USER INFO EDIT BUTTON-->
-                                            <button class="btn btn-primary action-btn" data-target="#stud-info-edit" data-toggle="modal" wire:click="get_data({{ $user->id }})">
+                                            <button class="btn btn-primary action-btn" data-target="#stud-info-edit" data-toggle="modal" wire:click="get_data({{ $user->id }})" tooltip='enable' title='Edit Account'>
                                                 <i class="fa fa-solid fa-pen"></i>
                                             </button>
 
                                             {{-- ARCHIVE USER --}}
-                                            <button class="btn btn-primary action-btn" wire:click="archive({{ $user->id }})">
+                                            <button class="btn btn-primary action-btn" wire:click="archive({{ $user->id }})" tooltip='enable' title='Archive Account'>
                                                 <i aria-hidden="true" class="fa fa-archive"></i>
                                             </button>
                                         </td>
