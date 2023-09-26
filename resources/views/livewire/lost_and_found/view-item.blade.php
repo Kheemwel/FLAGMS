@@ -8,7 +8,7 @@
             </div>
             <div class="modal-header" style="border: transparent; padding: 10px;">
                 <!--EDIT USER INFORMATION-->
-                <button data-target="#edit-lost-item" data-toggle="modal" style="background-color: transparent; border-color: transparent;" type="button">
+                <button data-target="#edit-lost-item" data-toggle="modal" data-dismiss='modal' style="background-color: transparent; border-color: transparent;" type="button">
                     <i class="fa fa-solid fa-pen"></i>
                 </button>
 

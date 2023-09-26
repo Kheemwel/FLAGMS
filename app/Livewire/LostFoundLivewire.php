@@ -92,6 +92,8 @@ class LostFoundLivewire extends Component
             'location_found' => $validateData['location_found']
         ]);
         $this->showToast('success', 'The found item is added successfully.');
+        
+        $this->items = LostAndFound::all();
         $this->resetInputs();
     }
 
@@ -131,6 +133,8 @@ class LostFoundLivewire extends Component
             'owner_name' => $validateData['owner_name']
         ]);
         $this->showToast('success', 'The item is updated successfully.');
+        
+        $this->items = LostAndFound::all();
         $this->resetInputs();
     }
 
@@ -163,6 +167,8 @@ class LostFoundLivewire extends Component
         $item->delete();
         $item->getImage()->delete();
         $this->showToast('success', 'The item is deleted successfully.');
+        
+        $this->items = LostAndFound::all();
     }
 
     public function resetInputs()
