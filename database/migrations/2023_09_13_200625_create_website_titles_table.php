@@ -20,7 +20,7 @@ return new class extends Migration
 
         // Insert data after the table created
         WebsiteTitle::create([
-            'title' => 'FLAGMS'
+            'title' => '<p class="font-weight-bold" style="font-size: 50px; color: #0A0863; font-family: "Lato", sans-serif;">FLAGMS</p>'
         ]);
     }
 

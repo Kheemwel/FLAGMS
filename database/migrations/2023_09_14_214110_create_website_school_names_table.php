@@ -20,7 +20,9 @@ return new class extends Migration
 
         // Insert data after the table created
         WebsiteSchoolName::create([
-            'school_name' => 'Fiat Lux Academe'
+            'school_name' => '
+            <span style="color: #0A0863; font-weight: bold; font-family: "Inria Serif", serif; font-size: 22px;">Fiat Lux Academe</span>
+            <span style="color: #0A0863; font-size: 16px; font-weight: bold; font-family: "Inria Serif", serif;">Cavite</span>'
         ]);
     }
 

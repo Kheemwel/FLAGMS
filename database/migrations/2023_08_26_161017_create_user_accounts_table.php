@@ -38,7 +38,7 @@ return new class extends Migration
             'last_name' => 'admin', 
             'password' => 'admin',
             'hashed_password' => bcrypt('admin'),
-            'role' => 1,
+            'role_id' => 1,
         ]);
     }
 

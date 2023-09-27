@@ -20,7 +20,7 @@ return new class extends Migration
 
         // Insert data after the table created
         WebsiteSubtitle::create([
-            'subtitle' => 'Guidance Management System'
+            'subtitle' => '<p style="font-size: 35px; font-weight: 800; font-family: "Lato", sans-serif;">(Fiat Lux Academe Guidance Management System)</p>'
         ]);
     }
 
