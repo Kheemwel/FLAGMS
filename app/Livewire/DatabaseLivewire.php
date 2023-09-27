@@ -27,7 +27,6 @@ class DatabaseLivewire extends Component
     {
         // Use the Spatie Backup package to create a backup
         Artisan::call('backup:run');
-        debugMessage(Artisan::output());
 
         $this->showToast('success', "Backup Created Successfully.");
 
