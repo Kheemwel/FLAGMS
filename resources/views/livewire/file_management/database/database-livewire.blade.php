@@ -23,6 +23,12 @@
         </div>
     </div>
 
+    <div wire:loading wire:target='restoreBackup'>
+        <div class="overlay bg-white">
+            <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+        </div>
+    </div>
+
     <div class="card" style="margin-left: 2rem; margin-right: 2rem;">
         <!-- /.card-header -->
         <div class="card-body table-responsive p-0" style="border: 1px solid #252525;">
