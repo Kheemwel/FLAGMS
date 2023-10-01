@@ -1,18 +1,6 @@
 @section('head')
     <title>Admin | Dashboard</title>
 
-    <!--Dropdown Button Bootstrap-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="adminLTE-3.2/plugins/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <!-- overlayScrollbars -->
-    <link href="adminLTE-3.2/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" rel="stylesheet">
-    <!--iconify icons-->
-    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-    <!-- Theme style -->
-    <link href="adminLTE-3.2/dist/css/adminlte.min.css" rel="stylesheet">
     <!-- fullCalendar -->
     <link href="adminLTE-3.2/plugins/fullcalendar/main.css" rel="stylesheet">
 
@@ -219,14 +207,9 @@
 </div>
 
 @section('scripts')
-    <!-- jQuery -->
-    <script src="adminLTE-3.2/plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="adminLTE-3.2/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- jQuery UI -->
     <script src="adminLTE-3.2/plugins/jquery-ui/jquery-ui.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="adminLTE-3.2/dist/js/adminlte.min.js"></script>
+
     <!-- fullCalendar 2.2.5 -->
     <script src="adminLTE-3.2/plugins/moment/moment.min.js"></script>
     <script src="adminLTE-3.2/plugins/fullcalendar/main.js"></script>

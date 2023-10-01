@@ -44,6 +44,57 @@
 
         /********************************/
     </style>
+    <style>
+        /*Push button bars icon*/
+        .pushmenubtn {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #0A0863;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /*Side nav*/
+        .nav-link-button {
+            border-radius: 50%;
+            background-color: transparent;
+        }
+
+        .nav-link-button p,
+        .icon {
+            color: #252525;
+        }
+
+        .nav-link-button.active,
+        .nav-link-button:focus {
+            background-color: #0A0863 !important;
+        }
+        .nav-link-button.active p, 
+        .nav-link-button.active i, 
+        .nav-link-button.active iconify-icon {
+            color: white !important;
+        }
+
+        /* .nav-link-button.active,
+        .nav-link-button:focus {
+            background-color: white;
+        } */
+
+        .nav-link-button:hover {
+            background-color: rgb(217, 217, 217) !important;
+            /* Change color on hover or click */
+        }
+
+        .nav-link-button:hover p,
+        .nav-link-button:hover i,
+        .nav-link-button:hover iconify-icon {
+            color: #252525 !important;
+            /* Change color on hover or click */
+        }
+    </style>
     @livewireStyles()
 
 
@@ -51,6 +102,8 @@
     <script src="adminLTE-3.2/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 JS -->
     <script src="adminLTE-3.2/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery UI -->
+    <script src="adminLTE-3.2/plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- overlayScrollbars -->
     <script src="adminLTE-3.2/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->

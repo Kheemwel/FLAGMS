@@ -3,7 +3,7 @@
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fa fa-solid fa-bars" style="color: #080743;"></i></a>
+            <a class="nav-link pushmenubtn" data-widget="pushmenu" href="#" role="button"><i class="fa fa-solid fa-bars" style="color: white;"></i></a>
         </li>
     </ul>
 
