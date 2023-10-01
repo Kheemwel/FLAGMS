@@ -68,8 +68,7 @@
             color: #252525;
         }
 
-        .nav-link-button.active,
-        .nav-link-button:focus {
+        .nav-link-button.active {
             background-color: #0A0863 !important;
         }
         .nav-link-button.active p, 
@@ -83,7 +82,7 @@
             background-color: white;
         } */
 
-        .nav-link-button:hover {
+        .nav-link-button:hover, .nav-link-button:focus {
             background-color: rgb(217, 217, 217) !important;
             /* Change color on hover or click */
         }
