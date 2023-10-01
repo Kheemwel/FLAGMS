@@ -107,25 +107,13 @@
                         @enderror
                     </div>
 
-                    <!--CLAIMED DETAILS-->
-                    <div class="row">
-                        <div class="form-group col-sm-6" style="text-align: left;">
-                            <p style="color: #0A0863; font-size: 22px;">Claimed Details</p>
-                        </div>
-                    </div>
-
-                    <!--CLAIMED DETAILS-->
-                    <div class="row">
-                        <div class="form-group col-sm-6" style="text-align: left;">
-                            <label for="ic-claimed" style="font-weight: normal;">Is Claimed</label>
-                            <input id='ic-claimed' type="checkbox" wire:model.live='is_claimed'>
-                        </div>
-                        @error('is_claimed')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-
                     @if ($is_claimed)
+                        <!--CLAIMED DETAILS-->
+                        <div class="row">
+                            <div class="form-group col-sm-6" style="text-align: left;">
+                                <p style="color: #0A0863; font-size: 22px;">Claimed Details</p>
+                            </div>
+                        </div>
                         <!--DATE AND TIME CLAIMED-->
                         <div class="row">
                             <div class="form-group col-sm-6 float-left" style="font-size: 14px; color: #252525; text-align: left;">

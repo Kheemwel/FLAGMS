@@ -14,7 +14,7 @@ class LostFoundLivewire extends Component
 {
     use WithFileUploads;
     use Toasts;
-    public $items, $item_types, $item_id, $item_type_id;
+    public $items, $item_types, $item_id, $item_type_id, $claimed_items;
     public $selected_item_type, $upload_item_image, $item_name, $item_image_id, $description;
     public $datetime_found, $finder_name, $location_found, $is_claimed, $owner_name, $claimed_datetime;
     public $filterItemTypes = [];
@@ -23,7 +23,7 @@ class LostFoundLivewire extends Component
     public function mount()
     {
         $this->item_types = ItemTypes::all();
-        $this->items = LostAndFound::all();
+        $this->applyFilter();
     }
 
     public function render()
@@ -38,10 +38,12 @@ class LostFoundLivewire extends Component
 
     public function applyFilter()
     {
-        $query = LostAndFound::select('lost_and_found.*');
+        $query = LostAndFound::select('lost_and_found.*')->where('is_claimed', false);
+        $query_claimed = LostAndFound::select('lost_and_found.*')->where('is_claimed', true);
 
         if (!empty($this->filterItemTypes)) {
             $query->whereIn('item_type_id', $this->filterItemTypes);
+            $query_claimed->whereIn('item_type_id', $this->filterItemTypes);
         }
 
         if ($this->search) {
@@ -49,9 +51,15 @@ class LostFoundLivewire extends Component
                 ->orWhere('location_found', 'like', '%' . $this->search . '%')
                 ->orWhere('finder_name', 'like', '%' . $this->search . '%')
                 ->orWhere('owner_name', 'like', '%' . $this->search . '%');
+
+            $query_claimed->where('item_name', 'like', '%' . $this->search . '%')
+                ->orWhere('location_found', 'like', '%' . $this->search . '%')
+                ->orWhere('finder_name', 'like', '%' . $this->search . '%')
+                ->orWhere('owner_name', 'like', '%' . $this->search . '%');
         }
 
         $this->items = $query->oldest()->get();
+        $this->claimed_items = $query_claimed->oldest()->get();
     }
 
     public function resetFilter()
@@ -92,8 +100,8 @@ class LostFoundLivewire extends Component
             'location_found' => $validateData['location_found']
         ]);
         $this->showToast('success', 'The found item is added successfully.');
-        
-        $this->items = LostAndFound::all();
+
+        $this->applyFilter();
         $this->resetInputs();
     }
 
@@ -133,8 +141,38 @@ class LostFoundLivewire extends Component
             'owner_name' => $validateData['owner_name']
         ]);
         $this->showToast('success', 'The item is updated successfully.');
-        
-        $this->items = LostAndFound::all();
+
+        $this->applyFilter();
+        $this->resetInputs();
+    }
+
+    public function claimItem()
+    {
+        $validateData = $this->validate([
+            'claimed_datetime' => Rule::requiredIf($this->is_claimed),
+            'owner_name' => Rule::requiredIf($this->is_claimed),
+        ]);
+
+        LostAndFound::find($this->item_id)->update([
+            'is_claimed' => true,
+            'claimed_datetime' => $validateData['claimed_datetime'],
+            'owner_name' => $validateData['owner_name']
+        ]);
+        $this->showToast('success', 'The item is updated successfully.');
+
+        $this->applyFilter();
+        $this->resetInputs();
+    }
+
+    public function unclaim($id)
+    {
+        LostAndFound::find($id)->update([
+            'is_claimed' => false,
+        ]);
+
+        $this->showToast('success', 'The item is updated successfully.');
+
+        $this->applyFilter();
         $this->resetInputs();
     }
 
@@ -167,8 +205,8 @@ class LostFoundLivewire extends Component
         $item->delete();
         $item->getImage()->delete();
         $this->showToast('success', 'The item is deleted successfully.');
-        
-        $this->items = LostAndFound::all();
+
+        $this->applyFilter();
     }
 
     public function resetInputs()
