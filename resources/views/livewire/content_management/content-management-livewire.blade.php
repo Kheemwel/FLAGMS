@@ -38,13 +38,25 @@
             <div class="container-fluid">
                 <div class="row mb-2" style="text-align: left;">
                     <div class="col-6 d-flex flex-column justify-content-center" style="padding: 50px;">
-                        <div class="row">
-                            {!! $title !!}
-                            <i class="fa fa-solid fa-pen" data-target='#updateTitleModal' data-toggle="modal" tooltip="enable" title="Edit Title"></i>
+                        <div class="row" x-data='{ show: false }'>
+                            <div x-on:click='show = !show'>
+                                {!! $title !!}
+                            </div>
+                            <div class="col-4" x-show="show">
+                                <button type="button" class="btn btn-primary" data-target='#updateTitleModal' data-toggle="modal" tooltip="enable" title="Edit Title" style="background-color: white; color:#252525; font-size: 14px; margin-bottom: 1rem;">
+                                    <i class="fa fa-solid fa-pen"></i> Edit Text
+                                </button>
+                            </div>
                         </div>
-                        <div class="row">
-                            {!! $subtitle !!}
-                            <i class="fa fa-solid fa-pen" data-target='#updateSubtitleModal' data-toggle="modal" tooltip="enable" title="Edit Subtitle"></i>
+                        <div class="row" x-data='{ show: false }'>
+                            <div x-on:click='show = !show'>
+                                {!! $subtitle !!}
+                            </div>
+                            <div class="col-4" x-show="show">
+                                <button type="button" class="btn btn-primary" data-target='#updateSubtitleModal' data-toggle="modal" tooltip="enable" title="Edit Subtitle" style="background-color: white; color:#252525; font-size: 14px; margin-bottom: 1rem;">
+                                    <i class="fa fa-solid fa-pen"></i> Edit Text
+                                </button>
+                            </div>
                         </div>
                         <div class="row">
                             <p style="font-size: 24px; line-height: 30px; font-family: 'Karla', sans-serif;">A web-based hybrid guidance management system for Fiat Lux Academe Dasmariñas.</p>
