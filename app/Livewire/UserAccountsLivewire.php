@@ -43,8 +43,6 @@ class UserAccountsLivewire extends Component
     public $parents, $children;
     public $total_login, $last_login;
     public $batch_file;
-
-    public $showArchivedAccounts = false;
     public $search = '', $filterRole;
     public $per_page = 30;
 

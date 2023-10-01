@@ -53,7 +53,7 @@
     <div class="row">
         <div class="col-12">
             <div class="card-tools" style="display: flex; justify-content: flex-end; margin-bottom: 2rem; margin-right: 2rem;">
-                <!--SEARCH FEATURE-->
+                {{-- <!--SEARCH FEATURE-->
                 <div class="input-group input-group-sm" style="max-width: 20%;">
                     <!--SEARCH INPUT-->
                     <input class="form-control float-right" name="table_search" placeholder="Search" style="height: 35px;" type="text" wire:model.live='search'>
@@ -66,6 +66,20 @@
                             <option value="{{ $roleFilter->role }}">{{ $roleFilter->role }}</option>
                         @endforeach
                     </select>
+                </div> --}}
+
+
+                <div class="input-group input-group-sm" style="max-width: 20%;">
+                    <input class="form-control float-right" name="table_search" placeholder="Search" style="height: 35px;" type="text" wire:model.live='search'>
+                    <div class="input-group-append">
+                        <button aria-expanded="false" aria-haspopup="true" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" type="button">Role</button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#" wire:click="$set('filterRole', 'All')">All</a>
+                            @foreach ($roles as $roleFilter)
+                                <a class="dropdown-item" href="#" wire:click="$set('filterRole', '{{ $roleFilter->role }}')">{{ $roleFilter->role }}</a>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
                 <!--ADD USER BUTTON-->
                 <button class="btn btn-default" data-target="#addUserModal" data-toggle="modal" style="max-width: 7%; font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button">
@@ -83,73 +97,34 @@
                     Export User Accounts
                 </button>
             </div>
-            <div>
-                <div class="row">
-                    <input type="checkbox" wire:model.live="showArchivedAccounts">View Archived Accounts
+
+            <div class="card card-primary card-tabs" style="background-color:  rgb(253, 253, 253);margin-left: 2rem; margin-right: 2rem;">
+                <div class="card-header p-0 pt-1" style="background-color: #7684B9 !important">
+                    <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                        <li class="nav-item" wire:ignore>
+                            <a aria-controls="custom-tabs-one-active-accounts" aria-selected="true" class="nav-link active" data-toggle="pill" href="#custom-tabs-one-active-accounts" id="custom-tabs-one-active-accounts-tab" role="tab">
+                                <h5 style="font-weight: bold;">Active Accounts</h5>
+                            </a>
+                        </li>
+                        <li class="nav-item" wire:ignore>
+                            <a aria-controls="custom-tabs-one-archived-accounts" aria-selected="false" class="nav-link" data-toggle="pill" href="#custom-tabs-one-archived-accounts" id="custom-tabs-one-archived-accounts-tab" role="tab">
+                                <h5 style="font-weight: bold;">Archived Accounts</h5>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-
-                <div class="row">
-                    <label for="per-page" style="font-weight: normal; margin-top: 1rem;">Per Page:</label>
-                    <select class="form-select form-select-sm mb-2" id='per-page' selected wire:model.live="per_page">
-                        <option>10</option>
-                        <option>15</option>
-                        <option>20</option>
-                        <option>25</option>
-                        <option selected>30</option>
-                        <option>50</option>
-                        <option>100</option>
-                    </select>
-                </div>
-            </div>
-            <!--PROFILING TABLE SECTION-->
-            @if ($showArchivedAccounts)
-                @include('livewire.user_accounts.archive-table')
-            @else
-                <div class="card" style="margin-left: 2rem; margin-right: 2rem;border-radius: 10px;">
-                    <!-- /.card-header -->
-                    <div class="card-body table-responsive p-0" style="border: 1px solid #252525; border-radius: 10px;">
-                        <table class="table table-hover">
-                            <thead style="color: #252525; text-align: center;">
-                                <tr>
-                                    <x-table-column-header :direction="$sortField === 'id' ? $sortDirection : null" click="sortBy('id')" label='ID' sortable />
-                                    <x-table-column-header :direction="$sortField === 'name' ? $sortDirection : null" click="sortBy('name')" label='Name' sortable />
-                                    <x-table-column-header :direction="$sortField === 'username' ? $sortDirection : null" click="sortBy('username')" label='Username' sortable />
-                                    <x-table-column-header :direction="$sortField === 'role' ? $sortDirection : null" click="sortBy('role')" label='Role' sortable />
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody style="text-align: center;">
-                                @foreach ($users as $user)
-                                    <tr>
-                                        <th scope="row">{{ $user->id }}</th>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->username }}</td>
-                                        <td>{{ $user->role }}</td>
-                                        <td>
-                                            <!--VIEW PROFILE-->
-                                            <button class="btn btn-primary action-btn" data-target="#view-user-btn" data-toggle="modal" wire:click="get_data({{ $user->id }})" tooltip='enable' title='View Account'>
-                                                <i aria-hidden="true" class="fa fa-eye"></i>
-                                            </button>
-
-                                            <!--USER INFO EDIT BUTTON-->
-                                            <button class="btn btn-primary action-btn" data-target="#stud-info-edit" data-toggle="modal" wire:click="get_data({{ $user->id }})" tooltip='enable' title='Edit Account'>
-                                                <i class="fa fa-solid fa-pen"></i>
-                                            </button>
-
-                                            {{-- ARCHIVE USER --}}
-                                            <button class="btn btn-primary action-btn" wire:click="archive({{ $user->id }})" tooltip='enable' title='Archive Account'>
-                                                <i aria-hidden="true" class="fa fa-archive"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                <div class="card-body">
+                    <div class="tab-content" id="custom-tabs-one-tabContent" style="padding-right: 2rem;">
+                        <div aria-labelledby="custom-tabs-one-active-accounts-tab" class="tab-pane fade active show" id="custom-tabs-one-active-accounts" role="tabpanel" wire:ignore.self>
+                            @include('livewire.user_accounts.accounts-table')
+                        </div>
+                        <div aria-labelledby="custom-tabs-one-archived-accounts-tab" class="tab-pane fade" id="custom-tabs-one-archived-accounts" role="tabpanel" wire:ignore.self>
+                            @include('livewire.user_accounts.archive-table')
+                        </div>
                     </div>
-                    <!-- /.card-body -->
                 </div>
-                {{ $users->links('components.pagination') }}
-            @endif
+                <!-- /.card -->
+            </div>
 
             @include('livewire.user_accounts.add-user')
             @include('livewire.user_accounts.edit-user')
