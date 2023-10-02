@@ -15,9 +15,10 @@
             <div class="col-lg-12" style="margin-bottom: 3rem; margin-top: 3rem;">
                 <img alt="user profile" src="{{ $this->viewProfile() }}" style=" height: 150px; width: 150px;">
                 <label style="font-size: 26px; color: #252525ce; line-height: 5%; margin-left: 1rem; margin-top: 23px;">{{ $name }}</label>
-                <button class="btn btn-default" data-target="#edit-profile" data-toggle="modal" style="color: white; background-color: #080743; font-size: 12px; width: 100px; margin-left: 67rem; margin-right: 2rem;"><i class="fa fa-solid fa-pen"></i> Edit Profile</button>
-                <!--EDIT PROFILE MODAL-->
-                @include('livewire.profile.edit-profile')
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-default" data-target="#edit-profile" data-toggle="modal" style="color: white; background-color: #080743; font-size: 12px;"><i class="fa fa-solid fa-pen"></i>Edit Profile</button>
+                    <button class="btn btn-default" data-target="#change-password" data-toggle="modal" style="color: white; background-color: #080743; font-size: 12px;"><i class="fa fa-solid fa-pen"></i>Change Password</button>
+                </div>
             </div>
             <!----------------------------------------------------------------------------------------->
             <!--User Personal Details-->
@@ -55,4 +56,8 @@
             </div>
         </div>
     </div>
+
+    <!--EDIT PROFILE MODAL-->
+    @include('livewire.profile.edit-profile')
+    @include('livewire.profile.change-password')
 </div>

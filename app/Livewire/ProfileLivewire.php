@@ -16,6 +16,7 @@ class ProfileLivewire extends Component
     use WithFileUploads;
     public $user_id, $username, $role, $first_name, $last_name, $name, $password;
     public  $profile_picture_id, $profile_picture;
+    public $current_password, $new_password, $confirm_password;
 
     public function mount()
     {
@@ -53,13 +54,16 @@ class ProfileLivewire extends Component
         $this->username = $user->username;
         $this->password = $user->password;
         $this->profile_picture = null;
+        $this->current_password = null;
+        $this->new_password = null;
+        $this->confirm_password = null;
+        $this->resetErrorBag();
     }
 
-    public function update()
+    public function updateProfile()
     {
         $rules = [
             'username' => 'required|unique:user_accounts,username,' . $this->user_id . '|max:255',
-            'password' => 'required|max:255',
             'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg|max:1024'
         ];
 
@@ -70,30 +74,55 @@ class ProfileLivewire extends Component
         ];
 
         $validatedData = $this->validate($rules, $customMessages);
-        $validatedData['hashed_password'] = Hash::make($validatedData['password']);
 
         $user = UserAccounts::find($this->user_id);
         if ($this->profile_picture) {
             $profileImageContent = file_get_contents($this->profile_picture->getRealPath());
 
             // Create a new profile picture record
-            ProfilePictures::find($this->profile_picture_id)->update([
-                'profile_picture' => $profileImageContent
-            ]);
+            if ($this->profile_picture_id) {
+                $newProfile = ProfilePictures::find($this->profile_picture_id)->update([
+                    'profile_picture' => $profileImageContent
+                ]);
+            } else {
+                $newProfile = ProfilePictures::create([
+                    'profile_picture' => $profileImageContent
+                ]);
+                $this->profile_picture_id = $newProfile->id;
+            }
         }
 
         $user->update([
             'username' => $validatedData['username'],
-            'password' => $validatedData['password'],
-            'hashed_password' => $validatedData['hashed_password'],
             'profile_picture_id' => $this->profile_picture_id
         ]);
         $this->showToast('success', 'Your Profile Updated Successfully');
-        $this->updateProfile($this->profile_picture_id);
+        $this->updateProfilePicture($this->profile_picture_id);
         $this->resetInputs();
     }
 
-    public function updateProfile($profile_id)
+    public function changePassword()
+    {
+        $validatedData = $this->validate([
+            'current_password' => 'required|same:password',
+            'new_password' => 'required|min:4', // Change the min length as needed
+            'confirm_password' => 'required|same:new_password',
+        ], [
+            'current_password.same' => 'The current password is incorrent',
+            'confirm_password.same' => 'The new password and confirmation do not match.',
+        ]);
+
+        // Update the password
+        UserAccounts::find($this->user_id)->update([
+            'password' => $validatedData['confirm_password'],
+            'hashed_password' => bcrypt($validatedData['current_password'])
+        ]);
+
+        $this->showToast('success', 'Your password has been updated successfully.');
+        $this->resetInputs();
+    }
+
+    public function updateProfilePicture($profile_id)
     {
         $this->dispatch('profileUpdated', $profile_id);
     }
@@ -103,5 +132,4 @@ class ProfileLivewire extends Component
         session()->forget('user_id');
         return redirect()->route('home-page');
     }
-
 }
