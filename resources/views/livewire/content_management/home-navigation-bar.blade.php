@@ -13,9 +13,10 @@
     <ul class="navbar-nav ml-auto">
         <!-------LOGIN BUTTON--------->
         <li class="nav-item">
-            <button class="nav-link btn" data-target="#login-modal" data-toggle="modal">
+            <button class="nav-link btn" wire:click='authenticateWithRememberToken'>
                 <p style="color: white; font-size: 14px; background-color: #0A0863; border-radius: 15px; padding: 5px; padding-left: 30px; padding-right: 30px;"> Login</p>
             </button>
         </li>
     </ul>
 </nav><!--------------- /.navbar ----------------------->
+

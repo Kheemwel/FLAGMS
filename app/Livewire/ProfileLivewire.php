@@ -126,10 +126,4 @@ class ProfileLivewire extends Component
     {
         $this->dispatch('profileUpdated', $profile_id);
     }
-
-    public function logout()
-    {
-        session()->forget('user_id');
-        return redirect()->route('home-page');
-    }
 }

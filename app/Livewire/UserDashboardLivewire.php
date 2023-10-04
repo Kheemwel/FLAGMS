@@ -33,10 +33,4 @@ class UserDashboardLivewire extends Component
             return 'data:image/jpeg;base64,' . base64_encode($profile->profile_picture);
         }
     }
-    
-    public function logout()
-    {
-        session()->forget('user_id');
-        return redirect()->route('home-page');
-    }
 }

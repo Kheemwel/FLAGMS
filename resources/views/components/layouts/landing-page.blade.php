@@ -104,6 +104,10 @@
                 toastr.warning(message)
             }
         });
+
+        Livewire.on('loginModal', () => {
+            $('#login-modal').modal('show');
+        })
     </script>
     @yield('scripts')
 </body>
