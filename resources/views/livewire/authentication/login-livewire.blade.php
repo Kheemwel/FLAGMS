@@ -1,7 +1,7 @@
 <div class="modal fade login-modal" id="login-modal" wire:ignore.self>
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content" style="text-align: left; border-radius: 20px;">
-            <div wire:loading wire:target='login,loop'>
+            <div wire:loading wire:target='login'>
                 <div class="overlay bg-white" style="border-radius: 20px;">
                     <i class="fas fa-3x fa-sync-alt fa-spin"></i>
                 </div>

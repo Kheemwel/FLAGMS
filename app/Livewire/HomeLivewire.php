@@ -7,7 +7,7 @@ use App\Models\WebsiteLogo;
 use App\Models\WebsiteSchoolName;
 use App\Models\WebsiteSubtitle;
 use App\Models\WebsiteTitle;
-use App\Traits\Toasts;
+use Illuminate\Http\Request;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
@@ -15,6 +15,14 @@ use Livewire\Component;
 class HomeLivewire extends Component
 {
     public $title, $logo, $subtitle, $school_name;
+
+    public function mount(Request $request) 
+    {
+        if ($request->query('required_login')) {
+            $this->dispatch('loginModal');
+        }
+    }
+
     public function render()
     {
         $this->title = WebsiteTitle::find(1)->title;

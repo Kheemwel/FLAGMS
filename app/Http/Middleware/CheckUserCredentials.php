@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Models\UserAccounts;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use Symfony\Component\HttpFoundation\Response;
 
 class CheckUserCredentials
@@ -17,7 +18,7 @@ class CheckUserCredentials
     public function handle(Request $request, Closure $next): Response
     {
         if (!$request->session()->has('user_id')) {
-            return redirect()->route('home-page');
+            return redirect()->route('home-page', ['required_login' => true]);
         } else {
             $user_id = session('user_id');
         }
