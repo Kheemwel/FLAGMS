@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Livewire\Component;
-use Spatie\Backup\BackupDestination\Backup;
 use ZipArchive;
 
 class DatabaseLivewire extends Component
