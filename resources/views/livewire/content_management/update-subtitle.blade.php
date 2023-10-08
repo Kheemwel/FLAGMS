@@ -1,5 +1,5 @@
 <!--USER INFORMATION FORM MODAL-->
-<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="updateSubtitleModal" role='dialog' style="max-width: 100%;" wire:ignore.self>
+<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" data-backdrop="static" id="updateSubtitleModal" role='dialog' style="max-width: 100%;" wire:ignore.self>
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="border: transparent; padding: 10px;">
@@ -8,7 +8,7 @@
                 </button>
             </div>
             <form wire:submit.prevent="updateSubtitle()">
-                <div class="modal-body" style="margin-left: 1rem; max-height: 500px; overflow-y: auto;">
+                <div class="modal-body" style="margin-left: 1rem; max-height: 500px;">
                     <!--MODAL FORM TITLE-->
                     <p class="card-title" style="color: #0A0863; font-weight: bold; font-size: 22px;">Update Website Subitle</p> <br><br><br>
 

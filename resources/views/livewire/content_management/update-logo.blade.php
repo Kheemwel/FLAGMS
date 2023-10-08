@@ -1,5 +1,5 @@
 <!--USER INFORMATION FORM MODAL-->
-<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="updateLogoModal" role='dialog' style="max-width: 100%;" wire:ignore.self>
+<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" data-backdrop="static" id="updateLogoModal" role='dialog' style="max-width: 100%;" wire:ignore.self>
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="border: transparent; padding: 10px;">

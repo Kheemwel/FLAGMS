@@ -106,6 +106,7 @@ class ContentManagementLivewire extends Component
         $this->title = $this->old_contents['title'];
         $this->subtitle = $this->old_contents['subtitle'];
         $this->school_name = $this->old_contents['school_name'];
+        $this->dispatch('resetField', $this->old_contents);
     }
 
     public function titleChange($value)

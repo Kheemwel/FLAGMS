@@ -21,11 +21,11 @@
         <div style="border: transparent; display: flex; align-items: center;">
             <div class="d-flex justify-content-between align-items-start">
                 <img alt="AdminLTE Logo" class="brand-image img-circle" src="{{ $logo }}" style="width: 50px; height: 50px; margin-right: 10px;">
-                <i class="fa fa-solid fa-pen" data-target='#updateLogoModal' data-toggle="modal" tooltip="enable" title="Edit Logo"></i>
+                <i class="fa fa-solid fa-pen" data-target='#updateLogoModal' data-toggle="modal" title="Edit Logo" tooltip="enable"></i>
             </div>
             <div class="d-flex justify-content-between align-items-start">
                 {!! $school_name !!}
-                <i class="fa fa-solid fa-pen" data-target='#updateSchoolNameModal' data-toggle="modal" tooltip="enable" title="Edit School Name"></i>
+                <i class="fa fa-solid fa-pen" data-target='#updateSchoolNameModal' data-toggle="modal" title="Edit School Name" tooltip="enable"></i>
             </div>
         </div>
     </nav><!--------------- /.navbar ----------------------->
@@ -43,7 +43,7 @@
                                 {!! $title !!}
                             </div>
                             <div class="col-4" x-show="show">
-                                <button type="button" class="btn btn-primary" data-target='#updateTitleModal' data-toggle="modal" tooltip="enable" title="Edit Title" style="background-color: white; color:#252525; font-size: 14px; margin-bottom: 1rem;">
+                                <button class="btn btn-primary" data-target='#updateTitleModal' data-toggle="modal" style="background-color: white; color:#252525; font-size: 14px; margin-bottom: 1rem;" title="Edit Title" tooltip="enable" type="button">
                                     <i class="fa fa-solid fa-pen"></i> Edit Text
                                 </button>
                             </div>
@@ -53,7 +53,7 @@
                                 {!! $subtitle !!}
                             </div>
                             <div class="col-4" x-show="show">
-                                <button type="button" class="btn btn-primary" data-target='#updateSubtitleModal' data-toggle="modal" tooltip="enable" title="Edit Subtitle" style="background-color: white; color:#252525; font-size: 14px; margin-bottom: 1rem;">
+                                <button class="btn btn-primary" data-target='#updateSubtitleModal' data-toggle="modal" style="background-color: white; color:#252525; font-size: 14px; margin-bottom: 1rem;" title="Edit Subtitle" tooltip="enable" type="button">
                                     <i class="fa fa-solid fa-pen"></i> Edit Text
                                 </button>
                             </div>
@@ -246,6 +246,7 @@
             ];
 
             $('#titleEditor').summernote({
+                height: '300px',
                 disableDragAndDrop: true,
                 toolbar: toolbar,
                 fontSizes: fontSizes,
@@ -255,7 +256,9 @@
                     }
                 }
             });
+            
             $('#subtitleEditor').summernote({
+                height: '300px',
                 toolbar: toolbar,
                 fontSizes: fontSizes,
                 callbacks: {
@@ -264,7 +267,9 @@
                     }
                 }
             });
+
             $('#schoolNameEditor').summernote({
+                height: '300px',
                 toolbar: toolbar,
                 fontSizes: fontSizes,
                 callbacks: {
@@ -273,6 +278,14 @@
                     }
                 }
             });
+        });
+    </script>
+    <script>
+        Livewire.on('resetField', (data) => {
+            const content = data[0];
+            $('#titleEditor').summernote('code', content['title']);
+            $('#subtitleEditor').summernote('code', content['subtitle']);
+            $('#schoolNameEditor').summernote('code', content['school_name']);
         });
     </script>
 @endsection
