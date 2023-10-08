@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\ItemImages;
 use App\Models\ItemTypes;
 use App\Models\LostAndFound;
+use App\Models\UserAccounts;
 use App\Traits\Toasts;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
@@ -19,11 +20,19 @@ class LostFoundLivewire extends Component
     public $datetime_found, $finder_name, $location_found, $is_claimed, $owner_name, $claimed_datetime;
     public $filterItemTypes = [];
     public $search = '';
+    public $authorized = false;
 
     public function mount()
     {
         $this->item_types = ItemTypes::all();
         $this->applyFilter();
+        $user_id = session('user_id');
+        if ($user_id) {
+            $role = UserAccounts::find($user_id)->getRole->role;
+            if (in_array($role, ['Admin', 'Admin/Guidance', 'Guidance'])) {
+                $this->authorized = true;
+            }
+        }
     }
 
     public function render()

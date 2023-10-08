@@ -52,8 +52,9 @@
                 </div>
                 <!-- /.modal end-->
 
-                <!--UPLOAD BUTTON-->
-                <button class="btn btn-default" data-target="#add-lost-item" data-toggle="modal" style="max-width: 7rem; height: 35px; font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button"><i class="fa fa-solid fa-plus"></i> Add Lost Item</button>
+                @if ($authorized)
+                    <button class="btn btn-default" data-target="#add-lost-item" data-toggle="modal" style="max-width: 7rem; height: 35px; font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button"><i class="fa fa-solid fa-plus"></i> Add Found Item</button>
+                @endif
                 <!-- /.modal end-->
             </div>
         </div>
@@ -71,7 +72,9 @@
                     <th style="border-right: 1px solid #252525;">Item Name</th>
                     <th style="border-right: 1px solid #252525;">Date and Time Found</th>
                     <th style="border-right: 1px solid #252525;">Location Found</th>
-                    <th style="border-right: 1px solid #252525;">Finder's Name</th>
+                    @if ($authorized)
+                        <th style="border-right: 1px solid #252525;">Finder's Name</th>
+                    @endif
                     <th>Action</th>
                 </tr>
             </thead>
@@ -83,23 +86,30 @@
                         <td>{{ $item->item_name }}</td>
                         <td>{{ date('F d,Y   h:i A', strtotime($item->datetime_found)) }}</td>
                         <td>{{ $item->location_found }}</td>
-                        <td>{{ $item->finder_name }}</td>
+                        @if ($authorized)
+                            <td>{{ $item->finder_name }}</td>
+                        @endif
                         <td>
-                            <p class="btn btn-primary action-btn" data-target="#claim-item" data-toggle="modal" style="color: #3C58FF;  text-decoration: underline;" wire:click="get_data({{ $item->id }})">Claim</p>
+                            @if ($authorized)
+                                <p class="btn btn-primary action-btn" data-target="#claim-item" data-toggle="modal" style="color: #3C58FF;  text-decoration: underline;" wire:click="get_data({{ $item->id }})">Claim</p>
+                            @endif
+
                             <!--VIEW PROFILE-->
                             <button class="btn btn-primary action-btn" data-target="#view-lost-item" data-toggle="modal" title='View' tooltip='enable' wire:click="get_data({{ $item->id }})">
                                 <i aria-hidden="true" class="fa fa-eye"></i>
                             </button>
 
-                            <!--EDIT LOST ITEM BUTTON-->
-                            <button class="btn btn-primary action-btn" data-target="#edit-lost-item" data-toggle="modal" wire:click="get_data({{ $item->id }})">
-                                <i class="fa fa-solid fa-pen"></i>
-                            </button>
+                            @if ($authorized)
+                                <!--EDIT LOST ITEM BUTTON-->
+                                <button class="btn btn-primary action-btn" data-target="#edit-lost-item" data-toggle="modal" wire:click="get_data({{ $item->id }})">
+                                    <i class="fa fa-solid fa-pen"></i>
+                                </button>
 
-                            {{-- DELETE USER --}}
-                            <button class="btn btn-primary action-btn" wire:click='delete({{ $item->id }})'>
-                                <i aria-hidden="true" class="fa fa-trash"></i>
-                            </button>
+                                {{-- DELETE USER --}}
+                                <button class="btn btn-primary action-btn" wire:click='delete({{ $item->id }})'>
+                                    <i aria-hidden="true" class="fa fa-trash"></i>
+                                </button>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

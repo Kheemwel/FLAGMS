@@ -8,7 +8,7 @@
             </div>
             <div class="modal-header" style="border: transparent; padding: 10px;">
                 <!--EDIT USER INFORMATION-->
-                <button data-target="#edit-lost-item" data-toggle="modal" data-dismiss='modal' style="background-color: transparent; border-color: transparent;" type="button">
+                <button data-dismiss='modal' data-target="#edit-lost-item" data-toggle="modal" style="background-color: transparent; border-color: transparent;" type="button">
                     <i class="fa fa-solid fa-pen"></i>
                 </button>
 
@@ -63,15 +63,17 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <!--FINDER'S NAME-->
-                        <div class="form-group col-sm-5" style="color: #252525;">
-                            <p style="font-size: 14px;">Finder's Name</p>
+                    @if ($authorized)
+                        <div class="row">
+                            <!--FINDER'S NAME-->
+                            <div class="form-group col-sm-5" style="color: #252525;">
+                                <p style="font-size: 14px;">Finder's Name</p>
+                            </div>
+                            <div class="form-group col-sm-4" style="font-size: 16px; color: #252525;">
+                                <p style="font-weight: bold;">{{ $finder_name }}</p>
+                            </div>
                         </div>
-                        <div class="form-group col-sm-4" style="font-size: 16px; color: #252525;">
-                            <p style="font-weight: bold;">{{ $finder_name }}</p>
-                        </div>
-                    </div>
+                    @endif
 
                     <!--ITEM DESCRIPTION-->
                     <div class="row">

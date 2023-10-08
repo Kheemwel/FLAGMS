@@ -52,7 +52,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('user-lost-and-found-page') }}">
+                    <a class="nav-link" href="{{ route('lost-and-found-page') }}">
                         <iconify-icon icon="guidance:lost-and-found" style="color: #252525;"></iconify-icon>
                         <p style="color: #252525;">
                             Lost and Found
