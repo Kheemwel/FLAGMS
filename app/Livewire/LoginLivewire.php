@@ -39,6 +39,7 @@ class LoginLivewire extends Component
                 cookie()->queue('remember_token', $rememberToken, 1); // 1 minute
             }
             session(['user_id' => $user->id]);
+            $this->resetInputFields();
             return redirect()->route('user-dashboard-page');
         } else {
             $this->errorMessage = 'Invalid username or password';
