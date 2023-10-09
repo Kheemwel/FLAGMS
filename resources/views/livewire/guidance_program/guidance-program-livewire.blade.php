@@ -35,25 +35,27 @@
     </section>
 
     <!-- Main content -->
-    <section class="content">
+    <section class="content" x-data='{ showCalendar : true}'>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <div style="display: flex; flex-direction: column;">
-                        <!--ROLE DROPDOWN BUTTON-->
-                        <div class="input-group" style="justify-content: flex-end;">
+                        <div class="input-group d-flex justify-content-end">
+                            <!--ROLE DROPDOWN BUTTON-->
                             <div class="dropdown" style="margin-bottom: 1rem;">
-                                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color:#252525; font-size: 18px;" type="button">
-                                    Week
+                                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: #252525; font-size: 12px;" type="button">
+                                    Agenda
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="#">Day</a>
-                                    <a class="dropdown-item" href="#">Week</a>
-                                    <a class="dropdown-item" href="#">Month</a>
-                                    <a class="dropdown-item" href="#">Agenda</a>
+                                    <a class="dropdown-item" href="#" x-on:click='showCalendar=true'>Day</a>
+                                    <a class="dropdown-item" href="#" x-on:click='showCalendar=true'>Week</a>
+                                    <a class="dropdown-item" href="#" x-on:click='showCalendar=true'>Month</a>
+                                    <a class="dropdown-item" href="#" x-on:click='showCalendar=false'>Agenda</a>
                                 </div>
                             </div>
-                            <button class="btn btn-default" data-target="#add-event" data-toggle="modal" style="width: 100px; height: 40px; margin-left: 10px; background-color: #0A0863; color: white; font-size: 14px;">
+
+                            <!--ADD BUTTON-->
+                            <button class="btn btn-default" data-target="#add-event" data-toggle="modal" style="width: 100px; height: 30px; margin-left: 10px; background-color: #0A0863; color: white; font-size: 12px;">
                                 <i class="fa fa-solid fa-plus"></i> Add Event
                             </button>
                         </div>
@@ -61,10 +63,15 @@
                 </div>
             </div>
 
-            <div class="row">
+
+            <div x-show='!showCalendar'>
+                @include('livewire.guidance_program.calendar-agenda')
+            </div>
+
+            <div class="row" x-show='showCalendar'>
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-body p-0">
+                        <div class="card-body p-0" wire:ignore>
                             <!-- THE CALENDAR -->
                             <div id="calendar"></div>
                         </div><!-- /.card-body -->
@@ -79,7 +86,20 @@
 
 @section('scripts')
     <script>
-        $(function() {
+        Livewire.on('calendar', (data) => {
+            const programs = data[0];
+            var program_events = [];
+
+            // Use forEach to add events to the array
+            programs.forEach(element => {
+                program_events.push({
+                    title: element.title,
+                    start: element.program_start,
+                    end: element.program_end,
+                    backgroundColor: element.color ? element.color : '#6256AC',
+                    description: element.description
+                });
+            });
             //- CALENDAR -
             var Calendar = FullCalendar.Calendar;
             var Draggable = FullCalendar.Draggable;
@@ -87,7 +107,6 @@
             var containerEl = document.getElementById('external-events');
             var checkbox = document.getElementById('drop-remove');
             var calendarEl = document.getElementById('calendar');
-
             var calendar = new Calendar(calendarEl, {
                 headerToolbar: {
                     left: 'prev,next today',
@@ -95,10 +114,41 @@
                     right: 'dayGridMonth,timeGridWeek,timeGridDay'
                 },
                 themeSystem: 'bootstrap',
+                events: program_events,
+                eventContent: function(info) {
+                    var event = info.event;
+
+                    // Create a container for the event
+                    var containerEl = document.createElement('div');
+
+                    var titleEL = document.createElement('strong');
+                    var descriptionEl = document.createElement('div');
+                    var timeEl = document.createElement('div');
+                    titleEL.innerText = event.title;
+                    descriptionEl.innerText = event.extendedProps.description;
+                    timeEl.innerText = moment(event.start).format('h:mm a') + ' - ' + moment(event.end).format('h:mm a');
+                    containerEl.appendChild(titleEL);
+                    containerEl.appendChild(descriptionEl);    
+                    containerEl.appendChild(timeEl);
+
+                    // Apply CSS styles to the event container
+                    containerEl.style.overflow = 'auto'; // Make the container scrollable
+                    containerEl.style.height = '100%'; // Set a maximum height for the container
+                    containerEl.style.width = '100%';
+                    containerEl.style.padding = '5px';
+                    containerEl.style.borderRadius = '3px';
+
+                    // Apply background color to the event container
+                    containerEl.style.backgroundColor = event.backgroundColor; // Apply the event's background color
+                    containerEl.style.color = 'white';
+
+                    return {
+                        domNodes: [containerEl]
+                    };
+                }
             });
 
             calendar.render();
-            // $('#calendar').fullCalendar()
         })
     </script>
 @endsection
