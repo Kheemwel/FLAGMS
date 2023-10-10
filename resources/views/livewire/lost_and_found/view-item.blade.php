@@ -89,12 +89,14 @@
                     <!-------------------------------------------------------->
 
                     <!--IMAGE OF THE LOST ITEM-->
-                    <div class="form-group col-sm-13" style="font-size: 14px; color: #252525; text-align: left; padding-left: 0;">
-                        <label for="input-item-desc" style="font-weight: normal;">Image of the Lost Item</label>
-                    </div>
-                    <div class="form-group col-sm-12" style="margin-bottom: 3rem; text-align: center;">
-                        <img alt="lost item" class="img-responsive" src="{{ $this->viewImage() }}" style="height: 150px; width: 150px;">
-                    </div>
+                    @if ($authorized)
+                        <div class="form-group col-sm-13" style="font-size: 14px; color: #252525; text-align: left; padding-left: 0;">
+                            <label for="input-item-desc" style="font-weight: normal;">Image of the Lost Item</label>
+                        </div>
+                        <div class="form-group col-sm-12" style="margin-bottom: 3rem; text-align: center;">
+                            <img alt="lost item" class="img-responsive" src="{{ $this->viewImage() }}" style="height: 150px; width: 150px;">
+                        </div>
+                    @endif
 
                     @if ($is_claimed)
                         <!--CLAIMED DETAILS-->
