@@ -82,6 +82,8 @@
     </section> <!-- /.content -->
 
     @include('livewire.guidance_program.add-event')
+    @include('livewire.guidance_program.view-event')
+    @include('livewire.guidance_program.edit-event')
 </div><!-- /.content-wrapper -->
 
 @section('scripts')
@@ -93,6 +95,7 @@
             // Use forEach to add events to the array
             programs.forEach(element => {
                 program_events.push({
+                    id: element.id,
                     title: element.title,
                     start: element.program_start,
                     end: element.program_end,
@@ -122,14 +125,14 @@
                     var containerEl = document.createElement('div');
 
                     var titleEL = document.createElement('strong');
-                    var descriptionEl = document.createElement('div');
-                    var timeEl = document.createElement('div');
                     titleEL.innerText = event.title;
-                    descriptionEl.innerText = event.extendedProps.description;
-                    timeEl.innerText = moment(event.start).format('h:mm a') + ' - ' + moment(event.end).format('h:mm a');
                     containerEl.appendChild(titleEL);
-                    containerEl.appendChild(descriptionEl);    
-                    containerEl.appendChild(timeEl);
+                    // var descriptionEl = document.createElement('div');
+                    // var timeEl = document.createElement('div');
+                    // descriptionEl.innerText = event.extendedProps.description;
+                    // timeEl.innerText = moment(event.start).format('h:mm a') + ' - ' + moment(event.end).format('h:mm a');
+                    // containerEl.appendChild(descriptionEl);
+                    // containerEl.appendChild(timeEl);
 
                     // Apply CSS styles to the event container
                     containerEl.style.overflow = 'auto'; // Make the container scrollable
@@ -145,6 +148,12 @@
                     return {
                         domNodes: [containerEl]
                     };
+                },
+                eventClick: function(info) {
+                    var event = info.event;
+
+                    Livewire.dispatch('get_event', [event.id]);
+                    $('#view-event').modal('show');
                 }
             });
 
