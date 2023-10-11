@@ -102,26 +102,25 @@
                     </div>
 
                     <!--PASSWORD-->
-                    <div x-data="{ showPassword: false }">
-                        <div class="row">
-                            <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
-                                <label for="inputUsername" style="font-weight: normal;">Password</label>
-                                <input class="form-control" id="inputUsername" style="border: 1px solid #252525" type="password" wire:model="password" x-bind:type="showPassword ? 'text' : 'password'">
-                                @if ($errors->has('password') && !$password)
-                                    <span class="text-danger">{{ $errors->first('password') }}</span>
-                                @endif
+                    <div class="row">
+                        <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
+                            <label for="inputUsername" style="font-weight: normal;">Password</label>
+                            <div class="input-group col-sm-13" style="font-size: 14px; color: #252525; border: 1px solid #252525; border-radius: 5px; padding-right: 5px;" x-data="{ show: false }">
+                                <input class="form-control" id="input-pass" placeholder="Password" style="border: none" wire:model="password" x-bind:type="show ? 'text' : 'password'">
+                                <div class="input-group-append d-flex align-items-center">
+                                    <i class="fa" x-bind:class="show ? 'fa-eye-slash' : 'fa-eye'" x-on:click="show = !show"></i>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-check" style="font-size: 14px; color: #252525; margin-bottom: 2rem;">
-                            <input class="form-check-input" id="cbPass" type="checkbox" x-model="showPassword">
-                            <label class="form-check-label" for="cbPass">Show Password</label>
+                            @if ($errors->has('password') && !$password)
+                                <span class="text-danger">{{ $errors->first('password') }}</span>
+                            @endif
                         </div>
                     </div>
                     <!------------------------------------------------------------------------------>
                 </form>
             </div> <!-- /.card-body -->
             <div class="card-footer">
-                <button  data-dismiss='modal' class="btn btn-primary" data-target='#saveModal' data-toggle='modal' style="width: 450px; margin-left: 5px; background-color: #0A0863; color: white; font-size: 14px;" type="submit">Save</button>
+                <button class="btn btn-primary" data-dismiss='modal' data-target='#saveModal' data-toggle='modal' style="width: 450px; margin-left: 5px; background-color: #0A0863; color: white; font-size: 14px;" type="submit">Save</button>
             </div>
         </div>
         <!-- /.modal-content -->
