@@ -76,16 +76,18 @@
                     @endif
 
                     <!--ITEM DESCRIPTION-->
-                    <div class="row">
-                        <div class="form-group col-sm-5" style="color: #252525;">
-                            <p style="font-size: 14px;">Item Description</p>
+                    @if ($authorized)
+                        <div class="row">
+                            <div class="form-group col-sm-5" style="color: #252525;">
+                                <p style="font-size: 14px;">Item Description</p>
+                            </div>
+                            <div class="form-group col-sm-4" style="font-size: 16px; color: #252525;">
+                                <p style="font-weight: bold;">
+                                    {{ $description ? $description : 'There is no written description for this item.' }}
+                                </p>
+                            </div>
                         </div>
-                        <div class="form-group col-sm-4" style="font-size: 16px; color: #252525;">
-                            <p style="font-weight: bold;">
-                                {{ $description ? $description : 'There is no written description for this item.' }}
-                            </p>
-                        </div>
-                    </div>
+                    @endif
                     <!-------------------------------------------------------->
 
                     <!--IMAGE OF THE LOST ITEM-->
@@ -116,15 +118,17 @@
                             </div>
                         </div>
 
-                        <div class="row">
-                            <!--OWNER'S NAME-->
-                            <div class="form-group col-sm-5" style="color: #252525;">
-                                <p style="font-size: 14px;">Owner's Name</p>
+                        @if ($authorized)
+                            <div class="row">
+                                <!--Claimer'S NAME-->
+                                <div class="form-group col-sm-5" style="color: #252525;">
+                                    <p style="font-size: 14px;">Claimer's Name</p>
+                                </div>
+                                <div class="form-group col-sm-4" style="font-size: 16px; color: #252525;">
+                                    <p style="font-weight: bold;">{{ $claimer_name }}</p>
+                                </div>
                             </div>
-                            <div class="form-group col-sm-4" style="font-size: 16px; color: #252525;">
-                                <p style="font-weight: bold;">{{ $owner_name }}</p>
-                            </div>
-                        </div>
+                        @endif
                     @endif
 
                 </div> <!-- /.card-body -->

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('finder_name');
             $table->string('location_found');
             $table->boolean('is_claimed')->default(false);
-            $table->string('owner_name')->nullable();
+            $table->string('claimer_name')->nullable();
             $table->dateTime('claimed_datetime')->nullable();
             $table->foreign('item_type_id')->references('id')->on('item_types');
             $table->foreign('item_image_id')->references('id')->on('item_images');

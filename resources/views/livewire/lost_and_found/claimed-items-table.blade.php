@@ -7,7 +7,7 @@
                     <th style="border-right: 1px solid #252525;">ID</th>
                     <th style="border-right: 1px solid #252525;">Item Type</th>
                     <th style="border-right: 1px solid #252525;">Item Name</th>
-                    <th style="border-right: 1px solid #252525;">Owner's Name</th>
+                    <th style="border-right: 1px solid #252525;">Claimer's Name</th>
                     <th style="border-right: 1px solid #252525;">Claimed At</th>
                     <th>Action</th>
                 </tr>
@@ -18,7 +18,7 @@
                         <td>{{ $claimedItem->id }}</td>
                         <td>{{ $claimedItem->getType->item_type }}</td>
                         <td>{{ $claimedItem->item_name }}</td>
-                        <td>{{ $claimedItem->owner_name }}</td>
+                        <td>{{ $claimedItem->claimer_name }}</td>
                         <td>{{ date('F d,Y   h:i A', strtotime($claimedItem->claimed_datetime)) }}</td>
                         <td>
                             @if ($authorized)

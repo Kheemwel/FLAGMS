@@ -34,7 +34,7 @@
                             <tr>
                                 <th style="border-right: 1px solid #252525;">ID</th>
                                 <th style="border-right: 1px solid #252525;">Image</th>
-                                <th style="border-right: 1px solid #252525;">Owner</th>
+                                <th style="border-right: 1px solid #252525;">Claimer</th>
                                 <th style="border-right: 1px solid #252525;">Last Updated At</th>
                                 <th>Action</th>
                             </tr>

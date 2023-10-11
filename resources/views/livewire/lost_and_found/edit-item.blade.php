@@ -125,13 +125,13 @@
                             @enderror
                         </div>
 
-                        <!--OWNER'S NAME-->
+                        <!--Claimer'S NAME-->
                         <div class="row">
                             <div class="form-group col-sm-12" style="font-size: 14px; color: #252525; text-align: left; padding-left: 8px;">
-                                <label for="input-owner-name" style="font-weight: normal;">Owner's Name</label>
-                                <input class="form-control" id="input-owner-name" style="border: 1px solid #252525" type="text" wire:model='owner_name'>
+                                <label for="input-claimer-name" style="font-weight: normal;">Claimer's Name</label>
+                                <input class="form-control" id="input-claimer-name" style="border: 1px solid #252525" type="text" wire:model='claimer_name'>
                             </div>
-                            @error('owner_name')
+                            @error('claimer_name')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>

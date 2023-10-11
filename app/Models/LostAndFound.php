@@ -13,7 +13,7 @@ class LostAndFound extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
         'item_name', 'item_image_id', 'item_type_id', 'description', 'datetime_found', 'finder_name', 'location_found',
-        'is_claimed', 'owner_name', 'claimed_datetime'
+        'is_claimed', 'claimer_name', 'claimed_datetime'
     ];
 
     public function getType() : BelongsTo

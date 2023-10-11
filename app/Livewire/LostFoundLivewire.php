@@ -17,7 +17,7 @@ class LostFoundLivewire extends Component
     use Toasts;
     public $items, $item_types, $item_id, $item_type_id, $claimed_items;
     public $selected_item_type, $upload_item_image, $item_name, $item_image_id, $description;
-    public $datetime_found, $finder_name, $location_found, $is_claimed, $owner_name, $claimed_datetime;
+    public $datetime_found, $finder_name, $location_found, $is_claimed, $claimer_name, $claimed_datetime;
     public $filterItemTypes = [];
     public $search = '';
     public $authorized = false;
@@ -59,12 +59,12 @@ class LostFoundLivewire extends Component
             $query->where('item_name', 'like', '%' . $this->search . '%')
                 ->orWhere('location_found', 'like', '%' . $this->search . '%')
                 ->orWhere('finder_name', 'like', '%' . $this->search . '%')
-                ->orWhere('owner_name', 'like', '%' . $this->search . '%');
+                ->orWhere('claimer_name', 'like', '%' . $this->search . '%');
 
             $query_claimed->where('item_name', 'like', '%' . $this->search . '%')
                 ->orWhere('location_found', 'like', '%' . $this->search . '%')
                 ->orWhere('finder_name', 'like', '%' . $this->search . '%')
-                ->orWhere('owner_name', 'like', '%' . $this->search . '%');
+                ->orWhere('claimer_name', 'like', '%' . $this->search . '%');
         }
 
         $this->items = $query->oldest()->get();
@@ -126,7 +126,7 @@ class LostFoundLivewire extends Component
             'location_found' => 'required|max:255',
             'is_claimed' => 'nullable|boolean',
             'claimed_datetime' => Rule::requiredIf($this->is_claimed),
-            'owner_name' => Rule::requiredIf($this->is_claimed),
+            'claimer_name' => Rule::requiredIf($this->is_claimed),
         ]);
 
         if ($this->upload_item_image) {
@@ -147,7 +147,7 @@ class LostFoundLivewire extends Component
             'location_found' => $validateData['location_found'],
             'is_claimed' => $validateData['is_claimed'],
             'claimed_datetime' => $validateData['claimed_datetime'],
-            'owner_name' => $validateData['owner_name']
+            'claimer_name' => $validateData['claimer_name']
         ]);
         $this->showToast('success', 'The item is updated successfully.');
 
@@ -159,13 +159,13 @@ class LostFoundLivewire extends Component
     {
         $validateData = $this->validate([
             'claimed_datetime' => Rule::requiredIf($this->is_claimed),
-            'owner_name' => Rule::requiredIf($this->is_claimed),
+            'claimer_name' => Rule::requiredIf($this->is_claimed),
         ]);
 
         LostAndFound::find($this->item_id)->update([
             'is_claimed' => true,
             'claimed_datetime' => $validateData['claimed_datetime'],
-            'owner_name' => $validateData['owner_name']
+            'claimer_name' => $validateData['claimer_name']
         ]);
         $this->showToast('success', 'The item is updated successfully.');
 
@@ -198,7 +198,7 @@ class LostFoundLivewire extends Component
         $this->finder_name = $item->finder_name;
         $this->location_found = $item->location_found;
         $this->is_claimed = $item->is_claimed;
-        $this->owner_name = $item->owner_name;
+        $this->claimer_name = $item->claimer_name;
         $this->claimed_datetime = $item->claimed_datetime;
     }
 
@@ -229,7 +229,7 @@ class LostFoundLivewire extends Component
         $this->finder_name = null;
         $this->location_found = null;
         $this->is_claimed = null;
-        $this->owner_name = null;
+        $this->claimer_name = null;
         $this->claimed_datetime = null;
         $this->resetErrorBag();
     }
