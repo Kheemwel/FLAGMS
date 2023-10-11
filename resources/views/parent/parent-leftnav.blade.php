@@ -29,7 +29,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('user-guidance-program-page') }}">
+                    <a class="nav-link" href="{{ route('guidance-program-page') }}">
                         <iconify-icon icon="bx:calendar" style="color: #252525;"></iconify-icon>
                         <p style="color: #252525;">
                             Guidance Program

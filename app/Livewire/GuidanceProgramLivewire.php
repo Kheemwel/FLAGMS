@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\GuidancePrograms;
+use App\Models\UserAccounts;
 use App\Traits\Toasts;
 use Livewire\Component;
 
@@ -10,11 +11,19 @@ class GuidanceProgramLivewire extends Component
 {
     use Toasts;
     public $id, $title, $program_start, $program_end, $description, $color;
+    public $authorized = false;
 
     protected $listeners = ['get_event'];
 
     public function mount()
     {
+        $user_id = session('user_id');
+        if ($user_id) {
+            $role = UserAccounts::find($user_id)->getRole->role;
+            if (in_array($role, ['Admin', 'Admin/Guidance', 'Guidance'])) {
+                $this->authorized = true;
+            }
+        }
         $this->renderCalendar();
     }
 

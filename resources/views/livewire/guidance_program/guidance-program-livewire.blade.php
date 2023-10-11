@@ -55,9 +55,11 @@
                             </div>
 
                             <!--ADD BUTTON-->
-                            <button class="btn btn-default" data-target="#add-event" data-toggle="modal" style="width: 100px; height: 30px; margin-left: 10px; background-color: #0A0863; color: white; font-size: 12px;">
-                                <i class="fa fa-solid fa-plus"></i> Add Event
-                            </button>
+                            @if ($authorized)
+                                <button class="btn btn-default" data-target="#add-event" data-toggle="modal" style="width: 100px; height: 30px; margin-left: 10px; background-color: #0A0863; color: white; font-size: 12px;">
+                                    <i class="fa fa-solid fa-plus"></i> Add Event
+                                </button>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -100,6 +102,7 @@
                     start: element.program_start,
                     end: element.program_end,
                     backgroundColor: element.color ? element.color : '#6256AC',
+                    borderColor: element.color ? element.color : '#6256AC',
                     description: element.description
                 });
             });
@@ -124,15 +127,26 @@
                     // Create a container for the event
                     var containerEl = document.createElement('div');
 
-                    var titleEL = document.createElement('strong');
-                    titleEL.innerText = event.title;
-                    containerEl.appendChild(titleEL);
-                    // var descriptionEl = document.createElement('div');
-                    // var timeEl = document.createElement('div');
-                    // descriptionEl.innerText = event.extendedProps.description;
-                    // timeEl.innerText = moment(event.start).format('h:mm a') + ' - ' + moment(event.end).format('h:mm a');
-                    // containerEl.appendChild(descriptionEl);
-                    // containerEl.appendChild(timeEl);
+                    if (info.view.type === 'dayGridMonth') {
+                        // Display only the title in the month view
+                        var titleEL = document.createElement('strong');
+                        titleEL.innerText = event.title;
+                        containerEl.appendChild(titleEL);
+                    } else {
+                        // Display complete details in week and day views
+                        var titleEL = document.createElement('strong');
+                        titleEL.innerText = event.title;
+
+                        var descriptionEl = document.createElement('div');
+                        descriptionEl.innerText = event.extendedProps.description;
+
+                        var timeEl = document.createElement('div');
+                        timeEl.innerText = moment(event.start).format('h:mm a') + ' - ' + moment(event.end).format('h:mm a');
+
+                        containerEl.appendChild(titleEL);
+                        containerEl.appendChild(descriptionEl);
+                        containerEl.appendChild(timeEl);
+                    }
 
                     // Apply CSS styles to the event container
                     containerEl.style.overflow = 'auto'; // Make the container scrollable
@@ -146,7 +160,7 @@
                     containerEl.style.color = 'white';
 
                     return {
-                        domNodes: [containerEl]
+                        domNodes: [containerEl],
                     };
                 },
                 eventClick: function(info) {

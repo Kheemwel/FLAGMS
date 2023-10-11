@@ -18,9 +18,11 @@
                     <!--MODAL TITLE-->
                     <p class="card-title" style="color: #0A0863; font-weight: bold; font-size: 22px;">
                         EVENT
-                        <i class="fa fa-solid fa-pen" data-target="#edit-event" data-toggle="modal" data-dismiss="modal" style="color: #252525; font-size: 14px; margin-left: 1rem;cursor: pointer;"></i>
-                        <i class="fa fa-solid fa-trash" data-dismiss="modal" wire:click='deleteEvent({{ $id }})' style="color: #252525; font-size: 14px; margin-left: 1rem;cursor: pointer;"></i>
-                    </p> 
+                        @if ($authorized)
+                            <i class="fa fa-solid fa-pen" data-dismiss="modal" data-target="#edit-event" data-toggle="modal" style="color: #252525; font-size: 14px; margin-left: 1rem;cursor: pointer;"></i>
+                            <i class="fa fa-solid fa-trash" data-dismiss="modal" style="color: #252525; font-size: 14px; margin-left: 1rem;cursor: pointer;" wire:click='deleteEvent({{ $id }})'></i>
+                        @endif
+                    </p>
                     <br><br><br>
 
                     <!--Date-->
