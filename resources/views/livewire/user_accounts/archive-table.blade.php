@@ -20,24 +20,26 @@
                         <td>{{ date('F d,Y   h:i A', strtotime($arch_user->archived_at)) }}</td>
                         <td>
                             <!--VIEW PROFILE-->
-                            <button class="btn btn-primary action-btn" data-target="#view-user-btn" data-toggle="modal" wire:click="get_data({{ $arch_user->id }})" tooltip='enable' title='View Account'>
+                            <button class="btn btn-primary action-btn" data-target="#view-user-btn" data-toggle="modal" title='View Account' tooltip='enable' wire:click="get_data({{ $arch_user->id }})">
                                 <i aria-hidden="true" class="fa fa-eye"></i>
                             </button>
 
                             <!--USER INFO EDIT BUTTON-->
-                            <button class="btn btn-primary action-btn" data-target="#stud-info-edit" data-toggle="modal" wire:click="get_data({{ $arch_user->id }})" tooltip='enable' title='Edit Account'>
+                            <button class="btn btn-primary action-btn" data-target="#stud-info-edit" data-toggle="modal" title='Edit Account' tooltip='enable' wire:click="get_data({{ $arch_user->id }})">
                                 <i class="fa fa-solid fa-pen"></i>
                             </button>
 
                             {{-- UNARCHIVE USER --}}
-                            <button class="btn btn-primary action-btn" wire:click="unArchive({{ $arch_user->id }})" tooltip='enable' title='Unarchive Account'>
+                            <button class="btn btn-primary action-btn" title='Unarchive Account' tooltip='enable' wire:click="unArchive({{ $arch_user->id }})">
                                 <i aria-hidden="true" class="fa fa-undo"></i>
                             </button>
 
                             {{-- DELETE USER --}}
-                            <button class="btn btn-primary action-btn" data-target="#deleteModal" data-toggle="modal" wire:click.prevent="get_data({{ $arch_user->id }})" tooltip='enable' title='Delete Account'>
-                                <i aria-hidden="true" class="fa fa-trash"></i>
-                            </button>
+                            @if ($my_id !== $arch_user->id)
+                                <button class="btn btn-primary action-btn" data-target="#deleteModal" data-toggle="modal" title='Delete Account' tooltip='enable' wire:click.prevent="get_data({{ $arch_user->id }})">
+                                    <i aria-hidden="true" class="fa fa-trash"></i>
+                                </button>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

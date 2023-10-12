@@ -49,9 +49,11 @@
                             </button>
 
                             {{-- ARCHIVE USER --}}
-                            <button class="btn btn-primary action-btn" title='Archive Account' tooltip='enable' wire:click="archive({{ $user->id }})">
-                                <i aria-hidden="true" class="fa fa-archive"></i>
-                            </button>
+                            @if ($my_id !== $user->id)
+                                <button class="btn btn-primary action-btn" title='Archive Account' tooltip='enable' wire:click="archive({{ $user->id }})">
+                                    <i aria-hidden="true" class="fa fa-archive"></i>
+                                </button>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

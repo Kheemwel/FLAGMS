@@ -45,6 +45,7 @@ class UserAccountsLivewire extends Component
     public $batch_file;
     public $search = '', $filterRole;
     public $per_page = 30;
+    public $my_id;
 
     protected $listeners = ['setSelectedStudents'];
 
@@ -53,6 +54,8 @@ class UserAccountsLivewire extends Component
         $this->school_levels = SchoolLevels::all();
         $this->grade_levels = GradeLevels::all();
         $this->principal_positions = PrincipalPositions::all();
+
+        $this->my_id = session('user_id');
     }
 
     public function render()
