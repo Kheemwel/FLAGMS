@@ -7,6 +7,7 @@ use App\Livewire\GuidanceLivewire;
 use App\Livewire\GuidanceProgramLivewire;
 use App\Livewire\HomeLivewire;
 use App\Livewire\ItemImagesLivewire;
+use App\Livewire\ItemTagsLivewire;
 use App\Livewire\ItemTypesLivewire;
 use App\Livewire\LostFoundLivewire;
 use App\Livewire\NotificationLivewire;
@@ -69,6 +70,7 @@ Route::middleware([CheckUserCredentials::class])->group(function () {
     Route::view('/calendar-colors', 'admin.calendar-colors')->name('calendar-colors-page');
     Route::get('/item-images', ItemImagesLivewire::class)->name('item-images-page');
     Route::get('/item-types', ItemTypesLivewire::class)->name('item-types-page');
+    Route::get('/item-tags', ItemTagsLivewire::class)->name('item-tags-page');
     Route::view('/guidance-records', 'admin.guidance-records')->name('guidance-records-page');
     Route::get('/database', DatabaseLivewire::class)->name('database-page');
 

@@ -100,6 +100,26 @@
                         </div>
                     @endif
 
+                    <div class="row">
+                        <div class="form-group col-sm-5" style="color: #252525;">
+                            <p style="font-size: 14px;">Pritority</p>
+                        </div>
+                        <div class="form-group col-sm-4" style="font-size: 16px; color: #252525;">
+                            <p style="font-weight: bold;">{{ $selected_item_tag }}</p>
+                        </div>
+                    </div>
+
+                    @if (!$is_expired && !$is_claimed)
+                        <div class="row">
+                            <div class="form-group col-sm-5" style="color: #252525;">
+                                <p style="font-size: 14px;">Expiration Date</p>
+                            </div>
+                            <div class="form-group col-sm-4" style="font-size: 16px; color: #252525;">
+                                <p style="font-weight: bold;">{{ date('F d,Y', strtotime($expiration_date)) }}</p>
+                            </div>
+                        </div>
+                    @endif
+
                     @if ($is_claimed)
                         <!--CLAIMED DETAILS-->
                         <div class="row">

@@ -53,7 +53,7 @@
                 <!-- /.modal end-->
 
                 @if ($authorized)
-                    <button class="btn btn-default" data-target="#add-lost-item" data-toggle="modal" style="max-width: 7rem; height: 35px; font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button"><i class="fa fa-solid fa-plus"></i> Add Found Item</button>
+                    <button class="btn btn-default" data-target="#add-lost-item" data-toggle="modal" style="height: 35px; font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button"><i class="fa fa-solid fa-plus"></i> Add Found Item</button>
                 @endif
                 <!-- /.modal end-->
             </div>
@@ -75,6 +75,7 @@
                     @if ($authorized)
                         <th style="border-right: 1px solid #252525;">Finder's Name</th>
                     @endif
+                    <th style="border-right: 1px solid #252525;">Priority</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -89,6 +90,7 @@
                         @if ($authorized)
                             <td>{{ $item->finder_name }}</td>
                         @endif
+                        <td>{{ $item->getPriority->priority_tag }}</td>
                         <td>
                             @if ($authorized)
                                 <p class="btn btn-primary action-btn" data-target="#claim-item" data-toggle="modal" style="color: #3C58FF;  text-decoration: underline;" wire:click="get_data({{ $item->id }})">Claim</p>

@@ -104,6 +104,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link nav-link-button {{ setActiveLink('item-tags-page') }}" href="{{ route('item-tags-page') }}">
+                                <p style="color: #252525;">Item Tags</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link nav-link-button {{ setActiveLink('guidance-records-page') }}" href="{{ route('guidance-records-page') }}">
                                 <p style="color: #252525;">Guidance Records</p>
                             </a>

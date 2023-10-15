@@ -34,6 +34,22 @@
                             @enderror
                         </div>
                     </div>
+
+                    <div class="row" style="text-align: left;">
+                        <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
+                            <label for="select-type" style="font-weight: normal;">Item Tag</label>
+                            <div class="input-group-prepend">
+                                <select class="form-select form-select-sm mb-2" id="select-type" wire:model.live="item_tag_id">
+                                    @foreach ($item_tags as $tag)
+                                        <option @if ($item_tag_id == $tag->id) selected @endif value="{{ $tag->id }}">{{ $tag->priority_tag }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            @error('selected_item_tag')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
                     <div class="row" style="text-align: left;">
                         <!--DATE AND TIME FOUND-->
                         <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">

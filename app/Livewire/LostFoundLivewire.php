@@ -3,10 +3,12 @@
 namespace App\Livewire;
 
 use App\Models\ItemImages;
+use App\Models\ItemTags;
 use App\Models\ItemTypes;
 use App\Models\LostAndFound;
 use App\Models\UserAccounts;
 use App\Traits\Toasts;
+use Illuminate\Support\Carbon;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -16,6 +18,7 @@ class LostFoundLivewire extends Component
     use WithFileUploads;
     use Toasts;
     public $items, $item_types, $item_id, $item_type_id, $claimed_items;
+    public $item_tags, $selected_item_tag, $item_tag_id, $expiration_date, $is_expired, $expired_items;
     public $selected_item_type, $upload_item_image, $item_name, $item_image_id, $description;
     public $datetime_found, $finder_name, $location_found, $is_claimed, $claimer_name, $claimed_datetime;
     public $filterItemTypes = [];
@@ -25,6 +28,7 @@ class LostFoundLivewire extends Component
     public function mount()
     {
         $this->item_types = ItemTypes::all();
+        $this->item_tags = ItemTags::all();
         $this->applyFilter();
         $user_id = session('user_id');
         if ($user_id) {
@@ -47,12 +51,14 @@ class LostFoundLivewire extends Component
 
     public function applyFilter()
     {
-        $query = LostAndFound::select('lost_and_found.*')->where('is_claimed', false);
+        $query = LostAndFound::select('lost_and_found.*')->where('is_claimed', false)->where('is_expired', false);
         $query_claimed = LostAndFound::select('lost_and_found.*')->where('is_claimed', true);
+        $query_expired = LostAndFound::select('lost_and_found.*')->where('is_expired', true);
 
         if (!empty($this->filterItemTypes)) {
             $query->whereIn('item_type_id', $this->filterItemTypes);
             $query_claimed->whereIn('item_type_id', $this->filterItemTypes);
+            $query_expired->whereIn('item_type_id', $this->filterItemTypes);
         }
 
         if ($this->search) {
@@ -65,10 +71,16 @@ class LostFoundLivewire extends Component
                 ->orWhere('location_found', 'like', '%' . $this->search . '%')
                 ->orWhere('finder_name', 'like', '%' . $this->search . '%')
                 ->orWhere('claimer_name', 'like', '%' . $this->search . '%');
+
+            $query_expired->where('item_name', 'like', '%' . $this->search . '%')
+                ->orWhere('location_found', 'like', '%' . $this->search . '%')
+                ->orWhere('finder_name', 'like', '%' . $this->search . '%')
+                ->orWhere('claimer_name', 'like', '%' . $this->search . '%');
         }
 
         $this->items = $query->oldest()->get();
         $this->claimed_items = $query_claimed->oldest()->get();
+        $this->expired_items = $query_expired->oldest()->get();
     }
 
     public function resetFilter()
@@ -81,6 +93,7 @@ class LostFoundLivewire extends Component
     {
         $validateData = $this->validate([
             'selected_item_type' => 'required|integer',
+            'selected_item_tag' => 'required|integer',
             'upload_item_image' => 'required|image|mimes:jpeg,png,jpg|max:1024',
             'item_name' => 'required|max:255',
             'description' => 'nullable',
@@ -88,6 +101,11 @@ class LostFoundLivewire extends Component
             'finder_name' => 'required|max:255',
             'location_found' => 'required|max:255'
         ]);
+
+        $numberOfDays = ItemTags::find($this->selected_item_tag)->days_expired; // Change this to the desired number of days
+
+        $currentDate = Carbon::now();
+        $expirationDate = $currentDate->addDays($numberOfDays);
 
         if ($this->upload_item_image) {
             $image = file_get_contents($this->upload_item_image->getRealPath());
@@ -102,11 +120,13 @@ class LostFoundLivewire extends Component
         LostAndFound::create([
             'item_name' => $validateData['item_name'],
             'item_type_id' => $validateData['selected_item_type'],
+            'item_tag_id' => $validateData['selected_item_tag'],
             'item_image_id' => $this->item_image_id,
             'description' => $validateData['description'],
             'datetime_found' => $validateData['datetime_found'],
             'finder_name' => $validateData['finder_name'],
-            'location_found' => $validateData['location_found']
+            'location_found' => $validateData['location_found'],
+            'expiration_date' => $expirationDate
         ]);
         $this->showToast('success', 'The found item is added successfully.');
 
@@ -118,6 +138,7 @@ class LostFoundLivewire extends Component
     {
         $validateData = $this->validate([
             'item_type_id' => 'required|integer',
+            'item_tag_id' => 'required|integer',
             'upload_item_image' => 'nullable|image|mimes:jpeg,png,jpg|max:1024|',
             'item_name' => 'required|max:255',
             'description' => 'nullable',
@@ -128,6 +149,12 @@ class LostFoundLivewire extends Component
             'claimed_datetime' => Rule::requiredIf($this->is_claimed),
             'claimer_name' => Rule::requiredIf($this->is_claimed),
         ]);
+
+
+        $numberOfDays = ItemTags::find($this->item_tag_id)->days_expired; // Change this to the desired number of days
+
+        $currentDate = Carbon::now();
+        $expirationDate = $currentDate->addDays($numberOfDays);
 
         if ($this->upload_item_image) {
             $image = file_get_contents($this->upload_item_image->getRealPath());
@@ -140,6 +167,7 @@ class LostFoundLivewire extends Component
         LostAndFound::find($this->item_id)->update([
             'item_name' => $validateData['item_name'],
             'item_type_id' => $validateData['item_type_id'],
+            'item_tag_id' => $validateData['item_tag_id'],
             'item_image_id' => $this->item_image_id,
             'description' => $validateData['description'],
             'datetime_found' => $validateData['datetime_found'],
@@ -147,7 +175,8 @@ class LostFoundLivewire extends Component
             'location_found' => $validateData['location_found'],
             'is_claimed' => $validateData['is_claimed'],
             'claimed_datetime' => $validateData['claimed_datetime'],
-            'claimer_name' => $validateData['claimer_name']
+            'claimer_name' => $validateData['claimer_name'],
+            'expiration_date' => $expirationDate
         ]);
         $this->showToast('success', 'The item is updated successfully.');
 
@@ -191,7 +220,9 @@ class LostFoundLivewire extends Component
         $this->item_id = $item->id;
         $this->item_name = $item->item_name;
         $this->item_type_id = $item->item_type_id;
+        $this->item_tag_id = $item->item_tag_id;
         $this->selected_item_type = $item->getType->item_type;
+        $this->selected_item_tag = $item->getPriority->priority_tag;
         $this->item_image_id = $item->item_image_id;
         $this->description = $item->description;
         $this->datetime_found = $item->datetime_found;
@@ -200,6 +231,8 @@ class LostFoundLivewire extends Component
         $this->is_claimed = $item->is_claimed;
         $this->claimer_name = $item->claimer_name;
         $this->claimed_datetime = $item->claimed_datetime;
+        $this->expiration_date = $item->expiration_date;
+        $this->is_expired = $item->is_expired;
     }
 
     public function viewImage()
@@ -221,6 +254,9 @@ class LostFoundLivewire extends Component
     public function resetInputs()
     {
         $this->selected_item_type = null;
+        $this->item_type_id = null;
+        $this->item_tag_id = null;
+        $this->selected_item_tag = null;
         $this->upload_item_image = null;
         $this->item_name = null;
         $this->item_image_id = null;
