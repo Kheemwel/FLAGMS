@@ -20,7 +20,8 @@ class LostFoundLivewire extends Component
     public $items, $item_types, $item_id, $item_type_id, $claimed_items;
     public $item_tags, $selected_item_tag, $item_tag_id, $expiration_date, $is_expired, $expired_items;
     public $selected_item_type, $upload_item_image, $item_name, $item_image_id, $description;
-    public $datetime_found, $finder_name, $location_found, $is_claimed, $claimer_name, $claimed_datetime;
+    public $datetime_found, $finder_name, $location_found;
+    public  $is_claimed, $claimer_name, $claimer_contact, $claimer_email, $claimer_address, $claimed_datetime;
     public $filterItemTypes = [];
     public $search = '';
     public $authorized = false;
@@ -187,14 +188,20 @@ class LostFoundLivewire extends Component
     public function claimItem()
     {
         $validateData = $this->validate([
-            'claimed_datetime' => Rule::requiredIf($this->is_claimed),
-            'claimer_name' => Rule::requiredIf($this->is_claimed),
+            'claimed_datetime' => Rule::requiredIf($this->is_claimed) . '|date',
+            'claimer_name' => Rule::requiredIf($this->is_claimed) . '|string|max:255',
+            'claimer_contact' => Rule::requiredIf($this->is_claimed) . '|regex:/^\d{11}$/|max:11',
+            'claimer_email' => Rule::requiredIf($this->is_claimed) . '|email',
+            'claimer_address' => Rule::requiredIf($this->is_claimed) . '|string|max:255',
         ]);
 
         LostAndFound::find($this->item_id)->update([
             'is_claimed' => true,
             'claimed_datetime' => $validateData['claimed_datetime'],
-            'claimer_name' => $validateData['claimer_name']
+            'claimer_name' => $validateData['claimer_name'],
+            'claimer_contact' => $validateData['claimer_contact'],
+            'claimer_email' => $validateData['claimer_email'],
+            'claimer_address' => $validateData['claimer_address']
         ]);
         $this->showToast('success', 'The item is updated successfully.');
 
@@ -230,6 +237,9 @@ class LostFoundLivewire extends Component
         $this->location_found = $item->location_found;
         $this->is_claimed = $item->is_claimed;
         $this->claimer_name = $item->claimer_name;
+        $this->claimer_contact = $item->claimer_contact;
+        $this->claimer_email = $item->claimer_email;
+        $this->claimer_address = $item->claimer_address;
         $this->claimed_datetime = $item->claimed_datetime;
         $this->expiration_date = $item->expiration_date;
         $this->is_expired = $item->is_expired;
@@ -266,6 +276,9 @@ class LostFoundLivewire extends Component
         $this->location_found = null;
         $this->is_claimed = null;
         $this->claimer_name = null;
+        $this->claimer_contact = null;
+        $this->claimer_email = null;
+        $this->claimer_address = null;
         $this->claimed_datetime = null;
         $this->resetErrorBag();
     }

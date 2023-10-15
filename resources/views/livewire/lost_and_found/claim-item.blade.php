@@ -37,6 +37,33 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12" style="font-size: 14px; color: #252525; text-align: left; padding-left: 8px;">
+                            <label for="input-claimer-contact" style="font-weight: normal;">Claimer's Contact Number</label>
+                            <input class="form-control" id="input-claimer-contact" style="border: 1px solid #252525" type="tel" pattern="[0-9]{11}" wire:model='claimer_contact'>
+                        </div>
+                        @error('claimer_contact')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12" style="font-size: 14px; color: #252525; text-align: left; padding-left: 8px;">
+                            <label for="input-claimer-email" style="font-weight: normal;">Claimer's Email</label>
+                            <input class="form-control" id="input-claimer-email" style="border: 1px solid #252525" type="email" wire:model='claimer_email'>
+                        </div>
+                        @error('claimer_email')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12" style="font-size: 14px; color: #252525; text-align: left; padding-left: 8px;">
+                            <label for="input-claimer-address" style="font-weight: normal;">Claimer's Address</label>
+                            <input class="form-control" id="input-claimer-address" style="border: 1px solid #252525" type="text" wire:model='claimer_address'>
+                        </div>
+                        @error('claimer_address')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
                     <!------------------------------------------------------------------------------>
                 </div> <!-- /.card-body -->
                 <div class="card-footer">

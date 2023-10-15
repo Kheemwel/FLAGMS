@@ -46,6 +46,9 @@ return new class extends Migration
             $table->string('location_found');
             $table->boolean('is_claimed')->default(false);
             $table->string('claimer_name')->nullable();
+            $table->string('claimer_contact')->nullable();
+            $table->string('claimer_email')->nullable();
+            $table->string('claimer_address')->nullable();
             $table->dateTime('claimed_datetime')->nullable();
             $table->date('expiration_date');
             $table->boolean('is_expired')->default(false);
