@@ -5,9 +5,9 @@
         <input class="form-control float-right" name="table_search" placeholder="Search" style="height: 35px;" type="text" wire:model.live='search'>
     </div>
     <!--ADD ROLE BUTTON-->
-    <button class="btn btn-default" data-target="#addSanctionModal" data-toggle="modal" style="font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button">
+    <button class="btn btn-default" data-target="#addDisciplinaryActionModal" data-toggle="modal" style="font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button">
         <i aria-hidden="true" class="fa fa-plus"></i> 
-        Add New Sanction
+        Add New Disciplinary Action
     </button>
 </div>
 
@@ -18,17 +18,17 @@
             <thead style="background-color: #7684B9; color: white;">
                 <tr>
                     <th style="border-right: 1px solid #252525;">ID</th>
-                    <th style="border-right: 1px solid #252525;">Sanctions</th>
+                    <th style="border-right: 1px solid #252525;">Disciplinary Action</th>
                     <th style="border-right: 1px solid #252525;">Description</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($sanctions as $sanction)
+                @foreach ($disciplinary_actions as $disciplinary_action)
                     <tr>
-                        <th scope="row">{{ $sanction->id }}</th>
-                        <td>{{ $sanction->offenses_sanction }}</td>
-                        <td>{{ $sanction->description }}</td>
+                        <th scope="row">{{ $disciplinary_action->id }}</th>
+                        <td>{{ $disciplinary_action->action }}</td>
+                        <td>{{ $disciplinary_action->description }}</td>
                         <td>
                             <!--EDIT PROFILE-->
                             <button class="btn btn-primary action-btn" data-target="#stud-info-edit" data-toggle="modal">
@@ -42,7 +42,7 @@
                             </button>
 
                             {{-- DELETE PROFILE --}}
-                            <button class="btn btn-primary action-btn" wire:click="deleteSanction({{ $sanction->id }})">
+                            <button class="btn btn-primary action-btn" wire:click="deleteDisciplinaryAction({{ $disciplinary_action->id }})">
                                 <i aria-hidden="true" class="fa fa-trash"></i>
                             </button>
                         </td>

@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\OffensesSanctions;
+use App\Models\DisciplinaryActions;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,22 +12,31 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('offenses_sanctions', function (Blueprint $table) {
+        Schema::create('disciplinary_actions', function (Blueprint $table) {
             $table->id();
-            $table->string('offenses_sanction')->unique();
+            $table->string('action')->unique();
             $table->text('description')->nullable();
             $table->timestamps();
         });
 
-        OffensesSanctions::insert([
+        DisciplinaryActions::insert([
             [
-                'offenses_sanction' => 'Dismissal'
+                'action' => 'Dismissal'
             ],
             [
-                'offenses_sanction' => 'Suspension'
+                'action' => 'Suspension'
             ],
             [
-                'offenses_sanction' => 'Community Service'
+                'action' => 'Quarterly Academic Remediation'
+            ],
+            [
+                'action' => '3-Day Academic Cummunity Service'
+            ],
+            [
+                'action' => '2-Day Academic Cummunity Service'
+            ],
+            [
+                'action' => 'Oral Warning'
             ],
         ]);
     }
@@ -37,6 +46,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('offenses_sanctions');
+        Schema::dropIfExists('disciplinary_actions');
     }
 };

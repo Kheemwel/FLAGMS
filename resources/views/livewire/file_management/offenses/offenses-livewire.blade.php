@@ -29,8 +29,8 @@
                     </a>
                 </li>
                 <li class="nav-item" wire:ignore>
-                    <a aria-controls="custom-tabs-one-sanctions" aria-selected="false" class="nav-link" data-toggle="pill" href="#custom-tabs-one-sanctions" id="custom-tabs-one-sanctions-tab" role="tab">
-                        <h5 style="font-weight: bold;">Sanctions</h5>
+                    <a aria-controls="custom-tabs-one-disciplinary_actions" aria-selected="false" class="nav-link" data-toggle="pill" href="#custom-tabs-one-disciplinary_actions" id="custom-tabs-one-disciplinary_actions-tab" role="tab">
+                        <h5 style="font-weight: bold;">Disciplinary Actions</h5>
                     </a>
                 </li>
             </ul>
@@ -43,8 +43,8 @@
                 <div aria-labelledby="custom-tabs-one-categories-tab" class="tab-pane fade" id="custom-tabs-one-categories" role="tabpanel" wire:ignore.self>
                     @include('livewire.file_management.offenses.offenses-categories')
                 </div>
-                <div aria-labelledby="custom-tabs-one-sanctions-tab" class="tab-pane fade" id="custom-tabs-one-sanctions" role="tabpanel" wire:ignore.self>
-                    @include('livewire.file_management.offenses.offenses-sanctions')
+                <div aria-labelledby="custom-tabs-one-disciplinary_actions-tab" class="tab-pane fade" id="custom-tabs-one-disciplinary_actions" role="tabpanel" wire:ignore.self>
+                    @include('livewire.file_management.offenses.disciplinary-actions')
                 </div>
             </div>
         </div>
@@ -53,6 +53,6 @@
 
         @include('livewire.file_management.offenses.add-offenses')
         @include('livewire.file_management.offenses.add-offenses-category')
-        @include('livewire.file_management.offenses.add-sanctions')
+        @include('livewire.file_management.offenses.add-disciplinary-actions')
     </div>
 </div>

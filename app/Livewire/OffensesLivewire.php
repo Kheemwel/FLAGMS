@@ -2,9 +2,9 @@
 
 namespace App\Livewire;
 
+use App\Models\DisciplinaryActions;
 use App\Models\Offenses;
 use App\Models\OffensesCategories;
-use App\Models\OffensesSanctions;
 use App\Traits\Toasts;
 use Illuminate\Database\QueryException;
 use Livewire\Component;
@@ -14,13 +14,13 @@ class OffensesLivewire extends Component
     use Toasts;
     public $offenses, $offense, $offense_description, $category_id;
     public $categories, $category, $category_description;
-    public $sanctions, $sanction, $sanction_description;
+    public $disciplinary_actions, $disciplinary_action, $disciplinary_action_description;
 
     public function render()
     {
         $this->offenses = Offenses::all();
         $this->categories = OffensesCategories::all();
-        $this->sanctions = OffensesSanctions::all();
+        $this->disciplinary_actions = DisciplinaryActions::all();
         return view('livewire.file_management.offenses.offenses-livewire');
     }
 
@@ -57,19 +57,19 @@ class OffensesLivewire extends Component
         $this->resetInputFields();
     }
 
-    public function addSanction()
+    public function addDisciplinaryAction()
     {
         $validatedData = $this->validate([
-            'sanction' => 'required|max:255|unique:offenses_sanctions,offenses_sanction',
-            'sanction_description' => 'nullable',
+            'disciplinary_action' => 'required|max:255|unique:offenses_disciplinary_actions,offenses_disciplinary_action',
+            'disciplinary_action_description' => 'nullable',
         ]);
 
-        OffensesSanctions::create([
-            'offenses_sanction' => $validatedData['sanction'],
-            'description' => $validatedData['sanction_description'],
+        DisciplinaryActions::create([
+            'offenses_disciplinary_action' => $validatedData['disciplinary_action'],
+            'description' => $validatedData['disciplinary_action_description'],
         ]);
 
-        $this->showToast('success', 'The new sanction is added successfully.');
+        $this->showToast('success', 'The new disciplinary_action is added successfully.');
         $this->resetInputFields();
     }
 
@@ -88,10 +88,10 @@ class OffensesLivewire extends Component
         }
     }
 
-    public function deleteSanction($id)
+    public function deleteDisciplinaryAction($id)
     {
-        OffensesSanctions::find($id)->delete();
-        $this->showToast('success', 'The sanction is deleted successfully.');
+        DisciplinaryActions::find($id)->delete();
+        $this->showToast('success', 'The disciplinary_action is deleted successfully.');
     }
 
     public function resetInputFields()
@@ -101,7 +101,7 @@ class OffensesLivewire extends Component
         $this->category_id = null;
         $this->category = null;
         $this->category_description = null;
-        $this->sanction = null;
-        $this->sanction_description = null;
+        $this->disciplinary_action = null;
+        $this->disciplinary_action_description = null;
     }
 }
