@@ -71,8 +71,9 @@
         .nav-link-button.active {
             background-color: #0A0863 !important;
         }
-        .nav-link-button.active p, 
-        .nav-link-button.active i, 
+
+        .nav-link-button.active p,
+        .nav-link-button.active i,
         .nav-link-button.active iconify-icon {
             color: white !important;
         }
@@ -82,7 +83,8 @@
             background-color: white;
         } */
 
-        .nav-link-button:hover, .nav-link-button:focus {
+        .nav-link-button:hover,
+        .nav-link-button:focus {
             background-color: rgb(217, 217, 217) !important;
             /* Change color on hover or click */
         }

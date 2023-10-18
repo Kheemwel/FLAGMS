@@ -2,16 +2,24 @@
 
 namespace App\Livewire\Test;
 
+use App\Traits\Toasts;
+use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
+#[Layout('livewire.tests.test-container')]
 class TestLivewire extends Component
 {
     public $showContent = false;
     public $title = 'TEST';
+    public $timer = 0;
+    public $code;
+
+    protected $listeners = ['code'];
 
     public function render()
     {
-        return view('livewire.tests.test-livewire')->layout('livewire.tests.test-container', ['title' => $this->title]);
+        return view('livewire.tests.test-livewire');
     }
 
     public function setShowContent()
@@ -22,5 +30,16 @@ class TestLivewire extends Component
     public function alert()
     {
         $this->dispatch('alert');
+    }
+
+    public function sendCode()
+    {
+        $this->code = mt_rand(10000000, 99999999);
+        $this->dispatch('cooldown');
+    }
+
+    public function code()
+    {
+        $this->code = mt_rand(10000000, 99999999);
     }
 }
