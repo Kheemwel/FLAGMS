@@ -115,7 +115,7 @@ class ProfileLivewire extends Component
         // Update the password
         UserAccounts::find($this->user_id)->update([
             'password' => $validatedData['confirm_password'],
-            'hashed_password' => bcrypt($validatedData['current_password'])
+            'hashed_password' => bcrypt($validatedData['confirm_password'])
         ]);
 
         $this->showToast('success', 'Your password has been updated successfully.');
