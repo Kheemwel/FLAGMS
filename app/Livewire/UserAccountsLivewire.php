@@ -162,7 +162,7 @@ class UserAccountsLivewire extends Component
             'password' => 'required|max:255',
             'role' => 'required|max:255',
             'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
-            'email' => 'nullable|max:255'
+            'email' => 'required|email|unique:user_accounts,email|max:255'
         ];
 
         $customMessages = [

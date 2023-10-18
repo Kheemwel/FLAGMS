@@ -26,7 +26,8 @@ class LoginLivewire extends Component
 
     public function login()
     {
-        $user = UserAccounts::where('username', $this->username)->first();
+        // $user = UserAccounts::where('username', $this->username)->first();
+        $user = UserAccounts::where('email', $this->email)->first();
 
         if ($user && password_verify($this->password, $user->hashed_password)) {
             // Successful login

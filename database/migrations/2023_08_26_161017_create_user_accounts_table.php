@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('password');
             $table->string('hashed_password');
-            $table->string('email')->nullable();
+            $table->string('email')->unique();
             $table->unsignedBigInteger('role_id');
             $table->unsignedBigInteger('profile_picture_id')->nullable();
             $table->boolean('is_archive')->default(false);
@@ -39,6 +39,7 @@ return new class extends Migration
             'last_name' => 'admin', 
             'password' => 'admin',
             'hashed_password' => bcrypt('admin'),
+            'email' => 'kimdarwelbellgarmer358@gmail.com',
             'role_id' => 1,
         ]);
     }
