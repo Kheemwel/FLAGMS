@@ -43,9 +43,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeLivewire::class)->name('home-page');
 
-Route::view('/test', 'livewire.tests.test_livewire')->name('test-livewire-page');
-Route::view('/test-content', 'livewire.tests.test-container-content')->name('test-content-page');
-Route::view('/test-livewire', 'livewire.tests.test-livewire')->name('test-livewire-page');
+// Route::view('/test', 'livewire.tests.test_livewire')->name('test-livewire-page');
+// Route::view('/test-content', 'livewire.tests.test-container-content')->name('test-content-page');
+// Route::view('/test-livewire', 'livewire.tests.test-livewire')->name('test-livewire-page');
 Route::get('/test.livewire', TestLivewire::class)->name('test.livewire-page');
 
 Route::middleware([CheckUserCredentials::class])->group(function () {

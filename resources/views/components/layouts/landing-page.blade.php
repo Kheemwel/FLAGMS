@@ -108,6 +108,33 @@
         Livewire.on('loginModal', () => {
             $('#login-modal').modal('show');
         })
+        Livewire.on('showModal', (data) => {
+            const id = data[0];
+            $(id).modal('show');
+        })
+        Livewire.on('closeModal', (data) => {
+            const id = data[0];
+            $(id).modal('hide');
+        })
+
+        Livewire.on('cooldown', () => {
+            setTimeout(() => {
+                var button = $("#btn-send-code");
+                button.prop("disabled", true); // Disable the button
+
+                var timer = 30;
+                var countdownInterval = setInterval(function() {
+                    button.text(timer + 's'); // Update the button text
+                    timer--;
+
+                    if (timer < 0) {
+                        clearInterval(countdownInterval);
+                        button.text("Send Code"); // Reset the button text
+                        button.prop("disabled", false); // Enable the button
+                    }
+                }, 1000);
+            });
+        })
     </script>
     @yield('scripts')
 </body>
