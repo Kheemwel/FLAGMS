@@ -38,11 +38,11 @@
                         </div>
                     </div>
 
-                    <!--USERNAME-->
+                    <!--EMAIL-->
                     <div class="form-group col-sm-13" style="font-size: 14px; color: #252525; text-align: left;">
-                        <label for="input-Section" style="font-weight: normal;">Username</label>
-                        <input class="form-control" id="input-Section" style="border: 1px solid #252525" type="text" wire:model='username'>
-                        <x-error field='username' />
+                        <label for="input-Section" style="font-weight: normal;">Email</label>
+                        <input class="form-control" id="input-Section" style="border: 1px solid #252525" type="text" wire:model='email'>
+                        <x-error field='email' />
                     </div>
                 </div>
                 <!-- /.card-body -->

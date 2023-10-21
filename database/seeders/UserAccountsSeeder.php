@@ -16,16 +16,6 @@ class UserAccountsSeeder extends Seeder
      */
     public function run(): void
     {
-        // $password = Str::random(10);
-        // DB::table('user_accounts')->insert([
-        //     'username' => Str::random(10),
-        //     'role_id' => 1,
-        //     'first_name' => Str::random(10),
-        //     'last_name' => Str::random(10),
-        //     'password' => $password,
-        //     'hashed_password' => bcrypt($password),
-        //     'profile_picture_id' => 22,
-        // ]);
         UserAccounts::factory()->count(5)->create();
     }
 }

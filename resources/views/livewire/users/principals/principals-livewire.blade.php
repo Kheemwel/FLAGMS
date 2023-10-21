@@ -90,7 +90,6 @@
                             <tr>
                                 <th style="border-right: 1px solid #252525;">ID</th>
                                 <th style="border-right: 1px solid #252525;">Name</th>
-                                <th style="border-right: 1px solid #252525;">Username</th>
                                 <th style="border-right: 1px solid #252525;">Position</th>
                                 <th style="border-right: 1px solid #252525;">Registered At</th>
                                 <th>Action</th>
@@ -101,7 +100,6 @@
                                 <tr>
                                     <th scope="row">{{ $principal->id }}</th>
                                     <td>{{ $principal->getUserAccount->name }}</td>
-                                    <td>{{ $principal->getUserAccount->username }}</td>
                                     <td>{{ $principal->getPrincipalPosition->position }}</td>
                                     <td>{{ $principal->created_at->format('F d,Y   h:i A') }}</td>
                                     <td>

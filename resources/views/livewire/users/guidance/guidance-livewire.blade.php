@@ -33,7 +33,6 @@
                             <tr>
                                 <th style="border-right: 1px solid #252525;">ID</th>
                                 <th style="border-right: 1px solid #252525;">Name</th>
-                                <th style="border-right: 1px solid #252525;">Username</th>
                                 <th style="border-right: 1px solid #252525;">Registered At</th>
                                 <th>Action</th>
                             </tr>
@@ -43,7 +42,6 @@
                                 <tr>
                                     <th scope="row">{{ $guidance->id }}</th>
                                     <td>{{ $guidance->getUserAccount->name }}</td>
-                                    <td>{{ $guidance->getUserAccount->username }}</td>
                                     <td>{{ $guidance->created_at->format('F d,Y   h:i A') }}</td>
                                     <td>
                                         <button class="btn btn-primary action-btn" data-target="#stud-info-edit" data-toggle="modal">

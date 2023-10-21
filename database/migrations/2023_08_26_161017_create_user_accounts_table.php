@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('user_accounts', function (Blueprint $table) {
             $table->id();
-            $table->string('username')->unique();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('password');
@@ -34,7 +33,6 @@ return new class extends Migration
         });
 
         UserAccounts::create([
-            'username' => 'admin',
             'first_name' => 'FLA',
             'last_name' => 'GMS', 
             'password' => 'flagms@admin1',

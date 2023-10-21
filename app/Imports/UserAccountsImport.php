@@ -28,32 +28,24 @@ class UserAccountsImport implements ToModel, WithBatchInserts, WithProgressBar
     use Toasts;
     public function model(array $row)
     {
-        $username = $this->checkUsername($row[2], $row[0], $row[1]);
-        $password = $row[3] ? $row[3] : generatePassword();
-        // $idsArray = array_map('intval', explode(',', $row[8])); // fetch list of id in a row/cell
-        // $user = new UserAccounts([
-        //     'first_name' => $row[0],
-        //     'last_name' => $row[1],
-        //     'username' => $username,
-        //     'password' => $password,
-        //     'hashed_password' => bcrypt($password), // You can hash the password here
-        //     'role_id' => $row[4],
-        //     'email' => $row[5]
-        // ]);
+        $firstname = $row[0];
+        $lastname = $row[1];
+        $password = $row[2] ? $row[2] : generatePassword();
+        $role_id = $row[3];
+        $email = $row[4];
 
         $user = UserAccounts::create([
-            'first_name' => $row[0],
-            'last_name' => $row[1],
-            'username' => $username,
+            'first_name' => $firstname,
+            'last_name' => $lastname,
             'password' => $password,
             'hashed_password' => bcrypt($password), // You can hash the password here
-            'role_id' => $row[4],
-            'email' => $row[5]
+            'role_id' => $role_id,
+            'email' => $email
         ]);
 
         if ($user->getRole->role === 'Student') {
-            $school_level_id = $row[6];
-            $grade_level_id = $row[7];
+            $school_level_id = $row[5];
+            $grade_level_id = $row[6];
  
             Students::create([
                 'user_account_id' => $user->id,
@@ -68,7 +60,7 @@ class UserAccountsImport implements ToModel, WithBatchInserts, WithProgressBar
                 'user_account_id' => $user->id
             ]);
             
-            $ids = explode(',', str_replace(' ', '', $row[6]));
+            $ids = explode(',', str_replace(' ', '', $row[5]));
             $parent->children()->attach($ids);
         }
 
@@ -89,20 +81,11 @@ class UserAccountsImport implements ToModel, WithBatchInserts, WithProgressBar
 
         if ($user->email) {
             try {
-                Mail::to($user->email)->send(new AccountCreationMail($user->username, $user->password));
+                Mail::to($user->email)->send(new AccountCreationMail($user->password));
             } catch (Throwable $th) {
                 //
             }
         }
-    }
-
-    public function checkUsername($username, $firstname, $lastname)
-    {
-        $valid_username = $username ? $username : generateUsername($firstname, $lastname);
-        while(UserAccounts::where('username', $valid_username)->exists()) {
-            $valid_username = generateUsername($firstname, $lastname);
-        }
-        return $valid_username;
     }
 
     public function batchSize(): int

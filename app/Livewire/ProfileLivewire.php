@@ -14,7 +14,7 @@ class ProfileLivewire extends Component
 {
     use Toasts;
     use WithFileUploads;
-    public $user_id, $username, $role, $first_name, $last_name, $name, $password;
+    public $user_id, $email, $role, $first_name, $last_name, $name, $password;
     public  $profile_picture_id, $profile_picture;
     public $current_password, $new_password, $confirm_password;
 
@@ -23,7 +23,7 @@ class ProfileLivewire extends Component
         $this->user_id = session('user_id');
         if ($this->user_id) {
             $user = UserAccounts::find($this->user_id);
-            $this->username = $user->username;
+            $this->email = $user->email;
             $this->role = $user->getRole->role;
             $this->first_name = $user->first_name;
             $this->last_name = $user->last_name;
@@ -51,7 +51,7 @@ class ProfileLivewire extends Component
     public function resetInputs()
     {
         $user = UserAccounts::find($this->user_id);
-        $this->username = $user->username;
+        $this->email = $user->email;
         $this->password = $user->password;
         $this->profile_picture = null;
         $this->current_password = null;
@@ -63,7 +63,7 @@ class ProfileLivewire extends Component
     public function updateProfile()
     {
         $rules = [
-            'username' => 'required|unique:user_accounts,username,' . $this->user_id . '|max:255',
+            'email' => 'required|email|unique:user_accounts,email,' . $this->user_id . '|max:255',
             'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg|max:1024'
         ];
 
@@ -93,7 +93,7 @@ class ProfileLivewire extends Component
         }
 
         $user->update([
-            'username' => $validatedData['username'],
+            'email' => $validatedData['email'],
             'profile_picture_id' => $this->profile_picture_id
         ]);
         $this->showToast('success', 'Your Profile Updated Successfully');

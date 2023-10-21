@@ -13,7 +13,7 @@ use Throwable;
 class LoginLivewire extends Component
 {
     use Toasts;
-    public $id, $username, $password, $email;
+    public $id, $password, $email;
     public $errorMessage;
     public $rememberMe;
     public $code, $input_code;
@@ -26,7 +26,6 @@ class LoginLivewire extends Component
 
     public function login()
     {
-        // $user = UserAccounts::where('username', $this->username)->first();
         $user = UserAccounts::where('email', $this->email)->first();
 
         if ($user && password_verify($this->password, $user->hashed_password)) {
@@ -48,7 +47,7 @@ class LoginLivewire extends Component
             $this->resetInputFields();
             return redirect()->route('user-dashboard-page');
         } else {
-            $this->errorMessage = 'Invalid username or password';
+            $this->errorMessage = 'Invalid email or password';
         }
     }
 
@@ -106,7 +105,6 @@ class LoginLivewire extends Component
 
     public function resetInputFields()
     {
-        $this->username = null;
         $this->password = null;
         $this->code = null;
         $this->input_code = null;

@@ -119,15 +119,6 @@
                     </div>
                 @endif
                 <div class="row" style="margin-bottom: 1rem;">
-                    <!--USERNAME-->
-                    <div class="form-group col-sm-5" style="font-size: 14px; color: #252525;">
-                        <p class="card-title">Username</p>
-                    </div>
-                    <div class="form-group col-sm-4" style="font-size: 14px; color: #252525;">
-                        <p class="card-title" style="font-weight: bold;">{{ $username }}</p>
-                    </div>
-                </div>
-                <div class="row" style="margin-bottom: 1rem;">
                     <!--EMAIL-->
                     <div class="form-group col-sm-5" style="font-size: 14px; color: #252525;">
                         <p class="card-title">Email</p>

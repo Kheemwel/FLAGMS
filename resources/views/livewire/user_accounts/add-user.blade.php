@@ -75,6 +75,7 @@
                 @elseif ($role == 'Principal')
                     @include('livewire.user_accounts.add-principal')
                 @endif
+                {{-- EMAIL --}}
                 <div class="row">
                     <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
                         <label for="inputEmail" style="font-weight: normal;">Email</label>
@@ -82,19 +83,6 @@
                         @if ($errors->has('email'))
                             <span class="text-danger">{{ $errors->first('email') }}</span>
                         @endif
-                    </div>
-                </div>
-                <!--USERNAME-->
-                <div class="row">
-                    <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
-                        <label for="inputUsername" style="font-weight: normal;">Username</label>
-                        <input class="form-control" id="inputUsername" style="border: 1px solid #252525" type="text" wire:model="username">
-                        @if ($errors->has('username'))
-                            <span class="text-danger">{{ $errors->first('username') }}</span>
-                        @endif
-                    </div>
-                    <div class="form-group col-sm-6">
-                        <button class="btn btn-default" style=" font-size: 10px; margin-top: 35px; background-color: #0A0863; color: white;" type="button" wire:click='generateUsername()'>Generate Username</button>
                     </div>
                 </div>
                 <!--PASSWORD-->
