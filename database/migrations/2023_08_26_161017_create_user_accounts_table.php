@@ -35,11 +35,11 @@ return new class extends Migration
 
         UserAccounts::create([
             'username' => 'admin',
-            'first_name' => 'admin',
-            'last_name' => 'admin', 
-            'password' => 'admin',
-            'hashed_password' => bcrypt('admin'),
-            'email' => 'kimdarwelbellgarmer358@gmail.com',
+            'first_name' => 'FLA',
+            'last_name' => 'GMS', 
+            'password' => 'flagms@admin1',
+            'hashed_password' => bcrypt('flagms@admin1'),
+            'email' => 'flagms1@gmail.com',
             'role_id' => 1,
         ]);
     }
