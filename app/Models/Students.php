@@ -14,7 +14,7 @@ class Students extends Model
     protected $table = 'students';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'user_account_id', 'school_level_id', 'grade_level_id'
+        'user_account_id', 'school_level_id', 'grade_level_id', 'lrn'
     ];
 
     public function getUserAccount(): BelongsTo

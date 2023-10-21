@@ -46,11 +46,13 @@ class UserAccountsImport implements ToModel, WithBatchInserts, WithProgressBar
         if ($user->getRole->role === 'Student') {
             $school_level_id = $row[5];
             $grade_level_id = $row[6];
+            $lrn = $row[7];
  
             Students::create([
                 'user_account_id' => $user->id,
                 'school_level_id' => $school_level_id,
                 'grade_level_id' => $grade_level_id,
+                'lrn' => $lrn
             ]);
         }
 

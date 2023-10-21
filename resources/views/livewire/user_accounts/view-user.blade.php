@@ -62,6 +62,14 @@
                 @if ($role == 'Student')
                     <div class="row" style="margin-bottom: 1rem;">
                         <div class="form-group col-sm-5" style="font-size: 14px; color: #252525;">
+                            <p class="card-title">LRN</p>
+                        </div>
+                        <div class="form-group col-sm-4" style="font-size: 14px; color: #252525;">
+                            <p class="card-title" style="font-weight: bold;">{{ $lrn }}</p>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 1rem;">
+                        <div class="form-group col-sm-5" style="font-size: 14px; color: #252525;">
                             <p class="card-title">School Level</p>
                         </div>
                         <div class="form-group col-sm-4" style="font-size: 14px; color: #252525;">

@@ -37,7 +37,7 @@ class UserAccountsLivewire extends Component
     public $user_id, $name, $first_name, $last_name, $password, $hashed_password, $email;
     public $roles, $role_id, $role;
     public $profile_picture_id, $profile_picture;
-    public $school_levels, $grade_levels, $school_level, $grade_level;
+    public $school_levels, $grade_levels, $school_level, $grade_level, $lrn;
     public $principal_positions, $principal_position;
     public $students, $selectedStudents;
     public $parents, $children;
@@ -226,7 +226,8 @@ class UserAccountsLivewire extends Component
     {
         $rules = [
             'school_level' => 'required',
-            'grade_level' => 'required'
+            'grade_level' => 'required',
+            'lrn' => 'required|unique:students,lrn|min:12|max:12'
         ];
 
         $user = $this->store($rules);
@@ -240,6 +241,7 @@ class UserAccountsLivewire extends Component
                     'user_account_id' => $user->id,
                     'school_level_id' => $school_level_id,
                     'grade_level_id' => $grade_level_id,
+                    'lrn' => $this->lrn,
                 ]);
             } catch (Throwable $th) {
                 $this->showToast('error', $th);
@@ -376,6 +378,7 @@ class UserAccountsLivewire extends Component
         $this->email = null;
         $this->school_level = null;
         $this->grade_level = null;
+        $this->lrn = null;
         $this->principal_position = null;
         $this->selectedStudents = null;
         $this->batch_file = null;
@@ -401,6 +404,7 @@ class UserAccountsLivewire extends Component
         if ($this->role == 'Student') {
             $student = Students::where('user_account_id', $this->user_id)->first();
             $this->parents = $student->parents;
+            $this->lrn = $student->lrn;
 
             if ($student) {
                 $this->school_level = $student->schoolLevel->school_level;
