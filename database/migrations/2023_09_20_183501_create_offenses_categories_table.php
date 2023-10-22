@@ -21,9 +21,6 @@ return new class extends Migration
 
         OffensesCategories::insert([
             [
-                'offenses_category' => 'First Offense'
-            ],
-            [
                 'offenses_category' => 'Minor Offense'
             ],
             [

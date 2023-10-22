@@ -9,17 +9,17 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class AccountCreationMail extends Mailable
+class ForgotPasswordMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $password;
+    public $code;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($password)
+    public function __construct($code)
     {
-        $this->password = $password;
+        $this->code = $code;
     }
 
     /**
@@ -28,7 +28,7 @@ class AccountCreationMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Account Creation',
+            subject: 'Forgot Password',
         );
     }
 
@@ -38,7 +38,7 @@ class AccountCreationMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.account-created',
+            view: 'emails.forgot-password',
         );
     }
 

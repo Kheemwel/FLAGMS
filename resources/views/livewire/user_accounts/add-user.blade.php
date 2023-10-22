@@ -2,6 +2,13 @@
 <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="addUserModal" role='dialog' style="max-width: 100%;" wire:ignore.self>
     <div class="modal-dialog">
         <div class="modal-content">
+            <div wire:loading wire:target='addStudent, addParent, addPrincipal, addGuidance, addTeacher, addUser'>
+                <div class="overlay bg-white" style="border-radius: 20px;">
+                    <div>
+                        <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+                    </div>
+                </div>
+            </div>
             <div class="modal-header" style="border: transparent; padding: 10px;">
                 <button aria-label="Close" class="close" data-dismiss="modal" type="button" wire:click="resetInputFields()">
                     <span aria-hidden="true">&times;</span>
@@ -68,19 +75,7 @@
                 @elseif ($role == 'Principal')
                     @include('livewire.user_accounts.add-principal')
                 @endif
-                <!--USERNAME-->
-                <div class="row">
-                    <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
-                        <label for="inputUsername" style="font-weight: normal;">Username</label>
-                        <input class="form-control" id="inputUsername" style="border: 1px solid #252525" type="text" wire:model="username">
-                        @if ($errors->has('username'))
-                            <span class="text-danger">{{ $errors->first('username') }}</span>
-                        @endif
-                    </div>
-                    <div class="form-group col-sm-6">
-                        <button class="btn btn-default" style=" font-size: 10px; margin-top: 35px; background-color: #0A0863; color: white;" type="button" wire:click='generateUsername()'>Generate Username</button>
-                    </div>
-                </div>
+                {{-- EMAIL --}}
                 <div class="row">
                     <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
                         <label for="inputEmail" style="font-weight: normal;">Email</label>

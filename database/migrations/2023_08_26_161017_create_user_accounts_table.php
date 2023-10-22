@@ -15,12 +15,11 @@ return new class extends Migration
     {
         Schema::create('user_accounts', function (Blueprint $table) {
             $table->id();
-            $table->string('username')->unique();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('password');
             $table->string('hashed_password');
-            $table->string('email')->nullable();
+            $table->string('email')->unique();
             $table->unsignedBigInteger('role_id');
             $table->unsignedBigInteger('profile_picture_id')->nullable();
             $table->boolean('is_archive')->default(false);
@@ -34,11 +33,11 @@ return new class extends Migration
         });
 
         UserAccounts::create([
-            'username' => 'admin',
-            'first_name' => 'admin',
-            'last_name' => 'admin', 
-            'password' => 'admin',
-            'hashed_password' => bcrypt('admin'),
+            'first_name' => 'FLA',
+            'last_name' => 'GMS', 
+            'password' => 'flagms@admin1',
+            'hashed_password' => bcrypt('flagms@admin1'),
+            'email' => 'flagms1@gmail.com',
             'role_id' => 1,
         ]);
     }

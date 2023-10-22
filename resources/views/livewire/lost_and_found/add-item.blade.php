@@ -9,7 +9,7 @@
             <form wire:submit='addItem()'>
                 <div class="modal-body" style="margin-left: 1rem; max-height: 500px; overflow-y: auto;">
                     <!--MODAL FORM TITLE-->
-                    <p class="card-title" style="color: #0A0863; font-weight: bold; font-size: 22px;">ADD LOST ITEM</p> <br><br><br>
+                    <p class="card-title" style="color: #0A0863; font-weight: bold; font-size: 22px;">ADD FOUND ITEM</p> <br><br><br>
 
                     <!--IMPORTANT USER DETAILS FORM SECTION-->
                     <!--------------------USER'S INFORMATION------------------------>
@@ -28,6 +28,24 @@
                                 </select>
                             </div>
                             @error('selected_item_type')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row" style="text-align: left;">
+                        <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
+                            <label for="select-type" style="font-weight: normal;">Item Tag</label>
+                            <div class="input-group-prepend">
+                                <select class="form-select form-select-sm mb-2" id="select-type" wire:model.live="selected_item_tag">
+                                    @if ($selected_item_tag == '')
+                                        <option selected>Select item Tag</option>
+                                    @endif
+                                    @foreach ($item_tags as $tag)
+                                        <option value="{{ $tag->id }}">{{ $tag->priority_tag }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            @error('selected_item_tag')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>

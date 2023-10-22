@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class OffensesSanctions extends Model
+class ItemTags extends Model
 {
     use HasFactory;
-    protected $table = 'offenses_sanctions';
+    protected $table = 'item_tags';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'offenses_sanction', 'description'
+        'priority_tag', 'days_expired'
     ];
 }

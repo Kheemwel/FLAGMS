@@ -25,7 +25,7 @@
                 <tr>
                     <x-table-column-header :direction="$sortField === 'id' ? $sortDirection : null" click="sortBy('id')" label='ID' sortable />
                     <x-table-column-header :direction="$sortField === 'name' ? $sortDirection : null" click="sortBy('name')" label='Name' sortable />
-                    <x-table-column-header :direction="$sortField === 'username' ? $sortDirection : null" click="sortBy('username')" label='Username' sortable />
+                    <x-table-column-header :direction="$sortField === 'email' ? $sortDirection : null" click="sortBy('email')" label='Email' sortable />
                     <x-table-column-header :direction="$sortField === 'role' ? $sortDirection : null" click="sortBy('role')" label='Role' sortable />
                     <th>Action</th>
                 </tr>
@@ -35,7 +35,7 @@
                     <tr>
                         <th scope="row">{{ $user->id }}</th>
                         <td>{{ $user->name }}</td>
-                        <td>{{ $user->username }}</td>
+                        <td>{{ $user->email }}</td>
                         <td>{{ $user->role }}</td>
                         <td>
                             <!--VIEW PROFILE-->
@@ -43,13 +43,13 @@
                                 <i aria-hidden="true" class="fa fa-eye"></i>
                             </button>
 
-                            <!--USER INFO EDIT BUTTON-->
-                            <button class="btn btn-primary action-btn" data-target="#stud-info-edit" data-toggle="modal" title='Edit Account' tooltip='enable' wire:click="get_data({{ $user->id }})">
-                                <i class="fa fa-solid fa-pen"></i>
-                            </button>
-
-                            {{-- ARCHIVE USER --}}
                             @if ($my_id !== $user->id)
+                                <!--USER INFO EDIT BUTTON-->
+                                <button class="btn btn-primary action-btn" data-target="#stud-info-edit" data-toggle="modal" title='Edit Account' tooltip='enable' wire:click="get_data({{ $user->id }})">
+                                    <i class="fa fa-solid fa-pen"></i>
+                                </button>
+
+                                {{-- ARCHIVE USER --}}
                                 <button class="btn btn-primary action-btn" title='Archive Account' tooltip='enable' wire:click="archive({{ $user->id }})">
                                     <i aria-hidden="true" class="fa fa-archive"></i>
                                 </button>

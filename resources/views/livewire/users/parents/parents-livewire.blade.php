@@ -90,7 +90,6 @@
                             <tr>
                                 <th style="border-right: 1px solid #252525;">ID</th>
                                 <th style="border-right: 1px solid #252525;">Name</th>
-                                <th style="border-right: 1px solid #252525;">Username</th>
                                 <th style="border-right: 1px solid #252525;">Children</th>
                                 <th style="border-right: 1px solid #252525;">Registered At</th>
                                 <th>Action</th>
@@ -101,7 +100,6 @@
                                 <tr>
                                     <th scope="row">{{ $parent->id }}</th>
                                     <td>{{ $parent->getUserAccount->name }}</td>
-                                    <td>{{ $parent->getUserAccount->username }}</td>
                                     <td>
                                         @foreach ($parent->children as $child)
                                             <p>{{ $child->getUserAccount->name}}</p>

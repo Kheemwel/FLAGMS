@@ -18,8 +18,57 @@
     @if ($showContent)
         @include('livewire.tests.other')
     @endif
+
+    <br>
+    <br>
+    <br>
+
+    <h1>Hello</h1>
+
+    <b>Code {{ $code }}</b>
+    <button id='btn-cooldown' wire:ignore>Start CoolDown</button>
+    <button id='btn-code' wire:click='sendCode()'>Send Code</button>
+    <p>Cooldown: {{ $timer }}</p>
 </div>
 @section('scripts')
+    <script>
+        Livewire.on('cooldown', () => {
+            setTimeout(() => {
+                var button = $("#btn-code");
+                button.prop("disabled", true); // Disable the button
+
+                var timer = 5;
+                var countdownInterval = setInterval(function() {
+                    button.text(timer + 's'); // Update the button text
+                    timer--;
+
+                    if (timer < 0) {
+                        clearInterval(countdownInterval);
+                        button.text("Send Code"); // Reset the button text
+                        button.prop("disabled", false); // Enable the button
+                    }
+                }, 1000);
+            });
+        });
+
+        $("#btn-cooldown").on("click", function() {
+            var button = $(this); // Cache the button element
+            button.prop("disabled", true); // Disable the button
+            Livewire.dispatch('code');
+
+            var timer = 5;
+            var countdownInterval = setInterval(function() {
+                button.text(timer + 's'); // Update the button text
+                timer--;
+
+                if (timer < 0) {
+                    clearInterval(countdownInterval);
+                    button.text("Start Cooldown"); // Reset the button text
+                    button.prop("disabled", false); // Enable the button
+                }
+            }, 1000);
+        });
+    </script>
     <script>
         Livewire.on('alert', () => {
             alert('ahahah');

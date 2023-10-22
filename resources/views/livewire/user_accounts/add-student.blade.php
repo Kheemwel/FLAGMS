@@ -29,3 +29,10 @@
         @enderror
     </div>
 </div>
+<div class="row">
+    <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
+        <label for="inputEmail" style="font-weight: normal;">LRN</label>
+        <input class="form-control" id="inputEmail" style="border: 1px solid #252525" type="text" wire:model="lrn">
+        <x-error field='lrn'/>
+    </div>
+</div>

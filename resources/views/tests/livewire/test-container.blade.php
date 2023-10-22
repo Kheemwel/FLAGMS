@@ -7,6 +7,8 @@
     <meta content="ie=edge" http-equiv="X-UA-Compatible">
     @yield('css')
     @livewireStyles()
+    <!-- jQuery -->
+    <script src="adminLTE-3.2/plugins/jquery/jquery.min.js"></script>
 </head>
 
 <body>
@@ -14,7 +16,7 @@
 
     {{-- @yield('content') --}}
     {{ $slot }}
-    {{ $title }}
+    {{-- {{ $title }} --}}
     @livewireScripts()
     @stack('scripts')
     @yield('scripts')
