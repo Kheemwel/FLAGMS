@@ -1,4 +1,4 @@
-<nav class="main-header navbar sticky-top navbar-expand navbar-white navbar-light" style="border-color: transparent; background-color: rgb(253, 253, 253);">
+<nav class="main-header navbar sticky-top navbar-expand navbar-white navbar-light" style="border-color: transparent; background-color: rgb(253, 253, 253); margin-right: 2rem;">
 
     <!-- Left navbar links -->
     <ul class="navbar-nav">
