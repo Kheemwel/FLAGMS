@@ -28,7 +28,7 @@
                     <div class="form-check" style="font-size: 14px; color: #252525; margin-bottom: 3rem; margin-top: 1rem">
                         <input class="form-check-input" id="cbPass" type="checkbox" wire:model="rememberMe">
                         <label class="form-check-label col-6" for="cbPass">Remember Me</label>
-                        <a class="link col-6" data-dismiss="modal" data-toggle="modal" data-target="#forgotPasswordModal">Forgot Password?</a>
+                        <a class="link col-6" data-dismiss="modal" data-toggle="modal" data-target="#forgotPasswordModal" style="cursor:pointer;">Forgot Password?</a>
                     </div>
                     <p class="text-danger">{{ $errorMessage }}</p>
                     <div class="form-group col-sm-12 d-flex justify-content-center" style="margin-bottom: 3rem;">

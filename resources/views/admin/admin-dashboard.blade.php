@@ -24,7 +24,7 @@
 
 <div>
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper" style="background-color:  rgb(253, 253, 253); padding-left: 2rem;">
+    <div class="content-wrapper" style="background-color:  rgb(253, 253, 253); padding-left: 2rem; margin-right: 2rem;">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
@@ -45,7 +45,7 @@
                         <div class="row">
                             <div class="col-lg-4 col-6">
                                 <!-- small box -->
-                                <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); border-radius: 10px; height: 100px;">
+                                <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 100px;">
                                     <div class="inner">
                                         <p style="margin: 0;">Total # of Students</p>
 
@@ -55,7 +55,7 @@
                             </div>
                             <div class="col-lg-4 col-6">
                                 <!-- small box -->
-                                <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); border-radius: 10px; height: 100px;">
+                                <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 100px;">
                                     <div class="inner">
                                         <p style="margin: 0;"># of Junior High Students</p>
 
@@ -65,7 +65,7 @@
                             </div>
                             <div class="col-lg-4 col-6">
                                 <!-- small box -->
-                                <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); border-radius: 10px; height: 100px;">
+                                <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 100px;">
                                     <div class="inner">
                                         <p style="margin: 0;"># of Senior High Students</p>
 
@@ -77,7 +77,7 @@
                         <div class="row">
                             <div class="col-lg-4 col-6">
                                 <!-- small box -->
-                                <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); border-radius: 10px; height: 100px;">
+                                <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 100px;">
                                     <div class="inner">
                                         <p style="margin: 0;"># of Anecdotal Reports</p>
 
@@ -87,7 +87,7 @@
                             </div>
                             <div class="col-lg-4 col-6">
                                 <!-- small box -->
-                                <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); border-radius: 10px; height: 100px;">
+                                <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 100px;">
                                     <div class="inner">
                                         <p style="margin: 0;"># of Violation Reports</p>
 
@@ -97,7 +97,7 @@
                             </div>
                             <div class="col-lg-4 col-6">
                                 <!-- small box -->
-                                <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); border-radius: 10px; height: 100px;">
+                                <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 100px;">
                                     <div class="inner">
                                         <p style="margin: 0; font-size: 14px;"># of Home Visitation Reports</p>
 
@@ -109,7 +109,7 @@
                         <p style="font-weight: bold; font-size: 26px;">Student Violations Analysis</p>
                         <div class="row">
                             <div class="col-lg-12 col-6">
-                                <div class="card" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); border-radius: 10px; ">
+                                <div class="card" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; ">
                                     <!--Violation PieChart-->
                                     <div class="tab-content p-0">
                                         <canvas id="pieChart" style="min-height: 250px; height: 400px; max-height: 400px; max-width: 100%; margin-bottom: 2rem; margin-top: 2rem;"></canvas>
@@ -123,7 +123,7 @@
                         <div class="row">
                             <div class="col-lg-12 col-6">
                                 <!-- CALENDAR -->
-                                <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); border-radius: 10px; padding: 2px; margin-left: 2rem">
+                                <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; padding: 2px; margin-left: 2rem">
                                     <div id="calendar" style="width: auto; font-size: 10px; padding-left: 1rem; padding-bottom: 1rem; padding-right: 1rem;">
                                     </div>
                                 </div>
@@ -132,7 +132,7 @@
                         <div class="row">
                             <div class="col-lg-12 col-6">
                                 <!-- UPCOMING EVENTS -->
-                                <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); border-radius: 10px; padding: 5px; margin-left: 2rem;">
+                                <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; padding: 5px; margin-left: 2rem;">
                                     <div class="row">
                                         <div class="col-10" style="padding: 1rem;">
                                             <p style="font-size: 24px; font-weight: bold; color: #252525; float: left;">
@@ -144,7 +144,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-2 d-flex flex-column justify-content-center" style="padding: 1rem;">
-                                            <p style="font-size: 14px; font-weight: bold; color: #6256AC; text-align: center;">
+                                            <p style="font-size: 14px; font-weight: bold; color: #006400; text-align: center;">
                                                 <i class="fa fa-solid fa-circle"></i>
                                             </p>
                                         </div>
@@ -161,7 +161,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-2 d-flex flex-column justify-content-center" style="padding: 1rem;">
-                                            <p style="font-size: 14px; font-weight: bold; color: #FA4481; text-align: center;">
+                                            <p style="font-size: 14px; font-weight: bold; color: #3C58FF; text-align: center;">
                                                 <i class="fa fa-solid fa-circle"></i>
                                             </p>
                                         </div>
@@ -178,7 +178,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-2 d-flex flex-column justify-content-center" style="padding: 1rem;">
-                                            <p style="font-size: 14px; font-weight: bold; color: #FC993E; text-align: center;">
+                                            <p style="font-size: 14px; font-weight: bold; color: #6256AC; text-align: center;">
                                                 <i class="fa fa-solid fa-circle"></i>
                                             </p>
                                         </div>
@@ -193,7 +193,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
