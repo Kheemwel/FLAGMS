@@ -86,17 +86,12 @@
                             @enderror
                         </div>
                     </div>
-                    <!--CHILD/STUDENT NAME-->
-                    {{-- <div class="form-group col-sm-13" style="font-size: 14px; color: #252525; text-align: left;">
-                         <label for="input-std-name" style="font-weight: normal;">Child / Student Name</label>
-                         <input type="text" class="form-control" id="input-std-name" style="border: 1px solid #252525">
-                     </div> --}}
 
-                    <!--USERNAME-->
+                    <!--EMAIL-->
                     <div class="form-group col-sm-13" style="font-size: 14px; color: #252525; text-align: left;">
                         <label for="input-Section" style="font-weight: normal;">Username</label>
-                        <input class="form-control" id="input-Section" style="border: 1px solid #252525" type="text" wire:model="username">
-                        @error('username')
+                        <input class="form-control" id="input-Section" style="border: 1px solid #252525" type="text" wire:model="email">
+                        @error('email')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>

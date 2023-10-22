@@ -7,7 +7,7 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-#[Layout('livewire.tests.test-container')]
+#[Layout('tests.livewire.test-container')]
 class TestLivewire extends Component
 {
     public $showContent = false;
@@ -19,7 +19,7 @@ class TestLivewire extends Component
 
     public function render()
     {
-        return view('livewire.tests.test-livewire');
+        return view('tests.livewire.test-livewire');
     }
 
     public function setShowContent()

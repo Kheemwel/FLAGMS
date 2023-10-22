@@ -46,10 +46,10 @@
                     <div class="row">
                         <!--USERNAME-->
                         <div class="form-group col-sm-4">
-                            <label style="font-size: 18px; font-weight: bold; margin-right: 2;">Username</label>
+                            <label style="font-size: 18px; font-weight: bold; margin-right: 2;">Email</label>
                         </div>
                         <div class="form-group col-sm-8">
-                            <label style="font-size: 18px; font-weight: normal; margin-left: 2rem;">{{ $username }}</label>
+                            <label style="font-size: 18px; font-weight: normal; margin-left: 2rem;">{{ $email }}</label>
                         </div>
                     </div>
                 </div>

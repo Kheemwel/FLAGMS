@@ -15,10 +15,6 @@
                 <div class="modal-body" style="margin-left: 2rem; margin-right: 2rem; max-height: 500px; overflow-y: auto;">
                     <!--MODAL FORM TITLE-->
                     <p class="form-group col-sm-12" style="color: #252525; font-weight: bold; font-size: 35px; text-align: center;">LOGIN</p> <br><br>
-                    <!--USERNAME-->
-                    {{-- <div class="form-group col-sm-13" style="font-size: 14px; color: #252525;">
-                        <input class="form-control" id="input-username" placeholder="Username" style="border-left: none; border-top: none; border-right: none; border-bottom: 1px solid #252525" type="text" wire:model='username'>
-                    </div> --}}
                     <div class="form-group col-sm-13" style="font-size: 14px; color: #252525;">
                         <input class="form-control" id="input-email" placeholder="Email" style="border-left: none; border-top: none; border-right: none; border-bottom: 1px solid #252525" type="email" wire:model='email'>
                     </div>

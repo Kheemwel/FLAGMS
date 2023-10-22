@@ -12,14 +12,13 @@ use Illuminate\Queue\SerializesModels;
 class AccountCreationMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $username, $password;
+    public $password;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($username, $password)
+    public function __construct($password)
     {
-        $this->username = $username;
         $this->password = $password;
     }
 

@@ -34,10 +34,10 @@ class UserAccountsLivewire extends Component
     use WithFileUploads;
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $user_id, $name, $first_name, $last_name, $username, $password, $hashed_password, $email;
+    public $user_id, $name, $first_name, $last_name, $password, $hashed_password, $email;
     public $roles, $role_id, $role;
     public $profile_picture_id, $profile_picture;
-    public $school_levels, $grade_levels, $school_level, $grade_level;
+    public $school_levels, $grade_levels, $school_level, $grade_level, $lrn;
     public $principal_positions, $principal_position;
     public $students, $selectedStudents;
     public $parents, $children;
@@ -85,7 +85,7 @@ class UserAccountsLivewire extends Component
             $query_normal->where(function ($query) {
                 $query->where('first_name', 'like', '%' . $this->search . '%')
                     ->orWhere('last_name', 'like', '%' . $this->search . '%')
-                    ->orWhere('username', 'like', '%' . $this->search . '%')
+                    ->orWhere('email', 'like', '%' . $this->search . '%')
                     ->orWhere('role', 'like', '%' . $this->search . '%');
             });
 
@@ -93,7 +93,7 @@ class UserAccountsLivewire extends Component
             $query_archives->where(function ($query) {
                 $query->where('first_name', 'like', '%' . $this->search . '%')
                     ->orWhere('last_name', 'like', '%' . $this->search . '%')
-                    ->orWhere('username', 'like', '%' . $this->search . '%')
+                    ->orWhere('email', 'like', '%' . $this->search . '%')
                     ->orWhere('role', 'like', '%' . $this->search . '%');
             });
         }
@@ -158,7 +158,6 @@ class UserAccountsLivewire extends Component
         $rules = [
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
-            'username' => 'required|unique:user_accounts,username|max:255',
             'password' => 'required|max:255',
             'role' => 'required|max:255',
             'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
@@ -192,7 +191,6 @@ class UserAccountsLivewire extends Component
             $user = UserAccounts::create([
                 'first_name' => $validatedData['first_name'],
                 'last_name' => $validatedData['last_name'],
-                'username' => $validatedData['username'],
                 'password' => $validatedData['password'],
                 'hashed_password' => $validatedData['hashed_password'],
                 'role_id' => $role_id->id,
@@ -205,8 +203,7 @@ class UserAccountsLivewire extends Component
 
         if ($user->email) {
             try {
-                Mail::to($user->email)->send(new AccountCreationMail($user->username, $user->password));
-                $this->showToast('success', 'The username and password are now sent to the email.');
+                Mail::to($user->email)->send(new AccountCreationMail($user->password));
             } catch (Throwable $th) {
                 $this->showToast('error', $th->getMessage());
             }
@@ -229,7 +226,8 @@ class UserAccountsLivewire extends Component
     {
         $rules = [
             'school_level' => 'required',
-            'grade_level' => 'required'
+            'grade_level' => 'required',
+            'lrn' => 'required|unique:students,lrn|min:12|max:12'
         ];
 
         $user = $this->store($rules);
@@ -243,6 +241,7 @@ class UserAccountsLivewire extends Component
                     'user_account_id' => $user->id,
                     'school_level_id' => $school_level_id,
                     'grade_level_id' => $grade_level_id,
+                    'lrn' => $this->lrn,
                 ]);
             } catch (Throwable $th) {
                 $this->showToast('error', $th);
@@ -318,10 +317,10 @@ class UserAccountsLivewire extends Component
         $rules = [
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
-            'username' => 'required|unique:user_accounts,username,' . $this->user_id . '|max:255',
             'password' => 'required|max:255',
             'role_id' => 'required|integer',
-            'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg|max:1024'
+            'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
+            'email' => 'required|email|unique:user_accounts,email,' . $this->user_id . '|max:255'
         ];
 
         $customMessages = [
@@ -356,7 +355,7 @@ class UserAccountsLivewire extends Component
         $user->update([
             'first_name' => $validatedData['first_name'],
             'last_name' => $validatedData['last_name'],
-            'username' => $validatedData['username'],
+            'email' => $validatedData['email'],
             'password' => $validatedData['password'],
             'hashed_password' => $validatedData['hashed_password'],
             'role_id' => $role_id->id,
@@ -372,7 +371,6 @@ class UserAccountsLivewire extends Component
     {
         $this->first_name = null;
         $this->last_name = null;
-        $this->username = null;
         $this->password = null;
         $this->hashed_password = null;
         $this->role = null;
@@ -380,6 +378,7 @@ class UserAccountsLivewire extends Component
         $this->email = null;
         $this->school_level = null;
         $this->grade_level = null;
+        $this->lrn = null;
         $this->principal_position = null;
         $this->selectedStudents = null;
         $this->batch_file = null;
@@ -390,7 +389,6 @@ class UserAccountsLivewire extends Component
     {
         $user = UserAccounts::find($id);
         $this->user_id = $user->id;
-        $this->username = $user->username;
         $this->first_name = $user->first_name;
         $this->last_name = $user->last_name;
         $this->name = $user->name;
@@ -406,6 +404,7 @@ class UserAccountsLivewire extends Component
         if ($this->role == 'Student') {
             $student = Students::where('user_account_id', $this->user_id)->first();
             $this->parents = $student->parents;
+            $this->lrn = $student->lrn;
 
             if ($student) {
                 $this->school_level = $student->schoolLevel->school_level;
@@ -485,11 +484,6 @@ class UserAccountsLivewire extends Component
 
             $this->showToast('success', 'User Unarchived Successfully');
         }
-    }
-
-    public function generateUsername()
-    {
-        $this->username = generateUsername($this->first_name, $this->last_name);
     }
 
     public function generatePassword()
