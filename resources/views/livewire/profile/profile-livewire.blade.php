@@ -16,8 +16,8 @@
                 <img alt="user profile" src="{{ $this->viewProfile() }}" style=" height: 150px; width: 150px;">
                 <label style="font-size: 26px; color: #252525ce; line-height: 5%; margin-left: 1rem; margin-top: 23px;">{{ $name }}</label>
                 <div class="d-flex justify-content-end">
-                    <button class="btn btn-default" data-target="#edit-profile" data-toggle="modal" style="color: white; background-color: #080743; font-size: 12px;"><i class="fa fa-solid fa-pen"></i>Edit Profile</button>
-                    <button class="btn btn-default" data-target="#change-password" data-toggle="modal" style="color: white; background-color: #080743; font-size: 12px;"><i class="fa fa-solid fa-pen"></i>Change Password</button>
+                    <button class="btn btn-default" data-target="#edit-profile" data-toggle="modal" style="color: white; background-color: #080743; font-size: 12px; margin-right: 1rem;"><i class="fa fa-solid fa-pen"></i> &nbsp Edit Profile</button>
+                    <button class="btn btn-default" data-target="#change-password" data-toggle="modal" style="color: white; background-color: #080743; font-size: 12px;"><i class="fa fa-solid fa-pen"></i> &nbsp Change Password</button>
                 </div>
             </div>
             <!----------------------------------------------------------------------------------------->

@@ -23,7 +23,7 @@
                     <div class="input-group col-sm-13" style="font-size: 14px; color: #252525; border-radius: 5px; border: 1px solid black">
                         <input class="form-control" id="input-code" placeholder="" style="border: none" type="text" wire:model="input_code">
                         <div class="input-group-append" wire:ignore>
-                            <button class="btn btn-primary" id='btn-send-code' wire:click.prevent='sendCode()'>Send Code</button>
+                            <button class="btn btn-primary" id='btn-send-code' wire:click.prevent='sendCode()' style="background-color: transparent; border-color: transparent; color: #6256AC;">Send Code</button>
                         </div>
                     </div>
                     <p class="text-danger">{{ $errorMessage }}</p>
