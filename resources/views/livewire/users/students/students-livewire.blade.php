@@ -1,5 +1,8 @@
 @section('head')
     <title>Admin | Students</title>
+    <!-- Select2 CSS -->
+    <link href="adminLTE-3.2/plugins/select2/css/select2.min.css" rel="stylesheet">
+    <link href="adminLTE-3.2/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css" rel="stylesheet">
 
     <style>
         /* For Eye Icons of Anecdotal and Summary Section inside the table */
@@ -64,6 +67,11 @@
             color: #ffffff;
         }
     </style>
+@endsection
+
+@section('head-scripts')
+    {{-- Select2 JS --}}
+    <script src="adminLTE-3.2/plugins/select2/js/select2.full.min.js"></script>
 @endsection
 
 <div class="content-wrapper" style="background-color:  rgb(253, 253, 253); padding-left: 2rem;">
@@ -191,14 +199,14 @@
                                     <td>{{ $student->schoolLevel->school_level }}</td>
                                     <td>Grade {{ $student->gradeLevel->grade_level }}</td>
                                     <td>
-                                        <a class="btn btn-primary action-btn" data-target="#anecdotal-btn" data-toggle="modal" href="#">
+                                        <button class="btn btn-primary action-btn" data-target="#anecdotal-btn" data-toggle="modal" wire:click='getData({{ $student->id }})'>
                                             <i aria-hidden="true" class="fa fa-eye"></i>
-                                        </a>
+                                        </button>
                                     </td>
                                     <td>
-                                        <a class="btn btn-primary action-btn" data-target="#summary-btn" data-toggle="modal" href="#">
+                                        <button class="btn btn-primary action-btn" data-target="#summary-btn" data-toggle="modal">
                                             <i aria-hidden="true" class="fa fa-eye"></i>
-                                        </a>
+                                        </button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -206,16 +214,33 @@
                     </table>
                 </div>
             </div>
-
-            @include('livewire.users.students.anecdotal-window')
-            @include('livewire.users.students.summary-window')
-            @include('livewire.users.students.edit-student')
         </div>
     </div>
+    @include('livewire.users.students.anecdotal-window')
+    @include('livewire.users.students.summary-window')
+    @include('livewire.users.students.edit-student')
+    @include('livewire.users.students.add-signature')
 </div> <!-- /.card-body -->
 
 @section('scripts')
     <script>
+        $(function() {
+            $('#single-select-optgroup-clear-field').select2({
+                theme: "bootstrap4",
+                placeholder: $(this).data('placeholder'),
+                allowClear: true,
+            });
+
+            $('#single-select-optgroup-clear-field').on('change', function(e) {
+                let data = new Array($(this).val());
+                Livewire.dispatch('setInputOffense', data);
+            });
+
+            Livewire.on('clearSelection', () => {
+                $('#single-select-optgroup-clear-field').val(null).change();
+            });
+        });
+
         $(function() {
             var donutData = {
                 labels: [
