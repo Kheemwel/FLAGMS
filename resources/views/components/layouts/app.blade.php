@@ -150,6 +150,12 @@
         $(function() {
             $("[tooltip='enable']").tooltip();
         });
+        Livewire.hook('morph.updated', ({
+            el,
+            component
+        }) => {
+            $("[tooltip='enable']").tooltip('dispose').tooltip();
+        })
 
         toastr.options = {
             "closeButton": false,
