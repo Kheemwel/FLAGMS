@@ -141,7 +141,7 @@
                                 <tr>
                                     <form>
                                         <td style="text-align: center;">
-                                            <input type="date" wire:model='input_date'>
+                                            <input type="date" wire:model='input_date' id='datePicker'>
                                             <x-error field='input_date' />
                                         </td>
                                         <td style="text-align: center;">

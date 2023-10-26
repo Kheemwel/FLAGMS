@@ -67,7 +67,7 @@ class StudentsLivewire extends Component
     public function saveAnecdotal()
     {
         $validateData = $this->validate([
-            'input_date' => 'required|date',
+            'input_date' => 'required|date|before_or_equal:today',
             'input_time' => 'required',
             'input_offense' => 'required|integer',
             'input_disciplinary_action' => 'required|integer'

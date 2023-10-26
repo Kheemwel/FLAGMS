@@ -224,6 +224,14 @@
 
 @section('scripts')
     <script>
+        $(document).ready(function() {
+            const today = new Date();
+            const dateInput = $('#datePicker');
+            dateInput.attr('max', today.toISOString().split('T')[0]); // Set the max attribute to today's date
+            dateInput.attr('wire:ignore.self', '');
+        });
+
+
         $(function() {
             $('#single-select-optgroup-clear-field').select2({
                 theme: "bootstrap4",

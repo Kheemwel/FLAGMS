@@ -90,6 +90,14 @@
 
 @section('scripts')
     <script>
+        $(document).ready(function() {
+            const today = new Date();
+            $('.datePicker').each(function() {
+                $(this).attr('min', today.toISOString().slice(0, 16)); // Set the max attribute to today's date
+                $(this).attr('wire:ignore.self', '');
+            });
+        });
+
         Livewire.on('calendar', (data) => {
             const programs = data[0];
             var program_events = [];
