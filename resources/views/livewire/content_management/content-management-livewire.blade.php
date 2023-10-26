@@ -227,8 +227,22 @@
 
 @section('scripts')
     <script>
-        $(document).ready(function() {
+        $(function() {
             $("[tooltip='enable']").tooltip();
+            $("[tooltip='enable']").attr('wire:ignore.self', '');
+        });
+
+        Livewire.hook('morph.updated', ({
+            el,
+            component,
+            toEl,
+            skip,
+            childrenOnly
+        }) => {
+            $("[tooltip='enable']").tooltip('hide');
+        })
+
+        $(document).ready(function() {
 
             const toolbar = [
                 // [groupName, [list of button]]

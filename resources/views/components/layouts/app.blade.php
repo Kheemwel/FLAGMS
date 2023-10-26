@@ -149,7 +149,18 @@
     <script>
         $(function() {
             $("[tooltip='enable']").tooltip();
+            $("[tooltip='enable']").attr('wire:ignore.self', '');
         });
+
+        Livewire.hook('morph.updated', ({
+            el,
+            component,
+            toEl,
+            skip,
+            childrenOnly
+        }) => {
+            $("[tooltip='enable']").tooltip('hide');
+        })
 
         toastr.options = {
             "closeButton": false,
