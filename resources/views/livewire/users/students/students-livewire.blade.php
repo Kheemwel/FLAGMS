@@ -192,6 +192,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <input type="date" name="" id="" min='2022-10-27' max="2023-10-27">
                             @foreach ($students as $student)
                                 <tr>
                                     <th scope="row">{{ $student->id }}</th>
@@ -226,7 +227,9 @@
     <script>
         $(document).ready(function() {
             const today = new Date();
+            const lastYear = new Date(new Date().getFullYear(), 0, 2);
             const dateInput = $('#datePicker');
+            dateInput.attr('min', lastYear.toISOString().split('T')[0]); // Set the min to Junuary of this year
             dateInput.attr('max', today.toISOString().split('T')[0]); // Set the max attribute to today's date
             dateInput.attr('wire:ignore.self', '');
         });
