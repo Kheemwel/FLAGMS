@@ -41,7 +41,7 @@ class GuidanceProgramLivewire extends Component
     {
         $validatedData = $this->validate([
             'title' => 'required|string|max:255',
-            'program_start' => 'required|date',
+            'program_start' => 'required|date|after_or_equal:today',
             'program_end' => 'required|date|after:program_start',
             'description' => 'nullable',
             'color' => 'nullable'
@@ -71,7 +71,7 @@ class GuidanceProgramLivewire extends Component
     {
         $validatedData = $this->validate([
             'title' => 'required|string|max:255',
-            'program_start' => 'required|date',
+            'program_start' => 'required|date|after_or_equal:today',
             'program_end' => 'required|date|after:program_start',
             'description' => 'nullable',
             'color' => 'nullable'

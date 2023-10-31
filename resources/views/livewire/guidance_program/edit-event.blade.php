@@ -25,11 +25,11 @@
 
                     <div class="row">
                         <div class="col-6">
-                            <input class="form-control" name="time_start" placeholder="time start" style="height: 35px; margin-bottom: 1rem;" type="datetime-local" wire:model='program_start'>
+                            <input class="form-control datePicker" name="time_start" placeholder="time start" style="height: 35px; margin-bottom: 1rem;" type="datetime-local" wire:model='program_start'>
                             <x-error field='program_start'/>
                         </div>
                         <div class="col-6">
-                            <input class="form-control" name="time_end" placeholder="time end" style="height: 35px; margin-bottom: 1rem;" type="datetime-local" wire:model='program_end'>
+                            <input class="form-control datePicker" name="time_end" placeholder="time end" style="height: 35px; margin-bottom: 1rem;" type="datetime-local" wire:model='program_end'>
                             <x-error field='program_end'/>
                         </div>
                     </div>
