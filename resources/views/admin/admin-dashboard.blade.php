@@ -139,7 +139,7 @@
                                                 Upcoming Events</p>
                                         </div>
                                         <div class="col-2" style="padding: 1rem;">
-                                            <p style="font-size: 14px; color: #252525; float: right;"> See All</p>
+                                            <a style="font-size: 14px; color: #252525; float: right;" href="{{ route('guidance-program-page') }}">See All</a>
                                         </div>
                                     </div>
                                     <div class="row">
