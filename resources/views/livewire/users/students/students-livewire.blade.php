@@ -192,7 +192,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <input type="date" name="" id="" min='2022-10-27' max="2023-10-27">
                             @foreach ($students as $student)
                                 <tr>
                                     <th scope="row">{{ $student->id }}</th>

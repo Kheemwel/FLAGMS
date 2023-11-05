@@ -25,7 +25,7 @@
                 </li>
                 <li class="nav-item" wire:ignore>
                     <a aria-controls="custom-tabs-one-categories" aria-selected="false" class="nav-link" data-toggle="pill" href="#custom-tabs-one-categories" id="custom-tabs-one-categories-tab" role="tab">
-                        <h5 style="font-weight: bold;">Categories</h5>
+                        <h5 style="font-weight: bold;">Offense Categories</h5>
                     </a>
                 </li>
                 <li class="nav-item" wire:ignore>
@@ -62,5 +62,11 @@
         @include('livewire.file_management.offenses.add-offenses')
         @include('livewire.file_management.offenses.add-offenses-category')
         @include('livewire.file_management.offenses.add-disciplinary-actions')
+        @include('livewire.file_management.offenses.add-offenses-level')
+        @include('livewire.file_management.offenses.view-offense')
+        @include('livewire.file_management.offenses.edit-offenses')
+        @include('livewire.file_management.offenses.edit-offenses-category')
+        @include('livewire.file_management.offenses.edit-offenses-level')
+        @include('livewire.file_management.offenses.edit-disciplinary-actions')
     </div>
 </div>

@@ -20,6 +20,9 @@ return new class extends Migration
             $table->unsignedInteger('offense_id');
             $table->unsignedInteger('offense_level_id');
             $table->unsignedInteger('disciplinary_action_id');
+            $table->foreign('offense_id')->references('id')->on('offenses')->cascadeOnDelete();
+            $table->foreign('offense_level_id')->references('id')->on('offense_levels')->cascadeOnDelete();
+            $table->foreign('disciplinary_action_id')->references('id')->on('disciplinary_actions')->cascadeOnDelete();
             $table->timestamps();
         });
 

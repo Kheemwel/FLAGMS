@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('offense_name')->unique();
             $table->unsignedBigInteger('offenses_category_id');
-            $table->foreign('offenses_category_id')->references('id')->on('offenses_categories');
+            $table->foreign('offenses_category_id')->references('id')->on('offenses_categories')->cascadeOnDelete();
             $table->timestamps();
         });
 
