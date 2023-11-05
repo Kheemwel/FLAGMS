@@ -61,8 +61,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('school_level_id');
             $table->unsignedBigInteger('grade_level_id');
-            $table->foreign('school_level_id')->references('id')->on('school_levels');
-            $table->foreign('grade_level_id')->references('id')->on('grade_levels');
+            $table->foreign('school_level_id')->references('id')->on('school_levels')->cascadeOnDelete();
+            $table->foreign('grade_level_id')->references('id')->on('grade_levels')->cascadeOnDelete();
             $table->timestamps();
         });
 
@@ -111,9 +111,9 @@ return new class extends Migration
             $table->unsignedBigInteger('user_account_id');
             $table->unsignedBigInteger('school_level_id');
             $table->unsignedBigInteger('grade_level_id');
-            $table->foreign('user_account_id')->references('id')->on('user_accounts');
-            $table->foreign('school_level_id')->references('id')->on('school_levels');
-            $table->foreign('grade_level_id')->references('id')->on('grade_levels');
+            $table->foreign('user_account_id')->references('id')->on('user_accounts')->cascadeOnDelete();
+            $table->foreign('school_level_id')->references('id')->on('school_levels')->cascadeOnDelete();
+            $table->foreign('grade_level_id')->references('id')->on('grade_levels')->cascadeOnDelete();
             $table->timestamps();
         });
     }

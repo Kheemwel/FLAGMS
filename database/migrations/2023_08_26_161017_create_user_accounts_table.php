@@ -27,8 +27,8 @@ return new class extends Migration
             $table->integer('total_login')->default(0);
             $table->dateTime('last_login')->nullable();
             $table->string('remember_token')->nullable();
-            $table->foreign('role_id')->references('id')->on('roles');
-            $table->foreign('profile_picture_id')->references('id')->on('profile_pictures');
+            $table->foreign('role_id')->references('id')->on('roles')->cascadeOnDelete();
+            $table->foreign('profile_picture_id')->references('id')->on('profile_pictures')->cascadeOnDelete();
             $table->timestamps();
         });
 

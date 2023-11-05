@@ -31,8 +31,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_account_id');
             $table->unsignedBigInteger('principal_position_id');
-            $table->foreign('user_account_id')->references('id')->on('user_accounts');
-            $table->foreign('principal_position_id')->references('id')->on('principal_positions');
+            $table->foreign('user_account_id')->references('id')->on('user_accounts')->cascadeOnDelete();
+            $table->foreign('principal_position_id')->references('id')->on('principal_positions')->cascadeOnDelete();
             $table->timestamps();
         });
     }

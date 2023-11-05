@@ -23,9 +23,9 @@ return new class extends Migration
             $table->unsignedBigInteger('guardian_signature_id')->nullable();
             $table->foreign('offense_id')->references('id')->on('offenses');
             $table->foreign('student_id')->references('id')->on('students');
-            $table->foreign('disciplinary_action_id')->references('id')->on('disciplinary_actions');
-            $table->foreign('student_signature_id')->references('id')->on('student_anecdotal_signatures');
-            $table->foreign('guardian_signature_id')->references('id')->on('guardian_anecdotal_signatures');
+            $table->foreign('disciplinary_action_id')->references('id')->on('disciplinary_actions')->cascadeOnDelete();
+            $table->foreign('student_signature_id')->references('id')->on('student_anecdotal_signatures')->cascadeOnDelete();
+            $table->foreign('guardian_signature_id')->references('id')->on('guardian_anecdotal_signatures')->cascadeOnDelete();
             $table->timestamps();
         });
     }

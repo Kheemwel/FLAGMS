@@ -52,9 +52,9 @@ return new class extends Migration
             $table->dateTime('claimed_datetime')->nullable();
             $table->date('expiration_date');
             $table->boolean('is_expired')->default(false);
-            $table->foreign('item_type_id')->references('id')->on('item_types');
-            $table->foreign('item_tag_id')->references('id')->on('item_tags');
-            $table->foreign('item_image_id')->references('id')->on('item_images');
+            $table->foreign('item_type_id')->references('id')->on('item_types')->cascadeOnDelete();
+            $table->foreign('item_tag_id')->references('id')->on('item_tags')->cascadeOnDelete();
+            $table->foreign('item_image_id')->references('id')->on('item_images')->cascadeOnDelete();
             $table->timestamps();
         });
     }
