@@ -15,32 +15,9 @@ return new class extends Migration
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
             $table->string('role')->unique();
+            $table->boolean('is_default')->default(false);
             $table->timestamps();
         });
-
-        Roles::insert([
-            [
-                'role' => 'Admin'
-            ],
-            [
-                'role' => 'Guidance'
-            ],
-            [
-                'role' => 'Admin/Guidance'
-            ],
-            [
-                'role' => 'Student'
-            ],
-            [
-                'role' => 'Parent'
-            ],
-            [
-                'role' => 'Teacher'
-            ],
-            [
-                'role' => 'Principal'
-            ]
-        ]);
     }
 
     /**

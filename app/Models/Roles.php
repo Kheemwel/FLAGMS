@@ -12,11 +12,16 @@ class Roles extends Model
     protected $table = 'roles';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'role'
+        'role', 'is_default'
     ];
 
     public function getUserAccounts() : HasMany
     {
         return $this->hasMany(UserAccounts::class, 'role_id');
+    }
+
+    public function privileges()
+    {
+        return $this->belongsToMany(Privileges::class, 'roles_privileges', 'role_id', 'privilege_id');
     }
 }
