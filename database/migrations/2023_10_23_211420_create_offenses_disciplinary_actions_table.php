@@ -17,9 +17,9 @@ return new class extends Migration
     {
         Schema::create('offenses_disciplinary_actions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('offense_id');
-            $table->unsignedInteger('offense_level_id');
-            $table->unsignedInteger('disciplinary_action_id');
+            $table->unsignedBigInteger('offense_id');
+            $table->unsignedBigInteger('offense_level_id');
+            $table->unsignedBigInteger('disciplinary_action_id');
             $table->foreign('offense_id')->references('id')->on('offenses')->cascadeOnDelete();
             $table->foreign('offense_level_id')->references('id')->on('offense_levels')->cascadeOnDelete();
             $table->foreign('disciplinary_action_id')->references('id')->on('disciplinary_actions')->cascadeOnDelete();
@@ -572,7 +572,7 @@ return new class extends Migration
             ],
             [
                 'offense_id' => $loiteringInCorridorsID,
-                'offense_level_id' => $fourth_offense,
+                'offense_level_id' => $final_offense,
                 'disciplinary_action_id' => $dismissalID,
             ],
             [
