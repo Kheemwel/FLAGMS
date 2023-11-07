@@ -15,14 +15,18 @@
             </span>
             Entries
         </label>
+        <label for="per-page" style="font-weight: normal; margin-top: 1rem; margin-left: 1rem; cursor: pointer;">
+            <span class="archivals" style="transition: color 0.3s;">Mark as Archive</span>
+        </label>
     </div>
 </div>
 <div class="card" style="margin-left: 2rem; margin-right: 2rem;border-radius: 10px;">
     <!-- /.card-header -->
     <div class="card-body table-responsive p-0" style="border: 1px solid #252525; border-radius: 10px;">
         <table class="table table-hover">
-            <thead style="color: #252525; text-align: center;">
+            <thead style="color: white; background-color: #7684B9; text-align: center;">
                 <tr>
+                    <th><input type="checkbox"></th>
                     <x-table-column-header :direction="$sortField === 'id' ? $sortDirection : null" click="sortBy('id')" label='ID' sortable />
                     <x-table-column-header :direction="$sortField === 'name' ? $sortDirection : null" click="sortBy('name')" label='Name' sortable />
                     <x-table-column-header :direction="$sortField === 'email' ? $sortDirection : null" click="sortBy('email')" label='Email' sortable />
@@ -33,6 +37,7 @@
             <tbody style="text-align: center;">
                 @foreach ($users as $user)
                     <tr>
+                        <th></th>
                         <th scope="row">{{ $user->id }}</th>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
