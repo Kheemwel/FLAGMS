@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Privileges;
 use App\Models\Roles;
 use App\Traits\Toasts;
 use Livewire\Component;
@@ -9,7 +10,14 @@ use Livewire\Component;
 class RolesLivewire extends Component
 {
     use Toasts;
-    public $roles, $role;
+    public $roles, $role, $selected_role, $selected_role_id;
+    public $privileges, $selected_privileges = [];
+
+    public function mount()
+    {
+        $this->privileges = Privileges::all();
+    }
+
     public function render()
     {
         $this->roles = Roles::all();
@@ -19,14 +27,43 @@ class RolesLivewire extends Component
     public function addRole()
     {
         $this->validate([
-            'role' => 'required|max:255|unique:roles,role'
+            'role' => 'required|max:255|unique:roles,role',
+            'selected_privileges' => 'required|array|min:1'
         ]);
 
-        Roles::create([
+        $role = Roles::create([
             'role' => $this->role
         ]);
+        $role->privileges()->attach($this->selected_privileges);
 
         $this->showToast('success', 'New Role Added Successfully');
+        $this->resetInputFields();
+    }
+
+    public function getData($id)
+    {
+        $role = Roles::find($id);
+        $this->selected_role = $role;
+        $this->role = $role->role;
+        $this->selected_role_id = $role->id;
+        $this->selected_privileges = $role->privileges()->pluck('privilege_id')->toArray();
+    }
+
+    public function updateRole()
+    {
+        $this->validate([
+            'role' => 'required|max:255|unique:roles,role,' . $this->selected_role_id,
+            'selected_privileges' => 'required|array|min:1'
+        ]);
+
+        $role = Roles::find($this->selected_role_id);
+        $role->update([
+            'role' => $this->role
+        ]);
+        $role->privileges()->sync($this->selected_privileges);
+
+        $this->showToast('success', 'Role Updated Successfully');
+        $this->resetInputFields();
     }
 
     public function delete($id)
@@ -40,6 +77,9 @@ class RolesLivewire extends Component
     public function resetInputFields()
     {
         $this->role = null;
+        $this->selected_role = null;
+        $this->selected_privileges = [];
+        $this->resetErrorBag();
     }
 
 }

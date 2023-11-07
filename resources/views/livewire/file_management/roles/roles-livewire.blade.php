@@ -26,7 +26,7 @@
                 </div>
                 <!--ADD ROLE BUTTON-->
                 <button class="btn btn-default" data-target="#addRoleModal" data-toggle="modal" style="font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button">
-                    <i aria-hidden="true" class="fa fa-plus"></i> 
+                    <i aria-hidden="true" class="fa fa-plus"></i>
                     Add Role
                 </button>
             </div>
@@ -45,28 +45,30 @@
                         </thead>
                         <tbody>
                             @foreach ($roles as $role)
-                            <tr>
-                                <th scope="row">{{ $role->id }}</th>
-                                <td>{{ $role->role }}</td>
-                                <td>{{ $role->getUserAccounts()->count() }}</td>
-                                <td>
-                                    <!--EDIT PROFILE-->
-                                    <button class="btn btn-primary action-btn" data-target="#stud-info-edit" data-toggle="modal">
-                                        <i class="fa fa-solid fa-pen"></i>
-                                    </button>
-                                    <!-------------------------------------------------------------------------------------------------------------------------->
-                                    
-                                    <!--VIEW PROFILE-->
-                                    <button class="btn btn-primary action-btn" data-target="#view-user-btn" data-toggle="modal">
-                                        <i aria-hidden="true" class="fa fa-eye"></i>
-                                    </button>
+                                <tr>
+                                    <th scope="row">{{ $role->id }}</th>
+                                    <td>{{ $role->role }}</td>
+                                    <td>{{ $role->getUserAccounts()->count() }}</td>
+                                    <td>
+                                        <!--EDIT PROFILE-->
+                                        <button class="btn btn-primary action-btn" data-target="#editRoleModal" data-toggle="modal" wire:click='getData({{ $role->id }})'>
+                                            <i class="fa fa-solid fa-pen"></i>
+                                        </button>
+                                        <!-------------------------------------------------------------------------------------------------------------------------->
 
-                                    {{-- DELETE PROFILE --}}
-                                    <button class="btn btn-primary action-btn" wire:click="delete({{ $role->id }})">
-                                        <i aria-hidden="true" class="fa fa-trash"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                                        <!--VIEW PROFILE-->
+                                        <button class="btn btn-primary action-btn" data-target="#view-role" data-toggle="modal" wire:click='getData({{ $role->id }})'>
+                                            <i aria-hidden="true" class="fa fa-eye"></i>
+                                        </button>
+
+                                        {{-- DELETE PROFILE --}}
+                                        @if (!$role->is_default)
+                                            <button class="btn btn-primary action-btn" wire:click="delete({{ $role->id }})">
+                                                <i aria-hidden="true" class="fa fa-trash"></i>
+                                            </button>
+                                        @endif
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -77,5 +79,6 @@
         </div>
     </div>
     @include('livewire.file_management.roles.add-role')
+    @include('livewire.file_management.roles.view-role')
+    @include('livewire.file_management.roles.edit-role')
 </div>
-

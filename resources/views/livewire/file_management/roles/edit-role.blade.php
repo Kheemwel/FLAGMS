@@ -1,13 +1,18 @@
 <!--USER INFORMATION FORM MODAL-->
-<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="addRoleModal" role='dialog' style="max-width: 100%;" wire:ignore.self>
+<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="editRoleModal" role='dialog' style="max-width: 100%;" wire:ignore.self>
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
+            <div wire:loading wire:target='getData'>
+                <div class="overlay bg-white">
+                    <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+                </div>
+            </div>
             <div class="modal-header" style="border: transparent; padding: 10px;">
                 <button aria-label="Close" class="close" data-dismiss="modal" type="button" wire:click="resetInputFields()">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form wire:submit.prevent="addRole()">
+            <form wire:submit.prevent="updateRole()">
                 <div class="modal-body" style="margin-left: 1rem; max-height: 500px; overflow-y: auto;">
                     <!--MODAL FORM TITLE-->
                     <p class="card-title" style="color: #0A0863; font-weight: bold; font-size: 22px;">Add New Role</p> <br><br><br>
@@ -35,12 +40,13 @@
 
                     <div class="row">
                         @foreach ($privileges as $privilege)
-                            @if (!$privilege->is_exclusive)
+                            @if (!$privilege->is_exclusive || in_array($privilege->id, $selected_privileges))
                                 <div class="form-group col-4" style="text-align: left; margin-top: 2rem;">
-                                    <input type="checkbox" value="{{ $privilege->id }}" wire:model='selected_privileges'>{{ $privilege->privilege }}
+                                    <input @disabled($privilege->is_exclusive) type="checkbox" value="{{ $privilege->id }}" wire:model='selected_privileges'>{{ $privilege->privilege }}
                                 </div>
                             @endif
                         @endforeach
+
                     </div>
                 </div>
                 <!-- /.card-body -->
