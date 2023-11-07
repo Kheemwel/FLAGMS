@@ -7,11 +7,6 @@
                 </div>
             </div>
             <div class="modal-header" style="border: transparent; padding: 10px;">
-                <!--EDIT USER INFORMATION-->
-                <button data-dismiss='modal' data-target="#edit-lost-item" data-toggle="modal" style="background-color: transparent; border-color: transparent;" type="button">
-                    <i class="fa fa-solid fa-pen"></i>
-                </button>
-
                 <button aria-label="Close" class="close" data-dismiss="modal" type="button" wire:click='resetInputFields()'>
                     <span aria-hidden="true">&times;</span>
                 </button>
