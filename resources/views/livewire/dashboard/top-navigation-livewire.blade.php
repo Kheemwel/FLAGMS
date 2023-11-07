@@ -24,54 +24,84 @@
         <li class="nav-item dropdown" style="margin-right: 2rem;">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="far fa-bell"></i>
-                <span class="badge badge-warning navbar-badge">2</span>
+                <span class="badge badge-warning navbar-badge">1</span>
             </a>
-            <!--NOTIF HEADER-->
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <div style="display: flex; flex-direction: row; align-items: baseline;">
+            <div class="dropdown-menu dropdown-menu-right" style="max-width: 500px; max-height: 300px; overflow-y: auto; overflow-x: hidden;">
+                <div style="display: flex; flex-direction: row; justify-content: space-between;">
                     <span class="dropdown-header" style="font-size: 20px; text-align: left; color: #252525; font-weight: bold;">Notification</span>
-                    <span class="dropdown-header" style="font-size: 12px; text-align: left; color: #252525; margin-left: 2rem;">Mark all as
-                        read</span>
+                    <span class="dropdown-header" style="font-size: 12px; color: #252525; cursor: pointer;">Mark all as read</span>
                 </div>
-                <div class="dropdown-divider"></div>
 
-                <!--NOTIF CONTENT-->
-                <a class="dropdown-item" href="#">
-                    <div style="display: flex; flex-direction: row;">
+                <!-- NOTIF CONTENT -->
+                <a class="dropdown-item" href="#" style="margin-bottom: 1rem;">
+                    <div style="display: flex; flex-direction: row; align-items: center;">
                         <div>
-                            <img src="images/notif-profile.png">
+                            <img src="images/notif-profile.png" style="width: 50px; height: 50px;">
                         </div>
-                        <div style="display: flex; flex-direction: column; margin-left: 1rem;">
-                            <span class="float-right text-muted text-sm"> Val Dela Cruz</span>
-                            <span class="float-right text-muted text-sm">Lorem Ip</span>
-                            <span class="float-right text-muted text-sm">June 15, 23</span>
+                        <div style="display: flex; flex-direction: column; margin-left: 10px; margin-right: 5rem;">
+                            <span class="text-sm">Val Dela Cruz</span>
+                            <span class="text-sm">Lorem ipsum dolor sit amet.</span>
+                            <span class="text-sm">June 14, 2023 at 10:00 AM</span>
                         </div>
-                        <div style="display: flex; flex-direction: column; margin-left: 1rem; padding: 2rem;">
+                        <div style="display: flex; flex-direction: column; align-items: center; margin-right: 2rem;">
                             <i class="fa fa-solid fa-circle" style="color: #3C58FF; font-size: 12px;"></i>
                         </div>
                     </div>
                 </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">
-                    <div style="display: flex; flex-direction: row;">
+
+                <a class="dropdown-item" href="#" style="margin-bottom: 1rem;">
+                    <div style="display: flex; flex-direction: row; align-items: center;">
                         <div>
-                            <img src="images/notif-profile2.png">
+                            <img src="images/notif-profile.png" style="width: 50px; height: 50px;">
                         </div>
-                        <div style="display: flex; flex-direction: column; margin-left: 1rem;">
-                            <span class="float-right text-muted text-sm"> Anne Lopez</span>
-                            <span class="float-right text-muted text-sm">Lorem Ip</span>
-                            <span class="float-right text-muted text-sm">June 16, 23</span>
+                        <div style="display: flex; flex-direction: column; margin-left: 10px; margin-right: 5rem;">
+                            <span class="text-sm">Val Dela Cruz</span>
+                            <span class="text-sm">Lorem ipsum dolor sit amet.</span>
+                            <span class="text-sm">June 14, 2023 at 10:00 AM</span>
                         </div>
-                        <div style="display: flex; flex-direction: column; margin-left: 1rem; padding: 2rem;">
+                        <div style="display: flex; flex-direction: column; align-items: center; margin-right: 2rem;">
                             <i class="fa fa-solid fa-circle" style="color: #3C58FF; font-size: 12px;"></i>
                         </div>
                     </div>
                 </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item dropdown-footer" href="{{ route('notification-page') }}">See All
-                    Notifications</a>
+                <a class="dropdown-item" href="#" style="margin-bottom: 1rem;">
+                    <div style="display: flex; flex-direction: row; align-items: center;">
+                        <div>
+                            <img src="images/notif-profile.png" style="width: 50px; height: 50px;">
+                        </div>
+                        <div style="display: flex; flex-direction: column; margin-left: 10px; margin-right: 5rem;">
+                            <span class="text-sm">Val Dela Cruz</span>
+                            <span class="text-sm">Lorem ipsum dolor sit amet.</span>
+                            <span class="text-sm">June 14, 2023 at 10:00 AM</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: center; margin-right: 2rem;">
+                            <i class="fa fa-solid fa-circle" style="color: #3C58FF; font-size: 12px;"></i>
+                        </div>
+                    </div>
+                </a>
+                <a class="dropdown-item" href="#" style="margin-bottom: 1rem;">
+                    <div style="display: flex; flex-direction: row; align-items: center;">
+                        <div>
+                            <img src="images/notif-profile.png" style="width: 50px; height: 50px;">
+                        </div>
+                        <div style="display: flex; flex-direction: column; margin-left: 10px; margin-right: 5rem;">
+                            <span class="text-sm">Val Dela Cruz</span>
+                            <span class="text-sm">Lorem ipsum dolor sit amet.</span>
+                            <span class="text-sm">June 14, 2023 at 10:00 AM</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: center; margin-right: 2rem;">
+                            <i class="fa fa-solid fa-circle" style="color: #3C58FF; font-size: 12px;"></i>
+                        </div>
+                    </div>
+                </a>
+
+                
+
+                <a class="btn" href="{{ route('notification-page') }}" style="background-color: #0A0863; color: white; margin-left: 1rem; margin-right: 1rem; width: 350px;">See All Notifications</a>
             </div>
+
         </li>
+
         
         <!--Admin Profile-->
         <li class="nav-item">

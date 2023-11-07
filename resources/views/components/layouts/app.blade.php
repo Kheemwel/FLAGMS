@@ -151,6 +151,12 @@
             $("[tooltip='enable']").tooltip();
             $("[tooltip='enable']").attr('wire:ignore.self', '');
         });
+        Livewire.hook('morph.updated', ({
+            el,
+            component
+        }) => {
+            $("[tooltip='enable']").tooltip('dispose').tooltip();
+        })
 
         Livewire.hook('morph.updated', ({
             el,

@@ -8,9 +8,6 @@
 @section('head-scripts')
     <!-- Summernote -->
     <script src="adminLTE-3.2/plugins/summernote/summernote-bs4.min.js"></script>
-
-    {{-- For Tooltip --}}
-    <script src="adminLTE-3.2/plugins/popper/popper.min.js"></script>
 @endsection
 
 <!-- Site wrapper -->
@@ -243,7 +240,6 @@
         })
 
         $(document).ready(function() {
-
             const toolbar = [
                 // [groupName, [list of button]]
                 ['fontname', ['fontname']],
