@@ -6,6 +6,12 @@
                     <i class="fas fa-3x fa-sync-alt fa-spin"></i>
                 </div>
             </div>
+            
+            <div class="overlay bg-white d-none" style="border-radius: 20px;" id="login-indicator">
+                <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+                <p>Login Successfully.</p>
+            </div>
+            
             <div class="modal-header" style="border: transparent; padding: 10px;">
                 <button aria-label="Close" class="close" data-dismiss="modal" type="button" wire:click='resetInputFields()'>
                     <span aria-hidden="true">&times;</span>

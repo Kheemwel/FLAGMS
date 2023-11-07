@@ -45,6 +45,7 @@ class LoginLivewire extends Component
             }
             session(['user_id' => $user->id]);
             $this->resetInputFields();
+            $this->dispatch('loginSuccess');
             return redirect()->route('user-dashboard-page');
         } else {
             $this->errorMessage = 'Invalid email or password';
@@ -105,6 +106,7 @@ class LoginLivewire extends Component
 
     public function resetInputFields()
     {
+        $this->email = null;
         $this->password = null;
         $this->code = null;
         $this->input_code = null;

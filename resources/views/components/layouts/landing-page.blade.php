@@ -117,6 +117,10 @@
             $(id).modal('hide');
         })
 
+        Livewire.on('loginSuccess', () => {
+            $('#login-indicator').removeClass('d-none');
+        });
+
         Livewire.on('cooldown', () => {
             setTimeout(() => {
                 var button = $("#btn-send-code");
