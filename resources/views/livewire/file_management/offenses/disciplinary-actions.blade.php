@@ -1,4 +1,4 @@
-<div class="card-tools" style="display: flex; justify-content: flex-end; margin-bottom: 2rem; margin-right: 2rem;">
+{{-- <div class="card-tools" style="display: flex; justify-content: flex-end; margin-bottom: 2rem; margin-right: 2rem;">
     <!--SEARCH FEATURE-->
     <div class="input-group input-group-sm" style="max-width: 20%;">
         <!--SEARCH INPUT-->
@@ -9,7 +9,7 @@
         <i aria-hidden="true" class="fa fa-plus"></i> 
         Add New Disciplinary Action
     </button>
-</div>
+</div> --}}
 
 <div class="card" style="margin-left: 2rem; margin-right: 2rem;">
     <!-- /.card-header -->
@@ -17,19 +17,17 @@
         <table class="table text-nowrap" style="text-align: center;">
             <thead style="background-color: #7684B9; color: white;">
                 <tr>
-                    <th style="border-right: 1px solid #252525;">ID</th>
-                    <th style="border-right: 1px solid #252525;">Disciplinary Action</th>
-                    <th style="border-right: 1px solid #252525;">Description</th>
-                    <th>Action</th>
+                    {{-- <th style="border-right: 1px solid #252525;">ID</th> --}}
+                    <th style="border-right: 1px solid #252525;">Disciplinary Actions</th>
+                    {{-- <th>Action</th> --}}
                 </tr>
             </thead>
             <tbody>
                 @foreach ($disciplinary_actions as $disciplinary_action)
                     <tr>
-                        <th scope="row">{{ $disciplinary_action->id }}</th>
+                        {{-- <th scope="row">{{ $disciplinary_action->id }}</th> --}}
                         <td>{{ $disciplinary_action->action }}</td>
-                        <td>{{ $disciplinary_action->description }}</td>
-                        <td>
+                        {{-- <td>
                             <!--EDIT PROFILE-->
                             <button class="btn btn-primary action-btn" data-target="#stud-info-edit" data-toggle="modal">
                                 <i class="fa fa-solid fa-pen"></i>
@@ -41,11 +39,10 @@
                                 <i aria-hidden="true" class="fa fa-eye"></i>
                             </button>
 
-                            {{-- DELETE PROFILE --}}
                             <button class="btn btn-primary action-btn" wire:click="deleteDisciplinaryAction({{ $disciplinary_action->id }})">
                                 <i aria-hidden="true" class="fa fa-trash"></i>
                             </button>
-                        </td>
+                        </td> --}}
                     </tr>
                 @endforeach
             </tbody>

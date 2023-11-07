@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class OffensesCategories extends Model
+class OffensesDisciplinaryActions extends Model
 {
     use HasFactory;
-    protected $table = 'offenses_categories';
+    protected $table = 'offenses_disciplinary_actions';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'offenses_category'
+        'offense_id', 'offense_level_id', 'disciplinary_action_id'
     ];
 }

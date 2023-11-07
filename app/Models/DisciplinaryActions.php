@@ -13,4 +13,14 @@ class DisciplinaryActions extends Model
     protected $fillable = [
         'action', 'description'
     ];
+
+    public function offenses()
+    {
+        return $this->belongsToMany(Offenses::class, 'offenses_disciplinary_actions', 'disciplinary_action_id', 'offense_id');
+    }
+
+    public function getOffenseLevel($offenseId)
+    {
+        return $this->belongsToMany(OffenseLevels::class, 'offenses_disciplinary_actions', 'disciplinary_action_id', 'offense_level_id')->wherePivot('offense_id', $offenseId);
+    }
 }

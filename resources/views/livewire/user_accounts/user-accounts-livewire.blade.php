@@ -1,5 +1,5 @@
 @section('head')
-    <title>Admin | Profiling</title>
+    <title>Admin|User Accounts</title>
 
     <!-- Select2 CSS -->
     <link href="adminLTE-3.2/plugins/select2/css/select2.min.css" rel="stylesheet">
@@ -23,6 +23,14 @@
 
         .btn-primary.action-btn:hover i {
             color: #0A0863;
+        }
+
+        .archivals:hover {
+        color: #3C58FF; /* Replace with your desired hover color */
+        }
+
+        #delete:hover {
+        color: #FF0000; /* Replace with your desired hover color */
         }
 
         /********************************/

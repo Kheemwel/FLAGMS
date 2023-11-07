@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\DisciplinaryActions;
+use App\Models\OffenseLevels;
 use App\Models\Offenses;
 use App\Models\OffensesCategories;
 use App\Traits\Toasts;
@@ -12,15 +13,17 @@ use Livewire\Component;
 class OffensesLivewire extends Component
 {
     use Toasts;
-    public $offenses, $offense, $offense_description, $category_id;
-    public $categories, $category, $category_description;
-    public $disciplinary_actions, $disciplinary_action, $disciplinary_action_description;
+    public $offenses, $offense, $category_id;
+    public $categories, $category;
+    public $disciplinary_actions, $disciplinary_action;
+    public $offense_levels;
 
     public function render()
     {
         $this->offenses = Offenses::all();
         $this->categories = OffensesCategories::all();
         $this->disciplinary_actions = DisciplinaryActions::all();
+        $this->offense_levels = OffenseLevels::all();
         return view('livewire.file_management.offenses.offenses-livewire');
     }
 
@@ -28,13 +31,11 @@ class OffensesLivewire extends Component
     {
         $validatedData = $this->validate([
             'offense' => 'required|max:255|unique:offenses,offense_name',
-            'offense_description' => 'nullable',
             'category_id' => 'required|integer'
         ]);
 
         Offenses::create([
             'offense_name' => $validatedData['offense'],
-            'description' => $validatedData['offense_description'],
             'offenses_category_id' => $validatedData['category_id']
         ]);
 
@@ -44,13 +45,11 @@ class OffensesLivewire extends Component
     public function addCategory()
     {
         $validatedData = $this->validate([
-            'category' => 'required|max:255|unique:offenses_categories,offenses_category',
-            'category_description' => 'nullable',
+            'category' => 'required|max:255|unique:offenses_categories,offenses_category'
         ]);
 
         OffensesCategories::create([
-            'offenses_category' => $validatedData['category'],
-            'description' => $validatedData['category_description'],
+            'offenses_category' => $validatedData['category']
         ]);
 
         $this->showToast('success', 'The new offenses category is added successfully.');
@@ -60,13 +59,11 @@ class OffensesLivewire extends Component
     public function addDisciplinaryAction()
     {
         $validatedData = $this->validate([
-            'disciplinary_action' => 'required|max:255|unique:offenses_disciplinary_actions,offenses_disciplinary_action',
-            'disciplinary_action_description' => 'nullable',
+            'disciplinary_action' => 'required|max:255|unique:offenses_disciplinary_actions,offenses_disciplinary_action'
         ]);
 
         DisciplinaryActions::create([
-            'offenses_disciplinary_action' => $validatedData['disciplinary_action'],
-            'description' => $validatedData['disciplinary_action_description'],
+            'offenses_disciplinary_action' => $validatedData['disciplinary_action']
         ]);
 
         $this->showToast('success', 'The new disciplinary_action is added successfully.');
@@ -97,11 +94,8 @@ class OffensesLivewire extends Component
     public function resetInputFields()
     {
         $this->offense = null;
-        $this->offense_description = null;
         $this->category_id = null;
         $this->category = null;
-        $this->category_description = null;
         $this->disciplinary_action = null;
-        $this->disciplinary_action_description = null;
     }
 }

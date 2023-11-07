@@ -35,13 +35,6 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="form-group" style="font-size: 14px; color: #252525;">
-                        <label for="description">Description</label>
-                        <textarea class="form-control" id="description" style="border: 1px solid #252525" type="text" wire:model="offense_description"></textarea>
-                        @error('offense_description')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
