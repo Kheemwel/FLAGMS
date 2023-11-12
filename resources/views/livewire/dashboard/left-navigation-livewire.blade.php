@@ -1,16 +1,3 @@
-{{-- <div>
-    @if ($role == 'Admin')
-        @include('admin.admin-leftnav')
-    @elseif ($role == 'Student')
-        @include('student.student-leftnav')
-    @elseif ($role == 'Parent')
-        @include('parent.parent-leftnav')
-    @elseif ($role == 'Teacher')
-        @include('teacher.teacher-leftnav')
-    @elseif ($role == 'Principal')
-        @include('principal.principal-leftnav')
-    @endif
-</div> --}}
 <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #FFFF; font-size: 16px;">
     <!-- Brand Logo -->
     <a class="brand-link" href="#" style="border: transparent;">
