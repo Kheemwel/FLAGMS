@@ -7,6 +7,7 @@ use App\Models\Offenses;
 use App\Models\OffensesDisciplinaryActions;
 use App\Models\Students;
 use App\Models\StudentsAnecdotals;
+use App\Models\UserAccounts;
 use App\Traits\Toasts;
 use Livewire\Component;
 
@@ -16,13 +17,26 @@ class StudentsLivewire extends Component
     public $students, $student_id, $student_name, $lrn, $school_level, $grade_level;
     public $anecdotal, $input_date, $input_time, $input_offense, $input_disciplinary_action, $display_disciplinary_action;
     public $offenses;
+    public $privileges = [];
 
     protected $listeners = ['setInputOffense'];
 
     public function mount()
     {
-        $this->students = Students::all();
+        $my_id = session('user_id');
+        if ($my_id) {
+            $user = UserAccounts::find($my_id);
+            $this->privileges = $user->getRole->privileges()->pluck('privilege')->toArray();
+        }
+
         $this->offenses = Offenses::all();
+        $studentIdsWithAnecdotals = StudentsAnecdotals::pluck('student_id')->toArray();
+        $query_students = Students::get();
+        if (in_array('ViewStudentsAnecdotal', $this->privileges) || in_array('WriteStudentsAnecdotal', $this->privileges)) {
+            $this->students = $query_students->whereIn('id', $studentIdsWithAnecdotals);
+        } else {
+            $this->students = $query_students;
+        }
     }
 
     public function render()

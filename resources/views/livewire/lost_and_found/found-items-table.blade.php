@@ -52,7 +52,7 @@
                 </div>
                 <!-- /.modal end-->
 
-                @if ($authorized)
+                @if (in_array('AddLostAndFound', $privileges))
                     <button class="btn btn-default" data-target="#add-lost-item" data-toggle="modal" style="height: 35px; font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button"><i class="fa fa-solid fa-plus"></i> Add Found Item</button>
                 @endif
                 <!-- /.modal end-->
@@ -72,7 +72,7 @@
                     <th style="border-right: 1px solid #252525;">Item Name</th>
                     <th style="border-right: 1px solid #252525;">Date and Time Found</th>
                     <th style="border-right: 1px solid #252525;">Location Found</th>
-                    @if ($authorized)
+                    @if (wordsExistInArray(['LostAndFound'], $privileges) || in_array('ManageClaimedItems', $privileges))
                         <th style="border-right: 1px solid #252525;">Finder's Name</th>
                     @endif
                     <th style="border-right: 1px solid #252525;">Priority</th>
@@ -87,12 +87,12 @@
                         <td>{{ $item->item_name }}</td>
                         <td>{{ date('F d,Y   h:i A', strtotime($item->datetime_found)) }}</td>
                         <td>{{ $item->location_found }}</td>
-                        @if ($authorized)
+                        @if (wordsExistInArray(['LostAndFound'], $privileges) || in_array('ManageClaimedItems', $privileges))
                             <td>{{ $item->finder_name }}</td>
                         @endif
                         <td>{{ $item->getPriority->priority_tag }}</td>
                         <td>
-                            @if ($authorized)
+                            @if (in_array('ManageClaimedItems', $privileges))
                                 <p class="btn btn-primary action-btn" data-target="#claim-item" data-toggle="modal" style="color: #3C58FF;  text-decoration: underline;" wire:click="get_data({{ $item->id }})">Claim</p>
                             @endif
 
@@ -101,12 +101,13 @@
                                 <i aria-hidden="true" class="fa fa-eye"></i>
                             </button>
 
-                            @if ($authorized)
+                            @if (in_array('EditLostAndFound', $privileges))
                                 <!--EDIT LOST ITEM BUTTON-->
                                 <button class="btn btn-primary action-btn" data-target="#edit-lost-item" data-toggle="modal" wire:click="get_data({{ $item->id }})">
                                     <i class="fa fa-solid fa-pen"></i>
                                 </button>
-
+                            @endif
+                            @if (in_array('DeleteLostAndFound', $privileges))
                                 {{-- DELETE USER --}}
                                 <button class="btn btn-primary action-btn" wire:click='delete({{ $item->id }})'>
                                     <i aria-hidden="true" class="fa fa-trash"></i>

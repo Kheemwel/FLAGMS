@@ -46,6 +46,9 @@ class UserAccountsLivewire extends Component
     public $search = '', $filterRole;
     public $per_page = 30;
     public $my_id;
+    public $privileges = [];
+
+    public $allowedRoles = [];
 
     protected $listeners = ['setSelectedStudents'];
 
@@ -56,12 +59,35 @@ class UserAccountsLivewire extends Component
         $this->principal_positions = PrincipalPositions::all();
 
         $this->my_id = session('user_id');
+        if ($this->my_id) {
+            $user = UserAccounts::find($this->my_id);
+            $this->privileges = $user->getRole->privileges()->pluck('privilege')->toArray();
+        }
+
+        if (in_array('ViewGuidanceAccounts', $this->privileges)) {
+            $this->allowedRoles[] = 'Guidance';
+        }
+        if (in_array('ViewStudentAccounts', $this->privileges)) {
+            $this->allowedRoles[] = 'Student';
+        }
+        if (in_array('ViewParentAccounts', $this->privileges)) {
+            $this->allowedRoles[] = 'Parent';
+        }
+        if (in_array('ViewTeacherAccounts', $this->privileges)) {
+            $this->allowedRoles[] = 'Teacher';
+        }
+        if (in_array('ViewPrincipalAccounts', $this->privileges)) {
+            $this->allowedRoles[] = 'Principal';
+        }
+        if (in_array('ViewAccounts', $this->privileges)) {
+            $this->allowedRoles = Roles::get()->pluck('role')->toArray();
+        }
     }
 
     public function render()
     {
         $this->renderSelect2();
-        $this->roles = Roles::all();
+        $this->roles = Roles::whereIn('role', $this->allowedRoles)->get();
 
         $this->students = Students::whereHas('getUserAccount', function ($query) {
             // Filter students where the associated user account is not archived
@@ -73,6 +99,11 @@ class UserAccountsLivewire extends Component
         $query_archives = UserAccounts::join('roles', 'user_accounts.role_id', '=', 'roles.id')
             ->select('user_accounts.*', 'roles.role as role', DB::raw("CONCAT(first_name, ' ', last_name) as name"))
             ->where('is_archive', true);
+
+        if (!empty($this->allowedRoles)) {
+            $query_normal->whereIn('role', $this->allowedRoles);
+            $query_archives->whereIn('role', $this->allowedRoles);
+        }
 
         $this->filterRole = $this->filterRole == 'All' ? '' : $this->filterRole;
         if (!empty($this->filterRole)) {

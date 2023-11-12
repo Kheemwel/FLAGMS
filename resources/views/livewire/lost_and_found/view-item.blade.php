@@ -63,7 +63,7 @@
                         </div>
                     </div>
 
-                    @if ($authorized)
+                    @if (wordsExistInArray(['LostAndFound'], $privileges) || in_array('ManageClaimedItems', $privileges))
                         <div class="row">
                             <!--FINDER'S NAME-->
                             <div class="form-group col-sm-5" style="color: #252525;">
@@ -76,7 +76,7 @@
                     @endif
 
                     <!--ITEM DESCRIPTION-->
-                    @if ($authorized)
+                    @if (wordsExistInArray(['LostAndFound'], $privileges) || in_array('ManageClaimedItems', $privileges))
                         <div class="row">
                             <div class="form-group col-sm-5" style="color: #252525;">
                                 <p style="font-size: 14px;">Item Description</p>
@@ -91,7 +91,7 @@
                     <!-------------------------------------------------------->
 
                     <!--IMAGE OF THE LOST ITEM-->
-                    @if ($authorized)
+                    @if (wordsExistInArray(['LostAndFound'], $privileges) || in_array('ManageClaimedItems', $privileges))
                         <div class="form-group col-sm-13" style="font-size: 14px; color: #252525; text-align: left; padding-left: 0;">
                             <label for="input-item-desc" style="font-weight: normal;">Image of the Lost Item</label>
                         </div>
@@ -138,7 +138,7 @@
                             </div>
                         </div>
 
-                        @if ($authorized)
+                        @if (in_array('ManageClaimedItems', $privileges))
                             <div class="row">
                                 <!--Claimer'S NAME-->
                                 <div class="form-group col-sm-5" style="color: #252525;">

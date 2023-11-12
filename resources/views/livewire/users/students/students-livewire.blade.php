@@ -187,8 +187,12 @@
                                 <th style="border-right: 1px solid #252525;">Name</th>
                                 <th style="border-right: 1px solid #252525;">School Level</th>
                                 <th style="border-right: 1px solid #252525;">Grade Level</th>
-                                <th style="border-right: 1px solid #252525;">Anecdotal</th>
-                                <th>Summary</th>
+                                @if (in_array('ViewStudentsAnecdotal', $privileges) || in_array('WriteStudentsAnecdotal', $privileges))
+                                    <th style="border-right: 1px solid #252525;">Anecdotal</th>
+                                @endif
+                                @if (in_array('ViewStudentSummary', $privileges))
+                                    <th>Summary</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -198,16 +202,21 @@
                                     <td>{{ $student->getUserAccount->name }}</td>
                                     <td>{{ $student->schoolLevel->school_level }}</td>
                                     <td>Grade {{ $student->gradeLevel->grade_level }}</td>
-                                    <td>
-                                        <button class="btn btn-primary action-btn" data-target="#anecdotal-btn" data-toggle="modal" wire:click='getData({{ $student->id }})'>
-                                            <i aria-hidden="true" class="fa fa-eye"></i>
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-primary action-btn" data-target="#summary-btn" data-toggle="modal">
-                                            <i aria-hidden="true" class="fa fa-eye"></i>
-                                        </button>
-                                    </td>
+                                    @if (in_array('ViewStudentsAnecdotal', $privileges) || in_array('WriteStudentsAnecdotal', $privileges))
+                                        <td>
+                                            <button class="btn btn-primary action-btn" data-target="#anecdotal-btn" data-toggle="modal" wire:click='getData({{ $student->id }})'>
+                                                <i aria-hidden="true" class="fa fa-eye"></i>
+                                            </button>
+                                        </td>
+                                    @endif
+
+                                    @if (in_array('ViewStudentSummary', $privileges))
+                                        <td>
+                                            <button class="btn btn-primary action-btn" data-target="#summary-btn" data-toggle="modal">
+                                                <i aria-hidden="true" class="fa fa-eye"></i>
+                                            </button>
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>

@@ -41,7 +41,9 @@
                                 <option selected>Select Role</option>
                             @endif
                             @foreach ($roles as $rls)
-                                <option value="{{ $rls->role }}">{{ $rls->role }}</option>
+                                @if (in_array("Add{$rls->role}Accounts", $privileges) || in_array("AddAccounts", $privileges))
+                                    <option value="{{ $rls->role }}">{{ $rls->role }}</option>
+                                @endif
                             @endforeach
                         </select>
                         @error('role')

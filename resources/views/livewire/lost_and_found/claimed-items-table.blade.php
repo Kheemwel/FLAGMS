@@ -21,20 +21,19 @@
                         <td>{{ $claimedItem->claimer_name }}</td>
                         <td>{{ date('F d,Y   h:i A', strtotime($claimedItem->claimed_datetime)) }}</td>
                         <td>
-                            @if ($authorized)
-                                <p class="btn btn-primary action-btn" style="color: #3C58FF;  text-decoration: underline;" wire:click="unclaim({{ $claimedItem->id }})">Unclaim</p>
-                            @endif
+                            <p class="btn btn-primary action-btn" style="color: #3C58FF;  text-decoration: underline;" wire:click="unclaim({{ $claimedItem->id }})">Unclaim</p>
                             <!--VIEW PROFILE-->
                             <button class="btn btn-primary action-btn" data-target="#view-lost-item" data-toggle="modal" title='View' tooltip='enable' wire:click="get_data({{ $claimedItem->id }})">
                                 <i aria-hidden="true" class="fa fa-eye"></i>
                             </button>
 
-                            @if ($authorized)
+                            @if (in_array('EditLostAndFound', $privileges))
                                 <!--EDIT LOST ITEM BUTTON-->
                                 <button class="btn btn-primary action-btn" data-target="#edit-lost-item" data-toggle="modal" wire:click="get_data({{ $claimedItem->id }})">
                                     <i class="fa fa-solid fa-pen"></i>
                                 </button>
-
+                            @endif
+                            @if (in_array('DeleteLostAndFound', $privileges))
                                 {{-- DELETE USER --}}
                                 <button class="btn btn-primary action-btn" wire:click='delete({{ $claimedItem->id }})'>
                                     <i aria-hidden="true" class="fa fa-trash"></i>

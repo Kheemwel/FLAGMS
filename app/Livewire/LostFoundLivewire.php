@@ -24,7 +24,7 @@ class LostFoundLivewire extends Component
     public  $is_claimed, $claimer_name, $claimer_contact, $claimer_email, $claimer_address, $claimed_datetime;
     public $filterItemTypes = [];
     public $search = '';
-    public $authorized = false;
+    public $privileges = [];
 
     public function mount()
     {
@@ -33,10 +33,8 @@ class LostFoundLivewire extends Component
         $this->applyFilter();
         $user_id = session('user_id');
         if ($user_id) {
-            $role = UserAccounts::find($user_id)->getRole->role;
-            if (in_array($role, ['Admin', 'Admin/Guidance', 'Guidance'])) {
-                $this->authorized = true;
-            }
+            $user = UserAccounts::find($user_id);
+            $this->privileges = $user->getRole->privileges()->pluck('privilege')->toArray();
         }
     }
 

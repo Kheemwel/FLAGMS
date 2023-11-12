@@ -22,12 +22,14 @@
                         <h5 style="font-weight: bold;">Found Items</h5>
                     </a>
                 </li>
-                <li class="nav-item" wire:ignore>
-                    <a aria-controls="custom-tabs-one-claimed-items" aria-selected="false" class="nav-link" data-toggle="pill" href="#custom-tabs-one-claimed-items" id="custom-tabs-one-claimed-items-tab" role="tab">
-                        <h5 style="font-weight: bold;">Claimed Items</h5>
-                    </a>
-                </li>
-                @if ($authorized)
+                @if (in_array('ManageClaimedItems', $privileges))
+                    <li class="nav-item" wire:ignore>
+                        <a aria-controls="custom-tabs-one-claimed-items" aria-selected="false" class="nav-link" data-toggle="pill" href="#custom-tabs-one-claimed-items" id="custom-tabs-one-claimed-items-tab" role="tab">
+                            <h5 style="font-weight: bold;">Claimed Items</h5>
+                        </a>
+                    </li>
+                @endif
+                @if (in_array('ManageExpiredItems', $privileges))
                     <li class="nav-item" wire:ignore>
                         <a aria-controls="custom-tabs-one-expired-items" aria-selected="false" class="nav-link" data-toggle="pill" href="#custom-tabs-one-expired-items" id="custom-tabs-one-expired-items-tab" role="tab">
                             <h5 style="font-weight: bold;">Expired Items</h5>

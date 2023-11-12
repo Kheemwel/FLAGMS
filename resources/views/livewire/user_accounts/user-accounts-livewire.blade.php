@@ -26,11 +26,13 @@
         }
 
         .archivals:hover {
-        color: #3C58FF; /* Replace with your desired hover color */
+            color: #3C58FF;
+            /* Replace with your desired hover color */
         }
 
         #delete:hover {
-        color: #FF0000; /* Replace with your desired hover color */
+            color: #FF0000;
+            /* Replace with your desired hover color */
         }
 
         /********************************/
@@ -90,20 +92,24 @@
                     </div>
                 </div>
                 <!--ADD USER BUTTON-->
-                <button class="btn btn-default" data-target="#addUserModal" data-toggle="modal" style="max-width: 7%; font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button">
-                    <i aria-hidden="true" class="fa fa-plus"></i>
-                    Add User
-                </button>
-                <!--BATCH ADD USER BUTTON-->
-                <button class="btn btn-default" data-target="#batchAddUserModal" data-toggle="modal" style="font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button">
-                <i class="fa fa-solid fa-file-import" style="color: white;"></i>
-                    Import User Accounts
-                </button>
+                @if (wordsExistInArray(['Add', 'Account'], $privileges))
+                    <button class="btn btn-default" data-target="#addUserModal" data-toggle="modal" style="max-width: 7%; font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button">
+                        <i aria-hidden="true" class="fa fa-plus"></i>
+                        Add User
+                    </button>
+                    <!--BATCH ADD USER BUTTON-->
+                    <button class="btn btn-default" data-target="#batchAddUserModal" data-toggle="modal" style="font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button">
+                        <i class="fa fa-solid fa-file-import" style="color: white;"></i>
+                        Import User Accounts
+                    </button>
+                @endif
                 <!--DOWNLOAD TABLE BUTTON-->
-                <button class="btn btn-default" style="font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button" wire:click='export()'>
-                <i class="fa fa-solid fa-file-export" style="color: white;"></i>
-                    Export User Accounts
-                </button>
+                @if (wordsExistInArray(['Export', 'Account'], $privileges))
+                    <button class="btn btn-default" style="font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button" wire:click='export()'>
+                        <i class="fa fa-solid fa-file-export" style="color: white;"></i>
+                        Export User Accounts
+                    </button>
+                @endif
             </div>
 
             <div class="card card-primary card-tabs" style="background-color:  rgb(253, 253, 253);margin-left: 2rem; margin-right: 2rem;">
@@ -114,11 +120,13 @@
                                 <h5 style="font-weight: bold;">Active Accounts</h5>
                             </a>
                         </li>
-                        <li class="nav-item" wire:ignore>
-                            <a aria-controls="custom-tabs-one-archived-accounts" aria-selected="false" class="nav-link" data-toggle="pill" href="#custom-tabs-one-archived-accounts" id="custom-tabs-one-archived-accounts-tab" role="tab">
-                                <h5 style="font-weight: bold;">Archived Accounts</h5>
-                            </a>
-                        </li>
+                        @if (wordsExistInArray(['Archive', 'Account'], $privileges))
+                            <li class="nav-item" wire:ignore>
+                                <a aria-controls="custom-tabs-one-archived-accounts" aria-selected="false" class="nav-link" data-toggle="pill" href="#custom-tabs-one-archived-accounts" id="custom-tabs-one-archived-accounts-tab" role="tab">
+                                    <h5 style="font-weight: bold;">Archived Accounts</h5>
+                                </a>
+                            </li>
+                        @endif
                     </ul>
                 </div>
                 <div class="card-body">

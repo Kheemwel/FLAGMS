@@ -11,18 +11,15 @@ class GuidanceProgramLivewire extends Component
 {
     use Toasts;
     public $id, $title, $program_start, $program_end, $description, $color;
-    public $authorized = false;
-
+    public $privileges = [];
     protected $listeners = ['get_event'];
 
     public function mount()
     {
         $user_id = session('user_id');
         if ($user_id) {
-            $role = UserAccounts::find($user_id)->getRole->role;
-            if (in_array($role, ['Admin', 'Admin/Guidance', 'Guidance'])) {
-                $this->authorized = true;
-            }
+            $user = UserAccounts::find($user_id);
+            $this->privileges = $user->getRole->privileges()->pluck('privilege')->toArray();
         }
         $this->renderCalendar();
     }

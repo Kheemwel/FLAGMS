@@ -55,7 +55,7 @@
                             </div>
 
                             <!--ADD BUTTON-->
-                            @if ($authorized)
+                            @if (in_array('AddGuidanceProgram', $privileges))
                                 <button class="btn btn-default" data-target="#add-event" data-toggle="modal" style="width: 100px; height: 30px; margin-left: 10px; background-color: #0A0863; color: white; font-size: 12px;">
                                     <i class="fa fa-solid fa-plus"></i> Add Event
                                 </button>

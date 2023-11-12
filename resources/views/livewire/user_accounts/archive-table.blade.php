@@ -44,6 +44,7 @@
             <tbody style="text-align: center;">
                 @foreach ($archived_users as $arch_user)
                     <tr>
+                        <th></th>
                         <th scope="row">{{ $arch_user->id }}</th>
                         <td>{{ $arch_user->name }}</td>
                         <td>{{ $arch_user->role }}</td>
@@ -55,9 +56,11 @@
                             </button>
 
                             <!--USER INFO EDIT BUTTON-->
-                            <button class="btn btn-primary action-btn" data-target="#stud-info-edit" data-toggle="modal" title='Edit Account' tooltip='enable' wire:click="get_data({{ $arch_user->id }})">
-                                <i class="fa fa-solid fa-pen"></i>
-                            </button>
+                            @if (in_array("Edit{$arch_user->role}Accounts", $privileges) || in_array("EditAccounts", $privileges))
+                                <button class="btn btn-primary action-btn" data-target="#stud-info-edit" data-toggle="modal" title='Edit Account' tooltip='enable' wire:click="get_data({{ $arch_user->id }})">
+                                    <i class="fa fa-solid fa-pen"></i>
+                                </button>
+                            @endif
 
                             {{-- UNARCHIVE USER --}}
                             <button class="btn btn-primary action-btn" title='Unarchive Account' tooltip='enable' wire:click="unArchive({{ $arch_user->id }})">
@@ -65,7 +68,7 @@
                             </button>
 
                             {{-- DELETE USER --}}
-                            @if ($my_id !== $arch_user->id)
+                            @if ($my_id !== $arch_user->id && in_array("Delete{$arch_user->role}Accounts", $privileges) || in_array("DeleteAccounts", $privileges))
                                 <button class="btn btn-primary action-btn" data-target="#deleteModal" data-toggle="modal" title='Delete Account' tooltip='enable' wire:click.prevent="get_data({{ $arch_user->id }})">
                                     <i aria-hidden="true" class="fa fa-trash"></i>
                                 </button>

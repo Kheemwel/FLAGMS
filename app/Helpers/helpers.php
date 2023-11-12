@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 
 if (!function_exists('debugMessage')) {
@@ -16,7 +17,8 @@ if (!function_exists('printMessage')) {
 }
 
 if (!function_exists('defaultProfilePicture')) {
-    function defaultProfilePicture() {
+    function defaultProfilePicture()
+    {
         return asset('images/default_profile.jpg'); // Update the path as needed
     }
 }
@@ -58,5 +60,24 @@ if (!function_exists('setActiveLink')) {
     function setActiveLink($page)
     {
         return Route::is($page) ? 'active' : '';
+    }
+}
+
+if (!function_exists('wordExistInArray')) {
+    function wordsExistInArray($words, $array)
+    {
+        foreach ($array as $arr) {
+            $found = true;
+            foreach ($words as $word) {
+                if (strpos($arr, $word) === false) {
+                    $found = false;
+                    break;
+                }
+            }
+            if ($found) {
+                return true; // Return true as soon as all words are found in the current array element
+            }
+        }
+        return false; // Return false if no match is found
     }
 }

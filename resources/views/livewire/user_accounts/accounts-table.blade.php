@@ -50,14 +50,18 @@
 
                             @if ($my_id !== $user->id)
                                 <!--USER INFO EDIT BUTTON-->
-                                <button class="btn btn-primary action-btn" data-target="#stud-info-edit" data-toggle="modal" title='Edit Account' tooltip='enable' wire:click="get_data({{ $user->id }})">
-                                    <i class="fa fa-solid fa-pen"></i>
-                                </button>
+                                @if (in_array("Edit{$user->role}Accounts", $privileges) || in_array("EditAccounts", $privileges))
+                                    <button class="btn btn-primary action-btn" data-target="#stud-info-edit" data-toggle="modal" title='Edit Account' tooltip='enable' wire:click="get_data({{ $user->id }})">
+                                        <i class="fa fa-solid fa-pen"></i>
+                                    </button>
+                                @endif
 
                                 {{-- ARCHIVE USER --}}
-                                <button class="btn btn-primary action-btn" title='Archive Account' tooltip='enable' wire:click="archive({{ $user->id }})">
-                                    <i aria-hidden="true" class="fa fa-archive"></i>
-                                </button>
+                                @if (in_array("Archive{$user->role}Accounts", $privileges) || in_array("ArchiveAccounts", $privileges))
+                                    <button class="btn btn-primary action-btn" title='Archive Account' tooltip='enable' wire:click="archive({{ $user->id }})">
+                                        <i aria-hidden="true" class="fa fa-archive"></i>
+                                    </button>
+                                @endif
                             @endif
                         </td>
                     </tr>

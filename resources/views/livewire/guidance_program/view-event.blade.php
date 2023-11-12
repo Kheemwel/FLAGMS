@@ -18,8 +18,10 @@
                     <!--MODAL TITLE-->
                     <p class="card-title" style="color: #0A0863; font-weight: bold; font-size: 22px;">
                         EVENT
-                        @if ($authorized)
+                        @if (in_array('EditGuidanceProgram', $privileges))
                             <i class="fa fa-solid fa-pen" data-dismiss="modal" data-target="#edit-event" data-toggle="modal" style="color: #252525; font-size: 14px; margin-left: 1rem;cursor: pointer;"></i>
+                        @endif
+                        @if (in_array('DeleteGuidanceProgram', $privileges))
                             <i class="fa fa-solid fa-trash" data-dismiss="modal" style="color: #252525; font-size: 14px; margin-left: 1rem;cursor: pointer;" wire:click='deleteEvent({{ $id }})'></i>
                         @endif
                     </p>

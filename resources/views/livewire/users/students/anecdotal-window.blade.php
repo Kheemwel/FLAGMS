@@ -118,7 +118,7 @@
                                 </tr>
                             </thead>
                             <tbody style="font-weight: bold;">
-                                @if ($anecdotal)
+                                @if ($anecdotal && in_array('ViewStudentsAnecdotal', $privileges))
                                     @foreach ($anecdotal as $anec)
                                         <tr>
                                             <td style="text-align: center;">{{ date('F d, Y', strtotime($anec->date)) }}</td>
@@ -130,54 +130,58 @@
                                             <td style="text-align: center;"></td>
                                             <td style="text-align: center;">
                                             </td>
-                                            <td style="text-align: center;">
-                                                <button wire:click.prevent='' class="btn btn-primary action-btn" title='Edit Row' tooltip='enable'>
-                                                    <i class="fa fa-solid fa-pen"></i>
-                                                </button>
-                                            </td>
+                                            @if (in_array('WriteStudentsAnecdotal', $privileges))
+                                                <td style="text-align: center;">
+                                                    <button class="btn btn-primary action-btn" title='Edit Row' tooltip='enable' wire:click.prevent=''>
+                                                        <i class="fa fa-solid fa-pen"></i>
+                                                    </button>
+                                                </td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                 @endif
-                                <tr>
-                                    <form>
-                                        <td style="text-align: center;">
-                                            <input type="date" wire:model='input_date' id='datePicker'>
-                                            <x-error field='input_date' />
-                                        </td>
-                                        <td style="text-align: center;">
-                                            <input type="time" wire:model='input_time'>
-                                            <x-error field='input_time' />
-                                        </td>
-                                        <td style="text-align: center;">
-                                            <div wire:ignore>
-                                                <select class="form-select" data-placeholder="Select Offense" id="single-select-optgroup-clear-field" style="border: 1px solid #252525;">
-                                                    <option></option>
-                                                    @foreach ($offenses as $offense)
-                                                        <option value="{{ $offense->id }}">{{ $offense->offense_name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <x-error field='input_offense' />
-                                        </td>
-                                        <td style="text-align: center;">{{ $display_disciplinary_action }}</td>
-                                        <td style="text-align: center;">
-                                            <button wire:click.prevent='' class="btn btn-primary action-btn" data-target="#add-signature" data-toggle="modal" style="color: #0A0863; font-weight: bold;">
-                                                <i class="fa fa-solid fa-file-signature" style="color: #0A0863;"></i> Add Signature
-                                            </button>
-                                        </td>
-                                        <td style="text-align: center;"><input type="text"></td>
-                                        <td style="text-align: center;">
-                                            <button wire:click.prevent=''  class="btn btn-primary action-btn" data-target="#add-signature" data-toggle="modal" style="color: #0A0863; font-weight: bold;">
-                                                <i class="fa fa-solid fa-file-signature" style="color: #0A0863;"></i> Add Signature
-                                            </button>
-                                        </td>
-                                        <td style="text-align: center;">
-                                            <button class="btn btn-primary action-btn" title='Save' tooltip='enable' type="submit" wire:click.prevent="saveAnecdotal()">
-                                                <i aria-hidden="true" class="fa fa-save"></i>
-                                            </button>
-                                        </td>
-                                    </form>
-                                </tr>
+                                @if (in_array('WriteStudentsAnecdotal', $privileges))
+                                    <tr>
+                                        <form>
+                                            <td style="text-align: center;">
+                                                <input id='datePicker' type="date" wire:model='input_date'>
+                                                <x-error field='input_date' />
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <input type="time" wire:model='input_time'>
+                                                <x-error field='input_time' />
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <div wire:ignore>
+                                                    <select class="form-select" data-placeholder="Select Offense" id="single-select-optgroup-clear-field" style="border: 1px solid #252525;">
+                                                        <option></option>
+                                                        @foreach ($offenses as $offense)
+                                                            <option value="{{ $offense->id }}">{{ $offense->offense_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <x-error field='input_offense' />
+                                            </td>
+                                            <td style="text-align: center;">{{ $display_disciplinary_action }}</td>
+                                            <td style="text-align: center;">
+                                                <button class="btn btn-primary action-btn" data-target="#add-signature" data-toggle="modal" style="color: #0A0863; font-weight: bold;" wire:click.prevent=''>
+                                                    <i class="fa fa-solid fa-file-signature" style="color: #0A0863;"></i> Add Signature
+                                                </button>
+                                            </td>
+                                            <td style="text-align: center;"><input type="text"></td>
+                                            <td style="text-align: center;">
+                                                <button class="btn btn-primary action-btn" data-target="#add-signature" data-toggle="modal" style="color: #0A0863; font-weight: bold;" wire:click.prevent=''>
+                                                    <i class="fa fa-solid fa-file-signature" style="color: #0A0863;"></i> Add Signature
+                                                </button>
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <button class="btn btn-primary action-btn" title='Save' tooltip='enable' type="submit" wire:click.prevent="saveAnecdotal()">
+                                                    <i aria-hidden="true" class="fa fa-save"></i>
+                                                </button>
+                                            </td>
+                                        </form>
+                                    </tr>
+                                @endif
                             </tbody>
                         </table>
                     </div>
