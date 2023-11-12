@@ -24,25 +24,28 @@ class CheckUserCredentials
         }
 
         if ($user_id) {
-            $userRole = UserAccounts::find($user_id)->getRole->role;
+            $privileges = UserAccounts::find($user_id)->getRole->privileges()->pluck('privilege')->toArray();
             $allowedPages = [
-                'Admin' => ['user-accounts-page', 'content-management-page'],
-                'Admin/Guidance'=> ['user-accounts-page', 'content-management-page'],
-                'Student' => ['student-anecdotal-record-page', 'student-individual-inventory-page', 'student-individual-inventory-report-page'],
-                'Parent' => ['child-records-page'],
-                'Teacher' => ['students-anecdotals-page', 'request-forms-page']
+                'lost-and-found-page' => ['ManageExpiredItems', 'ManageClaimedItems', 'ViewOnlyFoundtItems', 'AddLostAndFound', 'DeleteLostAndFound', 'EditLostAndFound'],
+                'fill-out-forms-page' => ['FillOutForms'],
+                'user-accounts-page' => ['ViewAccounts', 'ViewGuidanceAccounts', 'ViewParentAccounts', 'ViewPrincipalAccounts', 'ViewStudentAccounts', 'ViewTeacherAccounts'],
+                'content-management-page' => ['ManageWebsiteContent'],
+                'roles-page' => ['ManageRoles'],
+                'database-page'=> ['ManageDatabase'],
+                'students-page' => ['ViewStudentSummary', 'ViewStudentsAnecdotal', 'WriteStudentsAnecdotal'],
+                'guidance-program-page' => ['ViewGuidanceProgram'],
+                'approval-forms-page'=> ['ApproveForm'],
+                'student-anecdotal-record-page' => ['StudentPrivileges'],
+                'student-individual-inventory-page' => ['StudentPrivileges'],
+                'student-individual-inventory-report-page' => ['StudentPrivileges'],
+                'child-records-page' => ['ParentPrivileges'],
+                'request-forms-page' => ['RequestForm']
             ];
 
             $currentRoute = $request->route()->getName();
 
-            foreach ($allowedPages as $role => $allowedRoutes) {
-                if (in_array($currentRoute, $allowedRoutes)) {
-                    if (!in_array($currentRoute, $allowedPages[$userRole])) {
-                        // Redirect back to the previous page
-                        return redirect()->back();
-                    }
-                    break;
-                }
+            if (isset($allowedPages[$currentRoute]) && empty(array_intersect($privileges, $allowedPages[$currentRoute]))) {
+                return redirect()->back();
             }
         }
 

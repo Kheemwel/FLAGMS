@@ -1,5 +1,5 @@
 <div>
-    @if ($role == 'Admin')
+    @if ($role == 'Admin' || $role == 'Guidance' || $role == 'SuperAdmin')
         @include('admin.admin-dashboard')
     @elseif ($role == 'Student')
         @include('student.student-dashboard')

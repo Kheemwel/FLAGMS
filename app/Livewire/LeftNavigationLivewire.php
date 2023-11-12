@@ -10,6 +10,7 @@ use Livewire\Component;
 class LeftNavigationLivewire extends Component
 {
     public $role, $logo, $school_name;
+    public $privileges = [];
 
     public function mount()
     {
@@ -17,6 +18,7 @@ class LeftNavigationLivewire extends Component
         if ($userId) {
             $user = UserAccounts::find($userId);
             $this->role = $user->getRole->role;
+            $this->privileges = $user->getRole->privileges()->pluck('privilege')->toArray();
         }
         $this->school_name = WebsiteSchoolName::find(1)->school_name;
         $this->logo = imageBinaryToSRC(WebsiteLogo::find(1)->logo);

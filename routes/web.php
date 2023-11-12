@@ -61,7 +61,7 @@ Route::middleware([CheckUserCredentials::class])->group(function () {
     Route::get('/user-dashboard', UserDashboardLivewire::class)->name('user-dashboard-page');
     Route::get('/profile', ProfileLivewire::class)->name('profile-page');
     Route::get('/notification', NotificationLivewire::class)->name('notification-page');
-    Route::view('/user-guidance-program', 'common.user-guidance-program')->name('user-guidance-program-page');
+    // Route::view('/user-guidance-program', 'common.user-guidance-program')->name('user-guidance-program-page');
     Route::get('/lost-and-found', LostFoundLivewire::class)->name('lost-and-found-page');
     Route::view('/fill-out-forms', 'common.fill-out-forms')->name('fill-out-forms-page');
 
