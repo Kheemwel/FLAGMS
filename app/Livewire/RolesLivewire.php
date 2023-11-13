@@ -12,6 +12,7 @@ class RolesLivewire extends Component
     use Toasts;
     public $roles, $role, $selected_role, $selected_role_id;
     public $privileges, $selected_privileges = [];
+    public $privilege_categories = ['Add', 'Edit',  'Delete', 'View', 'Archive', 'Manage', 'Export', 'Other'];
 
     public function mount()
     {
@@ -81,5 +82,4 @@ class RolesLivewire extends Component
         $this->selected_privileges = [];
         $this->resetErrorBag();
     }
-
 }
