@@ -19,7 +19,7 @@
 
                     <div class="form-group" style="font-size: 14px; color: #252525;">
                         <label for="role-name">Role Name</label>
-                        <input class="form-control" id="role-name" style="border: 1px solid #252525" type="text" wire:model="role">
+                        <input @disabled($selected_role != null ? $selected_role->is_default : false) class="form-control" id="role-name" style="border: 1px solid #252525" type="text" wire:model="role">
 
                         @error('role')
                             <span class="text-danger">{{ $message }}</span>
@@ -39,14 +39,24 @@
                     </div>
 
                     <div class="row">
-                        @foreach ($privileges as $privilege)
-                            @if (!$privilege->is_exclusive || in_array($privilege->id, $selected_privileges))
-                                <div class="form-group col-4" style="text-align: left; margin-top: 2rem;">
-                                    <input @disabled($privilege->is_exclusive) type="checkbox" value="{{ $privilege->id }}" wire:model='selected_privileges'>{{ $privilege->privilege }}
-                                </div>
-                            @endif
+                        @foreach ($privilege_categories as $category)
+                            <div class="row border border-dark rounded w-100 mb-3">
+                                <label class='form-group w-100' style="font-size: 14px; color: #252525; margin-left: 1rem; margin-top: 1rem;">{{ $category . ' Privileges' }}</label>
+                                @foreach ($privileges as $privilege)
+                                    @if (!$privilege->is_exclusive || in_array($privilege->id, $selected_privileges))
+                                        @if (strpos($privilege->privilege, $category) !== false)
+                                            <div class="form-group col-4" style="text-align: left; margin-top: 2rem;">
+                                                <input @disabled($privilege->is_exclusive) type="checkbox" value="{{ $privilege->id }}" wire:model='selected_privileges'>{{ $privilege->privilege }}
+                                            </div>
+                                        @elseif (!wordsExistInString($privilege_categories, $privilege->privilege) && $category == 'Other')
+                                            <div class="form-group col-4" style="text-align: left; margin-top: 2rem;">
+                                                <input @disabled($privilege->is_exclusive) type="checkbox" value="{{ $privilege->id }}" wire:model='selected_privileges'>{{ $privilege->privilege }}
+                                            </div>
+                                        @endif
+                                    @endif
+                                @endforeach
+                            </div>
                         @endforeach
-
                     </div>
                 </div>
                 <!-- /.card-body -->

@@ -32,7 +32,7 @@ class StudentsLivewire extends Component
         $this->offenses = Offenses::all();
         $studentIdsWithAnecdotals = StudentsAnecdotals::pluck('student_id')->toArray();
         $query_students = Students::get();
-        if (in_array('ViewStudentsAnecdotal', $this->privileges) || in_array('WriteStudentsAnecdotal', $this->privileges)) {
+        if (in_array('ViewStudentsAnecdotal', $this->privileges) && !in_array('WriteStudentsAnecdotal', $this->privileges)) {
             $this->students = $query_students->whereIn('id', $studentIdsWithAnecdotals);
         } else {
             $this->students = $query_students;

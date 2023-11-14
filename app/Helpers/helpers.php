@@ -63,7 +63,7 @@ if (!function_exists('setActiveLink')) {
     }
 }
 
-if (!function_exists('wordExistInArray')) {
+if (!function_exists('wordsExistInArray')) {
     function wordsExistInArray($words, $array)
     {
         foreach ($array as $arr) {
@@ -79,5 +79,16 @@ if (!function_exists('wordExistInArray')) {
             }
         }
         return false; // Return false if no match is found
+    }
+}
+if (!function_exists('wordsExistInString')) {
+    function wordsExistInString($words, $string)
+    {
+        foreach ($words as $word) {
+            if (strpos($string, $word) !== false) {
+                return true;
+            }
+        }
+        return false;
     }
 }
