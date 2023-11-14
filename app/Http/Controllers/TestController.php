@@ -39,6 +39,14 @@ class TestController extends Controller
         return response()->json(['colorResult' => "You selected the color <span style='color: $selectedOption'>$selectedOption</span>"]);
     }
 
+    public function processTextInput(Request $request)
+    {
+        $text = $request->input('text');
+        // Handle the selected color option (e.g., perform some processing)
+        // Return the response to the client
+        return response()->json(['text' => "From Back-End: $text"]);
+    }
+
     public function msg()
     {
         $msg = "This is a simple message.";

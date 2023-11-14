@@ -21,6 +21,7 @@ use App\Livewire\RolesLivewire;
 use App\Livewire\StudentsLivewire;
 use App\Livewire\TeachersLivewire;
 use App\Livewire\Test\TestLivewire;
+use App\Livewire\Test\TestTable;
 use App\Livewire\UserAccountsLivewire;
 use App\Livewire\UserDashboardLivewire;
 use Illuminate\Http\Request;
@@ -48,10 +49,13 @@ Route::get('/', HomeLivewire::class)->name('home-page');
 
 Route::get('/test.livewire', TestLivewire::class)->name('test.livewire-page');
 Route::get('/test.controller', [TestController::class, 'index']);
+Route::get('/test-table', TestTable::class)->name('test.table-page');
+
 Route::namespace('App\Http\Controllers')->group(function () {
     Route::post('/test.controller-increment', 'TestController@increment')->name('increment');
     Route::post('/test.controller-selectedOption', 'TestController@processSelectedOption')->name('selected-option');
     Route::post('/test.controller-colorOption', 'TestController@processColorOption')->name('color-option');
+    Route::post('/test.controller-textInput', 'TestController@processTextInput')->name('text-input');
     Route::post('/getmsg', 'TestController@msg');
 });
 

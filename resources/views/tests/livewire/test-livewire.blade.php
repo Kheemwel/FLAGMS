@@ -1,4 +1,4 @@
-@section('css')
+@section('head')
     <title>Livewire | Test</title>
     <style>
         .hideMe {

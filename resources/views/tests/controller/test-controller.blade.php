@@ -42,6 +42,10 @@
     <div id = 'msg'>This message will be replaced using Ajax. Click the button to replace the message.</div>
     <button onclick="getMessage()">Click Me</button>
 
+    <br><br><br>
+    <input id='textbox' type="text">
+    <p id='textdisplay'>Text Appear Here...</p>
+
     <script>
         function getMessage() {
             $.ajax({
@@ -95,6 +99,24 @@
                     success: function(data) {
                         // Display the response from the server in the color_result div
                         $("#color_result").html(data.colorResult);
+                    }
+                });
+            });
+
+
+            $('#textbox').on("input", function() {
+                const val = $(this).val();
+
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('text-input') }}", // Define this route in routes/web.php
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        text: val
+                    },
+                    success: function(data) {
+                        // Display the response from the server
+                        $("#textdisplay").text(data.text);
                     }
                 });
             });
