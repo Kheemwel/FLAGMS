@@ -2,7 +2,7 @@
     <!--SEARCH FEATURE-->
     <div class="input-group input-group-sm" style="max-width: 20%;">
         <!--SEARCH INPUT-->
-        <input class="form-control float-right" name="table_search" placeholder="Search" style="height: 35px;" type="text" wire:model.live='levels_search'>
+        <input class="form-control float-right" name="table_search" placeholder="Search" style="height: 35px;" type="text" wire:model.live.debounce.500ms='levels_search'>
     </div>
 
     <button class="btn btn-default" data-target="#addOffenseLevelModal" data-toggle="modal" style="font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button">

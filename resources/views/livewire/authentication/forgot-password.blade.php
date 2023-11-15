@@ -18,7 +18,7 @@
                     <br><br>
                     <!--USERNAME-->
                     <div class="form-group col-sm-13" style="font-size: 14px; color: #252525;">
-                        <input class="form-control" id="input-email" placeholder="Email" style="border-left: none; border-top: none; border-right: none; border-bottom: 1px solid #252525" type="text" wire:model.live='email'>
+                        <input class="form-control" id="input-email" placeholder="Email" style="border-left: none; border-top: none; border-right: none; border-bottom: 1px solid #252525" type="text" wire:model.live.debounce.500ms='email'>
                     </div>
                     <div class="input-group col-sm-13" style="font-size: 14px; color: #252525; border-radius: 5px; border: 1px solid black">
                         <input class="form-control" id="input-code" placeholder="" style="border: none" type="text" wire:model="input_code">

@@ -18,7 +18,7 @@
                         <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
                             <label for="select-type" style="font-weight: normal;">Item Type</label>
                             <div class="input-group-prepend">
-                                <select class="form-select form-select-sm mb-2" id="select-type" wire:model.live="selected_item_type">
+                                <select class="form-select form-select-sm mb-2" id="select-type" wire:model.live.debounce.500ms="selected_item_type">
                                     @if ($selected_item_type == '')
                                         <option selected>Select Item Type</option>
                                     @endif
@@ -36,7 +36,7 @@
                         <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
                             <label for="select-type" style="font-weight: normal;">Item Tag</label>
                             <div class="input-group-prepend">
-                                <select class="form-select form-select-sm mb-2" id="select-type" wire:model.live="selected_item_tag">
+                                <select class="form-select form-select-sm mb-2" id="select-type" wire:model.live.debounce.500ms="selected_item_tag">
                                     @if ($selected_item_tag == '')
                                         <option selected>Select item Tag</option>
                                     @endif

@@ -3,7 +3,7 @@
     <div class="row">
         @foreach ($school_levels as $level)
             <div class="form-check form-check-inline">
-                <input @if ($school_level == $level->school_level) checked @endif class="form-check-input" id="inlineRadio1" name="inlineRadioOptions" type="radio" value="{{ $level->school_level }}" wire:model.live='school_level'>
+                <input @if ($school_level == $level->school_level) checked @endif class="form-check-input" id="inlineRadio1" name="inlineRadioOptions" type="radio" value="{{ $level->school_level }}" wire:model.live.debounce.500ms='school_level'>
                 <label class="form-check-label" for="inlineRadio1">{{ $level->school_level }}</label>
             </div>
         @endforeach
@@ -16,7 +16,7 @@
     <p class="card-title" style="font-size: 16px; margin-bottom: 1rem;">Grade Level</p>
     <!--ROLE DROPDOWN BUTTON-->
     <div class="input-group-prepend">
-        <select class="form-select form-select-sm mb-2" id="roles" selected wire:model.live="grade_level">
+        <select class="form-select form-select-sm mb-2" id="roles" selected wire:model.live.debounce.500ms="grade_level">
             @if ($grade_level == '')
                 <option selected>Grade Level</option>
             @endif
