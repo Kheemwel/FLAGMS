@@ -35,7 +35,7 @@
                 </tr>
             </thead>
             <tbody style="text-align: center;">
-                @foreach ($users as $user)
+                @foreach ($users['items'] as $user)
                     <tr>
                         <th></th>
                         <th scope="row">{{ $user->id }}</th>
@@ -71,4 +71,4 @@
     </div>
     <!-- /.card-body -->
 </div>
-{{ $users->links('components.pagination') }}
+{!! $users['links'] !!}

@@ -42,7 +42,7 @@
                 </tr>
             </thead>
             <tbody style="text-align: center;">
-                @foreach ($archived_users as $arch_user)
+                @foreach ($archived_users['items'] as $arch_user)
                     <tr>
                         <th></th>
                         <th scope="row">{{ $arch_user->id }}</th>
@@ -81,4 +81,4 @@
     </div>
     <!-- /.card-body -->
 </div>
-{{ $archived_users->links('components.pagination') }}
+{!! $archived_users['links'] !!}

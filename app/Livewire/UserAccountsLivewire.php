@@ -51,6 +51,7 @@ class UserAccountsLivewire extends Component
     public $allowedRoles = [];
 
     protected $listeners = ['setSelectedStudents'];
+    public $users, $archived_users;
 
     public function mount()
     {
@@ -82,13 +83,18 @@ class UserAccountsLivewire extends Component
         if (in_array('ViewAccounts', $this->privileges)) {
             $this->allowedRoles = Roles::get()->pluck('role')->toArray();
         }
+
+        $this->roles = Roles::whereIn('role', $this->allowedRoles)->get();
     }
 
     public function render()
     {
-        $this->renderSelect2();
-        $this->roles = Roles::whereIn('role', $this->allowedRoles)->get();
+        $this->loadAccounts();
+        return view('livewire.user_accounts.user-accounts-livewire', ['users' => $this->users, 'archived_users' => $this->archived_users]);
+    }
 
+    public function loadAccounts()
+    {
         $this->students = Students::whereHas('getUserAccount', function ($query) {
             // Filter students where the associated user account is not archived
             $query->where('is_archive', false);
@@ -139,14 +145,30 @@ class UserAccountsLivewire extends Component
             $this->school_level = $school_level->hasSchoolLevel->schoolLevel->school_level;
         }
 
-        $users = $query_normal->orderBy($this->sortField, $this->sortDirection)->paginate($this->per_page);
-        $archived_users = $query_archives->orderBy($this->sortField, $this->sortDirection)->paginate($this->per_page);
-        return view('livewire.user_accounts.user-accounts-livewire', compact('users', 'archived_users'));
+        $query_normal = $query_normal->orderBy($this->sortField, $this->sortDirection)->paginate($this->per_page);
+        $this->users = [
+            'items' => $query_normal->items(),
+            'perPage' => $query_normal->perPage(),
+            'currentPage' => $query_normal->currentPage(),
+            'lastPage' => $query_normal->lastPage(),
+            'total' => $query_normal->total(),
+            'links' => $query_normal->links('components.pagination')->toHtml()
+        ];
+
+        $query_archives = $query_archives->orderBy($this->sortField, $this->sortDirection)->paginate($this->per_page);
+        $this->archived_users = [
+            'items' => $query_archives->items(),
+            'perPage' => $query_archives->perPage(),
+            'currentPage' => $query_archives->currentPage(),
+            'lastPage' => $query_archives->lastPage(),
+            'total' => $query_archives->total(),
+            'links' => $query_archives->links('components.pagination')->toHtml()
+        ];
     }
 
-    public function renderSelect2()
+    public function updatedRole($value)
     {
-        if ($this->role == 'Parent') {
+        if ($value == 'Parent') {
             $this->dispatch('parentForm');
         }
     }
