@@ -517,6 +517,36 @@ class UserAccountsLivewire extends Component
         }
     }
 
+    public function markArchive($ids)
+    {
+        $user = UserAccounts::whereIn('id', $ids)->where('is_archive', false);
+
+        $user->update([
+            'is_archive' => true,
+            'archived_at' => now(), // Set 'archived_at' to the current date and time
+        ]);
+
+        $this->showToast('success', 'Selected Users Are Archived Successfully');
+    }
+
+    public function markUnarchive($ids)
+    {
+        $user = UserAccounts::whereIn('id', $ids)->where('is_archive', true);
+
+        $user->update([
+            'is_archive' => false,
+            'archived_at' => now(), // Set 'archived_at' to the current date and time
+        ]);
+
+        $this->showToast('success', 'Selected Users Are Unarchived Successfully');
+    }
+
+    public function deleteSelected($ids)
+    {
+        $user = UserAccounts::whereIn('id', $ids)->where('is_archive', true)->delete();
+        $this->showToast('success', 'Selected Users Are Deleted Successfully');
+    }
+
     public function generatePassword()
     {
         $this->password = generatePassword();

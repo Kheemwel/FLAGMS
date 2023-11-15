@@ -22,7 +22,7 @@
                 <!--SEARCH FEATURE-->
                 <div class="input-group input-group-sm" style="max-width: 20%;">
                     <!--SEARCH INPUT-->
-                    <input class="form-control float-right" name="table_search" placeholder="Search" style="height: 35px;" type="text" wire:model.live='search'>
+                    <input class="form-control float-right" name="table_search" placeholder="Search" style="height: 35px;" type="text" wire:model.live.debounce.500ms='search'>
                 </div>
             </div>
             <!--PROFILE PICTURES TABLE SECTION-->

@@ -66,11 +66,11 @@
                 {{-- <!--SEARCH FEATURE-->
                 <div class="input-group input-group-sm" style="max-width: 20%;">
                     <!--SEARCH INPUT-->
-                    <input class="form-control float-right" name="table_search" placeholder="Search" style="height: 35px;" type="text" wire:model.live='search'>
+                    <input class="form-control float-right" name="table_search" placeholder="Search" style="height: 35px;" type="text" wire:model.live.debounce.500ms='search'>
                 </div>
                 <!--ROLE FILTER-->
                 <div class="input-group-prepend" style="margin-left: 1rem;">
-                    <select class="form-select form-select-sm mb-2" id="roles" selected wire:model.live="filterRole">
+                    <select class="form-select form-select-sm mb-2" id="roles" selected wire:model.live.debounce.500ms="filterRole">
                         <option selected value='All'>{{ $filterRole ? 'All' : 'Role' }}</option>
                         @foreach ($roles as $roleFilter)
                             <option value="{{ $roleFilter->role }}">{{ $roleFilter->role }}</option>
@@ -80,7 +80,7 @@
 
 
                 <div class="input-group input-group-sm" style="max-width: 20%;">
-                    <input class="form-control float-right" name="table_search" placeholder="Search" style="height: 35px;" type="text" wire:model.live='search'>
+                    <input class="form-control float-right" name="table_search" placeholder="Search" style="height: 35px;" type="text" wire:model.live.debounce.500ms.debounce.500ms='search'>
                     <div class="input-group-append">
                         <button aria-expanded="false" aria-haspopup="true" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" type="button">Role</button>
                         <div class="dropdown-menu">

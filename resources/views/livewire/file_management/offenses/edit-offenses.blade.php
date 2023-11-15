@@ -28,7 +28,7 @@
 
                     <div class="form-group" style="font-size: 14px; color: #252525;">
                         <label for="select-category">Offense Category</label>
-                        <select class="form-select form-select-sm mb-2" id="select-category" wire:model.live="category_id">
+                        <select class="form-select form-select-sm mb-2" id="select-category" wire:model.live.debounce.500ms="category_id">
                             @foreach ($categories as $cat)
                                 <option value="{{ $cat->id }}">{{ $cat->offenses_category }}</option>
                             @endforeach
@@ -40,7 +40,7 @@
                     @foreach ($offense_levels as $levels)
                     <div class="form-group" style="font-size: 14px; color: #252525;">
                         <label for="select-action">{{ $levels->level }}</label>
-                        <select class="form-select form-select-sm mb-2" id="select-action" wire:model.live="selected_disciplinary_action_ids.{{ $levels->id }}">
+                        <select class="form-select form-select-sm mb-2" id="select-action" wire:model.live.debounce.500ms="selected_disciplinary_action_ids.{{ $levels->id }}">
                             <option value="">Select Discipliary Action</option>
                             @foreach ($disciplinary_actions as $dsa)
                                 <option value="{{ $dsa->id }}" @disabled(in_array($dsa->id, $selected_disciplinary_action_ids))>{{ $dsa->action }}</option>

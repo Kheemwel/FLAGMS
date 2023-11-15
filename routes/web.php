@@ -45,17 +45,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeLivewire::class)->name('home-page');
 
-
-Route::get('/test.livewire', TestLivewire::class)->name('test.livewire-page');
-Route::get('/test.controller', [TestController::class, 'index']);
-Route::namespace('App\Http\Controllers')->group(function () {
-    Route::post('/test.controller-increment', 'TestController@increment')->name('increment');
-    Route::post('/test.controller-selectedOption', 'TestController@processSelectedOption')->name('selected-option');
-    Route::post('/test.controller-colorOption', 'TestController@processColorOption')->name('color-option');
-    Route::post('/getmsg', 'TestController@msg');
-});
-
-
 Route::middleware([CheckUserCredentials::class])->group(function () {
     //Common
     Route::get('/user-dashboard', UserDashboardLivewire::class)->name('user-dashboard-page');

@@ -36,7 +36,7 @@
                     <p class="card-title" style="font-size: 16px; margin-bottom: 1rem;">Role</p>
                     <!--ROLE DROPDOWN BUTTON-->
                     <div class="input-group-prepend">
-                        <select class="form-select form-select-sm mb-2" id="roles" wire:model.live="role">
+                        <select class="form-select form-select-sm mb-2" id="roles" wire:model.live.debounce.500ms="role">
                             @if ($role == '')
                                 <option selected>Select Role</option>
                             @endif
@@ -56,7 +56,7 @@
                     <!--FIRSTNAME-->
                     <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
                         <label for="inputFN" style="font-weight: normal;">First Name</label>
-                        <input class="form-control" id="inputFN" style="border: 1px solid #252525" type="text" wire:model.live="first_name">
+                        <input class="form-control" id="inputFN" style="border: 1px solid #252525" type="text" wire:model.live.debounce.500ms="first_name">
                         @if ($errors->has('first_name') && !$first_name)
                             <span class="text-danger">{{ $errors->first('first_name') }}</span>
                         @endif
@@ -64,7 +64,7 @@
                     <!--LASTNAME-->
                     <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
                         <label for="inputLN" style="font-weight: normal;">Last Name</label>
-                        <input class="form-control" id="inputLN" style="border: 1px solid #252525" type="text" wire:model.live="last_name">
+                        <input class="form-control" id="inputLN" style="border: 1px solid #252525" type="text" wire:model.live.debounce.500ms="last_name">
                         @if ($errors->has('first_name') && !$first_name)
                             <span class="text-danger">{{ $errors->first('first_name') }}</span>
                         @endif

@@ -4,7 +4,7 @@
             <!--SEARCH FEATURE-->
             <div class="input-group input-group-sm" style="max-width: 30%;">
                 <!--SEARCH INPUT-->
-                <input class="form-control float-right" name="table_search" placeholder="Search" style="height: 35px;" type="text" wire:model.live='search'>
+                <input class="form-control float-right" name="table_search" placeholder="Search" style="height: 35px;" type="text" wire:model.live.debounce.500ms='search'>
                 <div class="input-group-append">
                     <button class="btn btn-default" data-target="#table-filter" data-toggle="modal" style="height: 35px;" type="submit">
                         <i aria-hidden="true" class="fa fa-filter"></i>
@@ -27,7 +27,7 @@
                                             <div class="form-group col-sm-6" style="font-size: 10px; color: #252525;">
                                                 {{-- <x-checkbox-button label="{{ $type->item_type }}" value='{{ $type->id }}' model='filterItemTypes'/> --}}
                                                 <label class="btn btn-block btn-default" style="border-color: transparent; background-color:  {{ in_array($type->id, $filterItemTypes) ? 'lightblue' : 'rgb(184, 184, 184)' }} ; color: #252525;">
-                                                    <input style="display: none;" type="checkbox" value="{{ $type->id }}" wire:model.live='filterItemTypes'> <!-- Hidden checkbox input -->
+                                                    <input style="display: none;" type="checkbox" value="{{ $type->id }}" wire:model.live.debounce.500ms='filterItemTypes'> <!-- Hidden checkbox input -->
                                                     {{ $type->item_type }}
                                                 </label>
                                             </div>

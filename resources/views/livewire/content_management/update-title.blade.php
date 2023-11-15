@@ -13,7 +13,7 @@
                     <p class="card-title" style="color: #0A0863; font-weight: bold; font-size: 22px;">Update Website Title</p> <br><br><br>
 
                     <div class="input-group" wire:ignore>
-                        <textarea id='titleEditor' name="editordata" wire:model.live='title'></textarea>
+                        <textarea id='titleEditor' name="editordata" wire:model.live.debounce.500ms='title'></textarea>
                     </div>
                     @if ($errors->has('title'))
                         <span class="text-danger">{{ $errors->first('title') }}</span>
