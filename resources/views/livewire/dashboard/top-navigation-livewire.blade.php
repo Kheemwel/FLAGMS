@@ -19,11 +19,13 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <!-- RIGHT HAND UPPER SIDE NAVIGATION -->
+        <li class="nav-item"> 
+        <iconify-icon icon="icon-park-solid:help" style="font-size: 22px; margin-top: 10px;"></iconify-icon>
 
         <!-- Notifications Dropdown Menu -->
-        <li class="nav-item dropdown" style="margin-right: 2rem;">
+        <li class="nav-item dropdown" style="margin-right: 2rem; margin-top: 2px;">
             <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="far fa-bell"></i>
+                <i class="fa fa-solid fa-bell" style="color: #252525; font-size: 18px;"></i>
                 <span class="badge badge-warning navbar-badge">1</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" style="max-width: 500px; max-height: 300px; overflow-y: auto; overflow-x: hidden;">
@@ -105,7 +107,7 @@
         
         <!--Admin Profile-->
         <li class="nav-item">
-            <div class="image">
+            <div class="image" style="margin-top: 5px;">
                 <a href="{{ route('profile-page') }}">
                     <img alt="User Image" class="img-circle elevation-2" src="{{ $this->viewProfile() }}" width="30px" height="30px">
                 </a>
