@@ -82,3 +82,99 @@
     @include('livewire.file_management.roles.view-role')
     @include('livewire.file_management.roles.edit-role')
 </div>
+
+@section('scripts')
+    <script>
+        function wordExistInArray(word, array) {
+            return array.some(element => element.includes(word));
+        }
+
+        function findWordExistInArray(word, array) {
+            const foundElement = array.find(element => element.includes(word));
+            return foundElement !== undefined ? foundElement : null;
+        }
+
+        function privileges() {
+            return {
+                categories: ['Add', 'Edit', 'View', 'Delete', 'Archive', 'Export', 'Manage'],
+                privileges: {},
+                addPrivileges: [],
+                editPrivileges: [],
+                viewPrivileges: [],
+                deletePrivileges: [],
+                archivePrivileges: [],
+                exportPrivileges: [],
+                managePrivileges: [],
+                otherPrivileges: [],
+                selectAlls: {
+                    'Add': false,
+                    'Edit': false,
+                    'View': false,
+                    'Delete': false,
+                    'Archive': false,
+                    'Export': false,
+                    'Manage': false
+                },
+                init() {
+                    Livewire.on('refreshAlpine', () => {
+                        Object.keys(this.privileges).filter(key => this.privileges[key] = false);
+                        Object.keys(this.selectAlls).filter(key => this.selectAlls[key] = false);
+                    });
+
+                    Livewire.on('setPrivileges', (data) => {
+                        const arr = data[0];
+                        arr.forEach(element => {
+                            this.privileges[element] = true;
+                        });
+                    });
+                },
+                initPrivileges(category, privilege) {
+                    if (findWordExistInArray(category, this.categories) == 'Add') {
+                        this.addPrivileges.push(privilege);
+                    } else if (findWordExistInArray(category, this.categories) == 'Edit') {
+                        this.editPrivileges.push(privilege);
+                    } else if (findWordExistInArray(category, this.categories) == 'View') {
+                        this.viewPrivileges.push(privilege);
+                    } else if (findWordExistInArray(category, this.categories) == 'Delete') {
+                        this.deletePrivileges.push(privilege);
+                    } else if (findWordExistInArray(category, this.categories) == 'Archive') {
+                        this.archivePrivileges.push(privilege);
+                    } else if (findWordExistInArray(category, this.categories) == 'Export') {
+                        this.exportPrivileges.push(privilege);
+                    } else if (findWordExistInArray(category, this.categories) == 'Manage') {
+                        this.managePrivileges.push(privilege);
+                    } else if (findWordExistInArray(category, this.categories) == null) {
+                        this.otherPrivileges.push(privilege);
+                    }
+                    this.privileges[privilege] = false;
+                },
+                checkPrivileges(category, val) {
+                    let arr = null;
+                    if (category == 'Add') {
+                        arr = this.addPrivileges;
+                    } else if (category == 'Edit') {
+                        arr = this.editPrivileges;
+                    } else if (category == 'View') {
+                        arr = this.viewPrivileges;
+                    } else if (category == 'Delete') {
+                        arr = this.deletePrivileges;
+                    } else if (category == 'Archive') {
+                        arr = this.archivePrivileges;
+                    } else if (category == 'Export') {
+                        arr = this.exportPrivileges;
+                    } else if (category == 'Manage') {
+                        arr = this.managePrivileges;
+                    } else if (!wordExistInArray(category, this.categories)) {
+                        arr = this.otherPrivileges;
+                    }
+                    arr.forEach(element => {
+                        this.privileges[element] = val;
+                    });
+                },
+                getSelectedPrivileges() {
+                    return Object.keys(this.privileges).filter(key => this.privileges[key] === true);
+                }
+            }
+        }
+    </script>
+@endsection
