@@ -66,7 +66,7 @@
             </div>
 
 
-            <div x-show='!showCalendar'>
+            <div x-cloak x-show='!showCalendar'>
                 @include('livewire.guidance_program.calendar-agenda')
             </div>
 

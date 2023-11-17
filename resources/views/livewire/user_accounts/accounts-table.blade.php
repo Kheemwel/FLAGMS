@@ -16,15 +16,16 @@
                 </span>
                 Entries
             </label>
-            <label for="per-page" style="font-weight: normal; margin-top: 1rem; margin-left: 1rem; cursor: pointer;" wire:click='markArchive(Object.keys(rows).filter(key => rows[key] === true))' x-show='Object.values(rows).includes(true)'>
+            <label x-cloak for="per-page" style="font-weight: normal; margin-top: 1rem; margin-left: 1rem; cursor: pointer;" wire:click='markArchive(Object.keys(rows).filter(key => rows[key] === true))' x-show='Object.values(rows).includes(true)'>
                 <span class="archivals" style="transition: color 0.3s;">Mark as Archive</span>
             </label>
         </div>
     </div>
     <div class="card" style="margin-left: 2rem; margin-right: 2rem;border-radius: 10px;">
         <div wire:loading wire:target='search, filterRole, sortBy, store, update, delete, archive, unArchive, markArchive, markUnarchive, deleteSelected'>
-            <div class="overlay" style="position: absolute; width: 100%; height: 100%;">
+            <div class="overlay d-flex flex-column" style="position: absolute; width: 100%; height: 100%;">
                 <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+                <h5 class='font-weight-bold mt-3'>Loading... Please Wait.</h5>
             </div>
         </div>
         <!-- /.card-header -->
@@ -44,12 +45,14 @@
                 </thead>
                 <tbody style="text-align: center;">
                     @foreach ($users as $user)
-                        <tr @if ($my_id !== $user->id) x-bind:class="rows[{{ $user->id }}] ? 'bg-lightblue' : ''" x-init='rows[{{ $user->id }}] = false' x-on:click='rows[{{ $user->id }}] = !rows[{{ $user->id }}]' @endif>
+                        <tr class="{{ $my_id === $user->id ? 'font-weight-bold' : ''}}" @if ($my_id !== $user->id) x-bind:class="rows[{{ $user->id }}] ? 'bg-lightblue' : ''" x-init='rows[{{ $user->id }}] = false' x-on:click='rows[{{ $user->id }}] = !rows[{{ $user->id }}]' @endif>
                             <th>
-                                <input @disabled($my_id == $user->id) type="checkbox"  @if ($my_id !== $user->id) x-model="rows[{{ $user->id }}]" @endif>
+                                @if ($my_id !== $user->id)
+                                    <input @disabled($my_id == $user->id) type="checkbox" x-model="rows[{{ $user->id }}]">
+                                @endif
                             </th>
                             <th scope="row">{{ $user->id }}</th>
-                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->name }} {{ $my_id === $user->id ? '(Me)' : '' }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->role }}</td>
                             <td>

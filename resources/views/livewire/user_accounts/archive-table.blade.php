@@ -17,12 +17,12 @@
                 Entries
             </label>
             {{-- MARK AS UNARCHIVE --}}
-            <label for="per-page" style="font-weight: normal; margin-top: 1rem; margin-left: 1rem; cursor: pointer;" wire:click='markUnarchive(Object.keys(rows).filter(key => rows[key] === true))' x-show='Object.values(rows).includes(true)'>
+            <label x-cloak for="per-page" style="font-weight: normal; margin-top: 1rem; margin-left: 1rem; cursor: pointer;" wire:click='markUnarchive(Object.keys(rows).filter(key => rows[key] === true))' x-show='Object.values(rows).includes(true)'>
                 <span class="archivals" style="transition: color 0.3s;">Mark as Unarchive</span>
             </label>
 
             {{-- DELETE --}}
-            <label for="per-page" style="font-weight: normal; margin-top: 1rem; margin-left: 1rem; cursor: pointer;" wire:click='deleteSelected(Object.keys(rows).filter(key => rows[key] === true))' x-show='Object.values(rows).includes(true)'>
+            <label x-cloak for="per-page" style="font-weight: normal; margin-top: 1rem; margin-left: 1rem; cursor: pointer;" wire:click='deleteSelected(Object.keys(rows).filter(key => rows[key] === true))' x-show='Object.values(rows).includes(true)'>
                 <span id="delete" style="transition: color 0.3s;">Delete</span>
             </label>
         </div>
