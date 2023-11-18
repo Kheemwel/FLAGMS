@@ -108,7 +108,7 @@
                 <!-------------------->
 
                 <!--UPLOAD PROFILE PIC-->
-                <label for="exampleInputFile" style="font-weight: normal;">Profile Picture</label>
+                <label for="exampleInputFile" style="font-weight: normal; font-size: 14px;">Profile Picture</label>
                 <div class="input-group">
                     <div class="custom-file" style="border: 1px solid #252525; border-radius: 5px; margin-bottom: 2rem;">
                         <input accept=".png, .jpg, .jpeg" class="custom-file-input" id="uploadProfilePic" type="file" wire:model="profile_picture">
