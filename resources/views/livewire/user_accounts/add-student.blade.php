@@ -13,7 +13,7 @@
     @enderror
 </div>
 <div style="display: flex; flex-direction: column;">
-    <p class="card-title" style="font-size: 16px; margin-bottom: 1rem;">Grade Level</p>
+    <p class="card-title" style="font-size: 16px; margin-bottom: 1rem; margin-top: 1rem;">Grade Level</p>
     <!--ROLE DROPDOWN BUTTON-->
     <div class="input-group-prepend">
         <select class="form-select form-select-sm mb-2" id="roles" selected wire:model.live.debounce.500ms="grade_level">
