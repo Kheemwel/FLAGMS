@@ -155,19 +155,44 @@
 
 @section('scripts')
     <script>
-        Livewire.on('parentForm', () => {
-            setTimeout(function() {
-                $('#multiple-select-optgroup-clear-field').select2({
-                    theme: "bootstrap4",
-                    placeholder: $(this).data('placeholder'),
-                    allowClear: true,
-                });
-
-                $('#multiple-select-optgroup-clear-field').on('change', function(e) {
-                    let data = new Array($(this).val());
-                    Livewire.dispatch('setSelectedStudents', data);
-                });
+        function initMultiSelect() {
+            $('#multiple-select-optgroup-clear-field').select2({
+                theme: "bootstrap4",
+                placeholder: $(this).data('placeholder'),
+                allowClear: true,
             });
-        });
+
+            $('#multiple-select-optgroup-clear-field').on('change', function(e) {
+                let data = new Array($(this).val());
+                Livewire.dispatch('setSelectedStudents', data);
+            });
+        }
+    </script>
+
+    <script>
+        function getRndInteger(min, max) {
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+
+        const passwordInput = {
+            password: '',
+            show: false,
+            generatePassword() {
+                const letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                const numbers = '0123456789';
+
+                let result = '';
+
+                for (let i = 0; i < 4; i++) {
+                    result += letters[getRndInteger(0, letters.length - 1)];
+                }
+
+                for (let i = 0; i < 4; i++) {
+                    result += numbers[getRndInteger(0, numbers.length - 1)];
+                }
+
+                this.password = result;
+            }
+        }
     </script>
 @endsection

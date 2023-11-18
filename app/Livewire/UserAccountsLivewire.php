@@ -82,13 +82,12 @@ class UserAccountsLivewire extends Component
         if (in_array('ViewAccounts', $this->privileges)) {
             $this->allowedRoles = Roles::get()->pluck('role')->toArray();
         }
+  
+        $this->roles = Roles::whereIn('role', $this->allowedRoles)->get();
     }
 
     public function render()
     {
-        $this->renderSelect2();
-        $this->roles = Roles::whereIn('role', $this->allowedRoles)->get();
-
         $this->students = Students::whereHas('getUserAccount', function ($query) {
             // Filter students where the associated user account is not archived
             $query->where('is_archive', false);
@@ -143,14 +142,6 @@ class UserAccountsLivewire extends Component
         $archived_users = $query_archives->orderBy($this->sortField, $this->sortDirection)->paginate($this->per_page);
         return view('livewire.user_accounts.user-accounts-livewire', compact('users', 'archived_users'));
     }
-
-    public function renderSelect2()
-    {
-        if ($this->role == 'Parent') {
-            $this->dispatch('parentForm');
-        }
-    }
-
     public function setSelectedStudents($value)
     {
         $this->selectedStudents = $value;
@@ -285,7 +276,7 @@ class UserAccountsLivewire extends Component
     public function addParent()
     {
         $rules = [
-            'selectedStudents' => 'required'
+            'selectedStudents' => 'required|array|min:1'
         ];
         $user = $this->store($rules);
         if ($user) {
@@ -545,10 +536,5 @@ class UserAccountsLivewire extends Component
     {
         $user = UserAccounts::whereIn('id', $ids)->where('is_archive', true)->delete();
         $this->showToast('success', 'Selected Users Are Deleted Successfully');
-    }
-
-    public function generatePassword()
-    {
-        $this->password = generatePassword();
     }
 }

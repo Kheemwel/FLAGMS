@@ -2,7 +2,7 @@
     <p class="card-title" style="font-size: 16px; margin-bottom: 1rem;">Position</p>
     <!--ROLE DROPDOWN BUTTON-->
     <div class="input-group-prepend">
-        <select class="form-select form-select-sm mb-2" id="roles" required selected wire:model.live.debounce.500ms="principal_position">
+        <select required class="form-select form-select-sm mb-2" id="roles" required selected wire:model.live.debounce.500ms="principal_position">
             @if ($principal_position == '')
                 <option selected>Select Position</option>
             @endif
