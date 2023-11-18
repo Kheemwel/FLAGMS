@@ -88,7 +88,7 @@
 
     <div class="row">
         <div class="col-12">
-            <div class="card-tools" style="display: flex; justify-content: flex-end; margin-bottom: 2rem; margin-right: 2rem;">
+            <div class="card-tools" style="display: flex; justify-content: flex-end; margin-bottom: 2rem; margin-right: 3rem;">
                 <!--SEARCH FEATURE-->
                 <div class="input-group input-group-sm" style="max-width: 20%;">
                     <!--SEARCH INPUT-->
@@ -177,7 +177,7 @@
             </div>
 
             <!--PROFILING TABLE SECTION-->
-            <div class="card" style="margin-left: 2rem; margin-right: 2rem; border-radius: 10px;">
+            <div class="card" style="margin-left: 2rem; margin-right: 3rem; border-radius: 10px;">
                 <div class="card-body table-responsive p-0"style="border: 1px solid #252525; border-radius: 10px;">
                     <!-- /.card-header -->
                     <table class="table table-hover" style="text-align: center;">

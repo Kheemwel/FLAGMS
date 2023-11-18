@@ -64,7 +64,7 @@
         <div class="col-12">
             
 
-            <div class="card card-primary card-tabs" style="background-color:  rgb(253, 253, 253);margin-left: 2rem; margin-right: 2rem;">
+            <div class="card card-primary card-tabs" style="background-color:  rgb(253, 253, 253);margin-left: 2rem; margin-right: 3rem;">
                 <div class="card-header p-0 pt-1" style="background-color: #7684B9 !important">
                     <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
                         <li class="nav-item" wire:ignore>
