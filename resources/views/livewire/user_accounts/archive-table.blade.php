@@ -50,8 +50,8 @@
                 </thead>
                 <tbody style="text-align: center;">
                     @foreach ($archived_users as $arch_user)
-                        <tr x-bind:class="rows[{{ $arch_user->id }}] ? 'bg-lightblue' : ''" x-init='rows[{{ $arch_user->id }}] = false' x-on:click='rows[{{ $arch_user->id }}] = !rows[{{ $arch_user->id }}]'>
-                            <th>
+                        <tr x-bind:style="rows[{{ $arch_user->id }}] ? 'background-color: #d9deff' : ''" x-init='rows[{{ $arch_user->id }}] = false'>
+                            <th x-on:click='rows[{{ $arch_user->id }}] = !rows[{{ $arch_user->id }}]'>
                                 <input type="checkbox" x-model="rows[{{ $arch_user->id }}]">
                             </th>
                             <th scope="row">{{ $arch_user->id }}</th>

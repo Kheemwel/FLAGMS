@@ -16,7 +16,7 @@
                 </span>
                 Entries
             </label>
-            <label x-cloak for="per-page" style="font-weight: normal; margin-top: 1rem; margin-left: 1rem; cursor: pointer;" wire:click='markArchive(Object.keys(rows).filter(key => rows[key] === true))' x-show='Object.values(rows).includes(true)'>
+            <label for="per-page" style="font-weight: normal; margin-top: 1rem; margin-left: 1rem; cursor: pointer;" wire:click='markArchive(Object.keys(rows).filter(key => rows[key] === true))' x-cloak x-show='Object.values(rows).includes(true)'>
                 <span class="archivals" style="transition: color 0.3s;">Mark as Archive</span>
             </label>
         </div>
@@ -45,8 +45,8 @@
                 </thead>
                 <tbody style="text-align: center;">
                     @foreach ($users as $user)
-                        <tr class="{{ $my_id === $user->id ? 'font-weight-bold' : ''}}" @if ($my_id !== $user->id) x-bind:class="rows[{{ $user->id }}] ? 'bg-lightblue' : ''" x-init='rows[{{ $user->id }}] = false' x-on:click='rows[{{ $user->id }}] = !rows[{{ $user->id }}]' @endif>
-                            <th>
+                        <tr @if ($my_id !== $user->id) x-bind:style="rows[{{ $user->id }}] ? 'background-color: #d9deff' : ''" x-init='rows[{{ $user->id }}] = false' @endif class="{{ $my_id === $user->id ? 'font-weight-bold' : '' }}">
+                            <th @if ($my_id !== $user->id) x-on:click='rows[{{ $user->id }}] = !rows[{{ $user->id }}]' @endif>
                                 @if ($my_id !== $user->id)
                                     <input @disabled($my_id == $user->id) type="checkbox" x-model="rows[{{ $user->id }}]">
                                 @endif
@@ -79,6 +79,7 @@
                             </td>
                         </tr>
                     @endforeach
+                    <div x-init="console.log(rows)"></div>
                 </tbody>
             </table>
         </div>
