@@ -17,7 +17,7 @@
                     <!--MODAL FORM TITLE-->
                     <p class="card-title" style="color: #0A0863; font-weight: bold; font-size: 22px;">Add New Role</p> <br><br><br>
 
-                    <div class="form-group" style="font-size: 14px; color: #252525;">
+                    <div class="form-group" style="font-size: 18px; color: #252525; margin-right: 1rem;">
                         <label for="role-name">Role Name</label>
                         <input @disabled($selected_role != null ? $selected_role->is_default : false) class="form-control" id="role-name" style="border: 1px solid #252525" type="text" wire:model="role">
 
@@ -28,7 +28,7 @@
 
                     <div class="row">
                         <div class="form-group col-sm-6" style="text-align: left; margin-top: 2rem;">
-                            <p style="color: #0A0863; font-size: 22px;">Privileges</p>
+                            <p style="color: #0A0863; font-size: 18px; font-weight: bold;">Privileges</p>
                         </div>
                     </div>
 
@@ -40,17 +40,17 @@
 
                     <div class="row">
                         @foreach ($privilege_categories as $category)
-                            <div class="row border border-dark rounded w-100 mb-3">
-                                <label class='form-group w-100' style="font-size: 14px; color: #252525; margin-left: 1rem; margin-top: 1rem;">{{ $category . ' Privileges' }}</label>
+                            <div class="row border border-dark rounded w-100 mb-3" style="margin-left: 10px; margin-right: 20px;">
+                                <label class='form-group w-100' style="font-size: 16px; color: #252525; margin-left: 1rem; margin-top: 1rem;">{{ $category . ' Privileges' }}</label>
                                 @foreach ($privileges as $privilege)
                                     @if (!$privilege->is_exclusive || in_array($privilege->id, $selected_privileges))
                                         @if (strpos($privilege->privilege, $category) !== false)
-                                            <div class="form-group col-4" style="text-align: left; margin-top: 2rem;">
-                                                <input @disabled($privilege->is_exclusive) type="checkbox" value="{{ $privilege->id }}" wire:model='selected_privileges'>{{ $privilege->privilege }}
+                                            <div class="form-group col-4" style="text-align:justify; margin-top: 1rem; padding-left: 2rem;">
+                                                <input @disabled($privilege->is_exclusive) type="checkbox" value="{{ $privilege->id }}" wire:model='selected_privileges'> &nbsp; {{ $privilege->privilege }}
                                             </div>
                                         @elseif (!wordsExistInString($privilege_categories, $privilege->privilege) && $category == 'Other')
-                                            <div class="form-group col-4" style="text-align: left; margin-top: 2rem;">
-                                                <input @disabled($privilege->is_exclusive) type="checkbox" value="{{ $privilege->id }}" wire:model='selected_privileges'>{{ $privilege->privilege }}
+                                            <div class="form-group col-4" style="text-align:justify; margin-top: 1rem; padding-left: 2rem;">
+                                                <input @disabled($privilege->is_exclusive) type="checkbox" value="{{ $privilege->id }}" wire:model='selected_privileges'> &nbsp; {{ $privilege->privilege }}
                                             </div>
                                         @endif
                                     @endif
