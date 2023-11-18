@@ -62,28 +62,7 @@
 
     <div class="row">
         <div class="col-12">
-            <div class="card-tools" style="display: flex; justify-content: flex-end; margin-bottom: 2rem; margin-right: 2rem;">
-                
-                <!--ADD USER BUTTON-->
-                @if (wordsExistInArray(['Add', 'Account'], $privileges))
-                    <button class="btn btn-default" data-target="#addUserModal" data-toggle="modal" style="max-width: 7%; font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button">
-                        <i aria-hidden="true" class="fa fa-plus"></i>
-                        Add User
-                    </button>
-                    <!--BATCH ADD USER BUTTON-->
-                    <button class="btn btn-default" data-target="#batchAddUserModal" data-toggle="modal" style="font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button">
-                        <i class="fa fa-solid fa-file-import" style="color: white;"></i>
-                        Import User Accounts
-                    </button>
-                @endif
-                <!--DOWNLOAD TABLE BUTTON-->
-                @if (wordsExistInArray(['Export', 'Account'], $privileges))
-                    <button class="btn btn-default" style="font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button" wire:click='export()'>
-                        <i class="fa fa-solid fa-file-export" style="color: white;"></i>
-                        Export User Accounts
-                    </button>
-                @endif
-            </div>
+            
 
             <div class="card card-primary card-tabs" style="background-color:  rgb(253, 253, 253);margin-left: 2rem; margin-right: 2rem;">
                 <div class="card-header p-0 pt-1" style="background-color: #7684B9 !important">
