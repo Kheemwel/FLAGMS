@@ -22,7 +22,9 @@
         </div>
         <div class="row" style="margin-top: 1rem;">
             <div class="col-3 d-flex justify-content-start">
-                <label for="per-page" class="m-0" style="padding-top: 10px; font-weight: normal; margin-top: 1rem; margin-left: 1rem; cursor: pointer;">
+                <label for="per-page" class="m-0" style="padding-top: 10px; font-weight: normal; margin-top: 1rem; margin-left: 1rem; cursor: pointer;"
+                    wire:click='markArchive(Object.keys(rows).filter(key => rows[key] === true))'
+                    x-show='Object.values(rows).includes(true)'>
                     <span class="archivals btn btn-default" style="transition: color 0.3s; color: white; background-color: #0A0863; border-radius: 10px; font-size: 14px;">Mark
                         as Unarchive</span>
                 </label>
