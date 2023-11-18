@@ -49,7 +49,6 @@ class RolesLivewire extends Component
         $this->role = $role->role;
         $this->selected_role_id = $role->id;
         $this->selected_privileges = $role->privileges()->pluck('privilege_id')->toArray();
-        $this->dispatch('setPrivileges', $this->selected_privileges);
     }
 
     public function updateRole($privileges)
@@ -83,7 +82,6 @@ class RolesLivewire extends Component
         $this->role = null;
         $this->selected_role = null;
         $this->selected_privileges = [];
-        $this->dispatch('refreshAlpine');
         $this->resetErrorBag();
     }
 }

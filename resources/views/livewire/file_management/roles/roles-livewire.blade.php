@@ -94,8 +94,8 @@
             return foundElement !== undefined ? foundElement : null;
         }
 
-        function privileges() {
-            return {
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('privileges', () => ({
                 categories: ['Add', 'Edit', 'View', 'Delete', 'Archive', 'Export', 'Manage'],
                 privileges: {},
                 addPrivileges: [],
@@ -114,19 +114,6 @@
                     'Archive': false,
                     'Export': false,
                     'Manage': false
-                },
-                init() {
-                    Livewire.on('refreshAlpine', () => {
-                        Object.keys(this.privileges).filter(key => this.privileges[key] = false);
-                        Object.keys(this.selectAlls).filter(key => this.selectAlls[key] = false);
-                    });
-
-                    Livewire.on('setPrivileges', (data) => {
-                        const arr = data[0];
-                        arr.forEach(element => {
-                            this.privileges[element] = true;
-                        });
-                    });
                 },
                 initPrivileges(category, privilege) {
                     if (findWordExistInArray(category, this.categories) == 'Add') {
@@ -171,10 +158,19 @@
                         this.privileges[element] = val;
                     });
                 },
+                setPrivileges(arr) {
+                    arr.forEach(element => {
+                        this.privileges[element] = true;
+                    });
+                },
                 getSelectedPrivileges() {
                     return Object.keys(this.privileges).filter(key => this.privileges[key] === true);
+                },
+                resetFields() {
+                    this.privileges = {};
+                    Object.keys(this.selectAlls).filter(key => this.selectAlls[key] = false);
                 }
-            }
-        }
+            }))
+        });
     </script>
 @endsection

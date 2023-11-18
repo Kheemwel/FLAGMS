@@ -1,14 +1,14 @@
 <!--USER INFORMATION FORM MODAL-->
-<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="editRoleModal" role='dialog' style="max-width: 100%;" wire:ignore.self>
+<div aria-hidden="true" aria-labelledby="myModalLabel" data-backdrop="static" class="modal fade" id="editRoleModal" role='dialog' style="max-width: 100%;" wire:ignore.self>
     <div class="modal-dialog modal-lg">
-        <div class="modal-content" x-data="privileges()">
+        <div class="modal-content" x-data="privileges"> 
             <div wire:loading wire:target='getData'>
                 <div class="overlay bg-white">
                     <i class="fas fa-3x fa-sync-alt fa-spin"></i>
                 </div>
             </div>
             <div class="modal-header" style="border: transparent; padding: 10px;">
-                <button aria-label="Close" class="close" data-dismiss="modal" type="button" wire:click="resetInputFields()">
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button" wire:click="resetInputFields()" x-on:click="resetFields()">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -45,13 +45,10 @@
                                 <div class='col-4'><input type="checkbox" x-model="selectAlls['{{ $category }}']" x-on:click="checkPrivileges('{{ $category }}', !selectAlls['{{ $category }}'])">Check All {{ $category }} Privileges</div>
                                 @foreach ($privileges as $privilege)
                                     @if (!$privilege->is_exclusive || in_array($privilege->id, $selected_privileges))
-                                        @if (strpos($privilege->privilege, $category) !== false)
-                                            <div class="form-group col-4" style="text-align: left; margin-top: 2rem;" x-init="initPrivileges('{{ $category }}', {{ $privilege->id }})">
-                                                <input @disabled($privilege->is_exclusive) type="checkbox" value="{{ $privilege->id }}" x-model="privileges[{{ $privilege->id }}]">{{ $privilege->privilege }}
-                                            </div>
-                                        @elseif (!wordsExistInString($privilege_categories, $privilege->privilege) && $category == 'Other')
-                                            <div class="form-group col-4" style="text-align: left; margin-top: 2rem;" x-init="initPrivileges('{{ $category }}', {{ $privilege->id }})">
-                                                <input @disabled($privilege->is_exclusive) type="checkbox" value="{{ $privilege->id }}" x-model="privileges[{{ $privilege->id }}]">{{ $privilege->privilege }}
+                                        @if (strpos($privilege->privilege, $category) !== false || (!wordsExistInString($privilege_categories, $privilege->privilege) && $category == 'Other'))
+                                            <div class="form-group col-4" style="text-align: left; margin-top: 2rem;" x-data="initPrivileges('{{ $category }}', {{ $privilege->id }})">
+                                                <input @disabled($privilege->is_exclusive) type="checkbox" value="{{ $privilege->id }}" x-model="privileges[{{ $privilege->id }}]">
+                                                {{ $privilege->privilege }}
                                             </div>
                                         @endif
                                     @endif
@@ -61,7 +58,7 @@
                     </div>
                 </div>
                 <!-- /.card-body -->
-                <div class="card-footer d-flex justify-content-center">
+                <div class="card-footer d-flex justify-content-center" x-init="setPrivileges([{{ implode(',', $selected_privileges) }}])">
                     <button class="btn btn-primary" style="width: 450px; margin-left: 5px; background-color: #0A0863; color: white; font-size: 14px;" type="submit">Submit</button>
                 </div>
             </form>
