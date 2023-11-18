@@ -1,6 +1,6 @@
 <div style="display: flex; flex-direction: column;">
-    <p class="card-title" style="font-size: 16px; margin-bottom: 1rem;">School Level</p>
-    <div class="row">
+    <p class="card-title" style="font-size: 14px; color: #252525; margin-bottom: 1rem;">School Level</p>
+    <div class="row" style="margin-left: 1rem;">
         @foreach ($school_levels as $level)
             <div class="form-check form-check-inline">
                 <input @if ($school_level == $level->school_level) checked @endif class="form-check-input" id="inlineRadio1" name="inlineRadioOptions" type="radio" value="{{ $level->school_level }}" wire:model.live.debounce.500ms='school_level'>
@@ -13,7 +13,7 @@
     @enderror
 </div>
 <div style="display: flex; flex-direction: column;">
-    <p class="card-title" style="font-size: 16px; margin-bottom: 1rem; margin-top: 1rem;">Grade Level</p>
+    <p class="card-title" style="font-size: 14px; color: #252525; margin-bottom: 1rem; margin-top: 1rem;">Grade Level</p>
     <!--ROLE DROPDOWN BUTTON-->
     <div class="input-group-prepend">
         <select class="form-select form-select-sm mb-2" id="roles" selected wire:model.live.debounce.500ms="grade_level">
