@@ -33,7 +33,7 @@
                                 <div class="card-body">
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="draw-mode-tab">
-                                            <div class="form-group col-sm-12" style="border: 1px solid gray; padding-top: 5rem;
+                                            <div class="form-group col-sm-12 text-center" style="border: 1px solid gray; padding-top: 5rem;
                     padding-bottom: 5rem;">
                                                 <label style="color: gray; font-size: 14px; font-weight: 300;">Draw Here</label>
                                             </div>
@@ -50,7 +50,7 @@
                                         <!-- /.tab-pane -->
                                         <div class="tab-pane" id="upload-image-tab">
                                             <!--UPLOAD IMAGE TAB-->
-                                            <div class="form-group col-sm-12" style="border: 1px solid gray; padding-top: 5rem;
+                                            <div class="form-group col-sm-12 text-center" style="border: 1px solid gray; padding-top: 5rem;
                     padding-bottom: 5rem; display: flex; flex-direction: column; align-items: center;">
                                                 <div>
                                                     <label style="color: gray; font-size: 14px; font-weight: 300;">Drag an image here <br> or </label>

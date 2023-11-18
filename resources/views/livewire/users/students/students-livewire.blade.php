@@ -177,18 +177,22 @@
             </div>
 
             <!--PROFILING TABLE SECTION-->
-            <div class="card" style="margin-left: 2rem; margin-right: 2rem;">
-                <!-- /.card-header -->
-                <div class="card-body table-responsive p-0" style="border: 1px solid #252525;">
-                    <table class="table text-nowrap" style="text-align: center;">
+            <div class="card" style="margin-left: 2rem; margin-right: 2rem; border-radius: 10px;">
+                <div class="card-body table-responsive p-0"style="border: 1px solid #252525; border-radius: 10px;">
+                    <!-- /.card-header -->
+                    <table class="table table-hover" style="text-align: center;">
                         <thead style="background-color: #7684B9; color: white;">
                             <tr>
-                                <th style="border-right: 1px solid #252525;">ID</th>
-                                <th style="border-right: 1px solid #252525;">Name</th>
-                                <th style="border-right: 1px solid #252525;">School Level</th>
-                                <th style="border-right: 1px solid #252525;">Grade Level</th>
+                                <th
+                                    x-on:click="selectAll = !selectAll; Object.keys(rows).forEach(function(key) {rows[key] = selectAll;})">
+                                    <input type="checkbox" x-model="selectAll">
+                                </th>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>School Level</th>
+                                <th>Grade Level</th>
                                 @if (in_array('ViewStudentsAnecdotal', $privileges) || in_array('WriteStudentsAnecdotal', $privileges))
-                                    <th style="border-right: 1px solid #252525;">Anecdotal</th>
+                                    <th>Anecdotal</th>
                                 @endif
                                 @if (in_array('ViewStudentSummary', $privileges))
                                     <th>Summary</th>
@@ -198,6 +202,7 @@
                         <tbody>
                             @foreach ($students as $student)
                                 <tr>
+                                    <td></td>
                                     <th scope="row">{{ $student->id }}</th>
                                     <td>{{ $student->getUserAccount->name }}</td>
                                     <td>{{ $student->schoolLevel->school_level }}</td>

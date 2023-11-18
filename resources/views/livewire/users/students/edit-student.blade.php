@@ -12,7 +12,7 @@
                     <!--MODAL FORM TITLE-->
                     <p class="card-title" style="color: #0A0863; font-weight: bold; font-size: 22px;">ANECTODAL</p> <br><br><br>
                     <div class="input-group-prepend">
-                        <p class="card-title" style="font-size: 16px; color: #0A0863; font-weight: bold; margin-bottom: 1rem;"> Student Information</p>
+                        <p class="card-title" style="font-size: 18px; color: #252525; font-weight: bold; margin-bottom: 1rem;"> Student Information</p>
                     </div>
                     <!--IMPORTANT USER DETAILS FORM SECTION-->
                     <!--------------------STUDENT'S INFORMATION------------------------>
@@ -71,9 +71,9 @@
                     </div>
                     <!--------------------PARENTS' / GUARDIAN'S INFORMATION------------------------>
                     <div class="input-group-prepend">
-                        <p class="card-title" style="font-size: 18px; color: #0A0863; font-weight: bold; margin-bottom: 1rem;"> Parent / Guardian Information</p>
+                        <p class="card-title" style="font-size: 18px; color: #252525; font-weight: bold; margin-bottom: 1rem;"> Parent / Guardian Information</p>
                     </div>
-                    <div class="form-group col-sm-13" style="font-size: 18px; color: #252525;">
+                    <div class="form-group col-sm-13" style="font-size: 16px; color: #252525; font-weight:400;">
                         <label>Name of Father</label>
                     </div>
                     <!--FIRST & LAST NAME-->
