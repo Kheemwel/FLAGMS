@@ -104,7 +104,7 @@
                     </div>
                     <!--TABLE FOR ANECDOTAL RECORDS-->
                     <div style="display: flex; flex-direction: column;">
-                        <table style="border: rgb(101, 101, 101) 1px solid; text-align: center;">
+                        <table style="border: rgb(101, 101, 101) 1px solid; text-align: center; margin-right: 1rem;">
                             <thead style="background-color: #7684B9; color: white;">
                                 <tr>
                                     <th style="border: rgb(101, 101, 101) 1px solid;">Date</th>
