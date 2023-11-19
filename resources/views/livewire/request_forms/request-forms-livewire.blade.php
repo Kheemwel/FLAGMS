@@ -115,12 +115,12 @@
                                     <label style="font-size: 24px; margin-top: 1rem;">{{ $request->form_type }}</label>
                                 </td>
                                 <td style="vertical-align: top;" style="width: 20%;">
-                                    <label style="font-size: 24px; margin-top: 1rem; color: #252525; float: right; ">{{ $request->is_approve ? 'APPROVED' : 'PENDING' }}</label>
+                                    <label style="font-size: 24px; margin-top: 1rem; color: #252525; float: right; background-color: {{ $request->is_approve ? '#d1d8ff' : '#BFFFBF' }}; color: {{ $request->is_approve ? '#3C58FF' : '#006400' }}; padding: 3px 20px; border-radius: 10px">{{ $request->is_approve ? 'APPROVED' : 'PENDING' }}</label>
                                 </td>
                             </tr>
                             <td></td>
                             <td style="vertical-align: bottom; float: right; width: 100%;">
-                                <button wire:click="read('{{ $request->form_type }}', {{ $request->id }})" class="btn btn-default" data-target="#read-request-form" data-toggle="modal" style="float: right;color: white; background-color: #080743; font-size: 14px; width: 80px;">Read</button>
+                                <button class="btn btn-default" data-target="#read-request-form" data-toggle="modal" style="float: right;color: white; background-color: #080743; font-size: 14px; width: 80px;" wire:click="read('{{ $request->form_type }}', {{ $request->id }})">Read</button>
                             </td>
                         </table>
                     </div>

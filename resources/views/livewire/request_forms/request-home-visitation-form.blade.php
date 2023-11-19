@@ -2,7 +2,7 @@
     <div class="row form-group" style="font-size: 14px; color: #252525;">
         <div class="col-12" wire:ignore>
             <label for="single-select-optgroup-clear-field" style="font-weight: normal;">Select Student</label>
-            <select class="form-select" data-placeholder="Select Children" id="single-select-optgroup-clear-field" style="border: 1px solid #252525;">
+            <select class="form-select" data-placeholder="Select Student" id="single-select-optgroup-clear-field" style="border: 1px solid #252525;">
                 <option></option>
                 @foreach ($students as $student)
                     <option value="{{ $student->id }}">{{ $student->getUserAccount->name }}</option>

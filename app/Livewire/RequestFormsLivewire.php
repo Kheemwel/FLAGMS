@@ -34,7 +34,7 @@ class RequestFormsLivewire extends Component
 
     public function render()
     {
-        $this->requestforms = RequestForms::where('teacher_id', $this->teacher_id)->oldest()->get();
+        $this->requestforms = RequestForms::where('teacher_id', $this->teacher_id)->orderBy('is_approve', 'asc')->oldest()->get();
         return view('livewire.request_forms.request-forms-livewire');
     }
 
