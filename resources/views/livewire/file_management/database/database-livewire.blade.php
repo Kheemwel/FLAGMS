@@ -32,36 +32,43 @@
         <!-- /.container-fluid -->
     </section>
 
-    <div class="card-tools" style="display: flex; justify-content: flex-end; margin-bottom: 2rem; margin-right: 2rem;">
-        <button wire:loading.attr='disabled' wire:target='createBackup' class="btn btn-default" style="font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" wire:click="createBackup">Create Backup</button>
+    <div class="card-tools" style="display: flex; justify-content: flex-end; margin-bottom: 2rem; margin-right: 3rem;">
+        <button wire:loading.attr='disabled' wire:target='createBackup' class="btn btn-default" style="border-radius: 10px; font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" wire:click="createBackup">Create Backup</button>
     </div>
 
-    <div class="card" style="margin-left: 2rem; margin-right: 2rem;">
+    <div class="card" style="margin-left: 2rem; margin-right: 3rem; border-radius: 10px;">
         <!-- /.card-header -->
-        <div class="card-body table-responsive p-0" style="border: 1px solid #252525;">
-            <table class="table text-nowrap" style="text-align: center;">
-                <thead style="background-color: #7684B9; color: white;">
-                    <tr>
-                        <th style="border-right: 1px solid #252525;">File Name</th>
-                        <th style="border-right: 1px solid #252525;">Size</th>
-                        <th style="border-right: 1px solid #252525;">Last Modified</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($backups as $backup)
+        <div class="card-body table-responsive p-0" style="border: 1px solid #252525; border-radius: 10px;">
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover" style="text-align: center;">
+                    <thead style="background-color: #7684B9; color: white;">
                         <tr>
-                            <th scope="row">{{ $backup['name'] }}</th>
-                            <td>{{ $backup['size'] }}</td>
-                            <td>{{ date('F d,Y   h:i A', strtotime($backup['date'])) }}</td>
-                            <td>
-                                <button wire:loading.attr='disabled' wire:target='restoreBackup' wire:click="restoreBackup('{{ $backup['name'] }}')">Restore</button>
-                                <button wire:loading.attr='disabled' wire:target='restoreBackup' wire:click="deleteBackup('{{ $backup['name'] }}')">Delete</button>
-                            </td>
+                            <th>
+                                <input type="checkbox">
+                            </th>
+                            <th>File Name</th>
+                            <th>Size</th>
+                            <th>Last Modified</th>
+                            <th>Action</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach ($backups as $backup)
+                            <tr>
+                                <td> </td>
+                                <th scope="row">{{ $backup['name'] }}</th>
+                                <td>{{ $backup['size'] }}</td>
+                                <td>{{ date('F d,Y   h:i A', strtotime($backup['date'])) }}</td>
+                                <td>
+                                    <button wire:loading.attr='disabled' wire:target='restoreBackup' wire:click="restoreBackup('{{ $backup['name'] }}')">Restore</button>
+                                    <button wire:loading.attr='disabled' wire:target='restoreBackup' wire:click="deleteBackup('{{ $backup['name'] }}')">Delete</button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
         <!-- /.card-body -->
     </div>
