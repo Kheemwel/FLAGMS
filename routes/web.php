@@ -17,6 +17,7 @@ use App\Livewire\ParentsLivewire;
 use App\Livewire\PrincipalsLivewire;
 use App\Livewire\ProfileLivewire;
 use App\Livewire\ProfilePicturesLivewire;
+use App\Livewire\RequestFormsLivewire;
 use App\Livewire\RolesLivewire;
 use App\Livewire\StudentsLivewire;
 use App\Livewire\TeachersLivewire;
@@ -90,5 +91,5 @@ Route::middleware([CheckUserCredentials::class])->group(function () {
 
     //Teacher
     Route::view('/students-anecdotals', 'teacher.teacher-students')->name('students-anecdotals-page');
-    Route::view('/request-forms', 'teacher.teacher-request-forms')->name('request-forms-page');
+    Route::get('/request-forms', RequestFormsLivewire::class)->name('request-forms-page');
 });
