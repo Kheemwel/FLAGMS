@@ -12,7 +12,7 @@
                     <!--MODAL FORM TITLE-->
                     <p class="card-title" style="color: #0A0863; font-weight: bold; font-size: 22px;">Add New Tag</p> <br><br><br>
 
-                    <div class="form-group" style="font-size: 14px; color: #252525;">
+                    <div class="form-group" style="font-size: 16px; color: #252525; margin-right: 1rem;">
                         <label for="inputPriority">Priority Tag</label>
                         <input class="form-control" id="inputPriority" style="border: 1px solid #252525" type="text" wire:model="priority_tag">
 
@@ -21,7 +21,7 @@
                         @enderror
                     </div>
 
-                    <div class="form-group" style="font-size: 14px; color: #252525;">
+                    <div class="form-group" style="font-size: 16px; color: #252525; margin-right: 1rem;">
                         <label for="inputDaysExpiration">Days Expired</label>
                         <input min="1" class="form-control" id="inputDaysExpiration" style="border: 1px solid #252525" type="number" wire:model="days_expired">
 
