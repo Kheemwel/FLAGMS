@@ -1,5 +1,5 @@
 {{-- Select Children --}}
-<div class="row" wire:ignore>
+<div class="row">
     <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
         <label for="multiple-select-optgroup-clear-field" style="font-weight: normal;">Select Children</label>
         <select class="form-select" data-placeholder="Select Children" id="multiple-select-optgroup-clear-field" multiple style="border: 1px solid #252525; width: 200%;">

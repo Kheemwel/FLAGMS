@@ -25,8 +25,9 @@ class RolesLivewire extends Component
         return view('livewire.file_management.roles.roles-livewire');
     }
 
-    public function addRole()
+    public function addRole($privileges)
     {
+        $this->selected_privileges = $privileges;
         $this->validate([
             'role' => 'required|max:255|unique:roles,role',
             'selected_privileges' => 'required|array|min:1'
@@ -50,8 +51,9 @@ class RolesLivewire extends Component
         $this->selected_privileges = $role->privileges()->pluck('privilege_id')->toArray();
     }
 
-    public function updateRole()
+    public function updateRole($privileges)
     {
+        $this->selected_privileges = $privileges;
         $this->validate([
             'role' => 'required|max:255|unique:roles,role,' . $this->selected_role_id,
             'selected_privileges' => 'required|array|min:1'

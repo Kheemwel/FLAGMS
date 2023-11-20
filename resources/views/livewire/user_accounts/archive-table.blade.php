@@ -1,30 +1,53 @@
 <div x-data='{ rows: {} }'>
     <div style="margin-left: 2rem; margin-right: 2rem;">
-        <div class="row">
-            <label for="per-page" style="font-weight: normal; margin-top: 1rem;">
-                Show
-                <span>
-                    <select class="form-select form-select-sm mb-2" id='per-page' selected wire:model.live.debounce.500ms="per_page">
-                        <option>10</option>
-                        <option>15</option>
-                        <option>20</option>
-                        <option>25</option>
-                        <option selected>30</option>
-                        <option>50</option>
-                        <option>100</option>
-                    </select>
-                </span>
-                Entries
-            </label>
-            {{-- MARK AS UNARCHIVE --}}
-            <label for="per-page" style="font-weight: normal; margin-top: 1rem; margin-left: 1rem; cursor: pointer;" wire:click='markUnarchive(Object.keys(rows).filter(key => rows[key] === true))' x-show='Object.values(rows).includes(true)'>
-                <span class="archivals" style="transition: color 0.3s;">Mark as Unarchive</span>
-            </label>
+        <div class="row" style="margin-top: 1rem;">
+            <div class="col-5">
+                <div class="input-group input-group-sm" style="width: 70%;">
+                    <input class="form-control float-right" name="table_search" placeholder="Search"
+                        style="height: 35px;" type="text" wire:model.live.debounce.500ms.debounce.500ms='search'>
+                    <div class="input-group-append">
+                        <button style="height: 35px;" aria-expanded="false" aria-haspopup="true"
+                            class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown"
+                            type="button">Role</button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#" wire:click="$set('filterRole', 'All')">All</a>
+                            @foreach ($roles as $roleFilter)
+                                <a class="dropdown-item" href="#"
+                                    wire:click="$set('filterRole', '{{ $roleFilter->role }}')">{{ $roleFilter->role }}</a>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 1rem;">
+            <div class="col-3 d-flex justify-content-start">
+                <label for="per-page" class="m-0" style="padding-top: 10px; font-weight: normal; margin-top: 1rem; margin-left: 1rem; cursor: pointer;"
+                    wire:click='markArchive(Object.keys(rows).filter(key => rows[key] === true))'
+                    x-show='Object.values(rows).includes(true)'>
+                    <span class="archivals btn btn-default" style="transition: color 0.3s; color: white; background-color: #0A0863; border-radius: 10px; font-size: 14px;">Mark
+                        as Unarchive</span>
+                </label>
+            </div>
 
-            {{-- DELETE --}}
-            <label for="per-page" style="font-weight: normal; margin-top: 1rem; margin-left: 1rem; cursor: pointer;" wire:click='deleteSelected(Object.keys(rows).filter(key => rows[key] === true))' x-show='Object.values(rows).includes(true)'>
-                <span id="delete" style="transition: color 0.3s;">Delete</span>
-            </label>
+            <div class="col-6 d-flex justify-content-end ml-auto">
+                <label for="per-page" style="font-weight: normal; margin-top: 1rem;">
+                    Show
+                    <span>
+                        <select class="form-select form-select-sm mb-2" id='per-page' selected
+                            wire:model.live.debounce.500ms="per_page">
+                            <option>10</option>
+                            <option>15</option>
+                            <option>20</option>
+                            <option>25</option>
+                            <option selected>30</option>
+                            <option>50</option>
+                            <option>100</option>
+                        </select>
+                    </span>
+                    Entries
+                </label>
+            </div>
         </div>
     </div>
     <div class="card" style="margin-left: 2rem; margin-right: 2rem;border-radius: 10px;">
@@ -50,8 +73,8 @@
                 </thead>
                 <tbody style="text-align: center;">
                     @foreach ($archived_users as $arch_user)
-                        <tr x-bind:class="rows[{{ $arch_user->id }}] ? 'bg-lightblue' : ''" x-init='rows[{{ $arch_user->id }}] = false' x-on:click='rows[{{ $arch_user->id }}] = !rows[{{ $arch_user->id }}]'>
-                            <th>
+                        <tr x-bind:style="rows[{{ $arch_user->id }}] ? 'background-color: #d9deff' : ''" x-init='rows[{{ $arch_user->id }}] = false'>
+                            <th x-on:click='rows[{{ $arch_user->id }}] = !rows[{{ $arch_user->id }}]'>
                                 <input type="checkbox" x-model="rows[{{ $arch_user->id }}]">
                             </th>
                             <th scope="row">{{ $arch_user->id }}</th>

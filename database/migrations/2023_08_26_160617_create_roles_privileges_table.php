@@ -21,25 +21,12 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        $admin = Roles::create([
-            'role' => 'Admin',
-            'is_default' => false
-        ]);
-        $admin->privileges()->attach([1, 2, 9, 10, 15, 16, 23, 24, 31, 32, 44, 45, 50, 51, 52]);
-
         $guidance = Roles::create([
             'role' => 'Guidance',
             'is_default' => true
         ]);
         $guidance->privileges()->attach([3, 4, 6, 8, 12, 14, 17, 20, 22, 25, 28, 30, 34, 36, 37, 39, 46, 49, 53, 54, 56, 57, 58, 59]);
-
-        $superAdmin = Roles::create([
-            'role' => 'SuperAdmin',
-            'is_default' => false
-        ]);
-        $superAdmin->privileges()->attach([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
-        27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 41, 42, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59]);
-
+     
         $student = Roles::create([
             'role' => 'Student',
             'is_default' => true
@@ -63,6 +50,19 @@ return new class extends Migration
             'is_default' => true
         ]);
         $principal->privileges()->attach([37, 46, 47]);
+        
+        $admin = Roles::create([
+            'role' => 'Admin',
+            'is_default' => false
+        ]);
+        $admin->privileges()->attach([1, 2, 9, 10, 15, 16, 23, 24, 31, 32, 44, 45, 50, 51, 52]);
+
+        $superAdmin = Roles::create([
+            'role' => 'SuperAdmin',
+            'is_default' => false
+        ]);
+        $superAdmin->privileges()->attach([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+        27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 42, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59]);
     }
 
     /**

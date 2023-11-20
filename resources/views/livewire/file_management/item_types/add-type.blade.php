@@ -13,8 +13,8 @@
                     <p class="card-title" style="color: #0A0863; font-weight: bold; font-size: 22px;">Add New type</p> <br><br><br>
 
                     <div class="input-group">
-                        <div class="custom-file" style="border: 1px solid #252525; border-radius: 5px; margin-bottom: 2rem;">
-                            <input class="form-control" id="input-Section" style="border: 1px solid #252525" type="text" wire:model="type">
+                        <div class="custom-file" style="border: 1px solid #252525; border-radius: 5px; margin-bottom: 2rem; margin-right: 1rem;">
+                            <input class="form-control" id="input-Section" style="border: 1px solid #252525;" type="text" wire:model="type">
                             <label for="updateTitle"></label>
                         </div>
                     </div>
