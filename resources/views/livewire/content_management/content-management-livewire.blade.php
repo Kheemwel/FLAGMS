@@ -21,7 +21,7 @@
                 <i class="fa fa-solid fa-pen" data-target='#updateLogoModal' data-toggle="modal" title="Edit Logo" tooltip="enable"></i>
             </div>
             <div class="d-flex justify-content-between align-items-start">
-                {!! $school_name !!}
+                {!! $school_name !!} &nbsp;&nbsp;
                 <i class="fa fa-solid fa-pen" data-target='#updateSchoolNameModal' data-toggle="modal" title="Edit School Name" tooltip="enable"></i>
             </div>
         </div>
@@ -29,7 +29,7 @@
 
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="" style="background-color: white; padding: 4rem;">
+    <div class="" style="background-color: white; padding: 4rem; margin-left: 1rem;">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">

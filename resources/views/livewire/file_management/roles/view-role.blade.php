@@ -22,7 +22,7 @@
                         <div class="row">
                             <!--ITEM TYPE-->
                             <div class="form-group col-sm-5" style="color: #252525;">
-                                <p style="font-size: 14px;">Role Name</p>
+                                <p style="font-size: 16px;">Role Name</p>
                             </div>
                             <div class="form-group col-sm-4" style="font-size: 16px; color: #252525;">
                                 <p style="font-weight: bold;">{{ $selected_role->role }}</p>
@@ -30,8 +30,8 @@
                         </div>
 
                         <div class="row">
-                            <div class="form-group col-sm-6" style="text-align: left; margin-top: 2rem;">
-                                <p style="color: #0A0863; font-size: 22px;">Privileges</p>
+                            <div class="form-group col-sm-6" style="text-align: left; margin-top: 1rem;">
+                                <p style="color: #0A0863; font-size: 20px; font-weight:bold;">Privileges</p>
                             </div>
                         </div>
 
@@ -39,7 +39,7 @@
                             <div class="row">
                                 <!--DATE AND TIME FOUND-->
                                 <div class="form-group col-5" style="color: #252525;">
-                                    <p style="font-size: 14px;">{{ "Privilege ID#$privilege->id" }}</p>
+                                    <p style="font-size: 16px;">{{ "Privilege ID#$privilege->id" }}</p>
                                 </div>
                                 <div class="form-group col-5" style="font-size: 16px; color: #252525;">
                                     <p style="font-weight: bold;">{{ $privilege->privilege }}</p>

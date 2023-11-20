@@ -40,75 +40,69 @@
         <section class="content">
             <div class="container-fluid">
 
-                <div class="row">
+            <div class="row">
                     <div class="col-lg-7">
-                        <div class="row">
-                            <div class="col-lg-4 col-6">
+                    <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
                                 <!-- small box -->
-                                <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 70px;">
+                                <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 80px;">
                                     <div class="inner">
-                                        <p style="margin: 0;">Total No. of Students</p>
-
-                                        <p style="font-size: 24px; font-weight: bold; margin: 0;">5,656</p>
+                                        <p class="mb-0 text-truncate" style="font-size: .9rem;">Total No. of Students</p>
+                                        <p class="mb-0" style="font-size: 1.5rem; font-weight: bold;">5,656</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-6">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
                                 <!-- small box -->
-                                <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 70px;">
+                                <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 80px;">
                                     <div class="inner">
-                                        <p style="margin: 0;">No. of Junior High Students</p>
-
-                                        <p style="font-size: 24px; font-weight: bold; margin: 0;">3,500</p>
+                                        <p class="mb-0 text-truncate" style="font-size: .9rem;">No. of Junior High Students</p>
+                                        <p class="mb-0" style="font-size: 1.5rem; font-weight: bold;">2,345</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-6">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
                                 <!-- small box -->
-                                <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 70px;">
+                                <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 80px;">
                                     <div class="inner">
-                                        <p style="margin: 0;">No. of Senior High Students</p>
-
-                                        <p style="font-size: 24px; font-weight: bold; margin: 0;">2,156</p>
+                                        <p class="mb-0 text-truncate" style="font-size: .9rem;">No. of Senior High Students</p>
+                                        <p class="mb-0" style="font-size: 1.5rem; font-weight: bold;">1,235</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-4 col-6">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
                                 <!-- small box -->
-                                <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 70px;">
+                                <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0,0, 0.2); border-radius: 10px; height: 80px;">
                                     <div class="inner">
-                                        <p style="margin: 0;">No. of Anecdotal Reports</p>
-
-                                        <p style="font-size: 24px; font-weight: bold; margin: 0;">150</p>
+                                        <p class="mb-0 text-truncate" style="font-size: .9rem;">No. of Anecdotal Reports</p>
+                                        <p class="mb-0" style="font-size: 1.5rem; font-weight: bold;">2</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-6">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
                                 <!-- small box -->
-                                <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 70px;">
+                                <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 80px;">
                                     <div class="inner">
-                                        <p style="margin: 0;">No. of Violation Reports</p>
-
-                                        <p style="font-size: 24px; font-weight: bold; margin: 0;">200</p>
+                                        <p class="mb-0 text-truncate" style="font-size: .9rem;">No. of Violation Reports</p>
+                                        <p class="mb-0" style="font-size: 1.5rem; font-weight: bold;">24</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-6">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
                                 <!-- small box -->
-                                <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 70px;">
+                                <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 80px;">
                                     <div class="inner">
-                                        <p style="margin: 0; font-size: 14px;">No. of Home Visitation Reports</p>
-
-                                        <p style="font-size: 24px; font-weight: bold; margin: 0;">123</p>
+                                        <p class="mb-0 text-truncate" style="font-size: .9rem;">No. of Home Visitation Reports</p>
+                                        <p class="mb-0" style="font-size: 1.5rem; font-weight: bold;">5</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <p style="font-weight: bold; font-size: 26px;">Student Offenses Analysis</p>
                         <div class="row">
-                            <div class="col-lg-12 col-6">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-6">
                                 <div class="card" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 280px;">
                                     <!--Violation PieChart-->
                                     <div class="tab-content p-0">
@@ -121,7 +115,7 @@
                     </div>
                     <div class="col-lg-5">
                         <div class="row">
-                            <div class="col-lg-12 col-6" style="height: 230px; overflow: auto; margin-bottom: 1rem;">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-6" style="height: 230px; overflow: auto; margin-bottom: 2rem;">
                                 <!-- CALENDAR -->
                                 <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; padding: 2px; margin-left: 2rem;">
                                     <div id="calendar" style="width: auto; font-size: 10px; padding-left: 1rem; padding-right: 1rem; padding-bottom: 1rem;">
@@ -130,16 +124,16 @@
                             </div>
                         </div>
                         <div class="row">
-                        <div class="col-lg-12 col-6" style="height: 270px; overflow-y: auto; margin-bottom: 1rem;">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-12" style="height: 270px; overflow-y: auto; margin-bottom: 1rem;">
                             <!-- UPCOMING EVENTS -->
                             <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; padding: 5px; margin-left: 2rem;">
                                     <div class="row">
-                                        <div class="col-10" style="padding: 1rem;">
-                                            <p style="font-size: 24px; font-weight: bold; color: #252525; float: left;">
+                                        <div class="col-md-9 col-sm-9 col-9" style="padding: 1rem;">
+                                            <p class="upcoming-event" style="font-size: 20px; font-weight: bold; color: #252525; float: left;">
                                                 Upcoming Events</p>
                                         </div>
-                                        <div class="col-2" style="padding: 1rem;">
-                                            <a style="font-size: 14px; color: #252525; float: right;" href="{{ route('guidance-program-page') }}">See All</a>
+                                        <div class="col-md-3 col-sm-3 col-3" style="padding: 1rem;">
+                                            <a class="see-all-link" style="font-size: 14px; color: #252525; float: right;" href="{{ route('guidance-program-page') }}">See All</a>
                                         </div>
                                     </div>
                                     <div class="row">

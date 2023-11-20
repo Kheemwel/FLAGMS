@@ -1,6 +1,6 @@
 <div class="modal fade anecdotal-modal" id="anecdotal-btn" wire:ignore.self>
     <div class="modal-dialog anecdotal-dialog modal-xl">
-        <div class="modal-content">
+        <div class="modal-content" style="border-radius: 20px;">
             <div wire:loading wire:target='getData'>
                 <div class="overlay bg-white" style="border-radius: 20px;">
                     <div>
@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     <!--IMPORTANT USER DETAILS FORM SECTION-->
-                    <div class="row" style="margin-left: 2rem;">
+                    <div class="row">
                         <!--NAME-->
                         <div class="form-group col-sm-2" style="font-size: 12px; color: #252525;">
                             <p class="card-title">Name</p>
@@ -46,7 +46,7 @@
                             <p class="card-title" style="font-weight: bold;">{{ $lrn }}</p>
                         </div>
                     </div>
-                    <div class="row" style="margin-left: 2rem;">
+                    <div class="row">
                         <!--SCHOOL LEVEL-->
                         <div class="form-group col-sm-2" style="font-size: 12px; color: #252525;">
                             <p class="card-title">School Level</p>
@@ -63,7 +63,7 @@
                             <p class="card-title" style="font-weight: bold;">{{ $grade_level }}</p>
                         </div>
                     </div>
-                    <div class="row" style="margin-left: 2rem;">
+                    <div class="row">
                         <!--FATHER'S NAME-->
                         <div class="form-group col-sm-2" style="font-size: 12px; color: #252525;">
                             <p class="card-title">Father's Name</p>
@@ -80,7 +80,7 @@
                             <p class="card-title" style="font-weight: bold;">0915 445 6789</p>
                         </div>
                     </div>
-                    <div class="row" style="margin-left: 2rem;">
+                    <div class="row">
                         <!--MOTHER'S NAME-->
                         <div class="form-group col-sm-2" style="font-size: 12px; color: #252525;">
                             <p class="card-title">Mother's Name</p>
@@ -100,11 +100,11 @@
 
                     <br><br>
                     <div class="input-group-prepend">
-                        <p class="card-title" style="font-size: 18px; color: #0A0863; font-weight: bold; margin-bottom: 1rem; margin-left: 2rem;"> Table for Anecdotal Records </p>
+                        <p class="card-title" style="font-size: 18px; color: #0A0863; font-weight: bold; margin-bottom: 1rem; "> Table for Anecdotal Records </p>
                     </div>
                     <!--TABLE FOR ANECDOTAL RECORDS-->
-                    <div style="display: flex; flex-direction: column; margin: 2rem;">
-                        <table style="border: rgb(101, 101, 101) 1px solid; text-align: center;">
+                    <div style="display: flex; flex-direction: column;">
+                        <table style="border: rgb(101, 101, 101) 1px solid; text-align: center; margin-right: 1rem;">
                             <thead style="background-color: #7684B9; color: white;">
                                 <tr>
                                     <th style="border: rgb(101, 101, 101) 1px solid;">Date</th>

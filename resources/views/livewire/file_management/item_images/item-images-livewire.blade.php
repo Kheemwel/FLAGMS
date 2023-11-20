@@ -17,7 +17,7 @@
 
     <div class="row">
         <div class="col-12">
-            <div class="card-tools" style="display: flex; justify-content: flex-end; margin-bottom: 2rem; margin-right: 2rem;">
+            <div class="card-tools" style="display: flex; justify-content: flex-end; margin-bottom: 2rem; margin-right: 3rem;">
                 <!--SEARCH FEATURE-->
                 <div class="input-group input-group-sm" style="max-width: 20%;">
                     <!--SEARCH INPUT-->
@@ -25,22 +25,26 @@
                 </div>
             </div>
             <!--PROFILE PICTURES TABLE SECTION-->
-            <div class="card" style="margin-left: 2rem; margin-right: 2rem;">
+            <div class="card" style="margin-left: 2rem; margin-right: 3rem; border-radius: 10px;">
                 <!-- /.card-header -->
-                <div class="card-body table-responsive p-0" style="border: 1px solid #252525;">
-                    <table class="table text-nowrap" style="text-align: center;">
+                <div class="card-body table-responsive p-0" style="border: 1px solid #252525; border-radius: 10px;">
+                    <table class="table table-hover" style="text-align: center;">
                         <thead style="background-color: #7684B9; color: white;">
                             <tr>
-                                <th style="border-right: 1px solid #252525;">ID</th>
-                                <th style="border-right: 1px solid #252525;">Image</th>
-                                <th style="border-right: 1px solid #252525;">Item Name</th>
-                                <th style="border-right: 1px solid #252525;">Last Updated At</th>
+                                <th>
+                                    <input type="checkbox">
+                                </th>
+                                <th>ID</th>
+                                <th>Image</th>
+                                <th>Item Name</th>
+                                <th>Last Updated At</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($item_images as $item_image)
                             <tr>
+                                <td> </td>
                                 <th scope="row">{{ $item_image->id }}</th>
                                 <td>
                                     <img src="{{ imageBinaryToSRC($item_image->item_image) }}" width="50">

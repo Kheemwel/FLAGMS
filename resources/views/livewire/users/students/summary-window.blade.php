@@ -86,7 +86,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <div class="card" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);">
+                            <div class="card" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); margin-right: 1rem;">
                                 <!--Violation PieChart-->
                                 <div class="tab-content p-0">
                                     <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;margin-top: 1rem;"></canvas>

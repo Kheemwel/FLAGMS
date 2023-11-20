@@ -8,7 +8,7 @@
                 </button>
             </div>
             <form wire:submit.prevent="updateSubtitle()">
-                <div class="modal-body" style="margin-left: 1rem; max-height: 500px;">
+                <div class="modal-body" style="margin-left: 1rem; max-height: 500px; margin-right: 1rem;">
                     <!--MODAL FORM TITLE-->
                     <p class="card-title" style="color: #0A0863; font-weight: bold; font-size: 22px;">Update Website Subitle</p> <br><br><br>
 
