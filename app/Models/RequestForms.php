@@ -24,8 +24,28 @@ class RequestForms extends Model
         return $this->hasOne(RequestViolationForms::class, 'request_form_id');
     }
 
+    public function violationStudentsInvolve()
+    {
+        return $this->violationForm->students->pluck('id')->toArray();
+    }
+
     public function teacher()
     {
         return $this->belongsTo(Teachers::class, 'teacher_id');
+    }
+
+    public function forms()
+    {
+        return $this->hasOne(Forms::class, 'request_form_id');
+    }
+
+    public function createViolationForm()
+    {
+        $this->forms()->create()->createViolationForms();
+    }
+
+    public function createHomeVisitationForm()
+    {
+        $this->forms()->create()->createHomeVisitationForms();
     }
 }

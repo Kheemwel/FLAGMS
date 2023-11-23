@@ -30,6 +30,7 @@ class ApprovalFormsLivewire extends Component
     {
         $this->violationForm->requestForm->is_approve = true;
         $this->violationForm->requestForm->save();
+        $this->violationForm->requestForm->createViolationForm();
         $this->showToast('success', "Requested Violation Form is Approved Successfully");
     }
 
@@ -37,6 +38,7 @@ class ApprovalFormsLivewire extends Component
     {
         $this->homeVisitationForm->requestForm->is_approve = true;
         $this->homeVisitationForm->requestForm->save();
+        $this->homeVisitationForm->requestForm->createHomeVisitationForm();
         $this->showToast('success', "Requested Home Visitation Form is Approved Successfully");
     }
 

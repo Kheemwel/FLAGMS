@@ -4,6 +4,7 @@ use App\Http\Middleware\CheckUserCredentials;
 use App\Livewire\ApprovalFormsLivewire;
 use App\Livewire\ContentManagementLivewire;
 use App\Livewire\DatabaseLivewire;
+use App\Livewire\FillOutFormsLivewire;
 use App\Livewire\GuidanceLivewire;
 use App\Livewire\GuidanceProgramLivewire;
 use App\Livewire\HomeLivewire;
@@ -50,7 +51,7 @@ Route::middleware([CheckUserCredentials::class])->group(function () {
     Route::get('/notification', NotificationLivewire::class)->name('notification-page');
     // Route::view('/user-guidance-program', 'common.user-guidance-program')->name('user-guidance-program-page');
     Route::get('/lost-and-found', LostFoundLivewire::class)->name('lost-and-found-page');
-    Route::view('/fill-out-forms', 'common.fill-out-forms')->name('fill-out-forms-page');
+    Route::get('/fill-out-forms', FillOutFormsLivewire::class)->name('fill-out-forms-page');
 
     //Admin
     Route::get('/user-accounts', UserAccountsLivewire::class)->name('user-accounts-page');

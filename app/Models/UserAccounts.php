@@ -19,7 +19,7 @@ class UserAccounts extends Model
 
     public function getNameAttribute()
     {
-        return $this->attributes['first_name'] . ' ' . $this->attributes['last_name'];
+        return $this->first_name . ' ' . $this->last_name;
     }
 
     public function getProfilePicture(): BelongsTo

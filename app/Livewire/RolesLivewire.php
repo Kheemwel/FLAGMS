@@ -17,11 +17,11 @@ class RolesLivewire extends Component
     public function mount()
     {
         $this->privileges = Privileges::all();
+        $this->roles = Roles::all();
     }
 
     public function render()
     {
-        $this->roles = Roles::all();
         return view('livewire.file_management.roles.roles-livewire');
     }
 
@@ -44,7 +44,7 @@ class RolesLivewire extends Component
 
     public function getData($id)
     {
-        $role = Roles::find($id);
+        $role = $this->roles->find($id);
         $this->selected_role = $role;
         $this->role = $role->role;
         $this->selected_role_id = $role->id;
