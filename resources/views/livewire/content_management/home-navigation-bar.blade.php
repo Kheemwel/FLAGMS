@@ -1,8 +1,8 @@
-<nav class="navbar navbar-expand navbar-white navbar-light" style="padding: 4rem;">
+<nav class="navbar navbar-expand navbar-white navbar-light" style="padding-top: 1rem; padding-left: 4rem; padding-right: 4rem;">
     <!-- Brand Logo -->
     <div style="border: transparent; display: flex; align-items: center;">
-        <img src="{{ $logo }}" alt="AdminLTE Logo" class="brand-image img-circle" style="width: 50px; height: 50px; margin-right: 10px;">
-        <div>
+        <img src="{{ $logo }}" alt="AdminLTE Logo" class="brand-image img-circle" style="width: 60px; height: 60px; margin-right: 10px;">
+        <div style="font-family: 'Inria Serif', serif; font-size: 22px;">
             {{-- <span style="color: #0A0863; font-weight: bold; font-family: 'Inria Serif', serif; font-size: 22px;">Fiat Lux Academe</span>
             <span style="color: #0A0863; font-size: 16px; font-weight: bold; font-family: 'Inria Serif', serif;">Cavite</span> --}}
             {!! $school_name !!}
