@@ -32,6 +32,11 @@ class UserAccounts extends Model
         return $this->belongsTo(Roles::class, 'role_id');
     }
 
+    public function role()
+    {
+        return $this->getRole->role;
+    }
+
     public function hasGuidance(): HasOne
     {
         return $this->hasOne(Guidance::class, 'user_account_id');

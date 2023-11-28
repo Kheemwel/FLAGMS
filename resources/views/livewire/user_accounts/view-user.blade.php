@@ -8,10 +8,28 @@
                 </div>
             </div>
             <div class="modal-header" style="border: transparent; padding: 10px;">
-                <!--EDIT USER INFORMATION-->
-                <button data-target="#stud-info-edit" data-toggle="modal" style="background-color: transparent; border-color: transparent;" type="button">
-                    <i class="fa fa-solid fa-pen"></i>
-                </button>
+                @if ($my_id !== $user_id)
+                    <!--USER INFO EDIT BUTTON-->
+                    @if (in_array("Edit{$role}Accounts", $privileges) || in_array('EditAccounts', $privileges))
+                        <button class="btn btn-primary action-btn" data-target="#stud-info-edit" data-toggle="modal" data-dismiss="modal" title='Edit Account' tooltip='enable'>
+                            <i class="fa fa-solid fa-pen"></i>
+                        </button>
+                    @endif
+
+
+                    @if (!$user_is_archive && (in_array("Archive{$role}Accounts", $privileges) || in_array('ArchiveAccounts', $privileges)))
+                        <button class="btn btn-primary action-btn" title='Archive Account' data-dismiss="modal" tooltip='enable' wire:click="archive()">
+                            <i aria-hidden="true" class="fa fa-archive"></i>
+                        </button>
+                    @endif
+
+                     {{-- DELETE USER --}}
+                     @if ($user_is_archive && (in_array("Delete{$role}Accounts", $privileges) || in_array('DeleteAccounts', $privileges)))
+                     <button class="btn btn-primary action-btn" data-target="#deleteModal" data-toggle="modal" title='Delete Account' tooltip='enable' wire:click.prevent="delete()">
+                         <i aria-hidden="true" class="fa fa-trash"></i>
+                     </button>
+                 @endif
+                @endif
 
                 <button aria-label="Close" class="close" data-dismiss="modal" type="button" wire:click='resetInputFields()'>
                     <span aria-hidden="true">&times;</span>
