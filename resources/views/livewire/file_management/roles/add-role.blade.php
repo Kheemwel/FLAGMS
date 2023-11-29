@@ -1,5 +1,5 @@
 <!--USER INFORMATION FORM MODAL-->
-<div aria-hidden="true" aria-labelledby="myModalLabel" data-backdrop="static" class="modal fade" id="addRoleModal" role='dialog' style="max-width: 100%;" wire:ignore.self>
+<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" data-backdrop="static" id="addRoleModal" role='dialog' style="max-width: 100%;" wire:ignore.self>
     <div class="modal-dialog modal-lg">
         <div class="modal-content" x-data="privileges">
             <div wire:loading wire:target='addRole'>
@@ -28,7 +28,7 @@
 
                     <div class="row">
                         <div class="form-group col-sm-6" style="text-align: left; margin-top: 2rem;">
-                            <p style="color: #0A0863; font-size: 18px; font-weight: bold;">Privileges</p>
+                            <p style="color: #0A0863; font-size: 18px; font-weight: bold;">Set Privileges</p>
                         </div>
                     </div>
 
@@ -40,18 +40,32 @@
 
                     <div class="row">
                         @foreach ($privilege_categories as $category)
-                            <div class="row border border-dark rounded w-100 mb-3">
-                                <div class='col-8'><label class='form-group w-100' style="font-size: 14px; color: #252525; margin-left: 1rem; margin-top: 1rem;">{{ $category . ' Privileges' }}</label></div>
-                                <div class='col-4'><input type="checkbox" x-model="selectAlls['{{ $category }}']" x-on:click="checkPrivileges('{{ $category }}', !selectAlls['{{ $category }}'])">Check All {{ $category }} Privileges</div>
-                                @foreach ($privileges as $privilege)
-                                    @if (!$privilege->is_exclusive)
-                                        @if (strpos($privilege->privilege, $category) !== false || !wordsExistInString($privilege_categories, $privilege->privilege) && $category == 'Other')
-                                            <div class="form-group col-4" style="text-align: left; margin-top: 2rem;" x-init="initPrivileges('{{ $category }}', {{ $privilege->id }})">
-                                                <input type="checkbox" value="{{ $privilege->id }}" x-model="privileges[{{ $privilege->id }}]">{{ $privilege->privilege }}
-                                            </div>
+                            <div class="row border border-dark rounded w-100 mb-3 p-4 pt-2 pl-2">
+                                <div class="row mr-1 w-100">
+                                    <div class='col-7'>
+                                        <label class='form-group w-100' style="font-size: 14px; color: #252525;">{{ $category . ' Privileges' }}</label>
+                                    </div>
+
+                                    <div class='col-5 w-100 d-flex justify-content-end'>
+                                        <input class="toggle-checkbox" id="switch-{{ $category }}" type="checkbox" x-model="selectAlls['{{ $category }}']" x-on:click="checkPrivileges('{{ $category }}', !selectAlls['{{ $category }}'])"><label class="toggle-label" for="switch-{{ $category }}">Toggle</label>
+                                        <span class="ml-1">Check All {{ $category }} Privileges</span>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    @foreach ($privileges as $privilege)
+                                        @if (!$privilege->is_exclusive)
+                                            @if (strpos($privilege->privilege, $category) !== false || (!wordsExistInString($privilege_categories, $privilege->privilege) && $category == 'Other'))
+                                                <div class="form-check col-4 mt-4" x-init="initPrivileges('{{ $category }}', {{ $privilege->id }})">
+                                                    <input class="form-check-input" id="defaultCheck{{ $privilege->id }}" type="checkbox" value="{{ $privilege->id }}" x-model="privileges[{{ $privilege->id }}]">
+                                                    <label class="form-check-label" for="defaultCheck{{ $privilege->id }}">
+                                                        {{ $privilege->privilege }}
+                                                    </label>
+                                                </div>
+                                            @endif
                                         @endif
-                                    @endif
-                                @endforeach
+                                    @endforeach
+                                </div>
                             </div>
                         @endforeach
                     </div>

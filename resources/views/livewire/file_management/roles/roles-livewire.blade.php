@@ -1,5 +1,49 @@
 @section('head')
     <title>Admin | Roles</title>
+
+    <style>
+        input[type=checkbox].toggle-checkbox {
+            height: 0;
+            width: 0;
+            visibility: hidden;
+        }
+
+        label.toggle-label {
+            cursor: pointer;
+            text-indent: -9999px;
+            width: 45px;
+            height: 25px;
+            background: #D9D9D9;
+            display: block;
+            border-radius: 100px;
+            position: relative;
+        }
+
+        label.toggle-label:after {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 15px;
+            height: 15px;
+            background: #fff;
+            border-radius: 90px;
+            transition: 0.1s;
+        }
+
+        input.toggle-checkbox:checked+label.toggle-label {
+            background: #3C58FF;
+        }
+
+        input.toggle-checkbox:checked+label.toggle-label:after {
+            left: calc(100% - 5px);
+            transform: translateX(-100%);
+        }
+
+        label.toggle-label:active:after {
+            width: 20px;
+        }
+    </style>
 @endsection
 
 <div class="content-wrapper" style="background-color:  rgb(253, 253, 253); padding-left: 2rem;">
@@ -14,7 +58,6 @@
         </div>
         <!-- /.container-fluid -->
     </section>
-
 
     <div class="row">
         <div class="col-12">
@@ -56,23 +99,11 @@
                                         <td>{{ $role->role }}</td>
                                         <td>{{ $role->getUserAccounts()->count() }}</td>
                                         <td>
-                                            <!--EDIT PROFILE-->
-                                            <button class="btn btn-primary action-btn" data-target="#editRoleModal" data-toggle="modal" wire:click='getData({{ $role->id }})'>
-                                                <i class="fa fa-solid fa-pen"></i>
-                                            </button>
                                             <!-------------------------------------------------------------------------------------------------------------------------->
-
                                             <!--VIEW PROFILE-->
                                             <button class="btn btn-primary action-btn" data-target="#view-role" data-toggle="modal" wire:click='getData({{ $role->id }})'>
                                                 <i aria-hidden="true" class="fa fa-eye"></i>
                                             </button>
-
-                                            {{-- DELETE PROFILE --}}
-                                            @if (!$role->is_default)
-                                                <button class="btn btn-primary action-btn" wire:click="delete({{ $role->id }})">
-                                                    <i aria-hidden="true" class="fa fa-trash"></i>
-                                                </button>
-                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
@@ -85,6 +116,8 @@
             <!-- /.card -->
         </div>
     </div>
+
+    <toggle-button id="myToggleButton"></toggle-button>
     @include('livewire.file_management.roles.add-role')
     @include('livewire.file_management.roles.view-role')
     @include('livewire.file_management.roles.edit-role')
