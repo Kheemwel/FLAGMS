@@ -117,7 +117,6 @@
         </div>
     </div>
 
-    <toggle-button id="myToggleButton"></toggle-button>
     @include('livewire.file_management.roles.add-role')
     @include('livewire.file_management.roles.view-role')
     @include('livewire.file_management.roles.edit-role')

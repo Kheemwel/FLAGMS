@@ -26,11 +26,11 @@
                     <div class="row">
                         <div class="col-6">
                             <input class="form-control datePicker" name="time_start" placeholder="time start" style="height: 35px; margin-bottom: 1rem;" type="datetime-local" wire:model='program_start'>
-                            <x-error field='program_start'/>
+                            <x-error field='program_start' />
                         </div>
                         <div class="col-6">
                             <input class="form-control datePicker" name="time_end" placeholder="time end" style="height: 35px; margin-bottom: 1rem;" type="datetime-local" wire:model='program_end'>
-                            <x-error field='program_end'/>
+                            <x-error field='program_end' />
                         </div>
                     </div>
 
@@ -44,7 +44,7 @@
                     <div class="row">
                         <div class="col-12">
                             <input class="form-control" name="event_title" style="height: 35px; margin-bottom: 1rem;" type="text" wire:model='title'>
-                            <x-error field='title'/>
+                            <x-error field='title' />
                         </div>
                     </div>
 
@@ -58,71 +58,87 @@
                     <div class="row">
                         <div class="col-12">
                             <textarea class="form-control" name="event_description" style="height: 100px; margin-bottom: 1rem; resize: none;" wire:model='description'></textarea>
-                            <x-error field='description'/>
+                            <x-error field='description' />
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <label style="text-align: left; color: #252525;">Accessibility</label>
+                        </div>
+                    </div>
+
+                    <div class="row ml-2">
+                        <div class="form-check col-4">
+                            <input checked class="form-check-input" id="public" type="radio" value="1" wire:model.live='is_public'>
+                            <label class="form-check-label" for="public">
+                                Public
+                            </label>
+                        </div>
+                        <div class="form-check col-4">
+                            <input class="form-check-input" id="private" type="radio" value="0" wire:model.live='is_public'>
+                            <label class="form-check-label" for="private">
+                                Private
+                            </label>
+                        </div>
+                    </div>
+                    
+                    @if (!$is_public)
+                        <div class="row form-group mb-6" style="font-size: 14px; color: #252525;" x-init="initMultiSelect()">
+                            <div class="col-12" wire:ignore>
+                                <label for="multiple-select-optgroup-clear-field">Select Users Involve</label>
+                                <select class="form-select multiple-select-optgroup-clear-field" data-placeholder="Select Target User(s)" id="multiple-select-optgroup-clear-field" multiple style="border: 1px solid #252525;">
+                                    <option></option>
+                                    @foreach ($users as $user)
+                                        <option value="{{ $user->id }}">{{ $user->getNameAttribute() }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <x-error field="selected_users" />
+                        </div>
+                    @endif
 
                     <!--Select Color-->
                     <div class="row">
                         <div class="col-12">
-                            <label style="text-align: left; color: #252525;">Select Color</label>
+                            <label style="text-align: left; color: #252525;">Select Tag</label>
                         </div>
                     </div>
 
-                    <div class="row" style="margin-bottom: 2rem;">
-                        <div class="col-12 d-flex justify-content-start" style="font-size: 18px;">
-                            {{-- <i class="fa fa-solid fa-circle" style="color: #6256AC;"></i>
-                            <i class="fa fa-solid fa-circle" style="color: #05ADC7;"></i>
-                            <i class="fa fa-solid fa-circle" style="color: #FA4481;"></i>
-                            <i class="fa fa-solid fa-circle" style="color: #3C58FF;"></i>
-                            <i class="fa fa-solid fa-circle" style="color: #FC993E;"></i> --}}
-                            <div class="form-check">
-                                <input wire:model='color' class="form-check-input" type="radio" name="colorRadio" id="colorRadio1" value="#6256AC">
+                    <div class="row mb-4 ml-2">
+                        <div class="row d-flex w-100 justify-content-start" style="font-size: 18px;">
+                            @foreach ($schedule_tags as $tag)
+                                <div class="col-6 d-flex mb-2">
+                                    <label class="color-radio-input" style="background-color: {{ $tag->color }}; border-color: {{ $tag->color }};">
+                                        <input class="color-radio" name="radio1" type="radio" value="{{ $tag->id }}" wire:model='schedule_tag_id'>
+                                        <span class="color-radio-checkmark"></span>
+                                    </label>
+                                    <span class="ml-1 text-sm">{{ $tag->tag_name }}</span>
+                                </div>
+                            @endforeach
+                            <x-error field='schedule_tag_id' />
+                            {{-- <div class="form-check col-2">
+                                <input class="form-check-input" id="colorRadio1" name="colorRadio" style="accent-color: #6256AC" type="radio" value="#6256AC" wire:model='color'>
                                 <label class="form-check-label" for="colorRadio1">
-                                  <i class="fa fa-solid fa-circle" style="color: #6256AC;"></i>
+                                    <i class="fa fa-solid fa-circle" style="color: #6256AC;"></i>
                                 </label>
-                              </div>
-                              
-                              <div class="form-check">
-                                <input wire:model='color' class="form-check-input" type="radio" name="colorRadio" id="colorRadio2" value="#05ADC7">
-                                <label class="form-check-label" for="colorRadio2">
-                                  <i class="fa fa-solid fa-circle" style="color: #05ADC7;"></i>
+                            </div> --}}
+                            {{-- <div class="col-1">
+                                <label class="color-radio-input" style="background-color: #6256AC; border-color: #6256AC;">
+                                    <input class="color-radio" name="radio1" type="radio" value="#6256AC" wire:model='color'>
+                                    <span class="color-radio-checkmark"></span>
                                 </label>
-                              </div>
-                              
-                              <div class="form-check">
-                                <input wire:model='color' class="form-check-input" type="radio" name="colorRadio" id="colorRadio3" value="#FA4481">
-                                <label class="form-check-label" for="colorRadio3">
-                                  <i class="fa fa-solid fa-circle" style="color: #FA4481;"></i>
-                                </label>
-                              </div>
-                              
-                              <div class="form-check">
-                                <input wire:model='color' class="form-check-input" type="radio" name="colorRadio" id="colorRadio4" value="#3C58FF">
-                                <label class="form-check-label" for="colorRadio4">
-                                  <i class="fa fa-solid fa-circle" style="color: #3C58FF;"></i>
-                                </label>
-                              </div>
-                              
-                              <div class="form-check">
-                                <input wire:model='color' class="form-check-input" type="radio" name="colorRadio" id="colorRadio5" value="#FC993E">
-                                <label class="form-check-label" for="colorRadio5">
-                                  <i class="fa fa-solid fa-circle" style="color: #FC993E;"></i>
-                                </label>
-                              </div>
-                              <x-error field='color'/>
+                            </div> --}}
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-12">
-                            <button class="btn btn-default" style="width: 400px; margin-left: 10px; background-color: #0A0863; color: white; font-size: 16px;">
-                                Add Event
-                            </button>
-                        </div>
-                    </div>
-
                 </div> <!-- /.card-body -->
+                <div class="modal-footer justify-content-center">
+                    <div class="col-12">
+                        <button class="btn btn-default" style="width: 400px; margin-left: 10px; background-color: #0A0863; color: white; font-size: 16px;">
+                            Add Event
+                        </button>
+                    </div>
+                </div>
             </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

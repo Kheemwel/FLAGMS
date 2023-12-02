@@ -19,20 +19,29 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <!-- RIGHT HAND UPPER SIDE NAVIGATION -->
-        <li class="nav-item"> 
-        <iconify-icon icon="icon-park-solid:help" style="font-size: 22px; margin-top: 10px;"></iconify-icon>
+        <li class="nav-item" style="margin-right: 1rem; margin-top: 2px;">
+            <iconify-icon icon="icon-park-solid:help" style="font-size: 22px; margin-top: 10px;"></iconify-icon>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('guidance-program-page') }}" style="margin-right: 1rem; margin-top: 2px;">
+                <iconify-icon icon="bx:calendar" style="color: #252525; font-size: 22px;"></iconify-icon>
+                <span class="badge badge-primary navbar-badge">1</span>
+            </a>
+        </li>
 
         <!-- Notifications Dropdown Menu -->
         <li class="nav-item dropdown" style="margin-right: 1rem; margin-top: 2px;">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="fa fa-solid fa-bell" style="color: #252525; font-size: 18px;"></i>
-                <span class="badge badge-warning navbar-badge">1</span>
+                <span class="badge badge-warning navbar-badge">3</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" style="max-width: 500px; max-height: 300px; overflow-y: auto; overflow-x: hidden;">
                 <div style="display: flex; flex-direction: row; justify-content: space-between;">
                     <span class="dropdown-header" style="font-size: 20px; text-align: left; color: #252525; font-weight: bold;">Notification</span>
                     <span class="dropdown-header" style="font-size: 12px; color: #252525; cursor: pointer;">Mark all as read</span>
                 </div>
+
 
                 <!-- NOTIF CONTENT -->
                 <a class="dropdown-item" href="#" style="margin-bottom: 1rem;">
@@ -97,18 +106,18 @@
                     </div>
                 </a>
 
-                
+
 
                 <a class="btn" href="{{ route('notification-page') }}" style="background-color: #0A0863; color: white; margin-left: 1rem; margin-right: 1rem; width: 350px;">See All Notifications</a>
             </div>
         </li>
 
-        
+
         <!--Admin Profile-->
         <li class="nav-item">
             <div class="image" style="margin-top: 5px; margin-right: 1rem;">
                 <a href="{{ route('profile-page') }}">
-                    <img alt="User Image" class="img-circle elevation-2" src="{{ $this->viewProfile() }}" width="30px" height="30px">
+                    <img alt="User Image" class="img-circle elevation-2" height="30px" src="{{ $this->viewProfile() }}" width="30px">
                 </a>
             </div>
         </li>
