@@ -26,18 +26,6 @@
         /* Lato Font*/
         @import url('https://fonts.googleapis.com/css2?family=Karla:wght@400&display=swap');
         /* Karla Font*/
-
-        /*login modal resizing*/
-        .login-modal .modal-dialog {
-            max-width: 25%;
-        }
-
-        /* Center the modal vertically and horizontally */
-        .modal-center {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
     </style>
 
 
@@ -61,7 +49,7 @@
     @yield('head-scripts')
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="layout-fixed">
     {{ $slot }}
 
     <!--LOGIN FORM MODAL-->
@@ -69,10 +57,6 @@
 
     @yield('footer')
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar">
-        <!-- Control sidebar content goes here -->
-    </aside>
     @livewireScripts()
     <script>
         $(function() {

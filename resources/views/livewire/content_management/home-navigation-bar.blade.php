@@ -1,10 +1,8 @@
-<nav class="navbar navbar-expand navbar-white navbar-light" style="padding-top: 1rem; padding-left: 4rem; padding-right: 4rem;">
+<nav class="navbar navbar-expand navbar-white navbar-light pt-sm-4 pt-md-4 pt-lg-4 pt-xl-4 pl-sm-5 pl-md-5 pl-lg-5 pl-xl-5 pr-sm-5 pr-md-5 pr-lg-5 pr-xl-5">
     <!-- Brand Logo -->
-    <div style="border: transparent; display: flex; align-items: center;">
-        <img src="{{ $logo }}" alt="AdminLTE Logo" class="brand-image img-circle" style="width: 60px; height: 60px; margin-right: 10px;">
-        <div style="font-family: 'Inria Serif', serif; font-size: 22px;">
-            {{-- <span style="color: #0A0863; font-weight: bold; font-family: 'Inria Serif', serif; font-size: 22px;">Fiat Lux Academe</span>
-            <span style="color: #0A0863; font-size: 16px; font-weight: bold; font-family: 'Inria Serif', serif;">Cavite</span> --}}
+    <div class="d-flex align-items-center">
+        <img src="{{ $logo }}" alt="AdminLTE Logo" class="brand-image img-circle mr-2" style="width: 60px; height: 60px;">
+        <div style="font-family: 'Inria Serif', serif; font-size: 22px; line-height: 1.2;">
             {!! $school_name !!}
         </div>
     </div>
@@ -14,7 +12,7 @@
         <!-------LOGIN BUTTON--------->
         <li class="nav-item">
             <button class="nav-link btn" wire:click='authenticateWithRememberToken'>
-                <p style="color: white; font-size: 14px; background-color: #0A0863; border-radius: 15px; padding: 5px; padding-left: 30px; padding-right: 30px;"> Login</p>
+                <p class="pr-4 pl-4 pt-1 pb-1" style="color: white; font-size: 14px; background-color: #0A0863; border-radius: 15px;"> Login</p>
             </button>
         </li>
     </ul>
