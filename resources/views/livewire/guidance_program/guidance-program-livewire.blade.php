@@ -1,5 +1,48 @@
 @section('head')
     <title>Admin | Guidance Program</title>
+
+    <style>
+        /* Hide the default radio button */
+        input[type="radio"].color-radio {
+            display: none;
+        }
+
+        /* Customize the radio button container */
+        label.color-radio-input {
+            display: flex;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ccc;
+            /* Set default border color */
+            border-radius: 50%;
+            position: relative;
+            cursor: pointer;
+        }
+
+        /* Style the checked state */
+        label.color-radio-input input.color-radio:checked+.color-radio-checkmark::before {
+            content: '\2713';
+            /* Checkmark character */
+            font-size: 14px;
+            color: #fff;
+            /* Set the color of the checkmark */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Change the fill color based on accent color */
+        label.color-radio-input input.color-radio:checked+.color-radio-checkmark {
+            background-color: #your-accent-color;
+            /* Change this to your desired accent color */
+            border-color: #your-accent-color;
+            /* Change this to your desired accent color */
+        }
+    </style>
+    <!-- Select2 CSS -->
+    <link href="adminLTE-3.2/plugins/select2/css/select2.min.css" rel="stylesheet">
+    <link href="adminLTE-3.2/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css" rel="stylesheet">
 @endsection
 
 @section('head-scripts')
@@ -19,6 +62,8 @@
     <!-- fullCalendar 2.2.5 -->
     <script src="adminLTE-3.2/plugins/moment/moment.min.js"></script>
     <script src="adminLTE-3.2/plugins/fullcalendar/main.js"></script>
+    {{-- Select2 JS --}}
+    <script src="adminLTE-3.2/plugins/select2/js/select2.full.min.js"></script>
 @endsection
 
 
@@ -33,7 +78,7 @@
             </div>
         </div><!-- /.container-fluid -->
     </section>
-
+    <!-- Example usage with different colors -->
     <!-- Main content -->
     <section class="content" x-data='{ showCalendar : true}'>
         <div class="container-fluid">
@@ -89,6 +134,38 @@
 </div><!-- /.content-wrapper -->
 
 @section('scripts')
+    <script>
+        let users = [];
+
+        Livewire.on('addEvent', (data) => {
+            $("#add-event").modal('show');
+            $('.multiple-select-optgroup-clear-field').val(data[0]).trigger('change');
+        });
+
+        Livewire.on('selectedUsers', (data) => {
+            users = data[0];
+        });
+
+        Livewire.on('clearSelection', () => {
+            users = [];
+            $('.multiple-select-optgroup-clear-field').val(null).trigger('change');
+        });
+
+        function initMultiSelect() {
+            $('.multiple-select-optgroup-clear-field').select2({
+                theme: "bootstrap4",
+                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+                placeholder: $(this).data('placeholder'),
+                allowClear: true,
+            });
+
+            $('.multiple-select-optgroup-clear-field').on('change', function(e) {
+                @this.set('selected_users', $(this).val());
+            });
+
+            $('.multiple-select-optgroup-clear-field').val(users).trigger('change');
+        }
+    </script>
     <script>
         $(document).ready(function() {
             const today = new Date();
@@ -166,17 +243,14 @@
                     // Apply background color to the event container
                     containerEl.style.backgroundColor = event.backgroundColor; // Apply the event's background color
                     containerEl.style.color = 'white';
+                    containerEl.setAttribute('wire:click', `get_event(${event.id})`);
+                    containerEl.setAttribute('data-toggle', 'modal');
+                    containerEl.setAttribute('data-target', '#view-event');
 
                     return {
                         domNodes: [containerEl],
                     };
                 },
-                eventClick: function(info) {
-                    var event = info.event;
-
-                    Livewire.dispatch('get_event', [event.id]);
-                    $('#view-event').modal('show');
-                }
             });
 
             calendar.render();

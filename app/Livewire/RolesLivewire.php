@@ -10,7 +10,7 @@ use Livewire\Component;
 class RolesLivewire extends Component
 {
     use Toasts;
-    public $roles, $role, $selected_role, $selected_role_id;
+    public $roles, $role, $selected_role, $selected_role_id, $role_is_default;
     public $privileges, $selected_privileges = [];
     public $privilege_categories = ['Add', 'Edit',  'Delete', 'View', 'Archive', 'Manage', 'Export', 'Other'];
 
@@ -44,10 +44,11 @@ class RolesLivewire extends Component
 
     public function getData($id)
     {
-        $role = Roles::find($id);
+        $role = $this->roles->find($id);
         $this->selected_role = $role;
         $this->role = $role->role;
         $this->selected_role_id = $role->id;
+        $this->role_is_default = $role->is_default;
         $this->selected_privileges = $role->privileges()->pluck('privilege_id')->toArray();
     }
 

@@ -183,9 +183,8 @@
                     <table class="table table-hover" style="text-align: center;">
                         <thead style="background-color: #7684B9; color: white;">
                             <tr>
-                                <th
-                                    x-on:click="selectAll = !selectAll; Object.keys(rows).forEach(function(key) {rows[key] = selectAll;})">
-                                    <input type="checkbox" x-model="selectAll">
+                                <th>
+                                    <input type="checkbox">
                                 </th>
                                 <th>ID</th>
                                 <th>Name</th>
@@ -233,10 +232,87 @@
     @include('livewire.users.students.anecdotal-window')
     @include('livewire.users.students.summary-window')
     @include('livewire.users.students.edit-student')
-    @include('livewire.users.students.add-signature')
+    @include('livewire.users.students.student-signature')
+    @include('livewire.users.students.guardian-signature')
 </div> <!-- /.card-body -->
 
 @section('scripts')
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('signaturePad', () => ({
+                drawing: false,
+                context: null,
+
+                startDrawing(event) {
+                    event.preventDefault();
+                    this.drawing = true;
+                    this.context = this.$refs.canvas.getContext("2d");
+                    this.context.lineWidth = 2;
+                    this.context.lineCap = "round";
+
+                    const {
+                        offsetX,
+                        offsetY
+                    } = this.getCoordinates(event);
+                    this.context.beginPath();
+                    this.context.moveTo(offsetX, offsetY);
+                },
+
+                draw(event) {
+                    if (!this.drawing) return;
+                    event.preventDefault();
+
+                    const {
+                        offsetX,
+                        offsetY
+                    } = this.getCoordinates(event);
+                    this.context.lineTo(offsetX, offsetY);
+                    this.context.stroke();
+                },
+
+                stopDrawing() {
+                    this.drawing = false;
+                },
+
+                clearSignature() {
+                    this.context.clearRect(
+                        0,
+                        0,
+                        this.$refs.canvas.width,
+                        this.$refs.canvas.height
+                    );
+                },
+
+                saveSignature() {
+                    const dataUrl = this.$refs.canvas.toDataURL("image/png");
+                },
+
+                getContent() {
+                    return this.$refs.canvas.toDataURL("image/png");
+                },
+
+                getCoordinates(event) {
+                    const rect = this.$refs.canvas.getBoundingClientRect();
+                    let offsetX, offsetY;
+
+                    if (event.touches && event.touches.length > 0) {
+                        // Touch event
+                        offsetX = event.touches[0].clientX - rect.left;
+                        offsetY = event.touches[0].clientY - rect.top;
+                    } else {
+                        // Mouse event
+                        offsetX = event.clientX - rect.left;
+                        offsetY = event.clientY - rect.top;
+                    }
+
+                    return {
+                        offsetX,
+                        offsetY
+                    };
+                },
+            }));
+        });
+    </script>
     <script>
         $(document).ready(function() {
             const today = new Date();
@@ -248,7 +324,7 @@
         });
 
 
-        $(function() {
+        function initSelect2() {
             $('#single-select-optgroup-clear-field').select2({
                 theme: "bootstrap4",
                 placeholder: $(this).data('placeholder'),
@@ -263,7 +339,7 @@
             Livewire.on('clearSelection', () => {
                 $('#single-select-optgroup-clear-field').val(null).change();
             });
-        });
+        }
 
         $(function() {
             var donutData = {

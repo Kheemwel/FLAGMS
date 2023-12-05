@@ -31,4 +31,9 @@ class Parents extends Model
     {
         return $this->hasMany(ParentAndChild::class, 'parent_id');
     }
+
+    public function name()
+    {
+        return $this->getUserAccount->getNameAttribute();
+    }
 }

@@ -27,9 +27,19 @@ class Students extends Model
         return $this->belongsTo(SchoolLevels::class);
     }
 
+    public function getSchoolLevel(): BelongsTo
+    {
+        return $this->schoolLevel->school_level;
+    }
+
     public function gradeLevel(): BelongsTo
     {
         return $this->belongsTo(GradeLevels::class);
+    }
+
+    public function getGradeLevel()
+    {
+        return $this->gradeLevel->grade_level;
     }
 
     public function parents()
@@ -37,8 +47,28 @@ class Students extends Model
         return $this->belongsToMany(Parents::class, 'parent_and_child', 'student_id', 'parent_id');
     }
 
+    public function parentName()
+    {
+        return $this->parents()->first() ? $this->parents()->first()->name() : '';
+    }
+
     public function hasParentRelationship() : HasMany
     {
         return $this->hasMany(ParentAndChild::class, 'student_id');
+    }
+
+    public function name()
+    {
+        return $this->getUserAccount->getNameAttribute();
+    }
+
+    public function firstName()
+    {
+        return $this->getUserAccount->first_name;
+    }
+    
+    public function lastName()
+    {
+        return $this->getUserAccount->last_name;
     }
 }

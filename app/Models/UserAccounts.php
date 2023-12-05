@@ -19,7 +19,7 @@ class UserAccounts extends Model
 
     public function getNameAttribute()
     {
-        return $this->attributes['first_name'] . ' ' . $this->attributes['last_name'];
+        return $this->first_name . ' ' . $this->last_name;
     }
 
     public function getProfilePicture(): BelongsTo
@@ -30,6 +30,11 @@ class UserAccounts extends Model
     public function getRole(): BelongsTo
     {
         return $this->belongsTo(Roles::class, 'role_id');
+    }
+
+    public function role()
+    {
+        return $this->getRole->role;
     }
 
     public function hasGuidance(): HasOne
@@ -55,5 +60,10 @@ class UserAccounts extends Model
     public function hasPrincipal(): HasOne
     {
         return $this->hasOne(Principals::class, 'user_account_id');
+    }
+
+    public function profile_picture()
+    {
+        return $this->profile_picture_id ? imageBinaryToSRC($this->getProfilePicture->profile_picture) : defaultProfilePicture();
     }
 }

@@ -132,8 +132,8 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link nav-link-button {{ setActiveLink('calendar-colors-page') }}" href="{{ route('calendar-colors-page') }}">
-                                        <p style="color: #252525;">Calendar Colors</p>
+                                    <a class="nav-link nav-link-button {{ setActiveLink('guidance-schedule-tags-page') }}" href="{{ route('guidance-schedule-tags-page') }}">
+                                        <p style="color: #252525;">Guidance Schedule Tags</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -208,16 +208,6 @@
                                 </a>
                             </li>
                         </ul>
-                    </li>
-                @endif
-                @if (in_array('ViewGuidanceProgram', $privileges))
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-button {{ setActiveLink('guidance-program-page') }}" href="{{ route('guidance-program-page') }}">
-                            <iconify-icon icon="bx:calendar" style="color: #252525;"></iconify-icon>
-                            <p style="color: #252525;">
-                                Guidance Program
-                            </p>
-                        </a>
                     </li>
                 @endif
                 @if (in_array('ViewOnlyFoundtItems', $privileges) || in_array('ManageExpiredItems', $privileges) || in_array('ManageClaimedItems', $privileges) || in_array('AddLostAndFound', $privileges) || in_array('DeleteLostAndFound', $privileges) || in_array('EditLostAndFound', $privileges))

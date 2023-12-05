@@ -1,4 +1,4 @@
-<div class="modal fade anecdotal-modal" id="anecdotal-btn" wire:ignore.self>
+<div class="modal fade anecdotal-modal" data-backdrop="static" id="anecdotal-btn" wire:ignore.self>
     <div class="modal-dialog anecdotal-dialog modal-xl">
         <div class="modal-content" style="border-radius: 20px;">
             <div wire:loading wire:target='getData'>
@@ -22,9 +22,9 @@
                         <div class="input-group-prepend">
                             <p class="card-title" style="font-size: 18px; color: #0A0863; font-weight: bold; margin-bottom: 1rem;">
                                 Student Information
-                                <a class="btn btn-primary action-btn" data-target="#stud-info-edit" data-toggle="modal" href="#">
+                                {{-- <a class="btn btn-primary action-btn" data-target="#stud-info-edit" data-toggle="modal" href="#">
                                     <i class="fa fa-solid fa-pen"></i>
-                                </a>
+                                </a> --}}
                             </p>
                         </div>
                     </div>
@@ -125,11 +125,9 @@
                                             <td style="text-align: center;">{{ date('h:i A', strtotime($anec->time)) }}</td>
                                             <td style="text-align: center;">{{ $anec->getOffense->offense_name }}</td>
                                             <td style="text-align: center;">{{ $anec->getDisciplinaryAction->action }}</td>
-                                            <td style="text-align: center;">
-                                            </td>
+                                            <td style="text-align: center;"><img height="150px" src="{{ $anec->student_signature() }}" width="150px"></td>
                                             <td style="text-align: center;"></td>
-                                            <td style="text-align: center;">
-                                            </td>
+                                            <td style="text-align: center;"><img height="150px" src="{{ $anec->guardian_signature() }}" width="150px"></td>
                                             @if (in_array('WriteStudentsAnecdotal', $privileges))
                                                 <td style="text-align: center;">
                                                     <button class="btn btn-primary action-btn" title='Edit Row' tooltip='enable' wire:click.prevent=''>
@@ -140,7 +138,7 @@
                                         </tr>
                                     @endforeach
                                 @endif
-                                @if (in_array('WriteStudentsAnecdotal', $privileges))
+                                @if (in_array('WriteStudentsAnecdotal', $privileges) && !$this->hasDismissal)
                                     <tr>
                                         <form>
                                             <td style="text-align: center;">
@@ -152,7 +150,7 @@
                                                 <x-error field='input_time' />
                                             </td>
                                             <td style="text-align: center;">
-                                                <div wire:ignore>
+                                                <div wire:ignore x-data="initSelect2()">
                                                     <select class="form-select" data-placeholder="Select Offense" id="single-select-optgroup-clear-field" style="border: 1px solid #252525;">
                                                         <option></option>
                                                         @foreach ($offenses as $offense)
@@ -163,16 +161,29 @@
                                                 <x-error field='input_offense' />
                                             </td>
                                             <td style="text-align: center;">{{ $display_disciplinary_action }}</td>
-                                            <td style="text-align: center;">
-                                                <button class="btn btn-primary action-btn" data-target="#add-signature" data-toggle="modal" style="color: #0A0863; font-weight: bold;" wire:click.prevent=''>
+                                            <td data-target="#student-signature" data-toggle="modal" style="text-align: center;" wire:click.prevent>
+                                                <button class="btn btn-primary action-btn {{ $studentSignature ? 'd-none' : '' }}" style="color: #0A0863; font-weight: bold;">
                                                     <i class="fa fa-solid fa-file-signature" style="color: #0A0863;"></i> Add Signature
                                                 </button>
+                                                {{-- @if (!is_string($studentSignature) && ($studentSignature && in_array($studentSignature->getClientOriginalExtension(), ['png', 'jpg', 'jpeg']) && strpos($studentSignature->getMimeType(), 'image/') === 0))
+                                                    <img height="150px" src="{{ $studentSignature->temporaryUrl() }}" width='150px'>
+                                                @elseif (is_string($studentSignature))
+                                                    <img height="150px" src="{{ $studentSignature }}" width='150px'>
+                                                @endif --}}
+
+                                                @if ($studentSignature)
+                                                    <img height="150px" src="{{ $studentSignature }}" width='150px'>
+                                                @endif
                                             </td>
                                             <td style="text-align: center;"><input type="text"></td>
-                                            <td style="text-align: center;">
-                                                <button class="btn btn-primary action-btn" data-target="#add-signature" data-toggle="modal" style="color: #0A0863; font-weight: bold;" wire:click.prevent=''>
+                                            <td style="text-align: center;"data-target="#parent-signature" data-toggle="modal" wire:click.prevent=''>
+                                                <button class="btn btn-primary action-btn {{ $guardianSignature ? 'd-none' : '' }}"  style="color: #0A0863; font-weight: bold;">
                                                     <i class="fa fa-solid fa-file-signature" style="color: #0A0863;"></i> Add Signature
                                                 </button>
+
+                                                @if ($guardianSignature)
+                                                    <img height="150px" src="{{ $guardianSignature }}" width='150px'>
+                                                @endif
                                             </td>
                                             <td style="text-align: center;">
                                                 <button class="btn btn-primary action-btn" title='Save' tooltip='enable' type="submit" wire:click.prevent="saveAnecdotal()">

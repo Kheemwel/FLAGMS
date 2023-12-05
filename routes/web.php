@@ -2,10 +2,13 @@
 
 use App\Http\Middleware\CheckUserCredentials;
 use App\Livewire\ApprovalFormsLivewire;
+use App\Livewire\CalendarColorsLivewire;
 use App\Livewire\ContentManagementLivewire;
 use App\Livewire\DatabaseLivewire;
+use App\Livewire\FillOutFormsLivewire;
 use App\Livewire\GuidanceLivewire;
 use App\Livewire\GuidanceProgramLivewire;
+use App\Livewire\GuidanceScheduleTagsLivewire;
 use App\Livewire\HomeLivewire;
 use App\Livewire\ItemImagesLivewire;
 use App\Livewire\ItemTagsLivewire;
@@ -23,6 +26,7 @@ use App\Livewire\StudentsLivewire;
 use App\Livewire\TeachersLivewire;
 use App\Livewire\UserAccountsLivewire;
 use App\Livewire\UserDashboardLivewire;
+use App\Models\GuidanceScheduleTags;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,7 +54,7 @@ Route::middleware([CheckUserCredentials::class])->group(function () {
     Route::get('/notification', NotificationLivewire::class)->name('notification-page');
     // Route::view('/user-guidance-program', 'common.user-guidance-program')->name('user-guidance-program-page');
     Route::get('/lost-and-found', LostFoundLivewire::class)->name('lost-and-found-page');
-    Route::view('/fill-out-forms', 'common.fill-out-forms')->name('fill-out-forms-page');
+    Route::get('/fill-out-forms', FillOutFormsLivewire::class)->name('fill-out-forms-page');
 
     //Admin
     Route::get('/user-accounts', UserAccountsLivewire::class)->name('user-accounts-page');
@@ -62,7 +66,7 @@ Route::middleware([CheckUserCredentials::class])->group(function () {
     Route::get('/roles', RolesLivewire::class)->name('roles-page');
     Route::get('/profile-pictures', ProfilePicturesLivewire::class)->name('profile-pictures-page');
     Route::get('/offenses', OffensesLivewire::class)->name('offenses-page');
-    Route::view('/calendar-colors', 'admin.calendar-colors')->name('calendar-colors-page');
+    Route::get('/guidance-schedule-tags', GuidanceScheduleTagsLivewire::class)->name('guidance-schedule-tags-page');
     Route::get('/item-images', ItemImagesLivewire::class)->name('item-images-page');
     Route::get('/item-types', ItemTypesLivewire::class)->name('item-types-page');
     Route::get('/item-tags', ItemTagsLivewire::class)->name('item-tags-page');

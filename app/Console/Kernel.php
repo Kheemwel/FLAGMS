@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
+        $schedule->command('telescope:prune')->daily();
         $schedule->command('backup:clean')->weekly();
         $schedule->command('backup:run --only-db')->daily();
         $schedule->call(function () {
