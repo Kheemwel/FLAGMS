@@ -20,6 +20,7 @@
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <!-- Theme style -->
     <link href="adminLTE-3.2/dist/css/adminlte.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/app.css">
 
 
     <style>
@@ -117,6 +118,8 @@
     <script src="adminLTE-3.2/plugins/toastr/toastr.min.js"></script>
     {{-- For Tooltip --}}
     <script src="adminLTE-3.2/plugins/popper/popper.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 
     @yield('head-scripts')
 </head>
@@ -145,6 +148,7 @@
     <aside class="control-sidebar control-sidebar">
         <!-- Control sidebar content goes here -->
     </aside>
+    
     @livewireScripts()
     <script>
         $(function() {
@@ -198,6 +202,19 @@
             } else if (type == 'warning') {
                 toastr.warning(message)
             }
+        });
+    </script>
+    <script>
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher('1037cae8457eabcc7602', {
+            cluster: 'ap1'
+        });
+
+        var channel = pusher.subscribe('new-notification');
+        channel.bind('NewNotification', function(data) {
+            Livewire.dispatch('newNotification');
         });
     </script>
     @yield('scripts')

@@ -61,4 +61,9 @@ class UserAccounts extends Model
     {
         return $this->hasOne(Principals::class, 'user_account_id');
     }
+
+    public function profile_picture()
+    {
+        return $this->profile_picture_id ? imageBinaryToSRC($this->getProfilePicture->profile_picture) : defaultProfilePicture();
+    }
 }
