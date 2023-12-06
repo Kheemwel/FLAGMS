@@ -33,7 +33,7 @@ class StudentsLivewire extends Component
         $my_id = session('user_id');
         if ($my_id) {
             $user = UserAccounts::find($my_id);
-            $this->privileges = $user->getRole->privileges()->pluck('privilege')->toArray();
+            $this->privileges = $user->Roles->privileges()->pluck('privilege')->toArray();
         }
 
         $this->offenses = Offenses::all();

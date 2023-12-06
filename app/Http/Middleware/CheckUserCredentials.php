@@ -25,7 +25,7 @@ class CheckUserCredentials
 
         if ($user_id) {
             $privileges = Cache::remember('user_privileges_' . $user_id, now()->addMinutes(30), function () use ($user_id) {
-                return UserAccounts::find($user_id)->getRole->privileges()->pluck('privilege')->toArray();
+                return UserAccounts::find($user_id)->Roles->privileges()->pluck('privilege')->toArray();
             });
 
             $allowedPages = [

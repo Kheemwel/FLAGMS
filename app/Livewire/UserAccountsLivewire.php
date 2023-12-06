@@ -59,7 +59,7 @@ class UserAccountsLivewire extends Component
         $this->my_id = session('user_id');
         if ($this->my_id) {
             $user = UserAccounts::find($this->my_id);
-            $this->privileges = $user->getRole->privileges()->pluck('privilege')->toArray();
+            $this->privileges = $user->Roles->privileges()->pluck('privilege')->toArray();
         }
 
         if (in_array('ViewGuidanceAccounts', $this->privileges)) {
@@ -106,16 +106,16 @@ class UserAccountsLivewire extends Component
 
     public function loadAccounts()
     {
-        $query_normal = UserAccounts::join('roles', 'user_accounts.role_id', '=', 'roles.id')
-        ->select('user_accounts.id', 'first_name', 'last_name', 'email', 'roles.role as role')
-        ->where('is_archive', false);
-        $query_archives = UserAccounts::join('roles', 'user_accounts.role_id', '=', 'roles.id')
-        ->select('user_accounts.id', 'first_name', 'last_name', 'archived_at', 'roles.role as role')
-        ->where('is_archive', true);
+        $query_normal = UserAccounts::with('Roles')->where('is_archive', false);
+        $query_archives = UserAccounts::with('Roles')->where('is_archive', true);
 
         if (!empty($this->allowedRoles)) {
-            $query_normal->whereIn('role', $this->allowedRoles);
-            $query_archives->whereIn('role', $this->allowedRoles);
+            $query_normal->whereHas('Roles', function($sub) {
+                $sub->whereIn('role', $this->allowedRoles);
+            });
+            $query_archives->whereHas('Roles', function($sub) {
+                $sub->whereIn('role', $this->allowedRoles);
+            });
         }
         
         $this->users = $query_normal->orderBy('id', 'asc')->get();
@@ -393,7 +393,7 @@ class UserAccountsLivewire extends Component
         $this->hashed_password = $user->hashed_password;
         $this->email = $user->email;
         $this->role_id = $user->role_id;
-        $this->role = $user->getRole->role;
+        $this->role = $user->role;
         $this->profile_picture_id = $user->profile_picture_id;
         $this->total_login = $user->total_login;
         $this->last_login = $user->last_login;
@@ -426,7 +426,7 @@ class UserAccountsLivewire extends Component
     {
         $user = UserAccounts::find($this->user_id);
         if ($user && $user->is_archive) {
-            $role = $user->getRole->role;
+            $role = $user->role;
             if ($role == 'Guidance') {
                 $user->hasGuidance()->delete();
             } elseif ($role == 'Student') {

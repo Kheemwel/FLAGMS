@@ -43,7 +43,7 @@ class UserAccountsImport implements ToModel, WithBatchInserts, WithProgressBar
             'email' => $email
         ]);
 
-        if ($user->getRole->role === 'Student') {
+        if ($user->role === 'Student') {
             $school_level_id = $row[5];
             $grade_level_id = $row[6];
             $lrn = $row[7];
@@ -57,7 +57,7 @@ class UserAccountsImport implements ToModel, WithBatchInserts, WithProgressBar
         }
 
         
-        if ($user->getRole->role === 'Parent') {
+        if ($user->role === 'Parent') {
             $parent = Parents::create([
                 'user_account_id' => $user->id
             ]);
@@ -66,7 +66,7 @@ class UserAccountsImport implements ToModel, WithBatchInserts, WithProgressBar
             $parent->children()->attach($ids);
         }
 
-        if ($user->getRole->role === 'Principal') {
+        if ($user->role === 'Principal') {
             $position_id = $row[6];
             Principals::create([
                 'user_account_id' => $user->id,
@@ -75,7 +75,7 @@ class UserAccountsImport implements ToModel, WithBatchInserts, WithProgressBar
         }
 
         
-        if ($user->getRole->role === 'Teacher') {
+        if ($user->role === 'Teacher') {
             Teachers::create([
                 'user_account_id' => $user->id
             ]);

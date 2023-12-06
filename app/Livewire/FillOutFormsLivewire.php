@@ -45,7 +45,7 @@ class FillOutFormsLivewire extends Component
     {
         $myID = session('user_id');
         $user =  UserAccounts::find($myID);
-        $this->role = $user->getRole->role;
+        $this->role = $user->role;
         if ($this->role == 'Student') {
             $this->studentID = $user->hasStudent->id;
         } elseif ($this->role == 'Parent') {

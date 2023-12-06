@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,9 +18,18 @@ class UserAccounts extends Model
         'is_archive', 'archived_at', 'total_login', 'last_login'
     ];
 
+    protected $appends = ['name', 'role'];
+
     public function getNameAttribute()
     {
         return $this->first_name . ' ' . $this->last_name;
+    }
+
+    public function name() : Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->first_name . ' ' . $this->last_name,
+        );
     }
 
     public function getProfilePicture(): BelongsTo
@@ -27,14 +37,14 @@ class UserAccounts extends Model
         return $this->belongsTo(ProfilePictures::class, 'profile_picture_id');
     }
 
-    public function getRole(): BelongsTo
+    public function Roles(): BelongsTo
     {
         return $this->belongsTo(Roles::class, 'role_id');
     }
 
-    public function role()
+    public function getRoleAttribute()
     {
-        return $this->getRole->role;
+        return $this->Roles->role;
     }
 
     public function hasGuidance(): HasOne

@@ -32,7 +32,7 @@ class GuidanceProgramLivewire extends Component
         if ($user_id) {
             $user = UserAccounts::find($user_id);
             $this->user_id = $user->id;
-            $this->privileges = $user->getRole->privileges()->pluck('privilege')->toArray();
+            $this->privileges = $user->Roles->privileges()->pluck('privilege')->toArray();
         }
         $this->schedule_tags = GuidanceScheduleTags::all();
         $this->users = UserAccounts::select('id', 'first_name', 'last_name')->where('id', '!=', $this->user_id)

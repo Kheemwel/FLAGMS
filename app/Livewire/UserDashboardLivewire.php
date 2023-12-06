@@ -15,10 +15,10 @@ class UserDashboardLivewire extends Component
         $this->user_id = session('user_id');
         if ($this->user_id) {
             $user = UserAccounts::find($this->user_id);
-            $this->role = $user->getRole->role;
+            $this->role = $user->role;
             $this->first_name = $user->first_name;
             $this->profile_picture_id = $user->profile_picture_id;
-            $this->privileges = $user->getRole->privileges()->pluck('privilege')->toArray();
+            $this->privileges = $user->Roles->privileges()->pluck('privilege')->toArray();
         }
     }
     
