@@ -29,9 +29,20 @@
     <button id='btn-cooldown' wire:ignore>Start CoolDown</button>
     <button id='btn-code' wire:click='sendCode()'>Send Code</button>
     <p>Cooldown: {{ $timer }}</p>
+
+    <br>
+    <br>
+    <br>
+    <input id="typer" type="text" wire:model.live.debounce.100ms='text'>
+    <p>Text: {{ $text }}</p>
 </div>
 @section('scripts')
     <script>
+        $('#typer').keyup(function() {
+            // console.log($(this).val());
+            // @this.set('text', $(this).val());
+        })
+
         Livewire.on('cooldown', () => {
             setTimeout(() => {
                 var button = $("#btn-code");

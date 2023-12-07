@@ -15,6 +15,8 @@ class TestLivewire extends Component
     public $timer = 0;
     public $code;
 
+    public $text = '';
+
     protected $listeners = ['code'];
 
     public function render()
