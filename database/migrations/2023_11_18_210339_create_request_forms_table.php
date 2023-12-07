@@ -16,6 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('teacher_id');
             $table->string('form_type');
             $table->boolean('is_approve')->default(false);
+            $table->text('disapproval_reason')->nullable();
+            $table->string('status')->default('pending');
             $table->foreign('teacher_id')->references('id')->on('teachers')->cascadeOnDelete();
             $table->timestamps();
         });
@@ -33,7 +35,7 @@ return new class extends Migration
         Schema::create('request_violation_forms', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('request_form_id');
-            $table->string('offense_type');
+            $table->text('reason');
             $table->foreign('request_form_id')->references('id')->on('request_forms')->cascadeOnDelete();
             $table->timestamps();
         });
@@ -42,11 +44,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('request_violation_form_id');
             $table->unsignedBigInteger('student_id');
-        
             // Specify a custom name for the foreign key constraint
             $table->foreign('request_violation_form_id', 'fk_request_violation_forms_students')->references('id')->on('request_violation_forms')->cascadeOnDelete();
             $table->foreign('student_id', 'fk_students')->references('id')->on('students')->cascadeOnDelete();
-            
             $table->timestamps();
         });        
     }

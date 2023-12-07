@@ -101,7 +101,7 @@
 
                             <!--ADD BUTTON-->
                             @if (in_array('AddGuidanceProgram', $privileges))
-                                <button class="btn btn-default" data-target="#add-event" data-toggle="modal" style="width: 100px; height: 30px; margin-left: 10px; background-color: #0A0863; color: white; font-size: 12px;">
+                                <button class="btn btn-default" data-target="#add-event" id="btn-AddEvent" data-toggle="modal" style="width: 100px; height: 30px; margin-left: 10px; background-color: #0A0863; color: white; font-size: 12px;">
                                     <i class="fa fa-solid fa-plus"></i> Add Event
                                 </button>
                             @endif
@@ -139,7 +139,7 @@
 
         Livewire.on('addEvent', (data) => {
             $("#add-event").modal('show');
-            $('.multiple-select-optgroup-clear-field').val(data[0]).trigger('change');
+            users = data[0];
         });
 
         Livewire.on('selectedUsers', (data) => {

@@ -31,37 +31,54 @@
         </div>
     </div>
 
-    <div class="row" style="align-content: center; margin-left: 1rem; margin-right: 1rem;">
-        @foreach ($requestforms as $request)
-            <div class="col-12">
-                <!--REQUEST LIST-->
-                <div class="col-lg-12">
-                    <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); border-radius: 10px; display: flex; flex-direction: row;">
-                        <table cellpadding="20px" cellspacing="10px" style="width: 100%;">
-                            <tr>
-                                <td rowspan="2" style="width: 10%;">
-                                    <img alt="user profile" src="images/user-req.png" style="align-self: center;">
-                                </td>
-                                <td style="vertical-align:middle;" style="width: 80%;">
-                                    <label style="font-size: 16px; line-height: 5%;">{{ $request->teacher->getUserAccount->getNameAttribute() }}</label> <br>
-                                    <label style="font-size: 14px; line-height: 5%;">{{ $request->created_at->format('F d,Y   h:i A') }}</label> <br>
-                                    <label style="font-size: 24px; margin-top: 1rem;">{{ $request->form_type }}</label>
-                                </td>
-                                <td style="vertical-align: top;" style="width: 20%;">
-                                    <label style="font-size: 24px; margin-top: 1rem; color: #252525; float: right; background-color: {{ $request->is_approve ? '#d1d8ff' : '#BFFFBF' }}; color: {{ $request->is_approve ? '#3C58FF' : '#006400' }}; padding: 3px 20px; border-radius: 10px">{{ $request->is_approve ? 'APPROVED' : 'PENDING' }}</label>
-                                </td>
-                            </tr>
-                            <td>ID: RF#{{ $request->id }}</td>
-                            <td style="vertical-align: bottom; float: right; width: 100%;">
-                                <button class="btn btn-default" data-target="#read-request-form" data-toggle="modal" style="float: right;color: white; background-color: #080743; font-size: 14px; width: 80px;" wire:click="read('{{ $request->form_type }}', {{ $request->id }})">Read</button>
-                            </td>
-                        </table>
-                    </div>
+    {{-- <a href="{{ route('guidance-program-page', ['private_schedule'=> ['users' => [8, 5]]]) }}">kjllkjdsjad</a> --}}
+
+    <div class="card card-primary card-tabs" style="background-color:  rgb(253, 253, 253);margin-left: 2rem; margin-right: 2rem;">
+        <div class="card-header p-0 pt-1" style="background-color: #7684B9 !important">
+            <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                <li class="nav-item" wire:ignore>
+                    <a aria-controls="custom-tabs-one-pending-requests" aria-selected="true" class="nav-link active" data-toggle="pill" href="#custom-tabs-one-pending-requests" id="custom-tabs-one-pending-requests-tab" role="tab">
+                        <h5 style="font-weight: bold;">Pending Requests</h5>
+                    </a>
+                </li>
+                <li class="nav-item" wire:ignore>
+                    <a aria-controls="custom-tabs-one-approved-requests" aria-selected="false" class="nav-link" data-toggle="pill" href="#custom-tabs-one-approved-requests" id="custom-tabs-one-approved-requests-tab" role="tab">
+                        <h5 style="font-weight: bold;">Approved Requests</h5>
+                    </a>
+                </li>
+                <li class="nav-item" wire:ignore>
+                    <a aria-controls="custom-tabs-one-disapproved-requests" aria-selected="false" class="nav-link" data-toggle="pill" href="#custom-tabs-one-disapproved-requests" id="custom-tabs-one-disapproved-requests-tab" role="tab">
+                        <h5 style="font-weight: bold;">Disapproved Requests</h5>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body">
+            <div class="tab-content" id="custom-tabs-one-tabContent" style="padding-right: 2rem;">
+                <div aria-labelledby="custom-tabs-one-pending-requests-tab" class="tab-pane fade active show" id="custom-tabs-one-pending-requests" role="tabpanel" wire:ignore.self>
+                    @include('livewire.request_forms.pending-request-forms')
+                </div>
+                <div aria-labelledby="custom-tabs-one-approved-requests-tab" class="tab-pane fade" id="custom-tabs-one-approved-requests" role="tabpanel" wire:ignore.self>
+                    @include('livewire.request_forms.approved-request-forms')
+                </div>
+                <div aria-labelledby="custom-tabs-one-disapproved-requests-tab" class="tab-pane fade" id="custom-tabs-one-disapproved-requests" role="tabpanel" wire:ignore.self>
+                    @include('livewire.request_forms.disapproved-request-forms')
                 </div>
             </div>
-        @endforeach
+        </div>
+        <!-- /.card -->
     </div>
 
     @include('livewire.approval_forms.read-form')
     @include('livewire.approval_forms.filter')
+    @include('livewire.approval_forms.disapprove-form')
+    @include('livewire.approval_forms.confirm-approve')
 </div>
+
+@section('scripts')
+    <script>
+        Livewire.on('closeModals', () => {
+            $(".modal").modal('hide');
+        })
+    </script>
+@endsection

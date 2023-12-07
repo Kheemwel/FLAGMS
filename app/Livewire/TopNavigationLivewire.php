@@ -45,7 +45,7 @@ class TopNavigationLivewire extends Component
 
     public function readAll()
     {
-        Notifications::query()->update([
+        Notifications::where('to_user', $this->my_id)->update([
             'is_read' => true
         ]);
     }

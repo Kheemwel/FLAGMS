@@ -2,9 +2,11 @@
 
 namespace App\Livewire;
 
+use App\Events\NewNotification;
 use App\Models\CalendarColors;
 use App\Models\GuidancePrograms;
 use App\Models\GuidanceScheduleTags;
+use App\Models\Notifications;
 use App\Models\UserAccounts;
 use App\Traits\Toasts;
 use Illuminate\Http\Request as HttpRequest;
@@ -23,8 +25,9 @@ class GuidanceProgramLivewire extends Component
     public function mount(HttpRequest $request)
     {
         if ($request->query('private_schedule')) {
-            $this->is_public = false;
-            $this->selected_users = $request->query('users');
+            $content = $request->query('private_schedule');
+            $this->is_public = 0;
+            $this->selected_users = $content['users'];
             $this->dispatch('addEvent', $this->selected_users);
         }
 
@@ -64,7 +67,6 @@ class GuidanceProgramLivewire extends Component
                     ->orWhereNotNull('guidance_private_schedules.id');
             })
             ->get();
-        // dd($programs);
         $this->dispatch('calendar', $programs);
     }
 
@@ -81,15 +83,27 @@ class GuidanceProgramLivewire extends Component
         ]);
 
         $guidance_program = GuidancePrograms::create($validatedData);
+
         if (!$guidance_program->is_public) {
             $this->selected_users[] = $this->user_id;
             $users = [];
+            $notifs = [];
             foreach ($this->selected_users as $id) {
                 $users[] = [
                     'user_account_id' => $id
                 ];
+                if ($id != $this->user_id) {
+                    $notifs[] = [
+                        'from_user' => $this->user_id,
+                        'to_user' => $id,
+                        'message' => "Private Schedule: ".$validatedData['title'],
+                        'created_at' => now(),
+                    ];
+                }
             }
             $guidance_program->PrivateSchedules()->createMany($users);
+            Notifications::insert($notifs);
+            NewNotification::dispatch();
             $this->showToast('success', 'The Private Schedule is Added Successfully');
         } else {
             $this->showToast('success', 'The Event is Added Successfully');
