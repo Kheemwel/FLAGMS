@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 use Livewire\Component;
 use ZipArchive;
 
-class DatabaseLivewire extends Component
+class DatabaseManagementLivewire extends Component
 {
     use Toasts;
     public $backups = [];
@@ -19,7 +19,7 @@ class DatabaseLivewire extends Component
     public function render()
     {
         $this->loadBackups();
-        return view('livewire.file_management.database.database-livewire');
+        return view('livewire.file_management.database-management.database-management-livewire');
     }
 
     public function createBackup()

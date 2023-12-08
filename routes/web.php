@@ -5,6 +5,7 @@ use App\Livewire\ApprovalFormsLivewire;
 use App\Livewire\CalendarColorsLivewire;
 use App\Livewire\ContentManagementLivewire;
 use App\Livewire\DatabaseLivewire;
+use App\Livewire\DatabaseManagementLivewire;
 use App\Livewire\FillOutFormsLivewire;
 use App\Livewire\GuidanceLivewire;
 use App\Livewire\GuidanceProgramLivewire;
@@ -27,6 +28,7 @@ use App\Livewire\TeachersLivewire;
 use App\Livewire\UserAccountsLivewire;
 use App\Livewire\UserDashboardLivewire;
 use App\Models\GuidanceScheduleTags;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,6 +48,51 @@ use Illuminate\Support\Facades\Route;
 // Route::view('/about', 'about')->name('about-page');
 
 Route::get('/', HomeLivewire::class)->name('home-page');
+
+Route::get('/>>inspire', function() {
+    Artisan::call('inspire');
+    echo Artisan::output();
+});
+
+Route::get('/>>cache:clear', function() {
+    Artisan::call('cache:clear');
+    echo Artisan::output();
+});
+
+Route::get('/>>migrate', function() {
+    Artisan::call('migrate');
+    echo Artisan::output();
+});
+
+Route::get('/>>storage:link', function() {
+    Artisan::call('storage:link');
+    echo Artisan::output();
+});
+
+Route::get('/>>schedule:work', function() {
+    Artisan::call('schedule:work');
+    echo Artisan::output();
+});
+
+Route::get('/>>schedule:run', function() {
+    Artisan::call('schedule:run');
+    echo Artisan::output();
+});
+
+Route::get('/>>queue:work', function() {
+    Artisan::call('queue:work');
+    echo Artisan::output();
+});
+
+Route::get('/>>backup:run', function() {
+    Artisan::call('backup:run --only-db');
+    echo Artisan::output();
+});
+
+Route::get('/>>backup:clean', function() {
+    Artisan::call('backup:clean');
+    echo Artisan::output();
+});
 
 Route::middleware([CheckUserCredentials::class])->group(function () {
     //Common
@@ -71,7 +118,7 @@ Route::middleware([CheckUserCredentials::class])->group(function () {
     Route::get('/item-types', ItemTypesLivewire::class)->name('item-types-page');
     Route::get('/item-tags', ItemTagsLivewire::class)->name('item-tags-page');
     Route::view('/guidance-records', 'admin.guidance-records')->name('guidance-records-page');
-    Route::get('/database', DatabaseLivewire::class)->name('database-page');
+    Route::get('/database-management', DatabaseManagementLivewire::class)->name('database-management-page');
 
     //Guidance
     Route::get('/students', StudentsLivewire::class)->name('students-page');

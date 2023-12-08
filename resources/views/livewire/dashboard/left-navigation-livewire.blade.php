@@ -159,8 +159,8 @@
                             @endif
                             @if (in_array('ManageDatabase', $privileges))
                                 <li class="nav-item">
-                                    <a class="nav-link nav-link-button {{ setActiveLink('database-page') }}" href="{{ route('database-page') }}">
-                                        <p style="color: #252525;">Database</p>
+                                    <a class="nav-link nav-link-button {{ setActiveLink('database-management-page') }}" href="{{ route('database-management-page') }}">
+                                        <p style="color: #252525;">Database Management</p>
                                     </a>
                                 </li>
                             @endif

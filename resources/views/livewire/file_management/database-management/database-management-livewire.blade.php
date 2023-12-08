@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6" style="padding-left: 2rem; padding-top: 1rem;">
-                    <h1 style="font-weight: bold;">Database</h1>
+                    <h1 style="font-weight: bold;">Database Management</h1>
                     <div wire:loading wire:target='createBackup'>
                         <div class="overlay bg-white">
                             <i class="fas fa-3x fa-sync-alt fa-spin"></i>
