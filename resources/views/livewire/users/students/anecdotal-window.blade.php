@@ -1,5 +1,5 @@
-<div class="modal fade anecdotal-modal" data-backdrop="static" id="anecdotal-btn" wire:ignore.self>
-    <div class="modal-dialog anecdotal-dialog modal-xl">
+<div class="modal fade anecdotal-modal" data-backdrop="static" style="max-width: 100%;" id="anecdotal-btn" wire:ignore.self>
+    <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content" style="border-radius: 20px;">
             <div wire:loading wire:target='getData'>
                 <div class="overlay bg-white" style="border-radius: 20px;">
@@ -14,7 +14,7 @@
                 </button>
             </div>
             <form>
-                <div class="modal-body ml-3 mr-3" style="max-height: 500px; overflow-y: auto; overflow-x:hidden; max-width: 100%;">
+                <div class="modal-body ml-3 mr-3" style="max-height: 80vh; overflow-y: auto;">
                     <!--MODAL TITLE-->
                     <p class="card-title text-lg font-weight-bold" style="color: #0A0863;">ANECDOTAL RECORD</p> <br><br><br>
 
@@ -31,69 +31,69 @@
                     <!--IMPORTANT USER DETAILS FORM SECTION-->
                     <div class="row">
                         <!--NAME-->
-                        <div class="form-group col-sm-2 text-sm" style="color: #252525;">
+                        <div class="form-group col-sm-2 col-md-3 text-sm" style="color: #252525;">
                             <p class="card-title">Name</p>
                         </div>
-                        <div class="form-group col-sm-2 text-sm" style="color: #252525;">
+                        <div class="form-group col-sm-2 col-md-3 text-sm" style="color: #252525;">
                             <p class="card-title font-weight-bold">{{ $student_name }}</p>
                         </div>
 
                         <!--LRN-->
-                        <div class="form-group col-sm-2 text-sm" style="color: #252525;">
+                        <div class="form-group col-sm-2 col-md-3 text-sm" style="color: #252525;">
                             <p class="card-title">LRN</p>
                         </div>
-                        <div class="form-group col-sm-2 text-sm" style="color: #252525;">
+                        <div class="form-group col-sm-2 col-md-3  text-sm" style="color: #252525;">
                             <p class="card-title font-weight-bold">{{ $lrn }}</p>
                         </div>
                     </div>
                     <div class="row">
                         <!--SCHOOL LEVEL-->
-                        <div class="form-group col-sm-2 text-sm" style="color: #252525;">
+                        <div class="form-group col-sm-2 col-md-3 text-sm" style="color: #252525;">
                             <p class="card-title">School Level</p>
                         </div>
-                        <div class="form-group col-sm-2 text-sm" style="color: #252525;">
+                        <div class="form-group col-sm-2 col-md-3 text-sm" style="color: #252525;">
                             <p class="card-title font-weight-bold">{{ $school_level }}</p>
                         </div>
 
                         <!--GRADE & SECTION-->
-                        <div class="form-group col-sm-2 text-sm" style="color: #252525;">
+                        <div class="form-group col-sm-2 col-md-3 text-sm" style="color: #252525;">
                             <p class="card-title">Grade</p>
                         </div>
-                        <div class="form-group col-sm-2 text-sm" style="color: #252525;">
+                        <div class="form-group col-sm-2 col-md-3 text-sm" style="color: #252525;">
                             <p class="card-title font-weight-bold">{{ $grade_level }}</p>
                         </div>
                     </div>
                     <div class="row">
                         <!--FATHER'S NAME-->
-                        <div class="form-group col-sm-2 text-sm" style="color: #252525;">
+                        <div class="form-group col-sm-2 col-md-3 text-sm" style="color: #252525;">
                             <p class="card-title">Father's Name</p>
                         </div>
-                        <div class="form-group col-sm-2 text-sm" style="color: #252525;">
+                        <div class="form-group col-sm-2 col-md-3 text-sm" style="color: #252525;">
                             <p class="card-title font-weight-bold">Benjamin Beller</p>
                         </div>
 
                         <!--FATHER'S CONTACT NO-->
-                        <div class="form-group col-sm-2 text-sm" style=" color: #252525;">
+                        <div class="form-group col-sm-2 col-md-3 text-sm" style=" color: #252525;">
                             <p class="card-title">Contact No.</p>
                         </div>
-                        <div class="form-group col-sm-2 text-sm" style="color: #252525;">
+                        <div class="form-group col-sm-2 col-md-3 text-sm" style="color: #252525;">
                             <p class="card-title font-weight-bold">0915 445 6789</p>
                         </div>
                     </div>
                     <div class="row">
                         <!--MOTHER'S NAME-->
-                        <div class="form-group col-sm-2 text-sm" style="color: #252525;">
+                        <div class="form-group col-sm-2 col-md-3 text-sm" style="color: #252525;">
                             <p class="card-title">Mother's Name</p>
                         </div>
-                        <div class="form-group col-sm-2 text-sm" style="color: #252525;">
+                        <div class="form-group col-sm-2 col-md-3 text-sm" style="color: #252525;">
                             <p class="card-title font-weight-bold">Amelia Beller</p>
                         </div>
 
                         <!--FATHER'S CONTACT NO-->
-                        <div class="form-group col-sm-2 text-sm" style="color: #252525;">
+                        <div class="form-group col-sm-2 col-md-3 text-sm" style="color: #252525;">
                             <p class="card-title">Contact No.</p>
                         </div>
-                        <div class="form-group col-sm-2" style="color: #252525;">
+                        <div class="form-group col-sm-2 col-md-3" style="color: #252525;">
                             <p class="card-title font-weight-bold" >0939 258 1123</p>
                         </div>
                     </div>
