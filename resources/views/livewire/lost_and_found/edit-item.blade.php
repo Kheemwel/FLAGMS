@@ -1,4 +1,4 @@
-<div class="modal fade" id="edit-lost-item" wire:ignore.self>
+<div class="modal fade" data-backdrop="static" id="edit-lost-item" wire:ignore.self>
     <div class="modal-dialog">
         <div class="modal-content">
             <div wire:loading wire:target='get_data'>
@@ -6,22 +6,22 @@
                     <i class="fas fa-3x fa-sync-alt fa-spin"></i>
                 </div>
             </div>
-            <div class="modal-header" style="border: transparent; padding: 10px;">
+            <div class="modal-header border-0 p-2">
                 <button aria-label="Close" class="close" data-dismiss="modal" type="button">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <form wire:submit.prevent='updateItem()'>
-                <div class="modal-body" style="margin-left: 1rem; max-height: 500px; overflow-y: auto;">
+                <div class="modal-body ml-2" style="max-height: 500px; overflow-y: auto;">
                     <!--MODAL FORM TITLE-->
-                    <p class="card-title" style="color: #0A0863; font-weight: bold; font-size: 22px;">EDIT LOST ITEM</p> <br><br><br>
+                    <p class="card-title text-md text-lg font-weight-bold" style="color: #0A0863;">EDIT LOST ITEM</p> <br><br><br>
 
                     <!--IMPORTANT USER DETAILS FORM SECTION-->
                     <!--------------------USER'S INFORMATION------------------------>
                     <!--ROLE-->
-                    <div class="row" style="text-align: left;">
-                        <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
-                            <label for="input-SL" style="font-weight: normal;">Item Type</label>
+                    <div class="row text-left">
+                        <div class="form-group col-sm-6 text-sm" style="color: #252525;">
+                            <label class="font-weight-normal" for="input-SL">Item Type</label>
                             <div class="input-group-prepend">
                                 <select class="form-select form-select-sm mb-2" id="select-type" wire:model="item_type_id">
                                     @foreach ($item_types as $typ)
@@ -36,8 +36,8 @@
                     </div>
 
                     <div class="row" style="text-align: left;">
-                        <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
-                            <label for="select-type" style="font-weight: normal;">Item Tag</label>
+                        <div class="form-group col-sm-6 text-sm" style="color: #252525;">
+                            <label class="font-weight-normal" for="select-type">Item Tag</label>
                             <div class="input-group-prepend">
                                 <select class="form-select form-select-sm mb-2" id="select-type" wire:model.live.debounce.500ms="item_tag_id">
                                     @foreach ($item_tags as $tag)
@@ -50,10 +50,10 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="row" style="text-align: left;">
+                    <div class="row text-left">
                         <!--DATE AND TIME FOUND-->
-                        <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
-                            <label for="input-date-found" style="font-weight: normal;">Date and Time Found</label>
+                        <div class="form-group col-sm-6 text-sm" style="color: #252525;">
+                            <label class="font-weight-normal" for="input-date-found">Date and Time Found</label>
                             <input class="form-control" id="input-date-found" style="border: 1px solid black" type="datetime-local" wire:model='datetime_found'>
                         </div>
                         @error('datetime_found')
@@ -61,8 +61,8 @@
                         @enderror
                     </div>
                     <!--ITEM NAME-->
-                    <div class="form-group col-sm-13" style="font-size: 14px; color: #252525; text-align: left;">
-                        <label for="input-item-name" style="font-weight: normal;">Item Name</label>
+                    <div class="form-group col-sm-13 text-sm text-left" style="color: #252525;">
+                        <label class="font-weight-normal" for="input-item-name">Item Name</label>
                         <input class="form-control" id="input-item-name" style="border: 1px solid #252525" type="text" wire:model='item_name'>
                         @error('item_name')
                             <span class="text-danger">{{ $message }}</span>
@@ -70,8 +70,8 @@
                     </div>
 
                     <!--LOCATION FOUND-->
-                    <div class="form-group col-sm-13" style="font-size: 14px; color: #252525; text-align: left;">
-                        <label for="input-loc-found" style="font-weight: normal;">Location Found</label>
+                    <div class="form-group col-sm-13 text-sm text-left" style="color: #252525;">
+                        <label class="font-weight-normal" for="input-loc-found">Location Found</label>
                         <input class="form-control" id="input-loc-found" style="border: 1px solid #252525" type="text" wire:model='location_found'>
                         @error('location_found')
                             <span class="text-danger">{{ $message }}</span>
@@ -79,8 +79,8 @@
                     </div>
 
                     <!--FINDER'S NAME-->
-                    <div class="form-group col-sm-13" style="font-size: 14px; color: #252525; text-align: left; padding-left: 0;">
-                        <label for="input-finder-name" style="font-weight: normal;">Finder's Name</label>
+                    <div class="form-group col-sm-13 text-sm text-left pl-0" style="color: #252525;">
+                        <label class="font-weight-normal" for="input-finder-name">Finder's Name</label>
                         <input class="form-control" id="input-finder-name" style="border: 1px solid #252525" type="text" wire:model='finder_name'>
                         @error('finder_name')
                             <span class="text-danger">{{ $message }}</span>
@@ -88,8 +88,8 @@
                     </div>
 
                     <!--ITEM DESCRIPTION-->
-                    <div class="form-group col-sm-13" style="font-size: 14px; color: #252525; text-align: left; padding-left: 0;">
-                        <label for="input-item-desc" style="font-weight: normal;">Item Description</label>
+                    <div class="form-group col-sm-13 text-sm text-left pl-0" style="color: #252525;">
+                        <label class="font-weight-normal" for="input-item-desc">Item Description</label>
                         <textarea class="form-control" id="input-item-desc" style="border: 1px solid #252525; height: 100px;" wire:model='description'></textarea>
                         @error('description')
                             <span class="text-danger">{{ $message }}</span>
@@ -97,10 +97,10 @@
                     </div>
 
                     <!--IMAGE OF THE LOST ITEM-->
-                    <div class="form-group col-sm-13" style="font-size: 14px; color: #252525; text-align: left; padding-left: 0;">
-                        <label for="input-item-desc" style="font-weight: normal;">Image of the Lost Item</label>
+                    <div class="form-group col-sm-13 text-sm text-left pl-0" style="color: #252525;">
+                        <label class="font-weight-normal" for="input-item-desc">Image of the Lost Item</label>
                     </div>
-                    <div class="form-group col-sm-12" style="margin-bottom: 3rem; text-align: center;">
+                    <div class="form-group col-sm-12 mb-4 text-center">
                         <div onclick="$('#editPic').trigger('click')">
                             @if ($upload_item_image)
                                 <img height="200px" src="{{ $upload_item_image->temporaryUrl() }}" width='200px'>
@@ -126,14 +126,14 @@
                     @if ($is_claimed)
                         <!--CLAIMED DETAILS-->
                         <div class="row">
-                            <div class="form-group col-sm-6" style="text-align: left;">
-                                <p style="color: #0A0863; font-size: 22px;">Claimed Details</p>
+                            <div class="form-group col-sm-6 text-left">
+                                <p class="text-sm" style="color: #0A0863;">Claimed Details</p>
                             </div>
                         </div>
                         <!--DATE AND TIME CLAIMED-->
                         <div class="row">
-                            <div class="form-group col-sm-6 float-left" style="font-size: 14px; color: #252525; text-align: left;">
-                                <label for="input-date" style="font-weight: normal;">Date and Time Claimed</label>
+                            <div class="form-group col-sm-6 float-left text-sm text-left" style="color: #252525;">
+                                <label class="font-weight-normal" for="input-datel">Date and Time Claimed</label>
                                 <input class="form-control" id="input-date" style="border: 1px solid black" type="datetime-local" wire:model='claimed_datetime'>
                             </div>
                             @error('claimed_datetime')
@@ -143,8 +143,8 @@
 
                         <!--Claimer'S NAME-->
                         <div class="row">
-                            <div class="form-group col-sm-12" style="font-size: 14px; color: #252525; text-align: left; padding-left: 8px;">
-                                <label for="input-claimer-name" style="font-weight: normal;">Claimer's Name</label>
+                            <div class="form-group col-sm-12 text-sm text-left pl-1" style="color: #252525;">
+                                <label class="font-weight-normal" for="input-claimer-name">Claimer's Name</label>
                                 <input class="form-control" id="input-claimer-name" style="border: 1px solid #252525" type="text" wire:model='claimer_name'>
                             </div>
                             @error('claimer_name')
@@ -155,7 +155,7 @@
                     <!------------------------------------------------------------------------------>
                 </div> <!-- /.card-body -->
                 <div class="card-footer">
-                    <button class="btn btn-primary" style="width: 450px; margin-left: 5px; background-color: #0A0863; color: white; font-size: 14px;" type="submit">Save</button>
+                    <button class="btn btn-primary ml-1 text-sm" style="width: 100%; background-color: #0A0863; color: white;" type="submit">Save</button>
                 </div>
             </form>
         </div>

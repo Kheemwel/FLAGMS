@@ -1,22 +1,22 @@
-<div class="modal fade" id="add-lost-item" wire:ignore.self>
+<div class="modal fade" data-backdrop="static" id="add-lost-item" wire:ignore.self>
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header" style="border: transparent; padding: 10px;">
+            <div class="modal-header border-0 p-2">
                 <button aria-label="Close" class="close" data-dismiss="modal" type="button" wire:click='resetInputs()'>
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <form wire:submit='addItem()'>
-                <div class="modal-body" style="margin-left: 1rem; max-height: 500px; overflow-y: auto;">
+                <div class="modal-body ml-2" style="max-height: 500px; overflow-y: auto;">
                     <!--MODAL FORM TITLE-->
-                    <p class="card-title" style="color: #0A0863; font-weight: bold; font-size: 22px;">ADD FOUND ITEM</p> <br><br><br>
+                    <p class="card-title font-weight-bold text-md text-lg" style="color: #0A0863;">ADD FOUND ITEM</p> <br><br><br>
 
                     <!--IMPORTANT USER DETAILS FORM SECTION-->
                     <!--------------------USER'S INFORMATION------------------------>
                     <!--ROLE-->
-                    <div class="row" style="text-align: left;">
-                        <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
-                            <label for="select-type" style="font-weight: normal;">Item Type</label>
+                    <div class="row text-left">
+                        <div class="form-group col-sm-6 text-sm" style="color: #252525;">
+                            <label class="font-weight-normal" for="select-type">Item Type</label>
                             <div class="input-group-prepend">
                                 <select class="form-select form-select-sm mb-2" id="select-type" wire:model.live.debounce.500ms="selected_item_type">
                                     @if ($selected_item_type == '')
@@ -32,9 +32,9 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="row" style="text-align: left;">
-                        <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
-                            <label for="select-type" style="font-weight: normal;">Item Tag</label>
+                    <div class="row text-left">
+                        <div class="form-group col-sm-6 text-sm" style="color: #252525;">
+                            <label class="font-weight-normal" for="select-type">Item Tag</label>
                             <div class="input-group-prepend">
                                 <select class="form-select form-select-sm mb-2" id="select-type" wire:model.live.debounce.500ms="selected_item_tag">
                                     @if ($selected_item_tag == '')
@@ -52,8 +52,8 @@
                     </div>
                     <div class="row" style="text-align: left;">
                         <!--DATE AND TIME FOUND-->
-                        <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
-                            <label for="input-date-found" style="font-weight: normal;">Date and Time Found</label>
+                        <div class="form-group col-sm-6 text-sm" style="color: #252525;">
+                            <label class="font-weight-normal" for="input-date-found">Date and Time Found</label>
                             <input class="form-control" id="input-date-found" style="border: 1px solid black" type="datetime-local" wire:model='datetime_found'>
                         </div>
                         @error('datetime_found')
@@ -61,8 +61,8 @@
                         @enderror
                     </div>
                     <!--ITEM NAME-->
-                    <div class="form-group col-sm-13" style="font-size: 14px; color: #252525; text-align: left;">
-                        <label for="input-item-name" style="font-weight: normal;">Item Name</label>
+                    <div class="form-group col-sm-13 text-sm text-left" style="color: #252525;">
+                        <label class="font-weight-normal" for="input-item-name">Item Name</label>
                         <input class="form-control" id="input-item-name" style="border: 1px solid #252525" type="text" wire:model='item_name'>
                         @error('item_name')
                             <span class="text-danger">{{ $message }}</span>
@@ -70,8 +70,8 @@
                     </div>
 
                     <!--LOCATION FOUND-->
-                    <div class="form-group col-sm-13" style="font-size: 14px; color: #252525; text-align: left;">
-                        <label for="input-loc-found" style="font-weight: normal;">Location Found</label>
+                    <div class="form-group col-sm-13 text-sm text-left" style="color: #252525;">
+                        <label class="font-weight-normal" for="input-loc-found">Location Found</label>
                         <input class="form-control" id="input-loc-found" style="border: 1px solid #252525" type="text" wire:model='location_found'>
                         @error('location_found')
                             <span class="text-danger">{{ $message }}</span>
@@ -79,8 +79,8 @@
                     </div>
 
                     <!--FINDER'S NAME-->
-                    <div class="form-group col-sm-13" style="font-size: 14px; color: #252525; text-align: left; padding-left: 0;">
-                        <label for="input-finder-name" style="font-weight: normal;">Finder's Name</label>
+                    <div class="form-group col-sm-13 text-sm text-left pl-0" style="color: #252525;">
+                        <label class="font-weight-normal" for="input-finder-name">Finder's Name</label>
                         <input class="form-control" id="input-finder-name" style="border: 1px solid #252525" type="text" wire:model='finder_name'>
                         @error('finder_name')
                             <span class="text-danger">{{ $message }}</span>
@@ -88,8 +88,8 @@
                     </div>
 
                     <!--ITEM DESCRIPTION-->
-                    <div class="form-group col-sm-13" style="font-size: 14px; color: #252525; text-align: left; padding-left: 0;">
-                        <label for="input-item-desc" style="font-weight: normal;">Item Description</label>
+                    <div class="form-group col-sm-13 text-sm text-left pl-0" style="color: #252525;">
+                        <label class="font-weight-normal" for="input-item-desc">Item Description</label>
                         <textarea class="form-control" id="input-item-desc" style="border: 1px solid #252525; height: 100px;" wire:model='description'></textarea>
                         @error('description')
                             <span class="text-danger">{{ $message }}</span>
@@ -97,20 +97,20 @@
                     </div>
 
                     <!--IMAGE OF THE LOST ITEM-->
-                    <div class="form-group col-sm-13" style="font-size: 14px; color: #252525; text-align: left;">
-                        <label for="input-item-desc" style="font-weight: normal;">Image of the Lost Item</label>
+                    <div class="form-group col-sm-13 text-sm" style="color: #252525;">
+                        <label class="font-weight-normal" for="input-item-desc">Image of the Lost Item</label>
 
-                        <div class="form-group col-sm-12" style="border: 1px dashed gray; display: flex; flex-direction: column; align-items: center;">
+                        <div class="form-group col-sm-12 d-flex flex-column align-items-center" style="border: 1px dashed gray;">
                             <input accept=".png, .jpg, .jpeg" class="custom-file-input position-absolute z-50 m-0 p-0 w-100 h-100 border border-black" id="uploadPic" type="file" wire:model="upload_item_image">
-                            <div style="padding-top: 3rem; padding-bottom: 5rem;">
+                            <div class="pt-4 pb-5">
                                 @if ($upload_item_image && in_array($upload_item_image->getClientOriginalExtension(), ['png', 'jpg', 'jpeg']) && strpos($upload_item_image->getMimeType(), 'image/') === 0)
                                     <img height="150px" src="{{ $upload_item_image->temporaryUrl() }}" width='150px'>
                                 @else
                                     <div>
-                                        <label style="color: gray; font-size: 14px; font-weight: 300; text-align: center;">Drag an image here <br> or </label>
+                                        <label class="text-sm font-weight-light text-center" style="color: gray;">Drag an image here <br> or </label>
                                     </div>
                                     <div>
-                                        <button class="btn btn-block btn-primary" style=" width: 8rem; font-size: 12px; background-color: #0A0863; border: transparent;" type="button">Upload Image</button>
+                                        <button class="btn btn-block btn-primary text-sm border-0" style=" width: 8rem; background-color: #0A0863;" type="button">Upload Image</button>
                                     </div>
                                 @endif
                             </div>
@@ -121,8 +121,8 @@
                     </div>
                     <!------------------------------------------------------------------------------>
                 </div> <!-- /.card-body -->
-                <div class="card-footer">
-                    <button class="btn btn-primary" style="width: 450px; margin-left: 5px; background-color: #0A0863; color: white; font-size: 14px;" type="submit">Save</button>
+                <div class="card-footer d-flex justify-content-center align-self-center">
+                    <button class="btn btn-primary ml-1 text-sm" style="width: 100%; background-color: #0A0863; color: white;" type="submit">Save</button>
                 </div>
             </form>
         </div>
