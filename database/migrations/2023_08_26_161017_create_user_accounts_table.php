@@ -38,7 +38,7 @@ return new class extends Migration
             'password' => 'flagms@admin1',
             'hashed_password' => bcrypt('flagms@admin1'),
             'email' => 'flagms1@gmail.com',
-            'role_id' => 3,
+            'role_id' => 7,
         ]);
     }
 
