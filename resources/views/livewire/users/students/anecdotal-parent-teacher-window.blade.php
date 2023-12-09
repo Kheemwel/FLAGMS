@@ -1,4 +1,4 @@
-<div class="modal fade anecdotal-modal" data-backdrop="static" id="anecdotal-btn" wire:ignore.self>
+<div class="modal fade anecdotal-modal" data-backdrop="static" id="anecdotal-prnt-tchr" wire:ignore.self>
     <div class="modal-dialog anecdotal-dialog modal-xl">
         <div class="modal-content" style="border-radius: 20px;">
             <div wire:loading wire:target='getData'>
@@ -18,92 +18,8 @@
                     <!--MODAL TITLE-->
                     <p class="card-title text-lg font-weight-bold" style="color: #0A0863;">ANECDOTAL RECORD</p> <br><br><br>
 
-                    <div class="d-flex flex-column">
-                        <div class="input-group-prepend">
-                            <p class="card-title text-md font-weight-bold mb-3" style="color: #0A0863;">
-                                Student Information
-                                {{-- <a class="btn btn-primary action-btn" data-target="#stud-info-edit" data-toggle="modal" href="#">
-                                    <i class="fa fa-solid fa-pen"></i>
-                                </a> --}}
-                            </p>
-                        </div>
-                    </div>
-                    <!--IMPORTANT USER DETAILS FORM SECTION-->
-                    <div class="row">
-                        <!--NAME-->
-                        <div class="form-group col-sm-2 text-sm" style="color: #252525;">
-                            <p class="card-title">Name</p>
-                        </div>
-                        <div class="form-group col-sm-2 text-sm" style="color: #252525;">
-                            <p class="card-title font-weight-bold">{{ $student_name }}</p>
-                        </div>
-
-                        <!--LRN-->
-                        <div class="form-group col-sm-2 text-sm" style="color: #252525;">
-                            <p class="card-title">LRN</p>
-                        </div>
-                        <div class="form-group col-sm-2 text-sm" style="color: #252525;">
-                            <p class="card-title font-weight-bold">{{ $lrn }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <!--SCHOOL LEVEL-->
-                        <div class="form-group col-sm-2 text-sm" style="color: #252525;">
-                            <p class="card-title">School Level</p>
-                        </div>
-                        <div class="form-group col-sm-2 text-sm" style="color: #252525;">
-                            <p class="card-title font-weight-bold">{{ $school_level }}</p>
-                        </div>
-
-                        <!--GRADE & SECTION-->
-                        <div class="form-group col-sm-2 text-sm" style="color: #252525;">
-                            <p class="card-title">Grade</p>
-                        </div>
-                        <div class="form-group col-sm-2 text-sm" style="color: #252525;">
-                            <p class="card-title font-weight-bold">{{ $grade_level }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <!--FATHER'S NAME-->
-                        <div class="form-group col-sm-2 text-sm" style="color: #252525;">
-                            <p class="card-title">Father's Name</p>
-                        </div>
-                        <div class="form-group col-sm-2 text-sm" style="color: #252525;">
-                            <p class="card-title font-weight-bold">Benjamin Beller</p>
-                        </div>
-
-                        <!--FATHER'S CONTACT NO-->
-                        <div class="form-group col-sm-2 text-sm" style=" color: #252525;">
-                            <p class="card-title">Contact No.</p>
-                        </div>
-                        <div class="form-group col-sm-2 text-sm" style="color: #252525;">
-                            <p class="card-title font-weight-bold">0915 445 6789</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <!--MOTHER'S NAME-->
-                        <div class="form-group col-sm-2 text-sm" style="color: #252525;">
-                            <p class="card-title">Mother's Name</p>
-                        </div>
-                        <div class="form-group col-sm-2 text-sm" style="color: #252525;">
-                            <p class="card-title font-weight-bold">Amelia Beller</p>
-                        </div>
-
-                        <!--FATHER'S CONTACT NO-->
-                        <div class="form-group col-sm-2 text-sm" style="color: #252525;">
-                            <p class="card-title">Contact No.</p>
-                        </div>
-                        <div class="form-group col-sm-2" style="color: #252525;">
-                            <p class="card-title font-weight-bold" >0939 258 1123</p>
-                        </div>
-                    </div>
-
-                    <br><br>
-                    <div class="input-group-prepend">
-                        <p class="card-title text-md mb-3 font-weight-bold" style="color: #0A0863;"> Table for Anecdotal Records </p>
-                    </div>
                     <!--TABLE FOR ANECDOTAL RECORDS-->
-                    <div class="card" style="border-radius: 10px;">
+                    <div class="card mt-5" style="border-radius: 10px;">
                         <div class="card-body table-responsive p-0" style="border: 1px solid #252525; border-radius: 10px;">
                             <div class="card-body table-responsive p-0">
                                 <table class="table table-hover text-center">
