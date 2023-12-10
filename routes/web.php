@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UserAccountsMaker;
+use App\Http\Controllers\UserAccountsSeeder;
 use App\Http\Middleware\CheckUserCredentials;
 use App\Livewire\ApprovalFormsLivewire;
 use App\Livewire\CalendarColorsLivewire;
@@ -92,6 +94,22 @@ Route::get('/>>backup:run', function() {
 Route::get('/>>backup:clean', function() {
     Artisan::call('backup:clean');
     echo Artisan::output();
+});
+
+Route::get('/--createAdmins/{count}', function(int $count) {
+    UserAccountsMaker::createAdmins($count);
+});
+
+Route::get('/--createStudents/{count}', function(int $count) {
+    UserAccountsMaker::createStudents($count);
+});
+
+Route::get('/--createParents/{count}', function(int $count) {
+    UserAccountsMaker::createParents($count);
+});
+
+Route::get('/--createTeachers/{count}', function(int $count) {
+    UserAccountsMaker::createTeachers($count);
 });
 
 Route::middleware([CheckUserCredentials::class])->group(function () {

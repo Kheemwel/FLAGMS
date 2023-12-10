@@ -99,9 +99,11 @@
             @include('livewire.user_accounts.add-user')
             @include('livewire.user_accounts.edit-user')
             @include('livewire.user_accounts.view-user')
-            @include('livewire.user_accounts.batch-add-user')
+            @include('livewire.user_accounts.import-users')
             @include('livewire.user_accounts.confirm-delete')
             @include('livewire.user_accounts.confirm-save')
+            @include('livewire.user_accounts.confirm-archive')
+            @include('livewire.user_accounts.confirm-unarchive')
             <!-- /.card -->
         </div>
     </div>
@@ -109,21 +111,25 @@
 
 @section('scripts')
     <script>
-        function initMultiSelect() {
-            $('#multiple-select-optgroup-clear-field').select2({
-                theme: "bootstrap4",
-                placeholder: $(this).data('placeholder'),
-                allowClear: true,
-            });
+        $(function() {
+            $(".validate-name").on('keypress', function() {
+                let text = this.value;
 
-            $('#multiple-select-optgroup-clear-field').on('change', function(e) {
-                let data = new Array($(this).val());
-                @this.set('selectedStudents', data);
-            });
-        }
-    </script>
+                // Capitalize first letter of each word
+                text = text.replace(/\w\S*/g, function(txt) {
+                    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+                });
 
-    <script>
+                this.value = text;
+
+                const regex = /[^a-zA-Z]/; // Matches non-word characters and spaces
+                if (regex.test(event.key)) {
+                    event.preventDefault();
+                }
+            });
+        })
+
+
         function getRndInteger(min, max) {
             return Math.floor(Math.random() * (max - min)) + min;
         }
@@ -151,207 +157,69 @@
     </script>
     <script>
         document.addEventListener('alpine:init', () => {
-            // Alpine.data('dataTable', () => ({
-            //     rows: {},
-            //     selectAll: false,
-            //     sortBy: '',
-            //     sortAsc: true,
-            //     search: '',
-            //     filterRole: '',
-            //     noFilterResult: false,
-            //     perPage: 5,
-            //     entries: 0,
-            //     pageNumber: 0,
-            //     pages: [],
-            //     currentPage: 1,
-            //     showedEntries: '',
-            //     init() {
-            //         this.entries = this.$refs.tbody.querySelectorAll("tr").length;
-            //         this.pageNumber = Math.ceil(this.entries / this.perPage);
+            Alpine.data('addStudentParent', () => ({
+                students: @json($students),
+                selectedStudents: [],
+                schoolLevels: @json($school_levels),
+                gradeLevels: @json($grade_levels),
+                selectedSchoolLevel: '',
+                selectedGradeLevel: '',
+                lastName: '',
+                init() {
+                    Livewire.on('loadStudents', (data) => {
+                        this.students = data[0];
+                    });
 
-            //         this.showPage(1);
-            //         this.setPages();
+                    const grade_levels = @json($grade_levels);
 
-            //         this.$watch('search', value => {
-            //             this.showPage(1);
-            //         });
+                    this.$watch('selectedSchoolLevel', value => {
+                        this.gradeLevels = grade_levels.filter(level => level['school_level'] == value);
+                    });
 
-            //         this.$watch('filterRole', value => {
-            //             this.filterRole = value == 'All' ? '' : value;
-            //             this.showPage(1);
-            //         });
+                    this.$watch('selectedGradeLevel', value => {
+                        if (!this.selectedSchoolLevel) {
+                            this.selectedSchoolLevel = grade_levels.find(level => level['grade_level'] == value).school_level;
+                        }
+                    });
 
-            //         this.$watch('perPage', value => {
-            //             this.perPage = parseInt(value);
-            //             this.pageNumber = Math.ceil(this.entries / value);
-            //             this.showPage(1);
-            //         });
+                    this.$watch('lastName', value => {
+                        let children = this.students.filter(
+                            student => student["last_name"].trim().toLowerCase() == value.trim().toLowerCase()
+                        ).map(student => student['id']);
+                        $('#multiple-select-optgroup-clear-field').val(children).trigger('change');
+                    })
+                },
+                initMultiSelect() {
+                    $('#multiple-select-optgroup-clear-field').select2({
+                        placeholder: $(this).data('placeholder'),
+                        allowClear: true,
+                    });
+                    $('#multiple-select-optgroup-clear-field').change((e) => {
+                        let data = $(e.target).select2('val');
+                        this.selectedStudents = data;
+                    });
+                }
+            }))
 
-            //         this.$watch('currentPage', value => {
-            //             this.setPages();
-            //         });
-
-            //         this.$watch('pageNumber', value => {
-            //             this.setPages();
-            //         });
-
-            //         this.$watch('sortAsc', value => {
-            //             page = value ? 1 : this.pageNumber;
-            //             this.setPages();
-            //             this.showPage(page);
-            //         });
-
-            //         Livewire.on('refreshSelectedRows', () => {
-            //             this.selectAll = false;
-            //             Object.keys(this.rows).filter(key => this.rows[key] = false);
-            //             this.entries = this.$refs.tbody.querySelectorAll("tr").length;
-            //             this.pageNumber = Math.ceil(this.entries / this.perPage);
-            //             this.setPages();
-            //             this.showPage(1);
-            //         });
-            //     },
-            //     showPage(pageNumber) {
-            //         this.currentPage = pageNumber;
-            //         const startIndex = (pageNumber - 1) * this.perPage;
-            //         const endIndex = Math.min((startIndex + this.perPage), this.entries);
-
-            //         const filteredRows = $(this.$refs.tbody).find("tr:not([x-refer='result'])").filter((index, element) => {
-            //             const text = $(element).text().trim().toLowerCase();
-            //             const role = $(element).find("[x-ref='role']").text().trim();
-            //             const roleMatches = this.filterRole === '' || role === this.filterRole;
-            //             const textMatches = text.includes(this.search);
-            //             $(element).toggleClass('d-none', !(roleMatches && textMatches));
-            //             if (roleMatches && textMatches) {
-            //                 return element;
-            //             }
-            //         });
-            //         const totalEntries = filteredRows.length;
-            //         const startDisplayIndex = filteredRows.length > 0 ? startIndex + 1 : 0;
-            //         const endDisplayIndex = Math.min(endIndex, totalEntries);
-            //         filteredRows.each((index, element) => {
-            //             const visible = (index >= startIndex) && (index < endIndex);
-            //             $(element).toggleClass('d-none', !visible);
-            //         });
-            //         this.pageNumber = Math.ceil(filteredRows.length == 0 ? 1 : (filteredRows.length / this.perPage));
-            //         this.noFilterResult = filteredRows.length == 0;
-            //         this.showedEntries = `${startDisplayIndex}-${endDisplayIndex} of ${totalEntries}`;
-            //     },
-            //     setPages() {
-            //         // Calculate the range of pages to be printed
-            //         const startPage = Math.max(1, this.currentPage - 1);
-            //         const endPage = Math.min(this.pageNumber, this.currentPage + 1);
-
-            //         // Adjust the range if it's less than 3 pages
-            //         const adjustedStart = Math.max(1, endPage - 2);
-            //         const adjustedEnd = Math.min(this.pageNumber, startPage + 2);
-
-            //         let pages = [];
-            //         // Print the pages within the adjusted range
-            //         for (let i = adjustedStart; i <= adjustedEnd; i++) {
-            //             pages.push(i);
-            //         }
-            //         this.pages = pages;
-            //     },
-            //     getSelectedRows() {
-            //         return Object.keys(this.rows).filter(key => this.rows[key] === true);
-            //     },
-            //     checkAll() {
-            //         this.selectAll = !this.selectAll;
-            //         Object.keys(this.rows).filter(key => {
-            //             this.rows[key] = this.selectAll
-            //         });
-            //     },
-            //     showAction() {
-            //         return Object.values(this.rows).includes(true);
-            //     },
-            //     sortByColumn($event) {
-            //         if (this.sortBy === $event.target.innerText) {
-            //             if (this.sortAsc) {
-            //                 // this.sortBy = "";
-            //                 this.sortAsc = false;
-            //             } else {
-            //                 this.sortAsc = !this.sortAsc;
-            //             }
-            //         } else {
-            //             this.sortBy = $event.target.innerText;
-            //             this.sortAsc = true;
-            //         }
-
-            //         this.getTableRows()
-            //             .sort(
-            //                 this.sortCallback(
-            //                     Array.from($event.target.parentNode.children).indexOf(
-            //                         $event.target
-            //                     )
-            //                 )
-            //             )
-            //             .forEach((tr) => {
-            //                 this.$refs.tbody.appendChild(tr);
-            //             });
-            //     },
-            //     getTableRows() {
-            //         return Array.from($(this.$refs.tbody).find("tr"));
-            //     },
-            //     getCellValue(row, index) {
-            //         return $(row).children('').eq(index).text();
-            //     },
-            //     sortCallback(index) {
-            //         return (a, b) =>
-            //             ((row1, row2) => {
-            //                 return row1 !== "" &&
-            //                     row2 !== "" &&
-            //                     !isNaN(row1) &&
-            //                     !isNaN(row2) ?
-            //                     row1 - row2 :
-            //                     row1.toString().localeCompare(row2);
-            //             })(
-            //                 this.getCellValue(this.sortAsc ? a : b, index),
-            //                 this.getCellValue(this.sortAsc ? b : a, index)
-            //             );
-            //     },
-            // }));
-
-
-            // Alpine.bind("sortColumn", () => ({
-            //     "x-init"() {
-            //         const sortIcon = $(`<i aria-hidden="true" class="fa fa-sort ml-3" style="color : white;"></i>`);
-            //         const sortAsc = $(`<i aria-hidden="true" class="fa fa-sort-up ml-3" style="color : white;"></i>`);
-            //         const sortDesc = $(`<i aria-hidden="true" class="fa fa-sort-down ml-3" style="color : white;"></i>`);
-            //         const text = $(this.$el).text();
-            //         if (this.$el.hasAttribute('sortFirst')) {
-            //             $(this.$el).append(sortAsc);
-            //         } else {
-            //             $(this.$el).append(sortIcon);
-            //         }
-
-            //         this.$watch('sortBy', value => {
-            //             $(this.$el).empty;
-            //             $(this.$el).text(text);
-            //             if ((value == text) && this.sortAsc) {
-            //                 $(this.$el).append(sortAsc);
-            //             } else if ((value == text) && !this.sortAsc) {
-            //                 $(this.$el).append(sortDesc);
-            //             } else {
-            //                 $(this.$el).append(sortIcon);
-            //             }
-            //         });
-
-            //         this.$watch('sortAsc', value => {
-            //             $(this.$el).empty;
-            //             $(this.$el).text(text);
-            //             if ((this.sortBy == text) && value) {
-            //                 $(this.$el).append(sortAsc);
-            //             } else if ((this.sortBy == text) && !value) {
-            //                 $(this.$el).append(sortDesc);
-            //             } else {
-            //                 $(this.$el).append(sortIcon);
-            //             }
-            //         });
-            //     },
-            //     "@click"($event) {
-            //         this.sortByColumn($event);
-            //     },
-            // }));
+            Alpine.bind("addUser", () => ({
+                "x-init"() {
+                    this.$watch('role', value => {
+                        if (value == 'Student') {
+                            $(this.$el).attr('wire:submit.prevent', 'addStudent(selectedSchoolLevel, selectedGradeLevel)');
+                        } else if (value == 'Parent') {
+                            $(this.$el).attr('wire:submit.prevent', 'addParent(selectedStudents)');
+                        } else if (value == 'Teacher') {
+                            $(this.$el).attr('wire:submit.prevent', 'addTeacher()');
+                        } else if (value == 'Principal') {
+                            $(this.$el).attr('wire:submit.prevent', 'addPrincipal()');
+                        } else if (value == 'Guidance') {
+                            $(this.$el).attr('wire:submit.prevent', 'addGuidance()');
+                        } else {
+                            $(this.$el).attr('wire:submit.prevent', 'addUser()');
+                        }
+                    })
+                }
+            }));
 
             Alpine.data('activeAccounts', () => ({
                 users: @json($users), // Initialize with your Livewire data
@@ -365,6 +233,7 @@
                 perPage: 5,
                 pages: [],
                 showedEntries: '',
+                noResult: false,
                 init() {
                     this.setPages();
 
@@ -387,16 +256,13 @@
 
                     this.$watch('search', value => {
                         this.currentPage = 1;
+                        this.noResult = this.filterResult.length == 0;
                     });
 
                     this.$watch('filterRole', value => {
                         this.filterRole = value == 'All' ? '' : value;
                         this.currentPage = 1;
-                        console.log(value);
-                    });
-
-                    this.$watch('filterRole', value => {
-                        this.currentPage = 1;
+                        this.noResult = this.filterResult.length == 0;
                     });
 
                     Livewire.on('refreshSelectedRows', (data) => {
@@ -551,6 +417,7 @@
                 perPage: 5,
                 pages: [],
                 showedEntries: '',
+                noResult: false,
                 init() {
                     this.setPages();
 
@@ -573,16 +440,13 @@
 
                     this.$watch('search', value => {
                         this.currentPage = 1;
+                        this.noResult = this.filterResult.length == 0;
                     });
 
                     this.$watch('filterRole', value => {
                         this.filterRole = value == 'All' ? '' : value;
                         this.currentPage = 1;
-                        console.log(value);
-                    });
-
-                    this.$watch('filterRole', value => {
-                        this.currentPage = 1;
+                        this.noResult = this.filterResult.length == 0;
                     });
 
                     Livewire.on('refreshSelectedRows', (data) => {
@@ -681,8 +545,6 @@
                     return Math.ceil(this.filterResult.length / this.perPage);
                 },
             }));
-
-
         });
 
         function formatDate(dateTimeString) {

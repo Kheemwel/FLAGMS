@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Mail\AccountCreationMail;
+use App\Models\Guidance;
 use App\Models\Parents;
 use App\Models\Principals;
 use App\Models\Students;
@@ -37,8 +38,7 @@ class UserAccountsImport implements ToModel, WithBatchInserts, WithProgressBar
         $user = UserAccounts::create([
             'first_name' => $firstname,
             'last_name' => $lastname,
-            'password' => $password,
-            'hashed_password' => bcrypt($password), // You can hash the password here
+            'password' => bcrypt($password), // You can hash the password here
             'role_id' => $role_id,
             'email' => $email
         ]);
@@ -77,6 +77,12 @@ class UserAccountsImport implements ToModel, WithBatchInserts, WithProgressBar
         
         if ($user->role === 'Teacher') {
             Teachers::create([
+                'user_account_id' => $user->id
+            ]);
+        }
+
+        if ($user->role === 'Guidance') {
+            Guidance::create([
                 'user_account_id' => $user->id
             ]);
         }

@@ -24,7 +24,7 @@
                         Add User
                     </button>
                     <!--BATCH ADD USER BUTTON-->
-                    <button class="btn btn-default" data-target="#batchAddUserModal" data-toggle="modal" style="border-radius: 10px; font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button">
+                    <button class="btn btn-default" data-target="#importUsersModal" data-toggle="modal" style="border-radius: 10px; font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button">
                         <i class="fa fa-solid fa-file-import" style="color: white;"></i>
                         Import User Accounts
                     </button>
@@ -68,7 +68,7 @@
         </div>
     </div>
     <div class="card" style="margin-left: 2rem; margin-right: 2rem;border-radius: 10px;">
-        <div wire:loading wire:target='store, update, delete, archive, unArchive, markArchive, markUnarchive, deleteSelected'>
+        <div wire:loading wire:target='markArchive, resetInputFields'>
             <div class="overlay" style="position: absolute; width: 100%; height: 100%;">
                 <i class="fas fa-3x fa-sync-alt fa-spin"></i>
                 <h5 class='font-weight-bold mt-3'>Loading... Please Wait.</h5>
@@ -116,6 +116,9 @@
                             </td>
                         </tr>
                     </template>
+                    <tr x-show="noResult" x-cloak class="font-weight-bold">
+                        <td colspan="6">No results found</td>
+                    </tr>
                 </tbody>
             </table>
         </div>

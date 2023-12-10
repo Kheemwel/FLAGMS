@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('password');
-            $table->string('hashed_password');
             $table->string('email')->unique();
             $table->unsignedBigInteger('role_id');
             $table->unsignedBigInteger('profile_picture_id')->nullable();
@@ -34,11 +33,10 @@ return new class extends Migration
 
         UserAccounts::create([
             'first_name' => 'FLA',
-            'last_name' => 'GMS', 
-            'password' => 'flagms@admin1',
-            'hashed_password' => bcrypt('flagms@admin1'),
+            'last_name' => 'GMS',
+            'password' => bcrypt('flagms@admin1'),
             'email' => 'flagms1@gmail.com',
-            'role_id' => 3,
+            'role_id' => 7,
         ]);
     }
 

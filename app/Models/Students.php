@@ -13,6 +13,8 @@ class Students extends Model
     use HasFactory;
     protected $table = 'students';
     protected $primaryKey = 'id';
+
+    protected $appends = ['name', 'first_name', 'last_name'];
     protected $fillable = [
         'user_account_id', 'school_level_id', 'grade_level_id', 'lrn'
     ];
@@ -57,17 +59,17 @@ class Students extends Model
         return $this->hasMany(ParentAndChild::class, 'student_id');
     }
 
-    public function name()
+    public function getNameAttribute()
     {
-        return $this->getUserAccount->getNameAttribute();
+        return $this->getUserAccount->name;
     }
 
-    public function firstName()
+    public function getFirstNameAttribute()
     {
         return $this->getUserAccount->first_name;
     }
     
-    public function lastName()
+    public function getLastNameAttribute()
     {
         return $this->getUserAccount->last_name;
     }

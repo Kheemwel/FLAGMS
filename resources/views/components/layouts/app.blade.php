@@ -151,6 +151,10 @@
     
     @livewireScripts()
     <script>
+        Livewire.on('closeModals', () => {
+            $('.modal').modal('hide');
+        });
+
         $(function() {
             $("[tooltip='enable']").tooltip();
             $("[tooltip='enable']").attr('wire:ignore.self', '');

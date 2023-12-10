@@ -81,6 +81,7 @@ if (!function_exists('wordsExistInArray')) {
         return false; // Return false if no match is found
     }
 }
+
 if (!function_exists('wordsExistInString')) {
     function wordsExistInString($words, $string)
     {
