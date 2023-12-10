@@ -135,7 +135,6 @@
         }
 
         const passwordInput = {
-            password: '',
             show: false,
             generatePassword() {
                 const letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
