@@ -1,9 +1,9 @@
 <!--ADD SIGNATURE MODAL-->
-<div class="modal fade as-modal" id="parent-signature" style="max-width: 100%;" wire:ignore.self>
+<div class="modal fade as-modal" id="parent-signature" role="dialog" style="max-width: 100%;" wire:ignore.self>
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content" style="border-radius: 20px;">
             <div class="modal-header p-3 border-0">
-                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                <button aria-label="Close" class="close"  x-on:click="$('#parent-signature').modal('hide')" type="button">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -25,7 +25,7 @@
                                         <li class="nav-item" wire:ignore>
                                             <!--IMAGE BTN-->
                                             <a class="nav-link" data-toggle="tab" href="#p-upload-image-tab">
-                                                <img class="text-left" alt="image button" height="40" src="images/imagebtn.png" width="40">
+                                                <img alt="image button" class="text-left" height="40" src="images/imagebtn.png" width="40">
                                             </a>
                                         </li>
                                     </ul>
@@ -43,12 +43,12 @@
                                                     <button class="btn btn-block btn-default float-right clear-button text-sm" type="button" x-on:click="clearSignature()">Clear and draw again</button>
                                                 </div>
                                                 <div class="form-group col-sm-6 button-container text-sm" style="color: #252525;">
-                                                    <button class="btn btn-block btn-primary text-sm border-0" style="background-color: #0A0863;" type="button"  x-on:click="@this.set('guardianSignature', getContent());">Submit</button>
+                                                    <button class="btn btn-block btn-primary text-sm border-0" style="background-color: #0A0863;" type="button" x-on:click="@this.set('guardianSignature', getContent());">Submit</button>
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- /.tab-pane -->
-                                        <div class="tab-pane" id="p-upload-image-tab" wire:ignore.self x-data="imagePreview">
+                                        <div class="tab-pane" id="p-upload-image-tab" wire:ignore.self>
                                             <div class="form-group col-sm-13 text-sm text-left" style="color: #252525;" x-data="{ uploading: false, progress: 0 }" x-on:livewire-upload-error="uploading = false" x-on:livewire-upload-finish="uploading = false; progress = 0" x-on:livewire-upload-progress="progress = $event.detail.progress" x-on:livewire-upload-start="uploading = true">
                                                 <label class="font-weight-normal" for="input-item-desc">Image of the Lost Item</label>
 
@@ -96,7 +96,7 @@
                     <!-- /.col -->
                 </div>
                 <!-- /.row -->
+            </form>
         </div> <!-- /.card-body -->
-        </form>
     </div>
 </div>

@@ -20,7 +20,7 @@
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <!-- Theme style -->
     <link href="adminLTE-3.2/dist/css/adminlte.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/app.css">
+    <link href="css/app.css" rel="stylesheet">
 
 
     <style>
@@ -130,6 +130,7 @@
         @livewire('left-navigation-livewire')
         @livewire('top-navigation-livewire')
         {{ $slot }}
+        @include('components.layouts.user-guide')
     </div>
     <footer class="main-footer">
         <div class="float-right d-none d-sm-block">
@@ -144,12 +145,20 @@
         reserved.
     </footer>
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar">
-        <!-- Control sidebar content goes here -->
-    </aside>
-    
     @livewireScripts()
+    <script>
+        document.addEventListener("alpine:init", () => {
+            Alpine.data('userGuide', () => ({
+                content: 'start',
+                view(content, ref) {
+                    this.content = content;
+                    this.$refs[ref].scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                },
+            }));
+        });
+    </script>
     <script>
         Livewire.on('closeModals', () => {
             $('.modal').modal('hide');

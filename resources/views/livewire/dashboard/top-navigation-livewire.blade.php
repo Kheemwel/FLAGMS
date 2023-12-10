@@ -49,5 +49,4 @@
             </a>
         </li> --}}
     </ul>
-    @include('livewire.dashboard.user-guide')
 </nav>

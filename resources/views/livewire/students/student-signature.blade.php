@@ -1,14 +1,13 @@
-<div class="modal fade as-modal" id="student-signature" style="max-width: 100%;" wire:ignore.self>
+<div class="modal fade as-modal" id="student-signature" role="dialog" style="max-width: 100%;" wire:ignore.self>
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content" style="border-radius: 20px;">
             <div class="modal-header p-3 border-0">
-                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                <button aria-label="Close" class="close" type="button" x-on:click="$('#student-signature').modal('hide')">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <form>
                 <div class="modal-body mx-md-1 mx-lg-5" style="max-height: 80vh; overflow-y: auto;">
-
                     <div class="row">
                         <div class="col-12 col-sm-12">
                             <!-- SIGNATURE TABS -->
@@ -24,7 +23,7 @@
                                         <li class="nav-item" wire:ignore>
                                             <!--IMAGE BTN-->
                                             <a class="nav-link" data-toggle="tab" href="#upload-image-tab">
-                                                <img class="text-left" alt="image button" height="40" src="images/imagebtn.png" width="40">
+                                                <img alt="image button" class="text-left" height="40" src="images/imagebtn.png" width="40">
                                             </a>
                                         </li>
                                     </ul>
@@ -44,7 +43,7 @@
                                             </div>
                                         </div>
                                         <!-- /.tab-pane -->
-                                        <div class="tab-pane" id="upload-image-tab" wire:ignore.self x-data="imagePreview">
+                                        <div class="tab-pane" id="upload-image-tab" wire:ignore.self>
                                             <div class="form-group col-sm-13 text-sm text-left" x-data="{ uploading: false, progress: 0 }" x-on:livewire-upload-error="uploading = false" x-on:livewire-upload-finish="uploading = false; progress = 0" x-on:livewire-upload-progress="progress = $event.detail.progress" x-on:livewire-upload-start="uploading = true">
                                                 <label class="font-weight-normal" for="uploadPic">Image of the Lost Item</label>
 

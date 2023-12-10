@@ -1,5 +1,5 @@
-<div class="modal fade" id="summary-btn" style="max-width: 100%;">
-    <div class="modal-dialog">
+<div class="modal fade" id="summary-btn" style="max-width: 100%;" wire:ignore.self>
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header" style="border: transparent; padding: 10px;">
                 <button aria-label="Close" class="close" data-dismiss="modal" type="button">

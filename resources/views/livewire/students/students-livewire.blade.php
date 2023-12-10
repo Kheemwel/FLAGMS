@@ -169,12 +169,11 @@
             </div>
         </div>
     </div>
-    
+
     <div class="row mt-2 mr-1">
         <div class="col-12 col-sm-12 pt-2 pr-5 d-flex justify-content-end">
-            <label for="per-page" class="font-weight-normal text-sm">Show
-                <select class="form-select form-select-sm" id='per-page'
-                    wire:model.live.debounce.500ms="per_page">
+            <label class="font-weight-normal text-sm" for="per-page">Show
+                <select class="form-select form-select-sm" id='per-page' wire:model.live.debounce.500ms="per_page">
                     <option>10</option>
                     <option>15</option>
                     <option>20</option>
@@ -226,7 +225,7 @@
                                             </button>
                                         </td>
                                     @endif
-            
+
                                     @if (in_array('ViewStudentSummary', $privileges))
                                         <td>
                                             <button class="btn btn-primary action-btn" data-target="#summary-btn" data-toggle="modal">
@@ -241,12 +240,12 @@
                 </div>
             </div>
         </div>
+        @include('livewire.students.summary-window')
+        @include('livewire.students.anecdotal-window')
+        @include('livewire.students.edit-student')
+        @include('livewire.students.student-signature')
+        @include('livewire.students.guardian-signature')
     </div>
-    @include('livewire.students.anecdotal-window')
-    @include('livewire.students.summary-window')
-    @include('livewire.students.edit-student')
-    @include('livewire.students.student-signature')
-    @include('livewire.students.guardian-signature')
 </div> <!-- /.card-body -->
 
 
@@ -311,12 +310,12 @@
 
                     if (event.touches && event.touches.length > 0) {
                         // Touch event
-                        offsetX = event.touches[0].clientX - rect.left;
-                        offsetY = event.touches[0].clientY - rect.top;
+                        offsetX = (event.touches[0].clientX - rect.left) * (this.$refs.canvas.width / rect.width);
+                        offsetY = (event.touches[0].clientY - rect.top) * (this.$refs.canvas.height / rect.height);
                     } else {
                         // Mouse event
-                        offsetX = event.clientX - rect.left;
-                        offsetY = event.clientY - rect.top;
+                        offsetX = (event.clientX - rect.left) * (this.$refs.canvas.width / rect.width);
+                        offsetY = (event.clientY - rect.top) * (this.$refs.canvas.height / rect.height);
                     }
 
                     return {

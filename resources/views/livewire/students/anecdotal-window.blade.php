@@ -1,5 +1,5 @@
-<div class="modal fade anecdotal-modal" data-backdrop="static" style="max-width: 100%;" id="anecdotal-btn" wire:ignore.self>
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+<div class="modal fade" data-backdrop="static" style="max-width: 100%;" id="anecdotal-btn" role="dialog" wire:ignore.self>
+    <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content" style="border-radius: 20px;">
             <div wire:loading wire:target='getData'>
                 <div class="overlay bg-white" style="border-radius: 20px;">
@@ -132,7 +132,7 @@
                                                 <td class="text-center"><img height="150px" src="{{ $anec->guardian_signature() }}" width="150px"></td>
                                                 @if (in_array('WriteStudentsAnecdotal', $privileges))
                                                     <td style="text-align: center;">
-                                                        <button class="btn btn-primary action-btn" title='Edit Row' tooltip='enable' wire:click.prevent=''>
+                                                        <button class="btn btn-primary action-btn" title='Edit Row' tooltip='enable' wire:click.prevent>
                                                             <i class="fa fa-solid fa-pen"></i>
                                                         </button>
                                                     </td>
@@ -178,7 +178,7 @@
                                                     @endif
                                                 </td>
                                                 <td class="text-center"><input type="text"></td>
-                                                <td class="text-center" data-target="#parent-signature" data-toggle="modal" wire:click.prevent=''>
+                                                <td class="text-center" data-target="#parent-signature" data-toggle="modal" wire:click.prevent>
                                                     <button class="btn btn-primary action-btn {{ $guardianSignature ? 'd-none' : '' }}"  style="color: #0A0863; font-weight: bold;">
                                                         <i class="fa fa-solid fa-file-signature" style="color: #0A0863;"></i> Add Signature
                                                     </button>
