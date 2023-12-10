@@ -19,7 +19,7 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <!-- RIGHT HAND UPPER SIDE NAVIGATION -->
-        <li class="nav-item" style="margin-right: 1rem; margin-top: 2px;">
+        <li class="nav-item" style="margin-right: 1rem; margin-top: 2px;" data-toggle="modal" data-target="#user-guide">
             <iconify-icon icon="icon-park-solid:help" style="font-size: 22px; margin-top: 10px;"></iconify-icon>
         </li>
 
@@ -49,5 +49,4 @@
             </a>
         </li> --}}
     </ul>
-
 </nav>

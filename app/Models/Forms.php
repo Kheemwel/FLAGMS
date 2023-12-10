@@ -44,7 +44,7 @@ class Forms extends Model
     {
         $students = $this->requestForm->violationStudentsInvolve();
         $offense_type = $this->requestForm->violationForm->offense_type;
-        $this->violationForm()->create(['offense_type' => $offense_type])->createViolationFormStudents($students);
+        $this->violationForm()->create()->createViolationFormStudents($students);
     }
 
     public function formType()

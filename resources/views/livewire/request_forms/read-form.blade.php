@@ -59,6 +59,21 @@
                             </p>
                         </div>
                     </div>
+
+                    @if ($homeVisitationForm->requestForm->isDisapproved())
+                        <div class="row">
+                            <div class="form-group col-sm-6" style="color: #252525;">
+                                <p style="font-size: 14px; ">Reason of Disapproval</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-12" style="font-size: 16px; color: #252525; text-align: justify;">
+                                <p style="font-weight: bold;">
+                                    {{ $homeVisitationForm->requestForm->disapproval_reason }}
+                                </p>
+                            </div>
+                        </div>
+                    @endif
                 @elseif ($violationForm)
                     <!--MODAL TITLE-->
                     <p class="card-title" style="color: #0A0863; font-weight: bold; font-size: 22px;">REQUEST FOR VIOLATION FORM</p> <br><br><br>
@@ -79,14 +94,32 @@
                     </div>
 
                     <div class="row">
-                        <!--TYPE OF DEFENSE-->
-                        <div class="form-group col-sm-5" style="color: #252525;">
-                            <p style="font-size: 14px;">Type of Offense</p>
-                        </div>
-                        <div class="form-group col-sm-4" style="font-size: 16px; color: #252525;">
-                            <p style="font-weight: bold;">{{ $violationForm->offense_type }}</p>
+                        <div class="form-group col-sm-6" style="color: #252525;">
+                            <p style="font-size: 14px; ">Reason of Violation</p>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12" style="font-size: 16px; color: #252525; text-align: justify;">
+                            <p style="font-weight: bold;">
+                                {{ $violationForm->reason }}
+                            </p>
+                        </div>
+                    </div>
+
+                    @if ($violationForm->requestForm->isDisapproved())
+                        <div class="row">
+                            <div class="form-group col-sm-6" style="color: #252525;">
+                                <p style="font-size: 14px; ">Reason of Disapproval</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-12" style="font-size: 16px; color: #252525; text-align: justify;">
+                                <p style="font-weight: bold;">
+                                    {{ $violationForm->requestForm->disapproval_reason }}
+                                </p>
+                            </div>
+                        </div>
+                    @endif
                 @endif
             </div> <!-- /.card-body -->
         </div><!-- /.modal-content -->

@@ -20,8 +20,8 @@ class Teachers extends Model
         return $this->belongsTo(UserAccounts::class, 'user_account_id');
     }
 
-    public function getName()
+    public function getNameAttribute() 
     {
-        return $this->getUserAccount->getNameAttribute();
+        return $this->getUserAccount->name;
     }
 }

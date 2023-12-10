@@ -1,14 +1,14 @@
 <!--EDIT USER INFORMATION MODAL-->
-<div class="modal fade" id="stud-info-edit" wire:ignore.self>
+<div class="modal fade" id="stud-info-edit" wire:ignore.self data-backdrop="static">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div wire:loading wire:target='get_data'>
+            <div wire:loading wire:target='get_data, update'>
                 <div class="overlay bg-white">
                     <i class="fas fa-3x fa-sync-alt fa-spin"></i>
                 </div>
             </div>
             <div class="modal-header" style="border: transparent; padding: 10px;">
-                <button aria-label="Close" class="close" data-dismiss="modal" type="button" wire:click="resetInputFields()">
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button" wire:click='resetInputFields()'>
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -43,20 +43,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row" style="text-align: left;">
-                        <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
-                            <!--ROLE-->
-                            <label for="input-SL" style="font-weight: normal; margin-top: 1rem;">Role</label>
-                            <div class="input-group-prepend">
-                                <select class="form-select form-select-sm mb-2" disabled id="roles" wire:model="role_id">
-                                    @foreach ($roles as $role)
-                                        <option @if ($role_id == $role->id) selected @endif value="{{ $role->id }}">{{ $role->role }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            @error('role_id')
-                                <span class="text-danger">You must select a role for this user</span>
-                            @enderror
+                    
+                    <div class="row" style="margin-bottom: 1rem;">
+                        <!--ID-->
+                        <div class="form-group col-sm-5" style="font-size: 12px; color: #252525;">
+                            <p class="card-title">Role</p>
+                        </div>
+                        <div class="form-group col-sm-4" style="font-size: 12px; color: #252525;">
+                            <p class="card-title" style="font-weight: bold;">{{ $role }}</p>
                         </div>
                     </div>
                     <div class="row" style="margin-bottom: 1rem;">
@@ -115,7 +109,7 @@
                 </form>
             </div> <!-- /.card-body -->
             <div class="card-footer">
-                <button class="btn btn-primary" data-dismiss='modal' data-target='#saveModal' data-toggle='modal' style="width: 450px; margin-left: 5px; background-color: #0A0863; color: white; font-size: 14px;" type="submit">Save</button>
+                <button class="btn btn-primary" data-target='#saveModal' data-toggle='modal' style="width: 450px; margin-left: 5px; background-color: #0A0863; color: white; font-size: 14px;" type="submit">Save</button>
             </div>
         </div>
         <!-- /.modal-content -->

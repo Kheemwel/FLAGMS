@@ -17,8 +17,8 @@ class LeftNavigationLivewire extends Component
         $userId = session('user_id');
         if ($userId) {
             $user = UserAccounts::find($userId);
-            $this->role = $user->getRole->role;
-            $this->privileges = $user->getRole->privileges()->pluck('privilege')->toArray();
+            $this->role = $user->role;
+            $this->privileges = $user->Roles->privileges()->pluck('privilege')->toArray();
         }
         $this->school_name = WebsiteSchoolName::find(1)->school_name;
         $this->logo = imageBinaryToSRC(WebsiteLogo::find(1)->logo);

@@ -9,7 +9,7 @@
 
             <div class="modal-header" style="border: transparent; padding: 10px;">
                 <!--EDIT PROFILE-->
-                <button class="btn btn-primary action-btn" data-dismiss="modal" data-target="#editRoleModal" data-toggle="modal" wire:click='getData({{ $selected_role_id }})'>
+                <button class="btn btn-primary action-btn" data-dismiss="modal" data-target="#editRoleModal" data-toggle="modal">
                     <i class="fa fa-solid fa-pen"></i>
                 </button>
 

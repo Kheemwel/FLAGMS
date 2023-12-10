@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\UserAccountsMaker;
+use App\Http\Controllers\UserAccountsSeeder;
 use App\Http\Middleware\CheckUserCredentials;
 use App\Livewire\ApprovalFormsLivewire;
 use App\Livewire\CalendarColorsLivewire;
 use App\Livewire\ContentManagementLivewire;
 use App\Livewire\DatabaseLivewire;
+use App\Livewire\DatabaseManagementLivewire;
 use App\Livewire\FillOutFormsLivewire;
 use App\Livewire\GuidanceLivewire;
 use App\Livewire\GuidanceProgramLivewire;
@@ -27,6 +30,7 @@ use App\Livewire\TeachersLivewire;
 use App\Livewire\UserAccountsLivewire;
 use App\Livewire\UserDashboardLivewire;
 use App\Models\GuidanceScheduleTags;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,21 +51,87 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeLivewire::class)->name('home-page');
 
+Route::get('/>>inspire', function() {
+    Artisan::call('inspire');
+    echo Artisan::output();
+});
+
+Route::get('/>>cache:clear', function() {
+    Artisan::call('cache:clear');
+    echo Artisan::output();
+});
+
+Route::get('/>>migrate', function() {
+    Artisan::call('migrate');
+    echo Artisan::output();
+});
+
+Route::get('/>>migrate:refresh', function() {
+    Artisan::call('migrate:refresh');
+    echo Artisan::output();
+});
+
+Route::get('/>>migrate:rollback', function() {
+    Artisan::call('migrate:rollback');
+    echo Artisan::output();
+});
+
+Route::get('/>>storage:link', function() {
+    Artisan::call('storage:link');
+    echo Artisan::output();
+});
+
+Route::get('/>>schedule:work', function() {
+    Artisan::call('schedule:work');
+    echo Artisan::output();
+});
+
+Route::get('/>>schedule:run', function() {
+    Artisan::call('schedule:run');
+    echo Artisan::output();
+});
+
+Route::get('/>>queue:work', function() {
+    Artisan::call('queue:work');
+    echo Artisan::output();
+});
+
+Route::get('/>>backup:run', function() {
+    Artisan::call('backup:run --only-db');
+    echo Artisan::output();
+});
+
+Route::get('/>>backup:clean', function() {
+    Artisan::call('backup:clean');
+    echo Artisan::output();
+});
+
+Route::get('/--createAdmins/{count}', function(int $count) {
+    UserAccountsMaker::createAdmins($count);
+});
+
+Route::get('/--createStudents/{count}', function(int $count) {
+    UserAccountsMaker::createStudents($count);
+});
+
+Route::get('/--createParents/{count}', function(int $count) {
+    UserAccountsMaker::createParents($count);
+});
+
+Route::get('/--createTeachers/{count}', function(int $count) {
+    UserAccountsMaker::createTeachers($count);
+});
+
 Route::middleware([CheckUserCredentials::class])->group(function () {
     //Common
     Route::get('/user-dashboard', UserDashboardLivewire::class)->name('user-dashboard-page');
     Route::get('/profile', ProfileLivewire::class)->name('profile-page');
     Route::get('/notification', NotificationLivewire::class)->name('notification-page');
-    // Route::view('/user-guidance-program', 'common.user-guidance-program')->name('user-guidance-program-page');
     Route::get('/lost-and-found', LostFoundLivewire::class)->name('lost-and-found-page');
     Route::get('/fill-out-forms', FillOutFormsLivewire::class)->name('fill-out-forms-page');
 
     //Admin
     Route::get('/user-accounts', UserAccountsLivewire::class)->name('user-accounts-page');
-    Route::get('/guidance', GuidanceLivewire::class)->name('guidance-page');
-    Route::get('/parents', ParentsLivewire::class)->name('parents-page');
-    Route::get('/teachers', TeachersLivewire::class)->name('teachers-page');
-    Route::get('/principals', PrincipalsLivewire::class)->name('principals-page');
     Route::get('/content-management', ContentManagementLivewire::class)->name('content-management-page');
     Route::get('/roles', RolesLivewire::class)->name('roles-page');
     Route::get('/profile-pictures', ProfilePicturesLivewire::class)->name('profile-pictures-page');
@@ -71,7 +141,7 @@ Route::middleware([CheckUserCredentials::class])->group(function () {
     Route::get('/item-types', ItemTypesLivewire::class)->name('item-types-page');
     Route::get('/item-tags', ItemTagsLivewire::class)->name('item-tags-page');
     Route::view('/guidance-records', 'admin.guidance-records')->name('guidance-records-page');
-    Route::get('/database', DatabaseLivewire::class)->name('database-page');
+    Route::get('/database-management', DatabaseManagementLivewire::class)->name('database-management-page');
 
     //Guidance
     Route::get('/students', StudentsLivewire::class)->name('students-page');
@@ -91,6 +161,5 @@ Route::middleware([CheckUserCredentials::class])->group(function () {
     Route::view('/my-child-records', 'parent.parent-child-records')->name('child-records-page');
 
     //Teacher
-    Route::view('/students-anecdotals', 'teacher.teacher-students')->name('students-anecdotals-page');
     Route::get('/request-forms', RequestFormsLivewire::class)->name('request-forms-page');
 });

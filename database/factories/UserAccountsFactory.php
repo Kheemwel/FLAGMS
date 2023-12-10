@@ -18,11 +18,10 @@ class UserAccountsFactory extends Factory
     {
         $password = $this->faker->password;
         return [
-            'role_id' => rand(1, 3),
+            'role_id' => rand(6, 7),
             'first_name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
-            'password' => $password,
-            'hashed_password' => bcrypt($password),
+            'password' => bcrypt($password),
             'email' =>$this->faker->email
         ];
     }

@@ -9,7 +9,7 @@
     <div class="sidebar" style="margin-top: 5rem;">
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-accordion="false" data-widget="treeview" role="menu">
+            <ul class="nav nav-pills nav-sidebar flex-column" id="left-nav-links" data-accordion="true" data-widget="treeview" role="menu">
                 <!-- Add icons to the links using the .nav-icon class
                     with font-awesome or any other icon font library -->
                 <li class="nav-item">
@@ -71,38 +71,6 @@
                         </a>
                     </li>
                 @endif
-
-                {{-- <li class="nav-item">
-                    <a class="nav-link  nav-link-button" href="#">
-                        <iconify-icon icon="fa6-solid:users" style="color: #252525;"></iconify-icon>
-                        <p style="color: #252525;">
-                            Users
-                            <i class="right fas fa-angle-left" style="color: #252525;"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a class="nav-link nav-link-button {{ setActiveLink('guidance-page') }}" href="{{ route('guidance-page') }}">
-                                <p style="color: #252525;">Guidance</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-link-button {{ setActiveLink('parents-page') }}" href="{{ route('parents-page') }}">
-                                <p style="color: #252525;">Parents</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-link-button {{ setActiveLink('teachers-page') }}" href="{{ route('teachers-page') }}">
-                                <p style="color: #252525;">Teachers</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-link-button {{ setActiveLink('principals-page') }}" href="{{ route('principals-page') }}">
-                                <p style="color: #252525;">Principals</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li> --}}
                 @if (!empty(array_intersect($privileges, ['ManageRoles', 'ManageDatabase'])))
                     <li class="nav-item">
                         <a class="nav-link  nav-link-button" href="#">
@@ -159,8 +127,8 @@
                             @endif
                             @if (in_array('ManageDatabase', $privileges))
                                 <li class="nav-item">
-                                    <a class="nav-link nav-link-button {{ setActiveLink('database-page') }}" href="{{ route('database-page') }}">
-                                        <p style="color: #252525;">Database</p>
+                                    <a class="nav-link nav-link-button {{ setActiveLink('database-management-page') }}" href="{{ route('database-management-page') }}">
+                                        <p style="color: #252525;">Database Management</p>
                                     </a>
                                 </li>
                             @endif

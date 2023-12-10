@@ -123,9 +123,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('students');
+        Schema::dropIfExists('grade_school_levels');
         Schema::dropIfExists('school_levels');
         Schema::dropIfExists('grade_levels');
-        Schema::dropIfExists('grade_school_levels');
-        Schema::dropIfExists('students');
     }
 };

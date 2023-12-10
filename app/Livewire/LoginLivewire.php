@@ -28,7 +28,7 @@ class LoginLivewire extends Component
     {
         $user = UserAccounts::where('email', $this->email)->first();
 
-        if ($user && password_verify($this->password, $user->hashed_password)) {
+        if ($user && password_verify($this->password, $user->password)) {
             // Successful login
             $user->total_login += 1;
             $user->last_login = now();
@@ -41,7 +41,7 @@ class LoginLivewire extends Component
                 $user->save();
 
                 // Store the token in a long-lived cookie (e.g., valid for one month)
-                cookie()->queue('remember_token', $rememberToken, 1); // 1 minute
+                cookie()->queue('remember_token', $rememberToken, 5); // 5 minute
             }
             session(['user_id' => $user->id]);
             $this->resetInputFields();
@@ -94,8 +94,7 @@ class LoginLivewire extends Component
 
         // Update the password
         UserAccounts::where('email', $this->email)->first()->update([
-            'password' => $validatedData['confirm_password'],
-            'hashed_password' => bcrypt($validatedData['confirm_password'])
+            'password' => bcrypt($validatedData['confirm_password'])
         ]);
 
         $this->showToast('success', 'Your password has been reset successfully.');

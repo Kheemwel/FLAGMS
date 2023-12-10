@@ -2,50 +2,116 @@
 
 namespace App\Livewire;
 
+use App\Events\NewNotification;
+use App\Models\Notifications;
 use App\Models\RequestForms;
+use App\Models\UserAccounts;
 use App\Traits\Toasts;
 use Livewire\Component;
 
 class ApprovalFormsLivewire extends Component
 {
     use Toasts;
-    public $requestforms, $violationForm, $homeVisitationForm;
+    public $pending_requestforms, $approved_requestforms, $disapproved_requestforms, $violationForm, $homeVisitationForm;
+    public $selectedRequestFormID, $selectedRequestFormType, $disApprovalReason;
+    public $my_id;
+
+    public function mount()
+    {
+        $this->my_id = session('user_id');
+    }
 
     public function render()
     {
-        $this->requestforms = RequestForms::orderBy('is_approve', 'asc')->oldest()->get();
+        $this->pending_requestforms = RequestForms::where('status', 'pending')
+            ->oldest()->get();
+        $this->approved_requestforms = RequestForms::where('status', 'approved')
+            ->latest()->get();
+        $this->disapproved_requestforms = RequestForms::where('status', 'disapproved')
+            ->latest()->get();
         return view('livewire.approval_forms.approval-forms-livewire');
     }
 
     public function read($type, $id)
     {
+        $this->selectedRequestFormID = $id;
+        $this->selectedRequestFormType = $type;
         if ($type == 'Violation Form') {
-            $this->violationForm = RequestForms::where('id', $id)->where('form_type', $type)->first()->violationForm;
+            $requestForm = RequestForms::where('id', $id)->where('form_type', $type)->first();
+            $this->violationForm = $requestForm->violationForm;
         } else if ($type == 'Home Visitation Form') {
-            $this->homeVisitationForm = RequestForms::where('id', $id)->where('form_type', $type)->first()->homeVisitationForm;
+            $requestForm = RequestForms::where('id', $id)->where('form_type', $type)->first();
+            $this->homeVisitationForm = $requestForm->homeVisitationForm;
         }
     }
 
-    public function approveViolationForm()    
+    public function approveRequest()
     {
-        $this->violationForm->requestForm->is_approve = true;
-        $this->violationForm->requestForm->save();
-        $this->violationForm->requestForm->createViolationForm();
-        $this->showToast('success', "Requested Violation Form is Approved Successfully");
+        $request = RequestForms::find($this->selectedRequestFormID);
+        $request->update([
+            'is_approve' => true
+        ]);
+
+        $users = [];
+        if ($this->selectedRequestFormType == 'Violation Form') {
+            $users = [
+                $request->teacher->user_account_id,
+                ...$request->violationForm->students->pluck('user_account_id')->toArray(),
+            ];
+            $request->createViolationForm();
+        } else if ($this->selectedRequestFormType == 'Home Visitation Form') {
+            $users = [
+                $request->teacher->user_account_id,
+                $request->homeVisitationForm->student->user_account_id,
+            ];
+            $request->createHomeVisitationForm();
+        }
+
+        $this->showToast('success', "Requested $this->selectedRequestFormType is Approved Successfully");
+        $this->resetFields();
+
+        $this->notify($request->teacher->user_account_id, "Your requested $request->form_type is disapproved");
+
+        redirect()->route('guidance-program-page', ['private_schedule' => [
+            'users' => $users,
+        ]]);
     }
 
-    public function approveHomeVisitationForm()
+    public function disApproveRequest()
     {
-        $this->homeVisitationForm->requestForm->is_approve = true;
-        $this->homeVisitationForm->requestForm->save();
-        $this->homeVisitationForm->requestForm->createHomeVisitationForm();
-        $this->showToast('success', "Requested Home Visitation Form is Approved Successfully");
+        $validateData = $this->validate([
+            'disApprovalReason' => 'required|string'
+        ]);
+
+        $request = RequestForms::find($this->selectedRequestFormID);
+        $request->update([
+            'disapproval_reason' => $validateData['disApprovalReason'],
+        ]);
+
+
+        $this->showToast('success', "Requested Home Visitation Form is Disapproved Successfully");
+        $this->resetFields();
+
+        $this->notify($request->teacher->user_account_id, "Your requested $request->form_type is approved");
+    }
+
+    public function notify($teacher_id, $message)
+    {
+        Notifications::create([
+            'from_user' => $this->my_id,
+            'to_user' => $teacher_id,
+            'message' => $message,
+        ]);
+        NewNotification::dispatch();
     }
 
     public function resetFields()
     {
         $this->violationForm = null;
         $this->homeVisitationForm = null;
+        $this->selectedRequestFormID = null;
+        $this->disApprovalReason = null;
         $this->resetErrorBag();
+        $this->dispatch('closeModals');
     }
 }

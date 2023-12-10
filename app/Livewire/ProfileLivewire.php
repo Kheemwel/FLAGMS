@@ -24,7 +24,7 @@ class ProfileLivewire extends Component
         if ($this->user_id) {
             $user = UserAccounts::find($this->user_id);
             $this->email = $user->email;
-            $this->role = $user->getRole->role;
+            $this->role = $user->role;
             $this->first_name = $user->first_name;
             $this->last_name = $user->last_name;
             $this->name = $this->first_name . ' ' . $this->last_name;

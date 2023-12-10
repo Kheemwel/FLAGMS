@@ -1,8 +1,8 @@
 <!--VIEW USER INFORMATION MODAL-->
 <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="view-user-btn" role='dialog' style="max-width: 100%;" wire:ignore.self>
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div wire:loading wire:target='get_data'>
+        <div class="modal-content" x-on:click.outside='$wire.resetInputFields()'>
+            <div wire:loading wire:target='get_data, delete, archive, unArchive'>
                 <div class="overlay bg-white">
                     <i class="fas fa-3x fa-sync-alt fa-spin"></i>
                 </div>
@@ -11,24 +11,30 @@
                 @if ($my_id !== $user_id)
                     <!--USER INFO EDIT BUTTON-->
                     @if (in_array("Edit{$role}Accounts", $privileges) || in_array('EditAccounts', $privileges))
-                        <button class="btn btn-primary action-btn" data-target="#stud-info-edit" data-toggle="modal" data-dismiss="modal" title='Edit Account' tooltip='enable'>
+                        <button class="btn btn-primary action-btn" data-dismiss="modal" data-target="#stud-info-edit" data-toggle="modal" title='Edit Account' tooltip='enable'>
                             <i class="fa fa-solid fa-pen"></i>
                         </button>
                     @endif
 
 
                     @if (!$user_is_archive && (in_array("Archive{$role}Accounts", $privileges) || in_array('ArchiveAccounts', $privileges)))
-                        <button class="btn btn-primary action-btn" title='Archive Account' data-dismiss="modal" tooltip='enable' wire:click="archive()">
+                        <button class="btn btn-primary action-btn" data-target="#archiveModal" data-toggle="modal" title='Archive Account' tooltip='enable'>
                             <i aria-hidden="true" class="fa fa-archive"></i>
                         </button>
                     @endif
 
-                     {{-- DELETE USER --}}
-                     @if ($user_is_archive && (in_array("Delete{$role}Accounts", $privileges) || in_array('DeleteAccounts', $privileges)))
-                     <button class="btn btn-primary action-btn" data-target="#deleteModal" data-toggle="modal" title='Delete Account' tooltip='enable' wire:click.prevent="delete()">
-                         <i aria-hidden="true" class="fa fa-trash"></i>
-                     </button>
-                 @endif
+                    @if ($user_is_archive && (in_array("Archive{$role}Accounts", $privileges) || in_array('ArchiveAccounts', $privileges)))
+                        <button class="btn btn-primary action-btn" data-target="#unArchiveModal" data-toggle="modal" title='Unarchive Account' tooltip='enable'>
+                            <i aria-hidden="true" class="fa fa-undo"></i>
+                        </button>
+                    @endif
+
+                    {{-- DELETE USER --}}
+                    @if ($user_is_archive && (in_array("Delete{$role}Accounts", $privileges) || in_array('DeleteAccounts', $privileges)))
+                        <button class="btn btn-primary action-btn" data-target="#deleteModal" data-toggle="modal" title='Delete Account' tooltip='enable'>
+                            <i aria-hidden="true" class="fa fa-trash"></i>
+                        </button>
+                    @endif
                 @endif
 
                 <button aria-label="Close" class="close" data-dismiss="modal" type="button" wire:click='resetInputFields()'>
@@ -153,7 +159,7 @@
                         <p class="card-title" style="font-weight: bold;">{{ $email ? $email : 'There is no registered email.' }}</p>
                     </div>
                 </div>
-                <div class="row" style="margin-bottom: 1rem;">
+                {{-- <div class="row" style="margin-bottom: 1rem;">
                     <!--PASSWORD-->
                     <div class="form-group col-sm-5" style="font-size: 14px; color: #252525;">
                         <p class="card-title">Password</p>
@@ -161,7 +167,7 @@
                     <div class="form-group col-sm-4" style="font-size: 14px; color: #252525;">
                         <p class="card-title" style="font-weight: bold;">{{ $password }}</p>
                     </div>
-                </div>
+                </div> --}}
                 <div class="row" style="margin-bottom: 1rem;">
                     <div class="form-group col-sm-5" style="font-size: 14px; color: #252525;">
                         <p class="card-title">Total Login</p>

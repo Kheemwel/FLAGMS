@@ -12,16 +12,9 @@
         <x-error field="studentsInvolve"/>
     </div>
 
-    <div class="row">
-        <label class="col-12" style="font-size: 14px; color: #252525; font-weight: normal;">Type of Offense</label>
-        @foreach ($offenseTypes as $type)
-            <div class="form-check col-3">
-                <input class="form-check-input" id="colorRadio4" name="colorRadio" type="radio" value="{{ $type }}" wire:model='offenseType'>
-                <label class="form-check-label" for="colorRadio4">
-                    {{ $type }}
-                </label>
-            </div>
-        @endforeach
-        <x-error field="offenseType" style="font-size: 14px; color: #252525;" />
+    <div class="row form-group" style="font-size: 14px; color: #252525;">
+        <label for="reason" style="font-weight: normal;">Reason of Violation</label>
+        <textarea class="form-control" cols="30" id="reason" name="reason" rows="10" wire:model='violationReason'></textarea>
+        <x-error field="violationReason" />
     </div>
 </div>

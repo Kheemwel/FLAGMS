@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
-    <title>Student | Individual Inventory Form</title>
+    <title>FLAGMS | Individual Inventory Form</title>
     <link href="favicon.ico" rel="icon" type="image/x-icon">
 
     <!--Dropdown Button Bootstrap-->
@@ -39,29 +39,6 @@
         .btn-primary.action-btn:hover i {
             color: #0A0863;
         }
-
-        /********************************/
-
-        /* Widen the anecdotal modal */
-        .anecdotal-dialog {
-            max-width: 90%;
-        }
-
-        .anecdotal-modal {
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Widens the add signature modal */
-        .as-dialog {
-            max-width: 50%;
-        }
-
-        .as-modal {
-            margin-left: auto;
-            margin-right: auto;
-        }
-
         /* CLEAR BUTTON */
         .clear-button {
             background-color: #ffffff;
@@ -92,223 +69,225 @@
         @livewire('top-navigation-livewire')
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper" style="background-color:  rgb(253, 253, 253); padding-left: 2rem; padding-right: 2rem;">
+        <div class="content-wrapper pl-5 pr-5" style="background-color:  rgb(253, 253, 253);">
             <!-- Content Header (Page header) -->
-            <section class="content-header">
+            <section class="content-header p-0">
                 <div class="container-fluid">
-                    <div class="col-sm-12" style="padding-left: 2rem; padding-top: 1rem;">
-                        <h1 style="font-weight: bold;">Individual Inventory Report</h1>
+                    <div class="col-sm-12 pl-md-3 pt-2">
+                        <p class="text-xl text-center font-weight-bold">Individual Inventory Report</p>
                     </div>
                 </div><!-- /.container-fluid -->
             </section>
 
+            
+
             <!-- Main content -->
             <div class="row">
-                <div class="col-8">
-                    <label style="font-size: 22px; color: #0A0863">Student Information</label>
+                <div class="col-12">
+                    <label class="text-lg" style="color: #0A0863">Student Information</label>
                 </div>
             </div>
 
-            <div class="row" style="margin-bottom: 2rem;">
-                <div class="col-3">
-                    <label>First Name</label>
-                    <input class="form-control" style="border: 1px solid black" type="text">
+            <div class="row mb-3">
+                <div class="col-md-3 col-sm-6">
+                    <label class="text-sm">First Name</label>
+                    <input class="form-control text-sm" style="border: 1px solid black" type="text">
                 </div>
-                <div class="col-3">
-                    <label>Middle Name</label>
-                    <input class="form-control" style="border: 1px solid black" type="text">
+                <div class="col-md-3 col-sm-6">
+                    <label class="text-sm">Middle Name</label>
+                    <input class="form-control text-sm" style="border: 1px solid black" type="text">
                 </div>
-                <div class="col-3">
-                    <label>Last Name</label>
-                    <input class="form-control" style="border: 1px solid black" type="text">
+                <div class="col-md-3 col-sm-6">
+                    <label class="text-sm"> Last Name</label>
+                    <input class="form-control text-sm" style="border: 1px solid black" type="text">
                 </div>
-                <div class="col-3">
-                    <label>Suffix Name</label>
-                    <input class="form-control" placeholder="(e.g, Jr.)" style="border: 1px solid black" type="text">
-                </div>
-            </div>
-
-            <div class="row" style="margin-bottom: 2rem;">
-                <div class="col-3">
-                    <label>LRN</label>
-                    <input class="form-control" style="border: 1px solid black" type="text">
-                </div>
-                <div class="col-3">
-                    <label>Gender</label>
-                    <input class="form-control" style="border: 1px solid black" type="text">
-                </div>
-                <div class="col-3">
-                    <label>Status</label>
-                    <input class="form-control" style="border: 1px solid black" type="text">
-                </div>
-                <div class="col-3">
-                    <label>Citizen Ship</label>
-                    <input class="form-control" placeholder="(e.g, Jr.)" style="border: 1px solid black" type="text">
+                <div class="col-md-3 col-sm-6">
+                    <label class="text-sm">Suffix Name</label>
+                    <input class="form-control text-sm" placeholder="(e.g, Jr.)" style="border: 1px solid black" type="text">
                 </div>
             </div>
 
-            <div class="row" style="margin-bottom: 3rem;">
-                <div class="col-3">
-                    <label>Date of Birth</label>
-                    <input class="form-control" style="border: 1px solid black" type="date">
+            <div class="row mb-3">
+                <div class="col-md-3 col-sm-6">
+                    <label class="text-sm">LRN</label>
+                    <input class="form-control text-sm" style="border: 1px solid black" type="text">
                 </div>
-                <div class="col-3">
-                    <label>Birthplace</label>
-                    <input class="form-control" style="border: 1px solid black" type="text">
+                <div class="col-md-3 col-sm-6">
+                    <label class="text-sm">Gender</label>
+                    <input class="form-control text-sm" style="border: 1px solid black" type="text">
                 </div>
-                <div class="col-3">
-                    <label>Religion</label>
-                    <input class="form-control" style="border: 1px solid black" type="text">
+                <div class="col-md-3 col-sm-6">
+                    <label class="text-sm">Status</label>
+                    <input class="form-control text-sm" style="border: 1px solid black" type="text">
                 </div>
-            </div>
-
-            <!---------------------------->
-            <div class="row" style="margin-bottom: 3rem;">
-                <div class="col-8">
-                    <label style="font-size: 22px; color: #0A0863">Address</label>
+                <div class="col-md-3 col-sm-6">
+                    <label class="text-sm">Citizen Ship</label>
+                    <input class="form-control text-sm" placeholder="(e.g, Jr.)" style="border: 1px solid black" type="text">
                 </div>
             </div>
 
-            <div class="row" style="margin-bottom: 2rem;">
-                <div class="col-3">
-                    <label>Street No. / Unit No.</label>
-                    <input class="form-control" style="border: 1px solid black" type="text">
+            <div class="row mb-3">
+                <div class="col-md-3 col-sm-6">
+                    <label class="text-sm">Date of Birth</label>
+                    <input class="form-control text-sm" style="border: 1px solid black" type="date">
                 </div>
-                <div class="col-3">
-                    <label>Street</label>
-                    <input class="form-control" style="border: 1px solid black" type="text">
+                <div class="col-md-3 col-sm-6">
+                    <label class="text-sm">Birthplace</label>
+                    <input class="form-control text-sm" style="border: 1px solid black" type="text">
                 </div>
-                <div class="col-3">
-                    <label>Subdivision / Village / Bldg.</label>
-                    <input class="form-control" style="border: 1px solid black" type="text">
-                </div>
-                <div class="col-3">
-                    <label>Barangay</label>
-                    <input class="form-control" style="border: 1px solid black" type="text">
-                </div>
-            </div>
-
-            <div class="row" style="margin-bottom: 3rem;">
-                <div class="col-3">
-                    <label>City / Municipality</label>
-                    <input class="form-control" style="border: 1px solid black" type="text">
-                </div>
-                <div class="col-3">
-                    <label>Province</label>
-                    <input class="form-control" style="border: 1px solid black" type="text">
-                </div>
-                <div class="col-3">
-                    <label>Zip Code</label>
-                    <input class="form-control" style="border: 1px solid black" type="text">
+                <div class="col-md-3 col-sm-6">
+                    <label class="text-sm">Religion</label>
+                    <input class="form-control text-sm" style="border: 1px solid black" type="text">
                 </div>
             </div>
 
             <!---------------------------->
-            <div class="row" style="margin-bottom: 2rem;">
-                <div class="col-8">
-                    <label style="font-size: 22px; color: #0A0863">Contact Details</label>
+            <div class="row mb-2 mt-4">
+                <div class="col-12">
+                    <label class="text-lg" style="font-size: 22px; color: #0A0863">Address</label>
                 </div>
             </div>
 
-            <div class="row" style="margin-bottom: 2rem;">
-                <div class="col-3">
-                    <label>Telephone No.</label>
-                    <input class="form-control" style="border: 1px solid black" type="text">
+            <div class="row mb-2">
+                <div class="col-md-3 col-sm-6">
+                    <label class="text-sm">Street No. / Unit No.</label>
+                    <input class="form-control text-sm" style="border: 1px solid black" type="text">
                 </div>
-                <div class="col-3">
-                    <label>Mobile No.</label>
-                    <input class="form-control" style="border: 1px solid black" type="text">
+                <div class="col-md-3 col-sm-6">
+                    <label class="text-sm">Street</label>
+                    <input class="form-control text-sm" style="border: 1px solid black" type="text">
                 </div>
-                <div class="col-3">
-                    <label>Email Address</label>
-                    <input class="form-control" style="border: 1px solid black" type="text">
+                <div class="col-md-3 col-sm-6">
+                    <label class="text-sm">Subd. / Village / Bldg.</label>
+                    <input class="form-control text-sm" style="border: 1px solid black" type="text">
                 </div>
-            </div>
-
-            <!---------------------------->
-            <div class="row" style="margin-bottom: 1rem;">
-                <div class="col-8">
-                    <label style="font-size: 22px; color: #0A0863">Educational History</label>
+                <div class="col-md-3 col-sm-6">
+                    <label class="text-sm">Barangay</label>
+                    <input class="form-control text-sm" style="border: 1px solid black" type="text">
                 </div>
             </div>
 
-            <div class="row" style="margin-bottom: 1rem;">
-                <div class="col-8">
-                    <label style="font-size: 20px;">Primary School</label>
+            <div class="row mb-2">
+                <div class="col-md-3 col-sm-6">
+                    <label class="text-sm">City / Municipality</label>
+                    <input class="form-control text-sm" style="border: 1px solid black" type="text">
                 </div>
-            </div>
-
-            <div class="row" style="margin-bottom: 2rem;">
-                <div class="col-8">
-                    <label>Name of School</label>
-                    <input class="form-control" style="border: 1px solid black" type="text">
+                <div class="col-md-3 col-sm-6">
+                    <label class="text-sm">Province</label>
+                    <input class="form-control text-sm" style="border: 1px solid black" type="text">
                 </div>
-                <div class="col-2">
-                    <label>School Year Start</label>
-                    <input class="form-control" style="border: 1px solid black" type="text">
-                </div>
-                <div class="col-2">
-                    <label>School Year Ends</label>
-                    <input class="form-control" style="border: 1px solid black" type="text">
-                </div>
-            </div>
-
-            <div class="row" style="margin-bottom: 1rem;">
-                <div class="col-8">
-                    <label style="font-size: 20px;">Junior High School</label>
-                </div>
-            </div>
-
-            <div class="row" style="margin-bottom: 2rem;">
-                <div class="col-8">
-                    <label>Name of School</label>
-                    <input class="form-control" style="border: 1px solid black" type="text">
-                </div>
-                <div class="col-2">
-                    <label>School Year Start</label>
-                    <input class="form-control" style="border: 1px solid black" type="text">
-                </div>
-                <div class="col-2">
-                    <label>School Year Ends</label>
-                    <input class="form-control" style="border: 1px solid black" type="text">
-                </div>
-            </div>
-
-            <div class="row" style="margin-bottom: 1rem;">
-                <div class="col-8">
-                    <label style="font-size: 20px;">Senior High School</label>
-                </div>
-            </div>
-
-            <div class="row" style="margin-bottom: 2rem;">
-                <div class="col-8">
-                    <label>Name of School</label>
-                    <input class="form-control" style="border: 1px solid black" type="text">
-                </div>
-                <div class="col-2">
-                    <label>School Year Start</label>
-                    <input class="form-control" style="border: 1px solid black" type="text">
-                </div>
-                <div class="col-2">
-                    <label>School Year Ends</label>
-                    <input class="form-control" style="border: 1px solid black" type="text">
+                <div class="col-md-3 col-sm-6">
+                    <label class="text-sm">Zip Code</label>
+                    <input class="form-control text-sm" style="border: 1px solid black" type="text">
                 </div>
             </div>
 
             <!---------------------------->
-            <div class="row" style="margin-bottom: 1rem;">
-                <div class="col-8">
-                    <label style="font-size: 22px; color: #0A0863">Basic Medical Information</label>
+            <div class="row mb-2 mt-4">
+                <div class="col-12">
+                    <label class="text-lg" style="color: #0A0863">Contact Details</label>
                 </div>
             </div>
 
-            <div class="row" style="margin-bottom: 1rem;">
-                <div class="col-8">
-                    <label style="font-size: 20px;">Medical Conditions</label>
+            <div class="row mb-2">
+                <div class="col-md-3 col-sm-6">
+                    <label class="text-sm">Telephone No.</label>
+                    <input class="form-control text-sm" style="border: 1px solid black" type="text">
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <label  class="text-sm">Mobile No.</label>
+                    <input class="form-control text-sm" style="border: 1px solid black" type="text">
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <label class="text-sm">Email Address</label>
+                    <input class="form-control text-sm" style="border: 1px solid black" type="text">
                 </div>
             </div>
 
-            <div class="row" style="margin-bottom: 1rem; margin-left: 1rem;">
+            <!---------------------------->
+            <div class="row mb-2 mt-4">
+                <div class="col-md-10">
+                    <label class="text-lg" style="color: #0A0863">Educational History</label>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-12">
+                    <label class="text-lg" class="text-lg">Primary School</label>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-md-3 col-sm-6">
+                    <label class="text-sm">Name of School</label>
+                    <input class="form-control text-sm" style="border: 1px solid black" type="text">
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <label class="text-sm">SY Start</label>
+                    <input class="form-control text-sm" style="border: 1px solid black" type="text">
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <label class="text-sm">SY Ends</label>
+                    <input class="form-control text-sm" style="border: 1px solid black" type="text">
+                </div>
+            </div>
+
+            <div class="row mb-2 mt-4">
+                <div class="col-12">
+                    <label class="text-lg">Junior High School</label>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-md-3 col-sm-6">
+                    <label class="text-sm">Name of School</label>
+                    <input class="form-control text-sm" style="border: 1px solid black" type="text">
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <label class="text-sm">SY Start</label>
+                    <input class="form-control text-sm" style="border: 1px solid black" type="text">
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <label class="text-sm">SY Ends</label>
+                    <input class="form-control text-sm" style="border: 1px solid black" type="text">
+                </div>
+            </div>
+
+            <div class="row mb-2 mt-4">
+                <div class="col-12">
+                    <label class="text-lg">Senior High School</label>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-md-3 col-sm-6">
+                    <label class="text-sm">Name of School</label>
+                    <input class="form-control text-sm" style="border: 1px solid black" type="text">
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <label class="text-sm">SY Start</label>
+                    <input class="form-control text-sm" style="border: 1px solid black" type="text">
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <label class="text-sm">SY Ends</label>
+                    <input class="form-control text-sm" style="border: 1px solid black" type="text">
+                </div>
+            </div>
+
+            <!---------------------------->
+            <div class="row mb-2 mt-4">
+                <div class="col-12">
+                    <label class="text-lg" style="color: #0A0863">Basic Medical Information</label>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-12">
+                    <label class="text-md">Medical Conditions</label>
+                </div>
+            </div>
+
+            <div class="row mb-4 ml-3 text-sm">
                 <div class="col-8">
                     <input class="form-check-input" id="cbPass" type="checkbox"> Diabetes
                 </div>
@@ -318,58 +297,57 @@
                 <div class="col-8">
                     <input class="form-check-input" id="cbPass" type="checkbox"> Asthma
                 </div>
-                <div class="col-8">
+                <div class="col-12">
                     <input class="form-check-input" id="cbPass" type="checkbox"> Others (please specify)
                 </div>
             </div>
 
-            <div class="row" style="margin-bottom: 1rem; margin-left: 1rem;">
-                <textarea class="form-control" style="border: 1px solid black; background-color: rgb(214, 211, 211); height: 100px;"></textarea>
+            <div class="row mb-2 ml-3">
+                <textarea class="form-control text-sm" style="border: 1px solid black; background-color: rgb(214, 211, 211); height: 100px;"></textarea>
             </div>
 
             <!---------------------------->
-            <div class="row" style="margin-bottom: 1rem;">
-                <div class="col-8">
-                    <label style="font-size: 20px;">Allergies (Food, medication and/or environmental)</label>
-                </div>
-            </div>
-
-            <div class="row" style="margin-bottom: 1rem; margin-left: 1rem;">
-                <textarea class="form-control" style="border: 1px solid black; background-color: white; height: 100px;"></textarea>
-            </div>
-
-            <!---------------------------->
-            <div class="row" style="margin-bottom: 1rem;">
-                <div class="col-8">
-                    <label style="font-size: 20px;">Emergency Contact Details</label>
-                </div>
-            </div>
-
-            <div class="row" style="margin-bottom: 5rem;">
-                <div class="col-3">
-                    <label>First Name</label>
-                    <input class="form-control" style="border: 1px solid black" type="text">
-                </div>
-                <div class="col-3">
-                    <label>Last Name</label>
-                    <input class="form-control" style="border: 1px solid black" type="text">
-                </div>
-                <div class="col-3">
-                    <label>Contact No.</label>
-                    <input class="form-control" style="border: 1px solid black" type="text">
-                </div>
-                <div class="col-3">
-                    <label>Relationship</label>
-                    <input class="form-control" style="border: 1px solid black" type="text">
-                </div>
-            </div>
-
-            <div class="row" style="margin-bottom: 2rem;">
+            <div class="row mb-2 mt-4">
                 <div class="col-12">
-                    <a class="btn btn-block btn-primary" href="student inventory report form.html" style="font-size: 16px; background-color: #0A0863; border: transparent;" type="button">Submit</a>
+                    <label class="text-sm">Allergies (Food, medication and/or environmental)</label>
                 </div>
             </div>
 
+            <div class="row mb-2 ml-3">
+                <textarea class="form-control text-sm" style="border: 1px solid black; background-color: white; height: 100px;"></textarea>
+            </div>
+
+            <!---------------------------->
+            <div class="row mb-2 mt-4">
+                <div class="col-12">
+                    <label class="text-lg">Emergency Contact Details</label>
+                </div>
+            </div>
+
+            <div class="row mb-5">
+                <div class="col-md-3 col-sm-6">
+                    <label class="text-sm">First Name</label>
+                    <input class="form-control text-sm" style="border: 1px solid black" type="text">
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <label class="text-sm">Last Name</label>
+                    <input class="form-control text-sm" style="border: 1px solid black" type="text">
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <label class="text-sm">Contact No.</label>
+                    <input class="form-control text-sm" style="border: 1px solid black" type="text">
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <label class="text-sm">Relationship</label>
+                    <input class="form-control text-sm" style="border: 1px solid black" type="text">
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-12">
+                    <a class="btn btn-block btn-primary text-sm border-0" href="student inventory report form.html" style="background-color: #0A0863;" type="button">Submit</a>
+                </div>
+            </div>
         </div>
     </div>
 

@@ -1,4 +1,4 @@
-<div class="modal fade" id="add-event" style="max-width: 100%;" wire:ignore.self>
+<div class="modal fade" id="add-event" style="max-width: 100%;" wire:ignore.self data-backdrop='static'>
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="border: transparent; padding: 10px;">
@@ -8,7 +8,7 @@
                 </button>
             </div>
 
-            <form wire:submit='addEvent()'>
+            <form wire:submit.prevent='addEvent()'>
                 <div class="modal-body" style="margin-left: 1rem; margin-right: 1rem; max-height: 560px; overflow-y: auto;">
                     <!--MODAL TITLE-->
                     <p class="card-title" style="color: #0A0863; font-weight: bold; font-size: 22px;">ADD EVENT</p> <br><br><br>
@@ -90,7 +90,7 @@
                                 <select class="form-select multiple-select-optgroup-clear-field" data-placeholder="Select Target User(s)" id="multiple-select-optgroup-clear-field" multiple style="border: 1px solid #252525;">
                                     <option></option>
                                     @foreach ($users as $user)
-                                        <option value="{{ $user->id }}">{{ $user->getNameAttribute() }}</option>
+                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -134,7 +134,7 @@
                 </div> <!-- /.card-body -->
                 <div class="modal-footer justify-content-center">
                     <div class="col-12">
-                        <button class="btn btn-default" style="width: 400px; margin-left: 10px; background-color: #0A0863; color: white; font-size: 16px;">
+                        <button class="btn btn-default" type="submit" style="width: 400px; margin-left: 10px; background-color: #0A0863; color: white; font-size: 16px;">
                             Add Event
                         </button>
                     </div>

@@ -61,9 +61,11 @@ class RolesLivewire extends Component
         ]);
 
         $role = Roles::find($this->selected_role_id);
-        $role->update([
-            'role' => $this->role
-        ]);
+        if (!$role->is_default) {
+            $role->update([
+                'role' => $this->role
+            ]);
+        }
         $role->privileges()->sync($this->selected_privileges);
 
         $this->showToast('success', 'Role Updated Successfully');

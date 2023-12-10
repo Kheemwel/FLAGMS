@@ -2,6 +2,8 @@
 
 namespace App\Livewire;
 
+use App\Events\NewNotification;
+use App\Models\Notifications;
 use App\Models\RequestForms;
 use App\Models\RequestHomeVisitationForms;
 use App\Models\RequestViolationForms;
@@ -16,11 +18,11 @@ class RequestFormsLivewire extends Component
     public $teacher_id;
     public $students;
     public $studentsInvolve, $selectedStudent;
-    public $offenseType, $homeVisitationReason;
-    public $offenseTypes = ['Physical', 'Verbal', 'Social', 'Others'];
-    public $requestforms, $violationForm, $homeVisitationForm;
+    public $violationReason, $homeVisitationReason;
+    public $pending_requestforms, $approved_requestforms, $disapproved_requestforms, $violationForm, $homeVisitationForm;
     public function mount()
     {
+        // dd(RequestForms::find(1)->teacher_name);
         $this->students = Students::whereHas('getUserAccount', function ($query) {
             // Filter students where the associated user account is not archived
             $query->where('is_archive', false);
@@ -34,7 +36,12 @@ class RequestFormsLivewire extends Component
 
     public function render()
     {
-        $this->requestforms = RequestForms::where('teacher_id', $this->teacher_id)->orderBy('is_approve', 'asc')->oldest()->get();
+        $this->pending_requestforms = RequestForms::where('status', 'pending')
+            ->where('teacher_id', $this->teacher_id)->oldest()->get();
+        $this->approved_requestforms = RequestForms::where('status', 'approved')
+            ->where('teacher_id', $this->teacher_id)->latest()->get();
+        $this->disapproved_requestforms = RequestForms::where('status', 'disapproved')
+            ->where('teacher_id', $this->teacher_id)->latest()->get();
         return view('livewire.request_forms.request-forms-livewire');
     }
 
@@ -43,7 +50,7 @@ class RequestFormsLivewire extends Component
         if ($type == 'Violation Form') {
             $validatedData = $this->validate([
                 'studentsInvolve' => 'required|array|min:1',
-                'offenseType' => 'required|string'
+                'violationReason' => 'required|string'
             ]);
 
             $request_form = RequestForms::create([
@@ -53,7 +60,7 @@ class RequestFormsLivewire extends Component
 
             $violationForm = RequestViolationForms::create([
                 'request_form_id' => $request_form->id,
-                'offense_type' => $validatedData['offenseType']
+                'reason' => $validatedData['violationReason']
             ]);
 
             $violationForm->students()->attach($validatedData['studentsInvolve']);
@@ -76,6 +83,13 @@ class RequestFormsLivewire extends Component
         }
         $this->showToast('success', 'Request Form is Submitted Successfully');
         $this->resetFields();
+
+        Notifications::create([
+            'from_user' => $this->teacher_id,
+            'to_user' => 3,
+            'message' => "I request a $type"
+        ]);
+        NewNotification::dispatch();
     }
 
     public function read($type, $id)
@@ -92,7 +106,7 @@ class RequestFormsLivewire extends Component
         $this->studentsInvolve = null;
         $this->selectedStudent = null;
         $this->homeVisitationReason = null;
-        $this->offenseType = null;
+        $this->violationReason = null;
         $this->violationForm = null;
         $this->homeVisitationForm = null;
         $this->resetErrorBag();

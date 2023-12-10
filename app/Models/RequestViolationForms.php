@@ -11,7 +11,7 @@ class RequestViolationForms extends Model
     protected $table = 'request_violation_forms';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'request_form_id', 'offense_type'
+        'request_form_id', 'reason'
     ];
 
     public function requestForm()

@@ -86,8 +86,8 @@
                 <div class="col-md-12">
                     <div style="display: flex; flex-direction: column;">
                         <div class="input-group d-flex justify-content-end">
-                            <!--ROLE DROPDOWN BUTTON-->
-                            <div class="dropdown" style="margin-bottom: 1rem;">
+
+                            {{-- <div class="dropdown" style="margin-bottom: 1rem;">
                                 <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: #252525; font-size: 12px;" type="button">
                                     Agenda
                                 </button>
@@ -97,11 +97,11 @@
                                     <a class="dropdown-item" href="#" x-on:click='showCalendar=true'>Month</a>
                                     <a class="dropdown-item" href="#" x-on:click='showCalendar=false'>Agenda</a>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <!--ADD BUTTON-->
                             @if (in_array('AddGuidanceProgram', $privileges))
-                                <button class="btn btn-default" data-target="#add-event" data-toggle="modal" style="width: 100px; height: 30px; margin-left: 10px; background-color: #0A0863; color: white; font-size: 12px;">
+                                <button class="btn btn-default" data-target="#add-event" id="btn-AddEvent" data-toggle="modal" style="width: 100px; height: 30px; margin-left: 10px; background-color: #0A0863; color: white; font-size: 12px;">
                                     <i class="fa fa-solid fa-plus"></i> Add Event
                                 </button>
                             @endif
@@ -139,7 +139,7 @@
 
         Livewire.on('addEvent', (data) => {
             $("#add-event").modal('show');
-            $('.multiple-select-optgroup-clear-field').val(data[0]).trigger('change');
+            users = data[0];
         });
 
         Livewire.on('selectedUsers', (data) => {

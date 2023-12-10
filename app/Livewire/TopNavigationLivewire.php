@@ -20,7 +20,7 @@ class TopNavigationLivewire extends Component
         $this->user_id = session('user_id');
         if ($this->user_id) {
             $user = UserAccounts::find($this->user_id);
-            $this->role = $user->getRole->role;
+            $this->role = $user->role;
             $this->first_name = $user->first_name;
             $this->profile_picture_id = $user->profile_picture_id;
             $this->my_id = $user->id;
@@ -45,7 +45,7 @@ class TopNavigationLivewire extends Component
 
     public function readAll()
     {
-        Notifications::query()->update([
+        Notifications::where('to_user', $this->my_id)->update([
             'is_read' => true
         ]);
     }

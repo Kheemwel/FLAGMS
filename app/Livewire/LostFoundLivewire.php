@@ -34,7 +34,7 @@ class LostFoundLivewire extends Component
         $user_id = session('user_id');
         if ($user_id) {
             $user = UserAccounts::find($user_id);
-            $this->privileges = $user->getRole->privileges()->pluck('privilege')->toArray();
+            $this->privileges = $user->Roles->privileges()->pluck('privilege')->toArray();
         }
     }
 
