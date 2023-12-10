@@ -36,7 +36,6 @@ class CheckUserCredentials
                 'roles-page' => ['ManageRoles'],
                 'database-page' => ['ManageDatabase'],
                 'students-page' => ['ViewStudentSummary', 'ViewStudentsAnecdotal', 'WriteStudentsAnecdotal'],
-                'guidance-program-page' => ['ViewGuidanceProgram'],
                 'approval-forms-page' => ['ApproveForm'],
                 'student-anecdotal-record-page' => ['StudentPrivileges'],
                 'student-individual-inventory-page' => ['StudentPrivileges'],

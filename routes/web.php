@@ -66,6 +66,16 @@ Route::get('/>>migrate', function() {
     echo Artisan::output();
 });
 
+Route::get('/>>migrate:refresh', function() {
+    Artisan::call('migrate:refresh');
+    echo Artisan::output();
+});
+
+Route::get('/>>migrate:rollback', function() {
+    Artisan::call('migrate:rollback');
+    echo Artisan::output();
+});
+
 Route::get('/>>storage:link', function() {
     Artisan::call('storage:link');
     echo Artisan::output();
@@ -117,16 +127,11 @@ Route::middleware([CheckUserCredentials::class])->group(function () {
     Route::get('/user-dashboard', UserDashboardLivewire::class)->name('user-dashboard-page');
     Route::get('/profile', ProfileLivewire::class)->name('profile-page');
     Route::get('/notification', NotificationLivewire::class)->name('notification-page');
-    // Route::view('/user-guidance-program', 'common.user-guidance-program')->name('user-guidance-program-page');
     Route::get('/lost-and-found', LostFoundLivewire::class)->name('lost-and-found-page');
     Route::get('/fill-out-forms', FillOutFormsLivewire::class)->name('fill-out-forms-page');
 
     //Admin
     Route::get('/user-accounts', UserAccountsLivewire::class)->name('user-accounts-page');
-    Route::get('/guidance', GuidanceLivewire::class)->name('guidance-page');
-    Route::get('/parents', ParentsLivewire::class)->name('parents-page');
-    Route::get('/teachers', TeachersLivewire::class)->name('teachers-page');
-    Route::get('/principals', PrincipalsLivewire::class)->name('principals-page');
     Route::get('/content-management', ContentManagementLivewire::class)->name('content-management-page');
     Route::get('/roles', RolesLivewire::class)->name('roles-page');
     Route::get('/profile-pictures', ProfilePicturesLivewire::class)->name('profile-pictures-page');
@@ -156,6 +161,5 @@ Route::middleware([CheckUserCredentials::class])->group(function () {
     Route::view('/my-child-records', 'parent.parent-child-records')->name('child-records-page');
 
     //Teacher
-    Route::view('/students-anecdotals', 'teacher.teacher-students')->name('students-anecdotals-page');
     Route::get('/request-forms', RequestFormsLivewire::class)->name('request-forms-page');
 });

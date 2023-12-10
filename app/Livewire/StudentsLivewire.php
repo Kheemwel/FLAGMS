@@ -50,7 +50,7 @@ class StudentsLivewire extends Component
 
     public function render()
     {
-        return view('livewire.users.students.students-livewire');
+        return view('livewire.students.students-livewire');
     }
 
     public function updatedStudentSignature($value)

@@ -229,11 +229,11 @@
             </div>
         </div>
     </div>
-    @include('livewire.users.students.anecdotal-window')
-    @include('livewire.users.students.summary-window')
-    @include('livewire.users.students.edit-student')
-    @include('livewire.users.students.student-signature')
-    @include('livewire.users.students.guardian-signature')
+    @include('livewire.students.anecdotal-window')
+    @include('livewire.students.summary-window')
+    @include('livewire.students.edit-student')
+    @include('livewire.students.student-signature')
+    @include('livewire.students.guardian-signature')
 </div> <!-- /.card-body -->
 
 @section('scripts')

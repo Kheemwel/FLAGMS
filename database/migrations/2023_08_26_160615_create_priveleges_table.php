@@ -201,10 +201,6 @@ return new class extends Migration
                 'is_exclusive' => 0
             ],
             [
-                'privilege' => 'ViewGuidanceProgram',
-                'is_exclusive' => 0
-            ],
-            [
                 'privilege' => 'ViewOnlyFoundtItems',
                 'is_exclusive' => 0
             ],
