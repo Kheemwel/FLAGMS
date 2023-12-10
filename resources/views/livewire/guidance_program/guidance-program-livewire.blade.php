@@ -86,8 +86,8 @@
                 <div class="col-md-12">
                     <div style="display: flex; flex-direction: column;">
                         <div class="input-group d-flex justify-content-end">
-                            <!--ROLE DROPDOWN BUTTON-->
-                            <div class="dropdown" style="margin-bottom: 1rem;">
+
+                            {{-- <div class="dropdown" style="margin-bottom: 1rem;">
                                 <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color: white; color: #252525; font-size: 12px;" type="button">
                                     Agenda
                                 </button>
@@ -97,7 +97,7 @@
                                     <a class="dropdown-item" href="#" x-on:click='showCalendar=true'>Month</a>
                                     <a class="dropdown-item" href="#" x-on:click='showCalendar=false'>Agenda</a>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <!--ADD BUTTON-->
                             @if (in_array('AddGuidanceProgram', $privileges))

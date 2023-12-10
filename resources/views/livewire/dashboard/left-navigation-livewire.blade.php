@@ -71,38 +71,6 @@
                         </a>
                     </li>
                 @endif
-
-                {{-- <li class="nav-item">
-                    <a class="nav-link  nav-link-button" href="#">
-                        <iconify-icon icon="fa6-solid:users" style="color: #252525;"></iconify-icon>
-                        <p style="color: #252525;">
-                            Users
-                            <i class="right fas fa-angle-left" style="color: #252525;"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a class="nav-link nav-link-button {{ setActiveLink('guidance-page') }}" href="{{ route('guidance-page') }}">
-                                <p style="color: #252525;">Guidance</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-link-button {{ setActiveLink('parents-page') }}" href="{{ route('parents-page') }}">
-                                <p style="color: #252525;">Parents</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-link-button {{ setActiveLink('teachers-page') }}" href="{{ route('teachers-page') }}">
-                                <p style="color: #252525;">Teachers</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-link-button {{ setActiveLink('principals-page') }}" href="{{ route('principals-page') }}">
-                                <p style="color: #252525;">Principals</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li> --}}
                 @if (!empty(array_intersect($privileges, ['ManageRoles', 'ManageDatabase'])))
                     <li class="nav-item">
                         <a class="nav-link  nav-link-button" href="#">

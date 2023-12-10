@@ -67,7 +67,7 @@ class UserAccountsImport implements ToModel, WithBatchInserts, WithProgressBar
         }
 
         if ($user->role === 'Principal') {
-            $position_id = $row[6];
+            $position_id = $row[5];
             Principals::create([
                 'user_account_id' => $user->id,
                 'principal_position_id' => $position_id
