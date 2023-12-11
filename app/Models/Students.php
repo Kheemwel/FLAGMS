@@ -51,7 +51,7 @@ class Students extends Model
 
     public function parentName()
     {
-        return $this->parents()->first() ? $this->parents()->first()->name() : '';
+        return $this->parents()->first() ? $this->parents()->first()->name : '';
     }
 
     public function hasParentRelationship() : HasMany

@@ -13,6 +13,9 @@ class Parents extends Model
     use HasFactory;
     protected $table = 'parents';
     protected $primaryKey = 'id';
+
+    protected $appends = ['name'];
+    
     protected $fillable = [
         'user_account_id'
     ];
@@ -32,8 +35,8 @@ class Parents extends Model
         return $this->hasMany(ParentAndChild::class, 'parent_id');
     }
 
-    public function name()
+    public function getNameAttribute()
     {
-        return $this->getUserAccount->getNameAttribute();
+        return $this->getUserAccount->name;
     }
 }

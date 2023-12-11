@@ -1,7 +1,7 @@
 <div class="modal fade" data-backdrop="static" id="read-request-form" style="max-width: 100%;" wire:ignore.self>
     <div class="modal-dialog">
         <div class="modal-content">
-            <div wire:loading wire:target='read'>
+            <div wire:loading wire:target='read, approveRequest'>
                 <div class="overlay bg-white">
                     <i class="fas fa-3x fa-sync-alt fa-spin"></i>
                 </div>
@@ -11,12 +11,6 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            {{-- @if ($homeVisitationForm)
-                <form wire:submit.prevent='approveHomeVisitationForm()'>
-                @elseif($violationForm)
-                    <form wire:submit.prevent='approveViolationForm()'>
-            @endif --}}
-
             <form>
                 @if ($homeVisitationForm)
                     <div class="modal-body" style="margin-left: 1rem; margin-right: 1rem; max-height: 500px; overflow-y: auto; text-align: left;">

@@ -213,8 +213,8 @@
 
                         <div class="row">
                             <div class="form-group col-sm-6" style=" color: #252525; text-align: center; margin-top: 3rem;">
-                                <p style="font-size: 18px; text-decoration: overline;">SHERYL FERRERAS-FAX, MAEd</p>
-                                <p style="font-size: 16px;">Junior High School Principal</p>
+                                <p style="font-size: 18px; text-decoration: overline;">JOSEPHINE G. AMADOR</p>
+                                <p style="font-size: 16px;">GUIDANCE ADVOCATE</p>
                             </div>
                             <div class="form-group col-sm-6" style=" color: #252525; text-align: center; margin-top: 3rem;">
                                 <p style="font-size: 18px; text-decoration: overline;">ROSAHLE S. PAGADORA, MS

@@ -185,35 +185,6 @@
                 </div>
             @endif
         @endforeach
-
-
-        {{-- <div class="col-lg-12">
-            <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); border-radius: 10px; display: flex; flex-direction: row; margin-left: 5px; margin-right: 5px;">
-                <table cellpadding="20px" cellspacing="10px" style="width: 100%;">
-                    <tr>
-                        <td rowspan="2" style="width: 10%;">
-                            <img alt="user profile" src="images/user-req.png" style="align-self: center;">
-                        </td>
-                        <td style="vertical-align: top;" style="width: 70%;">
-                            <label style="font-size: 18px; line-height: 5%;">Liam Anderson</label> <br>
-                            <label style="font-size: 14px;">Tuesday, June 20 at 9:00AM</label>
-                        </td>
-                        <td style="vertical-align: top;" style="width: 20%;">
-                            <label style="font-size: 24px; margin-top: 1rem; color: #3C58FF; float: left; ">COMPLETE</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="vertical-align: top; width: 70%;"><label style="font-size: 28px; margin-top: 1rem;">Home Visitation Form</label></td>
-                        <td style=" vertical-align: bottom; width: 20%;">
-                            <!--READ BUTTON-->
-                            <button class="btn btn-default" data-target="#read-home-visitation-form" data-toggle="modal" style="color: white; background-color: #080743; font-size: 14px; width: 80px; margin-right: 1rem;">Read</button>
-                            <!--FILL OUT BUTTON-->
-                            <button class="btn btn-default" data-target="#fill-home-visitation-form" data-toggle="modal" style="color: white; background-color: #080743; font-size: 14px; width: 80px;">Fill Out</button>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div> --}}
     </div>
 
     @include('livewire.fill_out_forms.filter')
@@ -221,4 +192,5 @@
     @include('livewire.fill_out_forms.fill-violation-form')
     @include('livewire.fill_out_forms.read-home-visitation-form')
     @include('livewire.fill_out_forms.fill-home-visitation-form')
+    @include('livewire.fill_out_forms.add-signature')
 </div>
