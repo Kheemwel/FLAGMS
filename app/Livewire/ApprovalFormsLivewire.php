@@ -70,7 +70,7 @@ class ApprovalFormsLivewire extends Component
         $this->showToast('success', "Requested $this->selectedRequestFormType is Approved Successfully");
         $this->resetFields();
 
-        $this->notify($request->teacher->user_account_id, "Your requested $request->form_type is disapproved");
+        $this->notify($request->teacher->user_account_id, "Your requested $request->form_type is approved");
 
         redirect()->route('guidance-program-page', ['private_schedule' => [
             'users' => $users,
@@ -92,7 +92,7 @@ class ApprovalFormsLivewire extends Component
         $this->showToast('success', "Requested Home Visitation Form is Disapproved Successfully");
         $this->resetFields();
 
-        $this->notify($request->teacher->user_account_id, "Your requested $request->form_type is approved");
+        $this->notify($request->teacher->user_account_id, "Your requested $request->form_type is disapproved");
     }
 
     public function notify($teacher_id, $message)

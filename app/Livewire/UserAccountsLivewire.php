@@ -90,7 +90,7 @@ class UserAccountsLivewire extends Component
     }
 
     public function render()
-    { 
+    {
         return view('livewire.user_accounts.user-accounts-livewire',);
     }
 
@@ -100,21 +100,21 @@ class UserAccountsLivewire extends Component
         $query_archives = UserAccounts::with('Roles')->where('is_archive', true);
 
         if (!empty($this->allowedRoles)) {
-            $query_normal->whereHas('Roles', function($sub) {
+            $query_normal->whereHas('Roles', function ($sub) {
                 $sub->whereIn('role', $this->allowedRoles);
             });
-            $query_archives->whereHas('Roles', function($sub) {
+            $query_archives->whereHas('Roles', function ($sub) {
                 $sub->whereIn('role', $this->allowedRoles);
             });
         }
-        
+
         $this->users = $query_normal->orderBy('id', 'asc')->get();
         $this->archived_users = $query_archives->orderBy('id', 'asc')->get();
         $this->dispatch('refreshSelectedRows', $this->users, $this->archived_users, $this->students);
     }
 
     public function loadStudents()
-    {   
+    {
         $this->students = Students::whereHas('getUserAccount', function ($query) {
             // Filter students where the associated user account is not archived
             $query->where('is_archive', false);
@@ -203,18 +203,18 @@ class UserAccountsLivewire extends Component
                 'profile_picture_id' => $profile_picture_id,
                 'email' => $validatedData['email']
             ]);
+
+            if ($user->email) {
+                try {
+                    Mail::to($user->email)->send(new AccountCreationMail($user->password));
+                } catch (Throwable $th) {
+                    Log::error($th->getMessage());
+                    $this->showToast('error', 'Failed to Send User Credentials to Email');
+                }
+            }
         } catch (Throwable $th) {
             Log::error($th->getMessage());
             $this->showToast('error', 'Failed to Add User');
-        }
-
-        if ($user->email) {
-            try {
-                Mail::to($user->email)->send(new AccountCreationMail($user->password));
-            } catch (Throwable $th) {
-                Log::error($th->getMessage());
-                $this->showToast('error', 'Failed to Send User Credentials to Email');
-            }
         }
 
         $this->loadAccounts();

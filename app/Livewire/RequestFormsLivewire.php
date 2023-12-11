@@ -20,6 +20,7 @@ class RequestFormsLivewire extends Component
     public $studentsInvolve, $selectedStudent;
     public $violationReason, $homeVisitationReason;
     public $pending_requestforms, $approved_requestforms, $disapproved_requestforms, $violationForm, $homeVisitationForm;
+    public $guidanceIDs = [];
     public function mount()
     {
         // dd(RequestForms::find(1)->teacher_name);
@@ -32,6 +33,10 @@ class RequestFormsLivewire extends Component
         if ($id) {
             $this->teacher_id = UserAccounts::find($id)->hasTeacher->id;
         }
+
+        $this->guidanceIDs = UserAccounts::with('Roles')->where('is_archive', false)->whereHas('Roles', function ($sub) {
+            $sub->whereIn('role', ['Guidance', 'Admin', 'SuperAdmin']);
+        })->get()->pluck('id')->toArray();
     }
 
     public function render()
@@ -84,11 +89,13 @@ class RequestFormsLivewire extends Component
         $this->showToast('success', 'Request Form is Submitted Successfully');
         $this->resetFields();
 
-        Notifications::create([
-            'from_user' => $this->teacher_id,
-            'to_user' => 3,
-            'message' => "I request a $type"
-        ]);
+        foreach ($this->guidanceIDs as $id) {
+            Notifications::create([
+                'from_user' => $this->teacher_id,
+                'to_user' => $id,
+                'message' => "I request a $type"
+            ]);
+        }
         NewNotification::dispatch();
     }
 

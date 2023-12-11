@@ -1,7 +1,7 @@
 <!--USER INFORMATION FORM MODAL-->
-<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="addUserModal" role='dialog' style="max-width: 100%;" wire:ignore.self x-data="{ role: @entangle('role') }">
+<div aria-hidden="true" aria-labelledby="myModalLabel" data-backdrop="static" class="modal fade" id="addUserModal" role='dialog' style="max-width: 100%;" wire:ignore.self x-data="{ role: @entangle('role') }">
     <div class="modal-dialog">
-        <div class="modal-content" x-on:click.outside="role = ''">
+        <div class="modal-content">
             <div wire:loading wire:target='addStudent, addParent, addPrincipal, addGuidance, addTeacher, addUser'>
                 <div class="overlay bg-white" style="border-radius: 20px;">
                     <div>
@@ -76,11 +76,11 @@
                         </div>
                     </div>
                     <!--PASSWORD-->
-                    <div class="row" x-data="passwordInput">
+                    <div class="row" x-data="{ password: @entangle('password'), ...passwordInput}">
                         <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
                             <label for="inputUsername" style="font-weight: normal;">Password</label>
                             <div class="input-group col-sm-13" style="font-size: 14px; color: #252525; border: 1px solid #252525; border-radius: 5px; padding-right: 5px;">
-                                <input class="form-control" id="input-pass" maxlength="255" minlength="6" name="password" placeholder="Password" required style="border: none" wire:model="password" x-bind:type="show ? 'text' : 'password'" x-model="password">
+                                <input class="form-control" maxlength="255" minlength="6" name="password" placeholder="Password"  required style="border: none" x-bind:type="show ? 'text' : 'password'" x-model='password' x-ref="password">
                                 <div class="input-group-append d-flex align-items-center">
                                     <i class="fa" x-bind:class="show ? 'fa-eye-slash' : 'fa-eye'" x-on:click="show = !show"></i>
                                 </div>
