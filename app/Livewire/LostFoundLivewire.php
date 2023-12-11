@@ -186,11 +186,11 @@ class LostFoundLivewire extends Component
     public function claimItem()
     {
         $validateData = $this->validate([
-            'claimed_datetime' => Rule::requiredIf($this->is_claimed) . '|date',
-            'claimer_name' => Rule::requiredIf($this->is_claimed) . '|string|max:255',
-            'claimer_contact' => Rule::requiredIf($this->is_claimed) . '|regex:/^\d{11}$/|max:11',
-            'claimer_email' => Rule::requiredIf($this->is_claimed) . '|email',
-            'claimer_address' => Rule::requiredIf($this->is_claimed) . '|string|max:255',
+            'claimed_datetime' => 'required|date',
+            'claimer_name' => 'required|string|max:255',
+            'claimer_contact' => 'required|regex:/^\d{11}$/|max:11',
+            'claimer_email' => 'required|email',
+            'claimer_address' => 'required|string|max:255',
         ]);
 
         LostAndFound::find($this->item_id)->update([
