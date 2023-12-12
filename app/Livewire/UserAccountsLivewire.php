@@ -18,8 +18,10 @@ use App\Models\Teachers;
 use App\Models\UserAccounts;
 use App\Traits\SortTable;
 use App\Traits\Toasts;
+use Illuminate\Support\Benchmark;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -32,37 +34,34 @@ class UserAccountsLivewire extends Component
     use Toasts;
     use SortTable;
     use WithFileUploads;
-    use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $user_id, $name, $first_name, $last_name, $password, $hashed_password, $email;
+    public $user_id, $name, $first_name, $last_name, $password, $email;
     public $roles, $role_id, $role;
     public $profile_picture_id, $profile_picture;
     public $school_levels, $grade_levels, $school_level, $grade_level, $lrn;
     public $principal_positions, $principal_position;
     public $students, $selectedStudents;
     public $parents, $children;
-    public $total_login, $last_login;
-    public $batch_file;
+    public $total_login, $last_login, $user_is_archive;
+    public $batch_file, $file_name;
     public $search = '', $filterRole;
     public $per_page = 30;
     public $my_id;
     public $privileges = [];
 
     public $allowedRoles = [];
-
-    protected $listeners = ['setSelectedStudents'];
     public $users, $archived_users;
-
     public function mount()
     {
-        $this->school_levels = SchoolLevels::all();
+        $this->school_levels = SchoolLevels::select('school_level')->get();
         $this->grade_levels = GradeLevels::all();
-        $this->principal_positions = PrincipalPositions::all();
+
+        $this->principal_positions = PrincipalPositions::select('position')->get();
 
         $this->my_id = session('user_id');
         if ($this->my_id) {
             $user = UserAccounts::find($this->my_id);
-            $this->privileges = $user->getRole->privileges()->pluck('privilege')->toArray();
+            $this->privileges = $user->Roles->privileges()->pluck('privilege')->toArray();
         }
 
         if (in_array('ViewGuidanceAccounts', $this->privileges)) {
@@ -84,98 +83,49 @@ class UserAccountsLivewire extends Component
             $this->allowedRoles = Roles::get()->pluck('role')->toArray();
         }
 
-        $this->roles = Roles::whereIn('role', $this->allowedRoles)->get();
+        $this->roles = Roles::whereIn('role', $this->allowedRoles)->select('id', 'role')->get();
+
+        $this->loadAccounts();
+        $this->loadStudents();
     }
 
     public function render()
     {
-        $this->loadAccounts();
-        return view('livewire.user_accounts.user-accounts-livewire', ['users' => $this->users, 'archived_users' => $this->archived_users]);
+        return view('livewire.user_accounts.user-accounts-livewire',);
     }
 
     public function loadAccounts()
+    {
+        $query_normal = UserAccounts::with('Roles')->where('is_archive', false);
+        $query_archives = UserAccounts::with('Roles')->where('is_archive', true);
+
+        if (!empty($this->allowedRoles)) {
+            $query_normal->whereHas('Roles', function ($sub) {
+                $sub->whereIn('role', $this->allowedRoles);
+            });
+            $query_archives->whereHas('Roles', function ($sub) {
+                $sub->whereIn('role', $this->allowedRoles);
+            });
+        }
+
+        $this->users = $query_normal->orderBy('id', 'asc')->get();
+        $this->archived_users = $query_archives->orderBy('id', 'asc')->get();
+        $this->dispatch('refreshSelectedRows', $this->users, $this->archived_users, $this->students);
+    }
+
+    public function loadStudents()
     {
         $this->students = Students::whereHas('getUserAccount', function ($query) {
             // Filter students where the associated user account is not archived
             $query->where('is_archive', false);
         })->get();
-        $query_normal = UserAccounts::join('roles', 'user_accounts.role_id', '=', 'roles.id')
-            ->select('user_accounts.*', 'roles.role as role', DB::raw("CONCAT(first_name, ' ', last_name) as name"))
-            ->where('is_archive', false);
-        $query_archives = UserAccounts::join('roles', 'user_accounts.role_id', '=', 'roles.id')
-            ->select('user_accounts.*', 'roles.role as role', DB::raw("CONCAT(first_name, ' ', last_name) as name"))
-            ->where('is_archive', true);
 
-        if (!empty($this->allowedRoles)) {
-            $query_normal->whereIn('role', $this->allowedRoles);
-            $query_archives->whereIn('role', $this->allowedRoles);
-        }
-
-        $this->filterRole = $this->filterRole == 'All' ? '' : $this->filterRole;
-        if (!empty($this->filterRole)) {
-            $query_normal->where('role', $this->filterRole);
-            $query_archives->where('role', $this->filterRole);
-        }
-
-        if ($this->search) {
-            // Apply search condition only to unarchived users
-            $query_normal->where(function ($query) {
-                $query->where('first_name', 'like', '%' . $this->search . '%')
-                    ->orWhere('last_name', 'like', '%' . $this->search . '%')
-                    ->orWhere('email', 'like', '%' . $this->search . '%')
-                    ->orWhere('role', 'like', '%' . $this->search . '%');
-            });
-
-            // Apply search condition only to archived users
-            $query_archives->where(function ($query) {
-                $query->where('first_name', 'like', '%' . $this->search . '%')
-                    ->orWhere('last_name', 'like', '%' . $this->search . '%')
-                    ->orWhere('email', 'like', '%' . $this->search . '%')
-                    ->orWhere('role', 'like', '%' . $this->search . '%');
-            });
-        }
-
-        if ($this->school_level) {
-            $grade_levels = SchoolLevels::where('school_level', $this->school_level)->first();
-            $this->grade_levels = $grade_levels->gradeLevels;
-        }
-
-        if ($this->grade_level and !$this->school_level) {
-            $school_level = GradeLevels::where('grade_level', $this->grade_level)->first();
-            $this->school_level = $school_level->hasSchoolLevel->schoolLevel->school_level;
-        }
-
-        $query_normal = $query_normal->orderBy($this->sortField, $this->sortDirection)->paginate($this->per_page);
-        $this->users = [
-            'items' => $query_normal->items(),
-            'perPage' => $query_normal->perPage(),
-            'currentPage' => $query_normal->currentPage(),
-            'lastPage' => $query_normal->lastPage(),
-            'total' => $query_normal->total(),
-            'links' => $query_normal->links('components.pagination')->toHtml()
-        ];
-
-        $query_archives = $query_archives->orderBy($this->sortField, $this->sortDirection)->paginate($this->per_page);
-        $this->archived_users = [
-            'items' => $query_archives->items(),
-            'perPage' => $query_archives->perPage(),
-            'currentPage' => $query_archives->currentPage(),
-            'lastPage' => $query_archives->lastPage(),
-            'total' => $query_archives->total(),
-            'links' => $query_archives->links('components.pagination')->toHtml()
-        ];
+        $this->dispatch('loadStudents', $this->students);
     }
 
-    public function updatedRole($value)
+    public function updatedBatchFile($file)
     {
-        if ($value == 'Parent') {
-            $this->dispatch('parentForm');
-        }
-    }
-
-    public function setSelectedStudents($value)
-    {
-        $this->selectedStudents = $value;
+        $this->file_name = $this->batch_file->getClientOriginalName();
     }
 
     public function import()
@@ -190,15 +140,19 @@ class UserAccountsLivewire extends Component
 
         try {
             Excel::import(new UserAccountsImport, $this->batch_file);
-        } catch (Throwable $th) {
-            $this->showToast('error', $th->getMessage());
-        }
 
-        // Add any additional logic or feedback messages here
-        $this->showToast('success', 'Users Are Added Successfully');
+            // Add any additional logic or feedback messages here
+            $this->showToast('success', 'Users Are Added Successfully');
+            $this->loadAccounts();
+            $this->loadStudents();
+        } catch (Throwable $th) {
+            Log::error($th->getMessage());
+            $this->showToast('error', 'Failed to import user accounts');
+        }
 
         // Clear the file input field
         $this->batch_file = null;
+        $this->file_name = null;
     }
 
     public function export()
@@ -244,24 +198,26 @@ class UserAccountsLivewire extends Component
             $user = UserAccounts::create([
                 'first_name' => $validatedData['first_name'],
                 'last_name' => $validatedData['last_name'],
-                'password' => $validatedData['password'],
-                'hashed_password' => $validatedData['hashed_password'],
+                'password' => $validatedData['hashed_password'],
                 'role_id' => $role_id->id,
                 'profile_picture_id' => $profile_picture_id,
                 'email' => $validatedData['email']
             ]);
-        } catch (Throwable $th) {
-            $this->showToast('error', $th->getMessage());
-        }
 
-        if ($user->email) {
-            try {
-                Mail::to($user->email)->send(new AccountCreationMail($user->password));
-            } catch (Throwable $th) {
-                $this->showToast('error', $th->getMessage());
+            if ($user->email) {
+                try {
+                    Mail::to($user->email)->send(new AccountCreationMail($user->password));
+                } catch (Throwable $th) {
+                    Log::error($th->getMessage());
+                    $this->showToast('error', 'Failed to Send User Credentials to Email');
+                }
             }
+        } catch (Throwable $th) {
+            Log::error($th->getMessage());
+            $this->showToast('error', 'Failed to Add User');
         }
 
+        $this->loadAccounts();
         return $user;
     }
 
@@ -275,8 +231,10 @@ class UserAccountsLivewire extends Component
         }
     }
 
-    public function addStudent()
+    public function addStudent($schoolLevel, $gradeLevel)
     {
+        $this->school_level = $schoolLevel;
+        $this->grade_level = $gradeLevel;
         $rules = [
             'school_level' => 'required',
             'grade_level' => 'required',
@@ -297,17 +255,20 @@ class UserAccountsLivewire extends Component
                     'lrn' => $this->lrn,
                 ]);
             } catch (Throwable $th) {
-                $this->showToast('error', $th);
+                Log::error($th->getMessage());
+                $this->showToast('error', 'Failed to Add Student');
             }
             $this->showToast('success', 'Student Added Successfully');
+            $this->loadStudents();
             $this->resetInputFields();
         }
     }
 
-    public function addParent()
+    public function addParent($selectedStudents)
     {
+        $this->selectedStudents = $selectedStudents;
         $rules = [
-            'selectedStudents' => 'required'
+            'selectedStudents' => 'required|array|min:1'
         ];
         $user = $this->store($rules);
         if ($user) {
@@ -409,26 +370,26 @@ class UserAccountsLivewire extends Component
             'first_name' => $validatedData['first_name'],
             'last_name' => $validatedData['last_name'],
             'email' => $validatedData['email'],
-            'password' => $validatedData['password'],
-            'hashed_password' => $validatedData['hashed_password'],
+            'password' => $validatedData['hashed_password'],
             'role_id' => $role_id->id,
             'profile_picture_id' => $this->profile_picture_id
         ]);
 
         $this->showToast('success', 'User Updated Successfully');
+        $this->dispatch('closeModals');
         $this->resetInputFields();
+        $this->loadAccounts();
     }
-
 
     public function resetInputFields()
     {
         $this->first_name = null;
         $this->last_name = null;
         $this->password = null;
-        $this->hashed_password = null;
         $this->role = null;
         $this->profile_picture = null;
         $this->email = null;
+        $this->user_is_archive = null;
         $this->school_level = null;
         $this->grade_level = null;
         $this->lrn = null;
@@ -445,14 +406,13 @@ class UserAccountsLivewire extends Component
         $this->first_name = $user->first_name;
         $this->last_name = $user->last_name;
         $this->name = $user->name;
-        $this->password = $user->password;
-        $this->hashed_password = $user->hashed_password;
         $this->email = $user->email;
         $this->role_id = $user->role_id;
-        $this->role = $user->getRole->role;
+        $this->role = $user->role;
         $this->profile_picture_id = $user->profile_picture_id;
         $this->total_login = $user->total_login;
         $this->last_login = $user->last_login;
+        $this->user_is_archive = $user->is_archive;
 
         if ($this->role == 'Student') {
             $student = Students::where('user_account_id', $this->user_id)->first();
@@ -481,7 +441,7 @@ class UserAccountsLivewire extends Component
     {
         $user = UserAccounts::find($this->user_id);
         if ($user && $user->is_archive) {
-            $role = $user->getRole->role;
+            $role = $user->role;
             if ($role == 'Guidance') {
                 $user->hasGuidance()->delete();
             } elseif ($role == 'Student') {
@@ -498,6 +458,8 @@ class UserAccountsLivewire extends Component
             $user->delete();
             $user->getProfilePicture()->delete();
             $this->showToast('success', 'User Deleted Successfully');
+            $this->dispatch('closeModals');
+            $this->loadAccounts();
         }
     }
 
@@ -511,9 +473,9 @@ class UserAccountsLivewire extends Component
         }
     }
 
-    public function archive($id)
+    public function archive()
     {
-        $user = UserAccounts::find($id);
+        $user = UserAccounts::find($this->user_id);
 
         if (!$user->is_archive) {
             $user->update([
@@ -522,13 +484,15 @@ class UserAccountsLivewire extends Component
             ]);
 
             $this->showToast('success', 'User Archived Successfully');
+            $this->dispatch('closeModals');
+            $this->loadAccounts();
         }
     }
 
-    public function unArchive($id)
+    public function unArchive()
     {
 
-        $user = UserAccounts::find($id);
+        $user = UserAccounts::find($this->user_id);
 
         if ($user->is_archive) {
             $user->update([
@@ -536,11 +500,40 @@ class UserAccountsLivewire extends Component
             ]);
 
             $this->showToast('success', 'User Unarchived Successfully');
+            $this->dispatch('closeModals');
+            $this->loadAccounts();
         }
     }
 
-    public function generatePassword()
+    public function markArchive($ids)
     {
-        $this->password = generatePassword();
+        $user = UserAccounts::whereIn('id', $ids)->where('is_archive', false);
+
+        $user->update([
+            'is_archive' => true,
+            'archived_at' => now(), // Set 'archived_at' to the current date and time
+        ]);
+        $this->showToast('success', 'Selected Users Are Archived Successfully');
+        $this->loadAccounts();
+    }
+
+    public function markUnarchive($ids)
+    {
+        $user = UserAccounts::whereIn('id', $ids)->where('is_archive', true);
+
+        $user->update([
+            'is_archive' => false,
+            'archived_at' => now(), // Set 'archived_at' to the current date and time
+        ]);
+
+        $this->showToast('success', 'Selected Users Are Unarchived Successfully');
+        $this->loadAccounts();
+    }
+
+    public function deleteSelected($ids)
+    {
+        $user = UserAccounts::whereIn('id', $ids)->where('is_archive', true)->delete();
+        $this->showToast('success', 'Selected Users Are Deleted Successfully');
+        $this->loadAccounts();
     }
 }

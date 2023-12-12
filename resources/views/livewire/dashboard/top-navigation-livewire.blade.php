@@ -1,4 +1,4 @@
-<nav class="main-header navbar sticky-top navbar-expand navbar-white navbar-light" style="border-color: transparent; background-color: rgb(253, 253, 253); margin-right: 2rem;">
+<nav class="main-header navbar sticky-top navbar-expand navbar-white navbar-light" style="border-color: transparent; background-color: rgb(253, 253, 253);">
 
     <!-- Left navbar links -->
     <ul class="navbar-nav">
@@ -19,95 +19,30 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <!-- RIGHT HAND UPPER SIDE NAVIGATION -->
+        <div class="d-flex justify-content-center align-items-center">
+            <li class="nav-item mr-1 mt-2"data-toggle="modal" data-target="#user-guide">
+                <iconify-icon icon="icon-park-solid:help" class="mt-1" style="color: #252525; font-size: 24px;"></iconify-icon>
+            </li>
+        </div>
 
-        <!-- Notifications Dropdown Menu -->
-        <li class="nav-item dropdown" style="margin-right: 2rem;">
-            <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="far fa-bell"></i>
-                <span class="badge badge-warning navbar-badge">1</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" style="max-width: 500px; max-height: 300px; overflow-y: auto; overflow-x: hidden;">
-                <div style="display: flex; flex-direction: row; justify-content: space-between;">
-                    <span class="dropdown-header" style="font-size: 20px; text-align: left; color: #252525; font-weight: bold;">Notification</span>
-                    <span class="dropdown-header" style="font-size: 12px; color: #252525; cursor: pointer;">Mark all as read</span>
-                </div>
-
-                <!-- NOTIF CONTENT -->
-                <a class="dropdown-item" href="#" style="margin-bottom: 1rem;">
-                    <div style="display: flex; flex-direction: row; align-items: center;">
-                        <div>
-                            <img src="images/notif-profile.png" style="width: 50px; height: 50px;">
-                        </div>
-                        <div style="display: flex; flex-direction: column; margin-left: 10px; margin-right: 5rem;">
-                            <span class="text-sm">Val Dela Cruz</span>
-                            <span class="text-sm">Lorem ipsum dolor sit amet.</span>
-                            <span class="text-sm">June 14, 2023 at 10:00 AM</span>
-                        </div>
-                        <div style="display: flex; flex-direction: column; align-items: center; margin-right: 2rem;">
-                            <i class="fa fa-solid fa-circle" style="color: #3C58FF; font-size: 12px;"></i>
-                        </div>
-                    </div>
+        <div class="d-flex justify-content-center align-items-center">
+            <li class="nav-item">
+                <a class="nav-link ml-0 mt-1" href="{{ route('guidance-program-page') }}">
+                    <iconify-icon icon="bx:calendar" class=" text-center" style="color: #252525; font-size: 24px;"></iconify-icon>
+                    <span class="badge badge-primary navbar-badge">1</span>
                 </a>
-
-                <a class="dropdown-item" href="#" style="margin-bottom: 1rem;">
-                    <div style="display: flex; flex-direction: row; align-items: center;">
-                        <div>
-                            <img src="images/notif-profile.png" style="width: 50px; height: 50px;">
-                        </div>
-                        <div style="display: flex; flex-direction: column; margin-left: 10px; margin-right: 5rem;">
-                            <span class="text-sm">Val Dela Cruz</span>
-                            <span class="text-sm">Lorem ipsum dolor sit amet.</span>
-                            <span class="text-sm">June 14, 2023 at 10:00 AM</span>
-                        </div>
-                        <div style="display: flex; flex-direction: column; align-items: center; margin-right: 2rem;">
-                            <i class="fa fa-solid fa-circle" style="color: #3C58FF; font-size: 12px;"></i>
-                        </div>
-                    </div>
-                </a>
-                <a class="dropdown-item" href="#" style="margin-bottom: 1rem;">
-                    <div style="display: flex; flex-direction: row; align-items: center;">
-                        <div>
-                            <img src="images/notif-profile.png" style="width: 50px; height: 50px;">
-                        </div>
-                        <div style="display: flex; flex-direction: column; margin-left: 10px; margin-right: 5rem;">
-                            <span class="text-sm">Val Dela Cruz</span>
-                            <span class="text-sm">Lorem ipsum dolor sit amet.</span>
-                            <span class="text-sm">June 14, 2023 at 10:00 AM</span>
-                        </div>
-                        <div style="display: flex; flex-direction: column; align-items: center; margin-right: 2rem;">
-                            <i class="fa fa-solid fa-circle" style="color: #3C58FF; font-size: 12px;"></i>
-                        </div>
-                    </div>
-                </a>
-                <a class="dropdown-item" href="#" style="margin-bottom: 1rem;">
-                    <div style="display: flex; flex-direction: row; align-items: center;">
-                        <div>
-                            <img src="images/notif-profile.png" style="width: 50px; height: 50px;">
-                        </div>
-                        <div style="display: flex; flex-direction: column; margin-left: 10px; margin-right: 5rem;">
-                            <span class="text-sm">Val Dela Cruz</span>
-                            <span class="text-sm">Lorem ipsum dolor sit amet.</span>
-                            <span class="text-sm">June 14, 2023 at 10:00 AM</span>
-                        </div>
-                        <div style="display: flex; flex-direction: column; align-items: center; margin-right: 2rem;">
-                            <i class="fa fa-solid fa-circle" style="color: #3C58FF; font-size: 12px;"></i>
-                        </div>
-                    </div>
-                </a>
-
-                
-
-                <a class="btn" href="{{ route('notification-page') }}" style="background-color: #0A0863; color: white; margin-left: 1rem; margin-right: 1rem; width: 350px;">See All Notifications</a>
-            </div>
-
-        </li>
-
+            </li>
+        </div>
         
+
+
+        @include('livewire.dashboard.notification-menu')
+
         <!--Admin Profile-->
         <li class="nav-item">
-            <div class="image">
+            <div class="image mt-2 mr-2">
                 <a href="{{ route('profile-page') }}">
-                    <img alt="User Image" class="img-circle elevation-2" src="{{ $this->viewProfile() }}" width="30px" height="30px">
+                    <img alt="User Image" class="img-circle elevation-2" height="30px" src="{{ $this->viewProfile() }}" width="30px">
                 </a>
             </div>
         </li>

@@ -23,4 +23,24 @@ class StudentsAnecdotals extends Model
     {
         return $this->belongsTo(DisciplinaryActions::class, 'disciplinary_action_id');
     }
+
+    public function StudentSignature()
+    {
+        return $this->belongsTo(StudentAnecdotalSignatures::class, 'student_signature_id');
+    }
+
+    public function GuardianSignature()
+    {
+        return $this->belongsTo(GuardianAnecdotalSignatures::class, 'guardian_signature_id');
+    }
+
+    public function student_signature()
+    {
+        return $this->student_signature_id ? imageBinaryToSRC($this->StudentSignature->student_signature) : '';
+    }
+
+    public function guardian_signature()
+    {
+        return $this->guardian_signature_id ? imageBinaryToSRC($this->GuardianSignature->guardian_signature) : '';
+    }
 }

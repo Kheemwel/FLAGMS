@@ -10,7 +10,7 @@ use Livewire\Component;
 class RolesLivewire extends Component
 {
     use Toasts;
-    public $roles, $role, $selected_role, $selected_role_id;
+    public $roles, $role, $selected_role, $selected_role_id, $role_is_default;
     public $privileges, $selected_privileges = [];
     public $privilege_categories = ['Add', 'Edit',  'Delete', 'View', 'Archive', 'Manage', 'Export', 'Other'];
 
@@ -25,8 +25,9 @@ class RolesLivewire extends Component
         return view('livewire.file_management.roles.roles-livewire');
     }
 
-    public function addRole()
+    public function addRole($privileges)
     {
+        $this->selected_privileges = $privileges;
         $this->validate([
             'role' => 'required|max:255|unique:roles,role',
             'selected_privileges' => 'required|array|min:1'
@@ -43,24 +44,28 @@ class RolesLivewire extends Component
 
     public function getData($id)
     {
-        $role = Roles::find($id);
+        $role = $this->roles->find($id);
         $this->selected_role = $role;
         $this->role = $role->role;
         $this->selected_role_id = $role->id;
+        $this->role_is_default = $role->is_default;
         $this->selected_privileges = $role->privileges()->pluck('privilege_id')->toArray();
     }
 
-    public function updateRole()
+    public function updateRole($privileges)
     {
+        $this->selected_privileges = $privileges;
         $this->validate([
             'role' => 'required|max:255|unique:roles,role,' . $this->selected_role_id,
             'selected_privileges' => 'required|array|min:1'
         ]);
 
         $role = Roles::find($this->selected_role_id);
-        $role->update([
-            'role' => $this->role
-        ]);
+        if (!$role->is_default) {
+            $role->update([
+                'role' => $this->role
+            ]);
+        }
         $role->privileges()->sync($this->selected_privileges);
 
         $this->showToast('success', 'Role Updated Successfully');

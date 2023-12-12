@@ -20,6 +20,7 @@
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <!-- Theme style -->
     <link href="adminLTE-3.2/dist/css/adminlte.min.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
 
 
     <style>
@@ -117,6 +118,8 @@
     <script src="adminLTE-3.2/plugins/toastr/toastr.min.js"></script>
     {{-- For Tooltip --}}
     <script src="adminLTE-3.2/plugins/popper/popper.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 
     @yield('head-scripts')
 </head>
@@ -127,6 +130,7 @@
         @livewire('left-navigation-livewire')
         @livewire('top-navigation-livewire')
         {{ $slot }}
+        @include('components.layouts.user-guide')
     </div>
     <footer class="main-footer">
         <div class="float-right d-none d-sm-block">
@@ -141,12 +145,27 @@
         reserved.
     </footer>
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar">
-        <!-- Control sidebar content goes here -->
-    </aside>
     @livewireScripts()
     <script>
+        document.addEventListener("alpine:init", () => {
+            Alpine.data('userGuide', () => ({
+                content: 'start',
+                view(content, ref) {
+                    this.content = content;
+                    this.$nextTick(() => {
+                        this.$refs[ref].scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    })
+                },
+            }));
+        });
+    </script>
+    <script>
+        Livewire.on('closeModals', () => {
+            $('.modal').modal('hide');
+        });
+
         $(function() {
             $("[tooltip='enable']").tooltip();
             $("[tooltip='enable']").attr('wire:ignore.self', '');
@@ -198,6 +217,19 @@
             } else if (type == 'warning') {
                 toastr.warning(message)
             }
+        });
+    </script>
+    <script>
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher('1037cae8457eabcc7602', {
+            cluster: 'ap1'
+        });
+
+        var channel = pusher.subscribe('new-notification');
+        channel.bind('NewNotification', function(data) {
+            Livewire.dispatch('newNotification');
         });
     </script>
     @yield('scripts')

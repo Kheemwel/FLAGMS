@@ -17,6 +17,16 @@ return new class extends Migration
             $table->foreign('user_account_id')->references('id')->on('user_accounts')->cascadeOnDelete();
             $table->timestamps();
         });
+
+        
+        Schema::create('parent_and_child', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('parent_id');
+            $table->unsignedBigInteger('student_id');
+            $table->foreign('parent_id')->references('id')->on('parents')->cascadeOnDelete();
+            $table->foreign('student_id')->references('id')->on('students')->cascadeOnDelete();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -24,6 +34,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('parent_and_child');
         Schema::dropIfExists('parents');
     }
 };

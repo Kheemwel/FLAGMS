@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Mail\AccountCreationMail;
+use App\Models\Guidance;
 use App\Models\Parents;
 use App\Models\Principals;
 use App\Models\Students;
@@ -37,13 +38,12 @@ class UserAccountsImport implements ToModel, WithBatchInserts, WithProgressBar
         $user = UserAccounts::create([
             'first_name' => $firstname,
             'last_name' => $lastname,
-            'password' => $password,
-            'hashed_password' => bcrypt($password), // You can hash the password here
+            'password' => bcrypt($password), // You can hash the password here
             'role_id' => $role_id,
             'email' => $email
         ]);
 
-        if ($user->getRole->role === 'Student') {
+        if ($user->role === 'Student') {
             $school_level_id = $row[5];
             $grade_level_id = $row[6];
             $lrn = $row[7];
@@ -57,7 +57,7 @@ class UserAccountsImport implements ToModel, WithBatchInserts, WithProgressBar
         }
 
         
-        if ($user->getRole->role === 'Parent') {
+        if ($user->role === 'Parent') {
             $parent = Parents::create([
                 'user_account_id' => $user->id
             ]);
@@ -66,8 +66,8 @@ class UserAccountsImport implements ToModel, WithBatchInserts, WithProgressBar
             $parent->children()->attach($ids);
         }
 
-        if ($user->getRole->role === 'Principal') {
-            $position_id = $row[6];
+        if ($user->role === 'Principal') {
+            $position_id = $row[5];
             Principals::create([
                 'user_account_id' => $user->id,
                 'principal_position_id' => $position_id
@@ -75,8 +75,14 @@ class UserAccountsImport implements ToModel, WithBatchInserts, WithProgressBar
         }
 
         
-        if ($user->getRole->role === 'Teacher') {
+        if ($user->role === 'Teacher') {
             Teachers::create([
+                'user_account_id' => $user->id
+            ]);
+        }
+
+        if ($user->role === 'Guidance') {
+            Guidance::create([
                 'user_account_id' => $user->id
             ]);
         }

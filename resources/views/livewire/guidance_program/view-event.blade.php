@@ -1,7 +1,7 @@
 <div class="modal fade" id="view-event" style="max-width: 100%;" wire:ignore.self>
     <div class="modal-dialog">
         <div class="modal-content">
-            <div wire:loading>
+            <div wire:loading wire:target='get_event'>
                 <div class="overlay bg-white">
                     <i class="fas fa-3x fa-sync-alt fa-spin"></i>
                 </div>
@@ -64,6 +64,12 @@
                         </div>
                         <div class="col-6">
                             <label style="text-align: left; color: #252525;text-align: justify; margin-bottom: 2rem;">{{ $description }}</label>
+                        </div>
+                    </div>
+
+                    <div class="row mt-5">
+                        <div class="col-12">
+                            <label style="text-align: left; color: #252525;font-weight: normal;">Tag: {{ $tag_name }}</label>
                         </div>
                     </div>
                 </div> <!-- /.card-body -->

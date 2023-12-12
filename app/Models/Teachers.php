@@ -11,6 +11,7 @@ class Teachers extends Model
     use HasFactory;
     protected $table = 'teachers';
     protected $primaryKey = 'id';
+    protected $appends = ['name'];
     protected $fillable = [
         'user_account_id'
     ];
@@ -18,5 +19,10 @@ class Teachers extends Model
     public function getUserAccount(): BelongsTo
     {
         return $this->belongsTo(UserAccounts::class, 'user_account_id');
+    }
+
+    public function getNameAttribute() 
+    {
+        return $this->getUserAccount->name;
     }
 }

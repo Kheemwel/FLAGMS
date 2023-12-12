@@ -13,15 +13,15 @@
 <!-- Site wrapper -->
 <div class="wrapper">
     <!-- Navbar -->
-    <nav class="navbar navbar-expand navbar-white navbar-light" style="padding: 4rem; padding-left: 8rem;">
+    <nav class="navbar navbar-expand navbar-white navbar-light pt-sm-4 pt-md-4 pt-lg-4 pt-xl-4 pl-sm-5 pl-md-5 pl-lg-5 pl-xl-5 pr-sm-5 pr-md-5 pr-lg-5 pr-xl-5">
         <!-- Brand Logo -->
-        <div style="border: transparent; display: flex; align-items: center;">
+        <div class="d-flex align-items-sm-center align-items-md-center align-items-lg-center align-items-xl-center">
             <div class="d-flex justify-content-between align-items-start">
-                <img alt="AdminLTE Logo" class="brand-image img-circle" src="{{ $logo }}" style="width: 50px; height: 50px; margin-right: 10px;">
+                <img alt="AdminLTE Logo" class="brand-image img-circle" src="{{ $logo }}" style="width: 60px; height: 60px; margin-right: 10px;">
                 <i class="fa fa-solid fa-pen" data-target='#updateLogoModal' data-toggle="modal" title="Edit Logo" tooltip="enable"></i>
             </div>
-            <div class="d-flex justify-content-between align-items-start">
-                {!! $school_name !!}
+            <div class="d-flex justify-content-between align-items-start" style="font-family: 'Inria Serif', serif; font-size: 22px;">
+                {!! $school_name !!} &nbsp;&nbsp;
                 <i class="fa fa-solid fa-pen" data-target='#updateSchoolNameModal' data-toggle="modal" title="Edit School Name" tooltip="enable"></i>
             </div>
         </div>
@@ -29,7 +29,7 @@
 
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="" style="background-color: white; padding: 4rem;">
+    <div class="" style="background-color: white; padding: 5rem;">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
@@ -60,8 +60,8 @@
                         </div>
                     </div>
 
-                    <div class="col-6" style="padding-top: 1rem; display: flex; justify-content: center; align-items: center;">
-                        <img alt="Hiraya Building" src="images/Home and About/hiraya.png" style="width: 90%;">
+                    <div class="col-6 d-flex flex-column justify-content-center" style="padding-top: 1rem; display: flex; justify-content: center; align-items: center;">
+                        <img alt="Hiraya Building" src="images/Home and About/hiraya.png" style="width: 75%;">
                     </div>
 
                 </div>
@@ -70,15 +70,15 @@
     </div>
 
     <!--EMBRACING ALL LUXIANS-->
-    <div class="" style="background-color: white; padding-bottom: 2rem;">
+    <div class="" style="background-color: white;">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <div class="container-fluid" style="padding: 5rem;">
+            <div class="container-fluid" style="padding-left: 5rem; padding-right: 5rem;">
                 <div class="row mb-2" style="text-align: left;">
-                    <div class="col-6 justify-content-center" style="padding-top: 1rem; text-align: center;">
-                        <img alt="Embraing Luxians.png" src="images/Home and About/Embracing Luxians.png" width="50%">
+                    <div class="col-6 justify-content-center" style="padding-top: 1rem;">
+                        <img alt="Embraing Luxians.png" src="images/Home and About/Embracing Luxians.png" width="70%">
                     </div>
-                    <div class="col-6 d-flex flex-column justify-content-end" style="padding: 5rem;">
+                    <div class="col-6 d-flex flex-column justify-content-end" style="padding: 4rem; padding-left: 6rem;">
                         <div class="row">
                             <p style="font-size: 30px; color: #252525; font-weight: bold; font-family: 'Lato', sans-serif; text-align: left;">Embracing All Luxians</p>
                         </div>
@@ -95,12 +95,12 @@
     </div>
 
     <!--NURTURING LUXIAN WELL-BEING-->
-    <div class="" style="background-color: white; padding-bottom: 2rem;">
+    <div class="" style="background-color: white;">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <div class="container-fluid" style="padding: 5rem;">
+            <div class="container-fluid" style="padding-left: 5rem; padding-right: 5rem; padding-top: 4rem;">
                 <div class="row mb-2" style="text-align: left;">
-                    <div class="col-6 d-flex flex-column justify-content-center">
+                    <div class="col-6 d-flex flex-column justify-content-center" style="padding-left: 4rem;">
                         <row>
                             <p style="font-size: 30px; color: #252525; font-weight: bold;">Nurturing Luxian Well-being</p>
                         </row>
@@ -119,7 +119,7 @@
                         </row>
                     </div>
                     <div class="col-6 d-flex justify-content-center" style="padding-top: 1rem;">
-                        <img alt="Nurturing Luxian.png" src="images/Home and About/Nurturing Luxians.png" style="width: 70%;">
+                        <img alt="Nurturing Luxian.png" src="images/Home and About/Nurturing Luxians.png" style="width: 90%;">
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -130,20 +130,20 @@
     <div class="" style="background-color: white; padding-bottom: 2rem;">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <div class="container-fluid" style="padding: 5rem;">
+            <div class="container-fluid" style="padding-left: 5rem; padding-right: 5rem; padding-top: 4rem;">
                 <div class="row mb-2" style="text-align: left;">
                     <div class="col-6 d-flex justify-content-center" style="padding-top: 1rem;">
-                        <img alt="Embraing Luxians.png" src="images/Home and About/vision.png" style="width: 50%;">
+                        <img alt="Embraing Luxians.png" src="images/Home and About/vision.png" style="width: 80%;">
                     </div>
 
-                    <div class="col-6 d-flex flex-column justify-content-center align-items-center" style="padding: 5rem; text-align: left;">
-                        <div class="row justify-content-center">
-                            <div class="col-12 text-center">
+                    <div class="col-6 d-flex flex-column justify-content-center" style="padding-left: 5rem;">
+                        <div class="row ">
+                            <div class="col-12">
                                 <p style="font-size: 30px; color: #252525; font-weight: bold; font-family: 'Lato', sans-serif;">Our Vision</p>
                             </div>
                         </div>
                         <div class="row justify-content-center">
-                            <div class="col-12 text-center">
+                            <div class="col-12">
                                 <p style="font-size: 20px; line-height: 30px; color: #252525; font-family: 'Lato', sans-serif;">To create a future where guidance is readily available and that can help and empower the individuals who use it.</p>
                             </div>
                         </div>
@@ -154,29 +154,21 @@
     </div>
 
     <!--OUR MISSION-->
-    <div class="" style="background-color: white; padding-bottom: 2rem;">
+    <div class="" style="background-color: white;">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <div class="container-fluid" style="padding: 5rem;">
+            <div class="container-fluid" style="padding-left: 5rem; padding-right: 5rem; padding-top: 4rem;">
                 <div class="row mb-2" style="text-align: left;">
-                    <div class="col-6 d-flex flex-column justify-content-center">
+                    <div class="col-6 d-flex flex-column justify-content-center" style="padding-left: 3rem;">
                         <row>
                             <p style="font-size: 30px; color: #252525; font-weight: bold; font-family: 'Lato', sans-serif;">Our Mission</p>
                         </row>
                         <row>
-                            <p style="font-size: 20px; line-height: 30px; color: #252525; font-family: 'Lato', sans-serif;">To provide a robust, fully functioning, and user-friendlyhybrid guidance management system that empowers Fiat Lux Academe’s guidance office to achieve their goals efficiently and effectively.</p>
-                        </row>
-                        <row>
-                            <p style="font-size: 20px; line-height: 10px; color: #252525; font-family: 'Lato', sans-serif;">
-                                Mrs. Josephine “Ma’am Josie” Amador
-                            </p>
-                            <p style="font-size: 20px; line-height: 10px; color: #252525; font-family: 'Lato', sans-serif;">
-                                (Guidance Associate)
-                            </p>
+                            <p style="font-size: 20px; line-height: 30px; color: #252525; font-family: 'Lato', sans-serif;padding-right: 2rem">To provide a robust, fully functioning, and user-friendly hybrid guidance management system that empowers Fiat Lux Academe’s guidance office to achieve their goals efficiently and effectively.</p>
                         </row>
                     </div>
                     <div class="col-6 d-flex justify-content-center" style="padding-top: 1rem;">
-                        <img alt="Nurturing Luxian.png" src="images/Home and About/mission.png" style="width: 60%;">
+                        <img alt="Nurturing Luxian.png" src="images/Home and About/mission.png" style="width: 70%;">
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -196,14 +188,14 @@
 </div>
 
 @section('footer')
-    <footer class="footer layout-*-footer-fixed">
-        <table class="table table-sm" style="text-align: center; background: linear-gradient(180deg, #000000 -129.53%, #0A0863 100%);">
+    <footer class="footer layout-*-footer-fixed p-0 m-0">
+        <table class="table table-sm p-0 m-0" style="text-align: center; background: linear-gradient(180deg, #000000 -129.53%, #0A0863 100%);">
             <tbody>
                 <tr>
                     <td style="padding-top: 2rem; text-align: center;">
                         <a class="brand-link" href="#" style="border: transparent;">
                             <img alt="AdminLTE Logo" class="brand-image img-circle" src="{{ $logo }}" style="width: auto; height: auto;">
-                            <p style="font-size: 20px; color: white; font-weight: bold;">Fiat Lux Academe</p>
+                            <p style="font-size: 18px; color: white; font-weight: bold; font-family: 'Inria Serif', serif;">Fiat Lux Academe Cavite</p>
                         </a>
                     </td>
                     <td style="padding-top: 2rem;">

@@ -1,33 +1,36 @@
 <div class="row">
     <div class="col-12">
-        <div class="card-tools" style="display: flex; justify-content: flex-end; margin-bottom: 2rem; margin-right: 2rem;">
-            <!--SEARCH FEATURE-->
-            <div class="input-group input-group-sm" style="max-width: 30%;">
-                <!--SEARCH INPUT-->
-                <input class="form-control float-right" name="table_search" placeholder="Search" style="height: 35px;" type="text" wire:model.live='search'>
-                <div class="input-group-append">
-                    <button class="btn btn-default" data-target="#table-filter" data-toggle="modal" style="height: 35px;" type="submit">
-                        <i aria-hidden="true" class="fa fa-filter"></i>
-                    </button>
-                    <!--TABLE FILTER MODAL-->
+        <div class="card-tools d-flex justify-content-end mb-2">
+            <div class="input-group input-group-sm" style="max-width: 100%;">
+                <div class="col-12 col-sm-4 mb-2 d-flex justify-content-end text-right">
+                    <div class="input-group">
+                        <input class="form-control" name="table_search" placeholder="Search" style="height: 35px;" type="text" wire:model.live.debounce.500ms='search'>
+                        <div class="input-group-append">
+                            <button class="btn btn-default" data-target="#table-filter" data-toggle="modal" style="height: 35px;" type="submit">
+                                <i aria-hidden="true" class="fa fa-filter"></i> Filter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-8 text-right pr-0 pl-0">
                     <div class="modal fade" id="table-filter" wire:ignore.self>
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <div class="modal-header" style="border: transparent; padding: 10px;">
+                                <div class="modal-header border-0 p-1">
                                     <button aria-label="Close" class="close" data-dismiss="modal" type="button">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
                                     <!--MODAL FORM TITLE-->
-                                    <p class="card-title" style="color: #252525; font-size: 16px; font-weight: bold;">Item Types</p> <br><br>
+                                    <p class="card-title text-md font-weight-bold" style="color: #252525;">Item Types</p> <br><br>
                                     <!--ITEM TYPES-->
                                     <div class="row">
                                         @foreach ($item_types as $type)
-                                            <div class="form-group col-sm-6" style="font-size: 10px; color: #252525;">
+                                            <div class="form-group col-sm-6 text-sm" style="color: #252525;">
                                                 {{-- <x-checkbox-button label="{{ $type->item_type }}" value='{{ $type->id }}' model='filterItemTypes'/> --}}
-                                                <label class="btn btn-block btn-default" style="border-color: transparent; background-color:  {{ in_array($type->id, $filterItemTypes) ? 'lightblue' : 'rgb(184, 184, 184)' }} ; color: #252525;">
-                                                    <input style="display: none;" type="checkbox" value="{{ $type->id }}" wire:model.live='filterItemTypes'> <!-- Hidden checkbox input -->
+                                                <label class="btn btn-block btn-default border-0" style="background-color:  {{ in_array($type->id, $filterItemTypes) ? 'lightblue' : 'rgb(184, 184, 184)' }} ; color: #252525;">
+                                                    <input style="display: none;" type="checkbox" value="{{ $type->id }}" wire:model.live.debounce.500ms='filterItemTypes'> <!-- Hidden checkbox input -->
                                                     {{ $type->item_type }}
                                                 </label>
                                             </div>
@@ -36,11 +39,11 @@
                                     <div class="row">
                                         <!--RESET-->
                                         <div class="form-group col-sm-6">
-                                            <button class="btn btn-block btn-default" style="border-color: transparent; background-color: #d9d9f3; color: #0A0863;" wire:click='resetFilter()'> Reset</button>
+                                            <button class="btn btn-block btn-default border-0" style="background-color: #d9d9f3; color: #0A0863;" wire:click='resetFilter()'> Reset</button>
                                         </div>
                                         <!--DONE-->
                                         <div class="form-group col-sm-6">
-                                            <button class="btn btn-block btn-default" style="border-color: transparent; background-color: #0A0863; color: #252525; color:white;" wire:click='applyFilter()'>Done</button>
+                                            <button class="btn btn-block btn-default border-0" style="background-color: #0A0863; color: #252525; color:white;" wire:click='applyFilter()'>Done</button>
                                         </div>
                                     </div>
                                 </div> <!-- /.card-body -->
@@ -49,74 +52,92 @@
                         <!-- /.modal-content -->
                     </div>
                     <!-- /.modal-dialog -->
+                    @if (in_array('AddLostAndFound', $privileges))
+                        <button class="btn btn-default text-sm ml-1" data-target="#add-lost-item" data-toggle="modal" style="height: 35px; background-color: #0A0863; color: white;" type="button">
+                            <i class="fa fa-solid fa-plus"></i> Add Found Item
+                        </button>
+                    @endif
                 </div>
-                <!-- /.modal end-->
+            </div>
+        </div>
 
-                @if (in_array('AddLostAndFound', $privileges))
-                    <button class="btn btn-default" data-target="#add-lost-item" data-toggle="modal" style="height: 35px; font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button"><i class="fa fa-solid fa-plus"></i> Add Found Item</button>
-                @endif
-                <!-- /.modal end-->
+        <div class="row mt-2 mr-1">
+            <div class="col-12 col-sm-12 pt-2 pr-1 d-flex justify-content-end">
+                <label for="per-page" class="font-weight-normal text-sm">Show
+                    <select class="form-select form-select-sm" id='per-page'
+                        wire:model.live.debounce.500ms="per_page">
+                        <option>10</option>
+                        <option>15</option>
+                        <option>20</option>
+                        <option>25</option>
+                        <option selected>30</option>
+                        <option>50</option>
+                        <option>100</option>
+                    </select>
+                    Entries
+                </label>
             </div>
         </div>
     </div>
 </div>
 
-<div class="card" style="margin-left: 2rem; margin-right: 2rem;">
-    <!-- /.card-header -->
-    <div class="card-body table-responsive p-0" style="border: 1px solid #252525;">
-        <table class="table text-nowrap" style="text-align: center;">
-            <thead style="background-color: #7684B9; color: white;">
-                <tr>
-                    <th style="border-right: 1px solid #252525;">ID</th>
-                    <th style="border-right: 1px solid #252525;">Item Type</th>
-                    <th style="border-right: 1px solid #252525;">Item Name</th>
-                    <th style="border-right: 1px solid #252525;">Date and Time Found</th>
-                    <th style="border-right: 1px solid #252525;">Location Found</th>
-                    @if (wordsExistInArray(['LostAndFound'], $privileges) || in_array('ManageClaimedItems', $privileges))
-                        <th style="border-right: 1px solid #252525;">Finder's Name</th>
-                    @endif
-                    <th style="border-right: 1px solid #252525;">Priority</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($items as $item)
+<div class="card ml-2 mr-0" style="border-radius: 10px;">
+    <div class="card-body table-responsive p-0" style="border: 1px solid #252525; border-radius: 10px;">
+        <div class="card-body table-responsive p-0">
+            <table class="table table-hover text-center">
+                <thead class="pr-0 text-center" style="color: white; background-color: #7684B9;">
                     <tr>
-                        <td>{{ $item->id }}</td>
-                        <td>{{ $item->getType->item_type }}</td>
-                        <td>{{ $item->item_name }}</td>
-                        <td>{{ date('F d,Y   h:i A', strtotime($item->datetime_found)) }}</td>
-                        <td>{{ $item->location_found }}</td>
+                        <th>ID</th>
+                        <th>Item Type</th>
+                        <th>Item Name</th>
+                        <th>Date and Time Found</th>
+                        <th>Location Found</th>
                         @if (wordsExistInArray(['LostAndFound'], $privileges) || in_array('ManageClaimedItems', $privileges))
-                            <td>{{ $item->finder_name }}</td>
+                            <th>Finder's Name</th>
                         @endif
-                        <td>{{ $item->getPriority->priority_tag }}</td>
-                        <td>
-                            @if (in_array('ManageClaimedItems', $privileges))
-                                <p class="btn btn-primary action-btn" data-target="#claim-item" data-toggle="modal" style="color: #3C58FF;  text-decoration: underline;" wire:click="get_data({{ $item->id }})">Claim</p>
-                            @endif
-
-                            <!--VIEW PROFILE-->
-                            <button class="btn btn-primary action-btn" data-target="#view-lost-item" data-toggle="modal" title='View' tooltip='enable' wire:click="get_data({{ $item->id }})">
-                                <i aria-hidden="true" class="fa fa-eye"></i>
-                            </button>
-
-                            @if (in_array('EditLostAndFound', $privileges))
-                                <!--EDIT LOST ITEM BUTTON-->
-                                <button class="btn btn-primary action-btn" data-target="#edit-lost-item" data-toggle="modal" wire:click="get_data({{ $item->id }})">
-                                    <i class="fa fa-solid fa-pen"></i>
-                                </button>
-                            @endif
-                            @if (in_array('DeleteLostAndFound', $privileges))
-                                {{-- DELETE USER --}}
-                                <button class="btn btn-primary action-btn" wire:click='delete({{ $item->id }})'>
-                                    <i aria-hidden="true" class="fa fa-trash"></i>
-                                </button>
-                            @endif
-                        </td>
+                        <th>Priority</th>
+                        <th>Action</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach ($items as $item)
+                        <tr>
+                            <td>{{ $item->id }}</td>
+                            <td>{{ $item->getType->item_type }}</td>
+                            <td>{{ $item->item_name }}</td>
+                            <td>{{ date('F d,Y   h:i A', strtotime($item->datetime_found)) }}</td>
+                            <td>{{ $item->location_found }}</td>
+                            @if (wordsExistInArray(['LostAndFound'], $privileges) || in_array('ManageClaimedItems', $privileges))
+                                <td>{{ $item->finder_name }}</td>
+                            @endif
+                            <td>{{ $item->getPriority->priority_tag }}</td>
+                            <td>
+                                @if (in_array('ManageClaimedItems', $privileges))
+                                    <p class="btn btn-primary action-btn text-decoration-underline" data-target="#claim-item" data-toggle="modal" style="color: #3C58FF;" wire:click="get_data({{ $item->id }})">Claim</p>
+                                @endif
+
+                                <!--VIEW PROFILE-->
+                                <button class="btn btn-primary action-btn" data-target="#view-lost-item" data-toggle="modal" title='View' tooltip='enable' wire:click="get_data({{ $item->id }})">
+                                    <i aria-hidden="true" class="fa fa-eye"></i>
+                                </button>
+
+                                @if (in_array('EditLostAndFound', $privileges))
+                                    <!--EDIT LOST ITEM BUTTON-->
+                                    <button class="btn btn-primary action-btn" data-target="#edit-lost-item" data-toggle="modal" wire:click="get_data({{ $item->id }})">
+                                        <i class="fa fa-solid fa-pen"></i>
+                                    </button>
+                                @endif
+                                @if (in_array('DeleteLostAndFound', $privileges))
+                                    {{-- DELETE USER --}}
+                                    <button class="btn btn-primary action-btn" wire:click='delete({{ $item->id }})'>
+                                        <i aria-hidden="true" class="fa fa-trash"></i>
+                                    </button>
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
