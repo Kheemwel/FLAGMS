@@ -1,9 +1,9 @@
 <!--VIEW USER INFORMATION MODAL-->
 <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="view-user-btn" role='dialog' style="max-width: 100%;" wire:ignore.self>
     <div class="modal-dialog">
-        <div class="modal-content" x-on:click.outside='$wire.resetInputFields()'>
+        <div class="modal-content" style="border-radius: 20px;" x-on:click.outside='$wire.resetInputFields()'>
             <div wire:loading wire:target='get_data, delete, archive, unArchive'>
-                <div class="overlay bg-white">
+                <div class="overlay bg-white" style="border-radius: 20px;">
                     <i class="fas fa-3x fa-sync-alt fa-spin"></i>
                 </div>
             </div>

@@ -1,9 +1,9 @@
 <!--EDIT USER INFORMATION MODAL-->
 <div class="modal fade" id="stud-info-edit" wire:ignore.self data-backdrop="static">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content" style="border-radius: 20px;">
             <div wire:loading wire:target='get_data, update'>
-                <div class="overlay bg-white">
+                <div class="overlay bg-white" style="border-radius: 20px;">
                     <i class="fas fa-3x fa-sync-alt fa-spin"></i>
                 </div>
             </div>
