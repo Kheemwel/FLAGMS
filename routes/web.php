@@ -17,6 +17,7 @@ use App\Livewire\ItemImagesLivewire;
 use App\Livewire\ItemTagsLivewire;
 use App\Livewire\ItemTypesLivewire;
 use App\Livewire\LostFoundLivewire;
+use App\Livewire\MyChildRecordLivewire;
 use App\Livewire\NotificationLivewire;
 use App\Livewire\OffensesLivewire;
 use App\Livewire\ParentsLivewire;
@@ -159,7 +160,7 @@ Route::middleware([CheckUserCredentials::class])->group(function () {
     Route::get('/student-individual-inventory', StudentInventoryLivewire::class)->name('student-individual-inventory-page');
 
     //Parent
-    Route::view('/my-child-records', 'parent.parent-child-records')->name('child-records-page');
+    Route::get('/my-child-records', MyChildRecordLivewire::class)->name('child-records-page');
 
     //Teacher
     Route::get('/request-forms', RequestFormsLivewire::class)->name('request-forms-page');

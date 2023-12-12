@@ -26,17 +26,17 @@ class Students extends Model
 
     public function schoolLevel(): BelongsTo
     {
-        return $this->belongsTo(SchoolLevels::class);
+        return $this->belongsTo(SchoolLevels::class, 'school_level_id');
     }
 
-    public function getSchoolLevel(): BelongsTo
+    public function getSchoolLevel()
     {
         return $this->schoolLevel->school_level;
     }
 
     public function gradeLevel(): BelongsTo
     {
-        return $this->belongsTo(GradeLevels::class);
+        return $this->belongsTo(GradeLevels::class, 'grade_level_id');
     }
 
     public function getGradeLevel()
@@ -72,5 +72,15 @@ class Students extends Model
     public function getLastNameAttribute()
     {
         return $this->getUserAccount->last_name;
+    }
+
+    public function IndividualInventory()
+    {
+        return $this->hasOne(StudentIndividualInventory::class, 'student_id');
+    }
+
+    public function AnecdotalRecord()
+    {
+        return $this->hasMany(StudentsAnecdotals::class, 'student_id');
     }
 }
