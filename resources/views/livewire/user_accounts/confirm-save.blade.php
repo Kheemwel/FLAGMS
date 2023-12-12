@@ -1,7 +1,7 @@
 <!--DELETE MODAL-->
 <div class="modal fade" id="saveModal" wire:ignore.self>
     <div class="modal-dialog modal-dialog-centered modal-sm">
-        <div class="modal-content">
+        <div class="modal-content" style="border-radius: 20px;">
             <div class="modal-body" style="margin-left: 1rem; margin-right: 1rem; text-align: center;">
                 <!--MODAL TITLE-->
                 <div style="display: flex; flex-direction: column;">

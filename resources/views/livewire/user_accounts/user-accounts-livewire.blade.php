@@ -1,5 +1,5 @@
 @section('head')
-    <title>Admin|User Accounts</title>
+    <title>FLAGMS | User Accounts</title>
 
     <!-- Select2 CSS -->
     <link href="adminLTE-3.2/plugins/select2/css/select2.min.css" rel="stylesheet">
@@ -49,62 +49,62 @@
     <script src="adminLTE-3.2/plugins/datatables/jquery.dataTables.min.js"></script>
 @endsection
 
-<div class="content-wrapper" style="background-color:  rgb(253, 253, 253); padding-left: 2rem;">
+<div class="content-wrapper pl-1 pr-1" style="background-color: rgb(253, 253, 253);">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6" style="padding-left: 2rem; padding-top: 1rem;">
-                    <h1 style="font-weight: bold;">User Accounts</h1>
+                <div class="col-sm-6 pl-5 pt-3">
+                    <p class="font-weight-bold text-xl">User Accounts</p>
                 </div>
             </div>
         </div>
         <!-- /.container-fluid -->
     </section>
 
-    <div class="row">
-        <div class="col-12">
-
-
-            <div class="card card-primary card-tabs" style="background-color:  rgb(253, 253, 253);margin-left: 2rem; margin-right: 3rem;">
-                <div class="card-header p-0 pt-1" style="background-color: #7684B9 !important">
-                    <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
-                        <li class="nav-item" wire:ignore>
-                            <a aria-controls="custom-tabs-one-active-accounts" aria-selected="true" class="nav-link active" data-toggle="pill" href="#custom-tabs-one-active-accounts" id="custom-tabs-one-active-accounts-tab" role="tab">
-                                <h5 style="font-weight: bold;">Active Accounts</h5>
-                            </a>
-                        </li>
-                        @if (wordsExistInArray(['Archive', 'Account'], $privileges))
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-primary card-tabs" style="background-color: rgb(253, 253, 253);">
+                    <div class="card-header p-0 pt-1" style="background-color: #7684B9 !important">
+                        <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
                             <li class="nav-item" wire:ignore>
-                                <a aria-controls="custom-tabs-one-archived-accounts" aria-selected="false" class="nav-link" data-toggle="pill" href="#custom-tabs-one-archived-accounts" id="custom-tabs-one-archived-accounts-tab" role="tab">
-                                    <h5 style="font-weight: bold;">Archived Accounts</h5>
+                                <a aria-controls="custom-tabs-one-active-accounts" aria-selected="true" class="nav-link active" data-toggle="pill" href="#custom-tabs-one-active-accounts" id="custom-tabs-one-active-accounts-tab" role="tab">
+                                    <p class="font-weight-bold text-lg">Active Accounts</p>
                                 </a>
                             </li>
-                        @endif
-                    </ul>
-                </div>
-                <div class="card-body">
-                    <div class="tab-content" id="custom-tabs-one-tabContent" style="padding-right: 2rem;">
-                        <div aria-labelledby="custom-tabs-one-active-accounts-tab" class="tab-pane fade active show" id="custom-tabs-one-active-accounts" role="tabpanel" wire:ignore.self>
-                            @include('livewire.user_accounts.accounts-table')
-                        </div>
-                        <div aria-labelledby="custom-tabs-one-archived-accounts-tab" class="tab-pane fade" id="custom-tabs-one-archived-accounts" role="tabpanel" wire:ignore.self>
-                            @include('livewire.user_accounts.archive-table')
+                            @if (wordsExistInArray(['Archive', 'Account'], $privileges))
+                                <li class="nav-item" wire:ignore>
+                                    <a aria-controls="custom-tabs-one-archived-accounts" aria-selected="false" class="nav-link" data-toggle="pill" href="#custom-tabs-one-archived-accounts" id="custom-tabs-one-archived-accounts-tab" role="tab">
+                                        <p class="font-weight-bold text-lg">Archived Accounts</p>
+                                    </a>
+                                </li>
+                            @endif
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content" id="custom-tabs-one-tabContent">
+                            <div aria-labelledby="custom-tabs-one-active-accounts-tab" class="tab-pane fade active show" id="custom-tabs-one-active-accounts" role="tabpanel" wire:ignore.self>
+                                @include('livewire.user_accounts.accounts-table')
+                            </div>
+                            <div aria-labelledby="custom-tabs-one-archived-accounts-tab" class="tab-pane fade" id="custom-tabs-one-archived-accounts" role="tabpanel" wire:ignore.self>
+                                @include('livewire.user_accounts.archive-table')
+                            </div>
                         </div>
                     </div>
+                    <!-- /.card -->
                 </div>
+
+                @include('livewire.user_accounts.add-user')
+                @include('livewire.user_accounts.edit-user')
+                @include('livewire.user_accounts.view-user')
+                @include('livewire.user_accounts.import-users')
+                @include('livewire.user_accounts.confirm-delete')
+                @include('livewire.user_accounts.confirm-save')
+                @include('livewire.user_accounts.confirm-archive')
+                @include('livewire.user_accounts.confirm-unarchive')
                 <!-- /.card -->
             </div>
-
-            @include('livewire.user_accounts.add-user')
-            @include('livewire.user_accounts.edit-user')
-            @include('livewire.user_accounts.view-user')
-            @include('livewire.user_accounts.import-users')
-            @include('livewire.user_accounts.confirm-delete')
-            @include('livewire.user_accounts.confirm-save')
-            @include('livewire.user_accounts.confirm-archive')
-            @include('livewire.user_accounts.confirm-unarchive')
-            <!-- /.card -->
         </div>
     </div>
 </div>

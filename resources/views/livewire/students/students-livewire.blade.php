@@ -80,14 +80,14 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6 pl-5 pt-3">
-                    <h1 style="font-weight: bold;">Students</h1>
+                    <p class="text-xl font-weight-bold">Students</p>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
     </section>
 
     <div class="col-12 col-sm-4 mb-2 pl-5 pr-5">
-        <div class="input-group">
+        <div class="input-group mb-5">
             <input class="form-control" name="table_search" placeholder="Search" style="height: 40px;" type="text" wire:model.live.debounce.500ms='search'>
             <div class="input-group-append">
                 <button class="btn btn-default" data-target="#table-filter" data-toggle="modal" type="submit">

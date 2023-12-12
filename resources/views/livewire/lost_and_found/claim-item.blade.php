@@ -1,8 +1,8 @@
 <div class="modal fade" id="claim-item" wire:ignore.self>
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content" style="border-radius: 20px;">
             <div wire:loading wire:target='get_data'>
-                <div class="overlay bg-white">
+                <div class="overlay bg-white" style="border-radius: 20px;">
                     <i class="fas fa-3x fa-sync-alt fa-spin"></i>
                 </div>
             </div>
@@ -15,11 +15,11 @@
                 <div class="modal-body ml-2" style="max-height: 500px; overflow-y: auto;">
 
                     <!--MODAL FORM TITLE-->
-                    <p class="card-title font-weight-bold text-md text-lg" style="color: #0A0863;">CLAIM LOST ITEM</p> <br><br><br>
+                    <p class="card-title font-weight-bold text-md text-xl" style="color: #0A0863;">CLAIM LOST ITEM</p> <br><br><br>
                     <!--DATE AND TIME CLAIMED-->
                     <div class="row">
-                        <div class="form-group col-sm-6 float-left text-sm text-left" style="color: #252525;">
-                            <label for="input-date font-weight-normal">Date and Time Claimed</label>
+                        <div class="form-group col-sm-6 text-sm text-left pl-1" style="color: #252525;">
+                            <label class="font-weight-normal" for="input-date">Date and Time</label>
                             <input class="form-control" id="input-date" style="border: 1px solid black" type="datetime-local" wire:model='claimed_datetime'>
                         </div>
                         @error('claimed_datetime')
@@ -27,10 +27,17 @@
                         @enderror
                     </div>
 
+                    <div class="row">
+                        <div class="form-group col-sm-12 text-lg text-left pl-1" style="color: #252525;">
+                            <label class="font-weight-bold" for="input-date">Claimer Information</label>
+                        </div>
+                    </div>
+
+
                     <!--Claimer'S NAME-->
                     <div class="row">
                         <div class="form-group col-sm-12 text-sm text-left pl-1" style="color: #252525;">
-                            <label class="font-weight-normal" for="input-claimer-name">Claimer's Name</label>
+                            <label class="font-weight-normal" for="input-claimer-name">Name</label>
                             <input class="form-control" id="input-claimer-name" style="border: 1px solid #252525" type="text" wire:model='claimer_name'>
                         </div>
                         @error('claimer_name')
@@ -39,7 +46,7 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-sm-12 text-sm text-left pl-1" style="color: #252525;">
-                            <label class="font-weight-normal" for="input-claimer-contact">Claimer's Contact Number</label>
+                            <label class="font-weight-normal" for="input-claimer-contact">Contact Number</label>
                             <input class="form-control" id="input-claimer-contact" style="border: 1px solid #252525" type="tel" pattern="[0-9]{11}" wire:model='claimer_contact'>
                         </div>
                         @error('claimer_contact')
@@ -48,7 +55,7 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-sm-12 text-sm text-left pl-1" style="color: #252525;">
-                            <label class="font-weight-normal" for="input-claimer-email">Claimer's Email</label>
+                            <label class="font-weight-normal" for="input-claimer-email">Email</label>
                             <input class="form-control" id="input-claimer-email" style="border: 1px solid #252525" type="email" wire:model='claimer_email'>
                         </div>
                         @error('claimer_email')
@@ -57,7 +64,7 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-sm-12 text-sm text-left pl-1" style="color: #252525;">
-                            <label class="font-weight-normal" for="input-claimer-address">Claimer's Address</label>
+                            <label class="font-weight-normal" for="input-claimer-address">Address</label>
                             <input class="form-control" id="input-claimer-address" style="border: 1px solid #252525" type="text" wire:model='claimer_address'>
                         </div>
                         @error('claimer_address')

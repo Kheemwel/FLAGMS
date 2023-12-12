@@ -7,9 +7,9 @@
                 </div>
             </div>
             
-            <div class="overlay bg-white d-none" style="border-radius: 20px;" id="login-indicator">
-                <i class="fas fa-3x fa-sync-alt fa-spin"></i>
-                <p>Login Successfully.</p>
+            <div class="overlay bg-white d-none align-items-center" style="border-radius: 20px;" id="login-indicator">
+                <i class="fas fa-3x fa-sync-alt fa-spin"></i> &nbsp; &nbsp;
+                <p class="text-lg pt-2">Login Successfully.</p>
             </div>
             
             <div class="modal-header p-lg-2" style="border: transparent;">
