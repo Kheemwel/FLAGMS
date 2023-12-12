@@ -17,6 +17,7 @@ use App\Livewire\ItemImagesLivewire;
 use App\Livewire\ItemTagsLivewire;
 use App\Livewire\ItemTypesLivewire;
 use App\Livewire\LostFoundLivewire;
+use App\Livewire\MyChildRecordLivewire;
 use App\Livewire\NotificationLivewire;
 use App\Livewire\OffensesLivewire;
 use App\Livewire\ParentsLivewire;
@@ -25,6 +26,8 @@ use App\Livewire\ProfileLivewire;
 use App\Livewire\ProfilePicturesLivewire;
 use App\Livewire\RequestFormsLivewire;
 use App\Livewire\RolesLivewire;
+use App\Livewire\StudentAnecdotalLivewire;
+use App\Livewire\StudentInventoryLivewire;
 use App\Livewire\StudentsLivewire;
 use App\Livewire\TeachersLivewire;
 use App\Livewire\UserAccountsLivewire;
@@ -153,12 +156,11 @@ Route::middleware([CheckUserCredentials::class])->group(function () {
     Route::get('/approval-forms', ApprovalFormsLivewire::class)->name('approval-forms-page');
 
     //Student
-    Route::view('/student-anecdotal-record', 'student.student-anecdotal-record')->name('student-anecdotal-record-page');
-    Route::view('/student-individual-inventory', 'student.student-individual-inventory')->name('student-individual-inventory-page');
-    Route::view('/student-individual-inventory-report', 'student.student-individual-inventory-report')->name('student-individual-inventory-report-page');
+    Route::get('/student-anecdotal-record', StudentAnecdotalLivewire::class)->name('student-anecdotal-record-page');
+    Route::get('/student-individual-inventory', StudentInventoryLivewire::class)->name('student-individual-inventory-page');
 
     //Parent
-    Route::view('/my-child-records', 'parent.parent-child-records')->name('child-records-page');
+    Route::get('/my-child-records', MyChildRecordLivewire::class)->name('child-records-page');
 
     //Teacher
     Route::get('/request-forms', RequestFormsLivewire::class)->name('request-forms-page');

@@ -112,7 +112,7 @@ class FillOutFormsLivewire extends Component
         $this->violationFormFields = [
             'date' => $this->violationForm->date,
             'time' => $this->violationForm->time,
-            'student_name' => $this->violationForm->student->name(),
+            'student_name' => $this->violationForm->student->name,
             'parent' => $this->violationForm->student->parentName(),
             'teacher' => $this->violationForm->violationForm->teacherName(),
             'offense_type' => $this->violationForm->violationForm->offense_type,

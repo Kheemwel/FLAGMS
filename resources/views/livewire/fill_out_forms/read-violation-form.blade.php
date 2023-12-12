@@ -57,7 +57,7 @@
                                 <p style="font-size: 18px;">Name of Student:</p>
                             </div>
                             <div class="form-group col-sm-3" style="font-size: 16px; color: #252525;">
-                                <p style="font-size: 18px; text-decoration: underline;">{{ $violationForm->student->name() }}</p>
+                                <p style="font-size: 18px; text-decoration: underline;">{{ $violationForm->student->name }}</p>
                             </div>
                         </div>
 

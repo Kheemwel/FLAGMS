@@ -54,6 +54,6 @@ class Forms extends Model
 
     public function teacherName()
     {
-        return $this->requestForm->teacher->getName();
+        return $this->requestForm->teacher->name;
     }
 }

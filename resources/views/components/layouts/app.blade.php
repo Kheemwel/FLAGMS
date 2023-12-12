@@ -152,9 +152,11 @@
                 content: 'start',
                 view(content, ref) {
                     this.content = content;
-                    this.$refs[ref].scrollIntoView({
-                        behavior: 'smooth'
-                    });
+                    this.$nextTick(() => {
+                        this.$refs[ref].scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    })
                 },
             }));
         });

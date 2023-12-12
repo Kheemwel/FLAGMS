@@ -11,6 +11,7 @@ class Teachers extends Model
     use HasFactory;
     protected $table = 'teachers';
     protected $primaryKey = 'id';
+    protected $appends = ['name'];
     protected $fillable = [
         'user_account_id'
     ];
