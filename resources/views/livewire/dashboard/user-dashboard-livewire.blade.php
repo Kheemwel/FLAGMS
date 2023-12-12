@@ -113,7 +113,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
                     @elseif ($role === 'Teacher')
                         <div class="col-lg-7">
@@ -243,17 +243,17 @@
 
                             <div class="row">
                                 <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 ">
-                                        <div class="card" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 395px;">
-                                            <!-- Violation PieChart -->
-                                            <div class="tab-content p-0">
-                                                <canvas class="mt-4 mb-4" id="pieChart" style="min-height: 270px; max-height: 310px; max-width: 100%;"></canvas>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                            <div class="card" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 395px;">
+                                                <!-- Violation PieChart -->
+                                                <div class="tab-content p-0">
+                                                    <canvas class="mt-4 mb-4" id="pieChart" style="min-height: 270px; max-height: 310px; max-width: 100%;"></canvas>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
                             </div>
                         </div>
@@ -287,7 +287,7 @@
                                                 <div class="row">
                                                     <div class="col-md-3  d-flex flex-row justify-content-center align-self-center">
                                                         <div class="text-center">
-                                                            <img class="img-fluid" alt="user profile" src="images/user-req.png" style="max-width: 80px;">
+                                                            <img alt="user profile" class="img-fluid" src="images/user-req.png" style="max-width: 80px;">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-5">
@@ -296,10 +296,10 @@
                                                                 <label class="text-md">Liam Anderson</label>
                                                             </div>
                                                         </div>
-                                                        <div  class="d-flex flex-row justify-content-center align-self-center">
+                                                        <div class="d-flex flex-row justify-content-center align-self-center">
                                                             <label class="text-sm">Tuesday, June 20 at 9:00AM</label>
                                                         </div>
-                                                        <div  class="d-flex flex-row justify-content-center align-self-center">
+                                                        <div class="d-flex flex-row justify-content-center align-self-center">
                                                             <label class="text-lg mt-2">Violation Form</label>
                                                         </div>
                                                     </div>
@@ -311,7 +311,7 @@
                                                 <div class="row mt-4">
                                                     <div class="col-md-3  d-flex flex-row justify-content-center align-self-center">
                                                         <div class="text-center">
-                                                            <img class="img-fluid" alt="user profile" src="images/user-req.png" style="max-width: 80px;">
+                                                            <img alt="user profile" class="img-fluid" src="images/user-req.png" style="max-width: 80px;">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-5">
@@ -320,10 +320,10 @@
                                                                 <label class="text-md">Liam Anderson</label>
                                                             </div>
                                                         </div>
-                                                        <div  class="d-flex flex-row justify-content-center align-self-center">
+                                                        <div class="d-flex flex-row justify-content-center align-self-center">
                                                             <label class="text-sm">Tuesday, June 20 at 9:00AM</label>
                                                         </div>
-                                                        <div  class="d-flex flex-row justify-content-center align-self-center">
+                                                        <div class="d-flex flex-row justify-content-center align-self-center">
                                                             <label class="text-lg mt-2">Home Visitation Form</label>
                                                         </div>
                                                     </div>
@@ -331,11 +331,11 @@
                                                         <label class="text-sm mt-2 p-1 text-center" style="color: #3C58FF; background-color: #D1D8FF; width: 100px; border-radius: 10px; float: left;">COMPLETED</label>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="row mt-4">
                                                     <div class="col-md-3  d-flex flex-row justify-content-center align-self-center">
                                                         <div class="text-center">
-                                                            <img class="img-fluid" alt="user profile" src="images/user-req.png" style="max-width: 80px;">
+                                                            <img alt="user profile" class="img-fluid" src="images/user-req.png" style="max-width: 80px;">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-5">
@@ -344,10 +344,10 @@
                                                                 <label class="text-md">Liam Anderson</label>
                                                             </div>
                                                         </div>
-                                                        <div  class="d-flex flex-row justify-content-center align-self-center">
+                                                        <div class="d-flex flex-row justify-content-center align-self-center">
                                                             <label class="text-sm">Tuesday, June 20 at 9:00AM</label>
                                                         </div>
-                                                        <div  class="d-flex flex-row justify-content-center align-self-center">
+                                                        <div class="d-flex flex-row justify-content-center align-self-center">
                                                             <label class="text-lg mt-2">Violation Form</label>
                                                         </div>
                                                     </div>
@@ -376,7 +376,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb-2 mt-1" style="max-height: 350px; overflow-y: auto;">
                                 <!-- UPCOMING EVENTS -->
@@ -450,7 +450,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </section>
@@ -472,7 +472,6 @@
     <!-- ChartJS -->
     <script src="adminLTE-3.2/plugins/chart.js/Chart.min.js"></script>
 
-
     <!----------------------------------------------------->
 
     <script>
@@ -491,58 +490,69 @@
             //- PIE CHART -
             //-------------
             // Get context with jQuery - using jQuery's .get() method.
-            var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
-            var pieData = donutData;
-            var pieOptions = {
-                maintainAspectRatio: false,
-                responsive: true,
+            var pieChart = $('#pieChart');
+            try {
+                if (pieChart.length) {
+                    var pieChartCanvas = pieChart.get(0).getContext('2d');
+                    var pieData = donutData;
+                    var pieOptions = {
+                        maintainAspectRatio: false,
+                        responsive: true,
+                    }
+                    //Create pie or douhnut chart
+                    // You can switch between pie and douhnut using the method below.
+                    new Chart(pieChartCanvas, {
+                        type: 'pie',
+                        data: pieData,
+                        options: pieOptions
+                    })
+                } else {
+                    console.error("Element #pieChart not found!");
+                }
+            } catch (error) {
+                console.error("Error creating pie chart:", error);
             }
-            //Create pie or douhnut chart
-            // You can switch between pie and douhnut using the method below.
-            new Chart(pieChartCanvas, {
-                type: 'pie',
-                data: pieData,
-                options: pieOptions
-            })
 
             var Calendar = FullCalendar.Calendar;
 
             var calendarEl = document.getElementById('calendar');
 
-            var calendar = new Calendar(calendarEl, {
-                headerToolbar: {
-                    left: 'prev today',
-                    center: 'title',
-                    right: 'customMonthButton next'
-                },
-                themeSystem: 'bootstrap',
-                height: 'auto', // Let FullCalendar manage the height,
-                customButtons: {
-                    customMonthButton: {
-                        text: ' ', // Empty string as text
-                        click: function () {
-                            calendar.changeView('dayGridMonth');
+            try {
+                if (calendarEl) {
+                    var calendar = new Calendar(calendarEl, {
+                        headerToolbar: {
+                            left: 'prev today',
+                            center: 'title',
+                            right: 'customMonthButton next'
+                        },
+                        themeSystem: 'bootstrap',
+                        height: 'auto', // Let FullCalendar manage the height,
+                        customButtons: {
+                            customMonthButton: {
+                                text: ' ', // Empty string as text
+                                click: function() {
+                                    calendar.changeView('dayGridMonth');
+                                }
+                            }
                         }
-                    }
+                    });
+
+                    // Optionally, make the calendar container responsive
+                    var container = document.querySelector('.card-body');
+                    container.classList.add('d-flex', 'flex-column', 'align-items-stretch'); // Apply Bootstrap flex classes
+
+                    // Hide the custom month button using CSS
+                    var style = document.createElement('style');
+                    style.innerHTML = '.fc-customMonthButton-button { display: none; } .fc-next-button { margin-left: auto; }';
+                    document.head.appendChild(style);
+
+                    calendar.render();
+                } else {
+                    console.error("Element #calendar not found!");
                 }
-            });
-
-            // Optionally, make the calendar container responsive
-            var container = document.querySelector('.card-body');
-            container.classList.add('d-flex', 'flex-column', 'align-items-stretch'); // Apply Bootstrap flex classes
-
-            // Hide the custom month button using CSS
-            var style = document.createElement('style');
-            style.innerHTML = '.fc-customMonthButton-button { display: none; } .fc-next-button { margin-left: auto; }';
-            document.head.appendChild(style);
-
-            calendar.render();
-
-
-
-
-
-
+            } catch (error) {
+                console.error("Error creating calendar:", error);
+            }
         })
     </script>
 @endsection
