@@ -25,6 +25,7 @@ use App\Livewire\ProfileLivewire;
 use App\Livewire\ProfilePicturesLivewire;
 use App\Livewire\RequestFormsLivewire;
 use App\Livewire\RolesLivewire;
+use App\Livewire\StudentInventoryLivewire;
 use App\Livewire\StudentsLivewire;
 use App\Livewire\TeachersLivewire;
 use App\Livewire\UserAccountsLivewire;
@@ -154,8 +155,7 @@ Route::middleware([CheckUserCredentials::class])->group(function () {
 
     //Student
     Route::view('/student-anecdotal-record', 'student.student-anecdotal-record')->name('student-anecdotal-record-page');
-    Route::view('/student-individual-inventory', 'student.student-individual-inventory')->name('student-individual-inventory-page');
-    Route::view('/student-individual-inventory-report', 'student.student-individual-inventory-report')->name('student-individual-inventory-report-page');
+    Route::get('/student-individual-inventory', StudentInventoryLivewire::class)->name('student-individual-inventory-page');
 
     //Parent
     Route::view('/my-child-records', 'parent.parent-child-records')->name('child-records-page');
