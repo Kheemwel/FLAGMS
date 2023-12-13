@@ -236,7 +236,7 @@ class FillOutFormsLivewire extends Component
             'junior_principal_signature_id' => null, 
             'senior_principal_signature_id' => null,
             'parent_name' => $student->parentName(),
-            'guidance_name' => Guidance::find($this->guidanceID)->name,
+            'guidance_name' => Guidance::first()->name,
             'teacher_name' => $this->homeVisitationForm->teacherName(), 
             'junior_principal_name' => Principals::find(1)->name, 
             'senior_principal_name' => Principals::find(2)->name,

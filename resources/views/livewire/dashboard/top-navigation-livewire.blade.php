@@ -29,7 +29,7 @@
             <li class="nav-item">
                 <a class="nav-link ml-0 mt-1" href="{{ route('guidance-program-page') }}">
                     <iconify-icon icon="bx:calendar" class=" text-center" style="color: #252525; font-size: 24px;"></iconify-icon>
-                    <span class="badge badge-primary navbar-badge">1</span>
+                    {{-- <span class="badge badge-primary navbar-badge">1</span> --}}
                 </a>
             </li>
         </div>

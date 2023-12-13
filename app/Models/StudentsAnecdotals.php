@@ -36,11 +36,11 @@ class StudentsAnecdotals extends Model
 
     public function student_signature()
     {
-        return $this->student_signature_id ? imageBinaryToSRC($this->StudentSignature->student_signature) : '';
+        return $this->student_signature_id ? imageBinaryToSRC($this->StudentSignature->student_signature) : blankSignature();
     }
 
     public function guardian_signature()
     {
-        return $this->guardian_signature_id ? imageBinaryToSRC($this->GuardianSignature->guardian_signature) : '';
+        return $this->guardian_signature_id ? imageBinaryToSRC($this->GuardianSignature->guardian_signature) : blankSignature();
     }
 }

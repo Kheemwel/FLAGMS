@@ -64,6 +64,7 @@ class StudentAnecdotalLivewire extends Component
 
                 $this->anecdotal = StudentsAnecdotals::where('student_id', $this->student_id)->get();
                 $this->showToast('success', 'Signature Updated Successfully');
+                $this->dispatch('closeSignaturePad');
                 $this->studentSignature = null;
             }
         }

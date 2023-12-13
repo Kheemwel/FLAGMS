@@ -88,7 +88,7 @@
                                     </a>
                                 </li>
                             @endif
-                            @if ($role == 'Admin' || $role == 'SuperAdmin')
+                            @if ($role == 'Guidance' || $role == 'SuperAdmin')
                                 <li class="nav-item">
                                     <a class="nav-link nav-link-button {{ setActiveLink('profile-pictures-page') }}" href="{{ route('profile-pictures-page') }}">
                                         <p style="color: #252525;">Profile Pictures</p>

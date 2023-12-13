@@ -10,6 +10,7 @@ use App\Models\StudentAnecdotalSignatures;
 use App\Models\Students;
 use App\Models\StudentsAnecdotals;
 use App\Models\UserAccounts;
+use App\Traits\Notify;
 use App\Traits\Toasts;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -18,6 +19,7 @@ class StudentsLivewire extends Component
 {
     use Toasts;
     use WithFileUploads;
+    use Notify;
     public $students, $student_id, $student_name, $lrn, $school_level, $grade_level;
     public $anecdotal, $input_date, $input_time, $input_offense, $input_disciplinary_action, $display_disciplinary_action;
     public $offenses;
@@ -28,11 +30,13 @@ class StudentsLivewire extends Component
 
     public $hasDismissal = false, $dismissalID;
 
+    public $my_id;
     public function mount()
     {
         $my_id = session('user_id');
         if ($my_id) {
             $user = UserAccounts::find($my_id);
+            $this->my_id = $user->id;
             $this->privileges = $user->Roles->privileges()->pluck('privilege')->toArray();
         }
 
@@ -51,20 +55,6 @@ class StudentsLivewire extends Component
     public function render()
     {
         return view('livewire.students.students-livewire');
-    }
-
-    public function updatedStudentSignature($value)
-    {
-        if (!is_string($value) && !preg_match('/^data:image\/\w+;base64,/', $value)) {
-            $this->studentSignature = imageBinaryToSRC(file_get_contents($value->getRealPath()));
-        }
-    }
-
-    public function updatedGuardianSignature($value)
-    {
-        if (!is_string($value) && !preg_match('/^data:image\/\w+;base64,/', $value)) {
-            $this->guardianSignature = imageBinaryToSRC(file_get_contents($value->getRealPath()));
-        }
     }
 
     public function setInputOffense($value)
@@ -115,53 +105,25 @@ class StudentsLivewire extends Component
             'input_offense' => 'required|integer',
             'input_disciplinary_action' => 'required|integer'
         ]);
-
-        $student_signature_id = null;
-        if ($this->studentSignature) {
-            $studentSignatureImage = null;
-            $guardianSignatureImage = null;
-
-            if (is_string($this->studentSignature) && preg_match('/^data:image\/\w+;base64,/', $this->studentSignature)) {
-                $base64String = preg_replace('#^data:image/\w+;base64,#i', '', $this->studentSignature);
-                // Decode the base64 string to binary data
-                $studentSignatureImage = base64_decode($base64String);
-            }
-
-            if (is_string($this->guardianSignature) && preg_match('/^data:image\/\w+;base64,/', $this->guardianSignature)) {
-                $base64String = preg_replace('#^data:image/\w+;base64,#i', '', $this->guardianSignature);
-                // Decode the base64 string to binary data
-                $guardianSignatureImage = base64_decode($base64String);
-            }
-
-            // if (!is_string($this->studentSignature) && !preg_match('/^data:image\/\w+;base64,/', $this->studentSignature)) {
-            //     $image = file_get_contents($this->studentSignature->getRealPath());
-            // }
-
-            $studentSignature = StudentAnecdotalSignatures::create([
-                'student_signature' => $studentSignatureImage
-            ]);
-
-            $guardianSignature = GuardianAnecdotalSignatures::create([
-                'guardian_signature' => $guardianSignatureImage
-            ]);
-
-            $student_signature_id = $studentSignature->id;
-            $guardian_signature_id = $guardianSignature->id;
-        }
+        $student = Students::find($this->student_id);
+        $parent = $student->parents()->first();
 
         StudentsAnecdotals::create([
-            'student_id' => $this->student_id,
+            'student_id' => $student->id,
             'date' => $validateData['input_date'],
             'time' => $validateData['input_time'],
             'offense_id' => $validateData['input_offense'],
             'disciplinary_action_id' => $validateData['input_disciplinary_action'],
-            'student_signature_id' => $student_signature_id,
-            'guardian_signature_id' => $guardian_signature_id
+            'guardian_name' => $parent->name,
         ]);
 
         $this->anecdotal = StudentsAnecdotals::where('student_id', $this->student_id)->get();
         $ids = $this->anecdotal->pluck('disciplinary_action_id')->toArray();
         $this->hasDismissal = in_array($this->dismissalID, $ids);
+
+        $offense = Offenses::find($validateData['input_offense'])->offense_name;
+        $this->notify($this->my_id, $student->getUserAccount->id, "You committed $offense");
+        $this->notify($this->my_id, $parent->getUserAccount->id, "{$student->name} committed $offense");
 
         $this->showToast('success', 'Andedotal Record Added Successfully');
         $this->resetInputs();
@@ -174,8 +136,6 @@ class StudentsLivewire extends Component
         $this->input_offense = null;
         $this->input_disciplinary_action = null;
         $this->display_disciplinary_action = null;
-        $this->studentSignature = null;
-        $this->guardianSignature = null;
         $this->dispatch('clearSelection');
         $this->resetErrorBag();
     }

@@ -165,6 +165,9 @@
         Livewire.on('closeModals', () => {
             $('.modal').modal('hide');
         });
+        Livewire.on('closeSignaturePad', () => {
+            $('.signaturePadModal').modal('hide');
+        });
 
         $(function() {
             $("[tooltip='enable']").tooltip();
