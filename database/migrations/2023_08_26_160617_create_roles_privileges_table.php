@@ -25,7 +25,7 @@ return new class extends Migration
             'role' => 'Guidance',
             'is_default' => true
         ]);
-        $guidance->privileges()->attach([3, 4, 6, 8, 12, 14, 17, 20, 22, 25, 28, 30, 34, 36, 37, 39, 48, 52, 53, 55, 56, 57, 58]);
+        $guidance->privileges()->attach([3, 4, 6, 8, 12, 14, 17, 20, 22, 25, 28, 30, 34, 36, 37, 39, 48, 52, 53, 55, 56, 57, 58, 59, 60]);
      
         $student = Roles::create([
             'role' => 'Student',
@@ -43,7 +43,7 @@ return new class extends Migration
             'role' => 'Teacher',
             'is_default' => true
         ]);
-        $teacher->privileges()->attach([5, 7, 11, 13, 19, 21, 27, 29, 33, 35, 37, 41, 46, 47, 54, 55, 58]);
+        $teacher->privileges()->attach([5, 7, 11, 13, 19, 21, 27, 29, 33, 35, 37, 41, 46, 47, 54, 55, 58, 59]);
 
         $principal = Roles::create([
             'role' => 'Principal',
@@ -62,7 +62,7 @@ return new class extends Migration
             'is_default' => false
         ]);
         $superAdmin->privileges()->attach([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
-        27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 42, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58]);
+        27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 42, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]);
     }
 
     /**

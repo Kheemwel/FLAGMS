@@ -11,7 +11,9 @@ class ViolationFormsStudents extends Model
     protected $table = 'violation_forms_students';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'violation_forms_id', 'student_id', 'time', 'narrative'
+        'violation_forms_id', 'student_id', 'narrative', 'student_signature_id',
+        'student_name', 'level_section', 'age', 'gender', 'birthday', 'parent', 'contact',
+        'address', 'teacher',
     ];
 
     public function violationForm()

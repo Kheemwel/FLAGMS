@@ -252,6 +252,14 @@ return new class extends Migration
                 'privilege' => 'WriteStudentsAnecdotal',
                 'is_exclusive' => 0
             ],
+            [
+                'privilege' => 'ModifyStudentsAnecdotal',
+                'is_exclusive' => 0
+            ],
+            [
+                'privilege' => 'CreateForms',
+                'is_exclusive' => 1
+            ],
         ]);
     }
 

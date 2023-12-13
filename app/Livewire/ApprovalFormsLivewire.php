@@ -3,22 +3,28 @@
 namespace App\Livewire;
 
 use App\Events\NewNotification;
+use App\Models\Forms;
+use App\Models\HomeVisitationForms;
 use App\Models\Notifications;
 use App\Models\RequestForms;
+use App\Models\Students;
 use App\Models\UserAccounts;
+use App\Traits\Notify;
 use App\Traits\Toasts;
 use Livewire\Component;
 
 class ApprovalFormsLivewire extends Component
 {
     use Toasts;
+    use Notify;
     public $pending_requestforms, $approved_requestforms, $disapproved_requestforms, $violationForm, $homeVisitationForm;
     public $selectedRequestFormID, $selectedRequestFormType, $disApprovalReason;
-    public $my_id;
+    public $my_id, $guidanceID;
 
     public function mount()
     {
         $this->my_id = session('user_id');
+        $this->guidanceID = UserAccounts::find($this->my_id)->hasGuidance->id;
     }
 
     public function render()
@@ -58,19 +64,34 @@ class ApprovalFormsLivewire extends Component
                 $request->teacher->user_account_id,
                 ...$request->violationForm->students->pluck('user_account_id')->toArray(),
             ];
-            $request->createViolationForm();
+            // $request->createViolationForm();
         } else if ($this->selectedRequestFormType == 'Home Visitation Form') {
             $users = [
                 $request->teacher->user_account_id,
                 $request->homeVisitationForm->student->user_account_id,
             ];
-            $request->createHomeVisitationForm();
+            $form = Forms::create([
+                'guidance_id' => $this->guidanceID,
+                'teacher_id' => $request->teacher_id,
+                'form_type' => $request->form_type, 
+            ]);
+
+            $student = Students::find($request->homeVisitationForm->student_id);
+
+            HomeVisitationForms::create([
+                'form_id' => $form->id, 
+                'student_id' => $student->id, 
+                'reason' => $request->homeVisitationForm->reason,
+                'parent_id' => $student->parents()->first()->id, 
+                'junior_principal_id' => 1, 
+                'senior_principal_id' => 2, 
+            ]);
         }
 
         $this->showToast('success', "Requested $this->selectedRequestFormType is Approved Successfully");
         $this->resetFields();
 
-        $this->notify($request->teacher->user_account_id, "Your requested $request->form_type is approved");
+        $this->notify($this->my_id, $request->teacher->user_account_id, "Your requested $request->form_type is approved");
 
         redirect()->route('guidance-program-page', ['private_schedule' => [
             'users' => $users,
@@ -91,18 +112,8 @@ class ApprovalFormsLivewire extends Component
 
         $this->showToast('success', "Requested Home Visitation Form is Disapproved Successfully");
         $this->resetFields();
-
-        $this->notify($request->teacher->user_account_id, "Your requested $request->form_type is disapproved");
-    }
-
-    public function notify($teacher_id, $message)
-    {
-        Notifications::create([
-            'from_user' => $this->my_id,
-            'to_user' => $teacher_id,
-            'message' => $message,
-        ]);
-        NewNotification::dispatch();
+        
+        $this->notify($this->my_id, $request->teacher->user_account_id, "Your requested $request->form_type is disapproved");
     }
 
     public function resetFields()

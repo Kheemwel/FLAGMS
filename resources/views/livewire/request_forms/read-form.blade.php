@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content" x-on:click.outside="$wire.resetFields()">
             <div wire:loading wire:target='read'>
-                <div class="overlay bg-white">
+                <div class="overlay bg-white" style=" height: 500px;">
                     <i class="fas fa-3x fa-sync-alt fa-spin"></i>
                 </div>
             </div>

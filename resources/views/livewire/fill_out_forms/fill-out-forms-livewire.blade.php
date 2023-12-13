@@ -64,6 +64,14 @@
             color: #ffffff;
         }
     </style>
+    <!-- Select2 CSS -->
+    <link href="adminLTE-3.2/plugins/select2/css/select2.min.css" rel="stylesheet">
+    <link href="adminLTE-3.2/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css" rel="stylesheet">
+@endsection
+
+@section('head-scripts')
+    {{-- Select2 JS --}}
+    <script src="adminLTE-3.2/plugins/select2/js/select2.full.min.js"></script>
 @endsection
 
 <div class="content-wrapper" style="background-color:  rgb(253, 253, 253); padding-left: 2rem;">
@@ -89,6 +97,9 @@
                         <button class="btn btn-default" data-target="#table-filter" data-toggle="modal" style="height: 35px;" type="submit">
                             <i aria-hidden="true" class="fa fa-filter"></i>
                         </button>
+                        @if (in_array('CreateForms', $privileges))
+                            <button class="btn btn-block btn-default" data-target="#create-form" data-toggle="modal" style="border-color: transparent; background-color: #0A0863; color: #252525; color:white; margin-left: 2rem;">Create Form</button>
+                        @endif
                     </div>
                     <!-- /.modal end-->
                 </div>
@@ -125,7 +136,7 @@
                                             <img alt="user profile" src="images/user-req.png" style="align-self: center;">
                                         </td>
                                         <td style="vertical-align: top;" style="width: 70%;">
-                                            <label style="font-size: 18px; line-height: 5%;">{{ $form->teacherName() }}</label> <br>
+                                            <label style="font-size: 18px; line-height: 5%;">{{ $form->teacher_name }}</label> <br>
                                             <label style="font-size: 14px;">{{ $form->created_at->format('F d,Y   h:i A') }}</label>
                                         </td>
                                         <td style="vertical-align: top;" style="width: 20%;">
@@ -134,7 +145,7 @@
                                     </tr>
                                     <tr>
                                         <td style="vertical-align: top; width: 70%;">
-                                            <label style="font-size: 28px; margin-top: 1rem;">{{ $form->formType() }}</label>
+                                            <label style="font-size: 28px; margin-top: 1rem;">{{ $form->form_type }}</label>
                                             <p>ID: VF#{{ $form->violationForm->id }}-{{ $violationFormStudent->id }}</p>
                                         </td>
                                         <td style="vertical-align: bottom; width: 20%;">
@@ -160,7 +171,7 @@
                                         <img alt="user profile" src="images/user-req.png" style="align-self: center;">
                                     </td>
                                     <td style="vertical-align: top;" style="width: 70%;">
-                                        <label style="font-size: 18px; line-height: 5%;">{{ $form->teacherName() }}</label> <br>
+                                        <label style="font-size: 18px; line-height: 5%;">{{ $form->teacher_name }}</label> <br>
                                         <label style="font-size: 14px;">{{ $form->created_at->format('F d,Y   h:i A') }}</label>
                                     </td>
                                     <td style="vertical-align: top;" style="width: 20%;">
@@ -169,7 +180,7 @@
                                 </tr>
                                 <tr>
                                     <td style="vertical-align: top; width: 70%;">
-                                        <label style="font-size: 28px; margin-top: 1rem;">{{ $form->formType() }}</label>
+                                        <label style="font-size: 28px; margin-top: 1rem;">{{ $form->form_type }}</label>
                                         <p>ID: HF#{{ $form->homeVisitationForm->id }}</p>
                                     </td>
                                     <td style="vertical-align: bottom; width: 20%;">
@@ -193,4 +204,41 @@
     @include('livewire.fill_out_forms.read-home-visitation-form')
     @include('livewire.fill_out_forms.fill-home-visitation-form')
     @include('livewire.fill_out_forms.add-signature')
+    @include('livewire.fill_out_forms.create-form')
 </div>
+
+@section('scripts')
+    <script>
+        let studentsInvolve = [];
+        let selectedStudent = null;
+        let selectedTeacher = null;
+
+        function initMultiSelect() {
+            $('#multiple-select-optgroup-clear-field').select2({
+                theme: "bootstrap4",
+                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+                placeholder: $(this).data('placeholder'),
+                allowClear: true,
+            });
+
+            $('.single-select2').select2({
+                theme: "bootstrap4",
+                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+                placeholder: $(this).data('placeholder'),
+                allowClear: true,
+            });
+
+            $('#multiple-select-optgroup-clear-field').on('change', function(e) {
+                studentsInvolve = $(this).val();
+            });
+
+            $('#student-select').on('change', function(e) {
+                selectedStudent = $(this).val();
+            });
+
+            $('.teacher-select').on('change', function(e) {
+                selectedTeacher = $(this).val();
+            });
+        }
+    </script>
+@endsection

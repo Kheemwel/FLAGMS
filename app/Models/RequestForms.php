@@ -64,19 +64,4 @@ class RequestForms extends Model
     {
         return $this->teacher->name;
     }
-
-    public function forms()
-    {
-        return $this->hasOne(Forms::class, 'request_form_id');
-    }
-
-    public function createViolationForm()
-    {
-        $this->forms()->create()->createViolationForms();
-    }
-
-    public function createHomeVisitationForm()
-    {
-        $this->forms()->create()->createHomeVisitationForms();
-    }
 }

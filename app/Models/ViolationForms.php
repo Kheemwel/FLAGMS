@@ -21,7 +21,7 @@ class ViolationForms extends Model
 
     public function teacherName()
     {
-        return $this->form->teacherName();
+        return $this->form->teacher_name;
     }
 
     public function violationFormStudents()

@@ -2,6 +2,13 @@
 <div class="modal as-modal fade" data-backdrop="static" id="fill-home-visitation-form" style="max-width: 100%;" wire:ignore.self>
     <div class="modal-dialog as-dialog modal-xl">
         <div class="modal-content">
+            <div wire:loading wire:target='getHomeVisitationForm'>
+                <div class="overlay bg-white" style="border-radius: 20px;  height: 75vh;" >
+                    <div>
+                        <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+                    </div>
+                </div>
+            </div>
             <div class="modal-header" style="border: transparent; padding: 10px;">
                 <button aria-label="Close" class="close" data-dismiss="modal" type="button">
                     <span aria-hidden="true">&times;</span>

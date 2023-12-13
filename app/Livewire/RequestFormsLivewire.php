@@ -77,7 +77,7 @@ class RequestFormsLivewire extends Component
 
             $request_form = RequestForms::create([
                 'teacher_id' => $this->teacher_id,
-                'form_type' => $type
+                'form_type' => $type,
             ]);
 
             RequestHomeVisitationForms::create([

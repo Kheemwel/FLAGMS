@@ -1,6 +1,11 @@
 <?php
 
+use App\Models\Guidance;
+use App\Models\Parents;
+use App\Models\Principals;
 use App\Models\Roles;
+use App\Models\Students;
+use App\Models\Teachers;
 use App\Models\UserAccounts;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;

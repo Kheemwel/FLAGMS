@@ -230,6 +230,7 @@
         var channel = pusher.subscribe('new-notification');
         channel.bind('NewNotification', function(data) {
             Livewire.dispatch('newNotification');
+            console.log(data);
         });
     </script>
     @yield('scripts')

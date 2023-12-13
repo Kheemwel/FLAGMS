@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div wire:loading wire:target='read, approveRequest'>
-                <div class="overlay bg-white">
+                <div class="overlay bg-white" style=" height: 500px;">
                     <i class="fas fa-3x fa-sync-alt fa-spin"></i>
                 </div>
             </div>
