@@ -51,7 +51,7 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6 pl-3 pt-3">
+                <div class="col-sm-6 pl-4 pt-3">
                     <p class="text-xl font-weight-bold">Roles</p>
                 </div>
             </div>
@@ -97,8 +97,8 @@
 
     <div class="row">
         <div class="col-12">
-            <!--PROFILE PICTURES TABLE SECTION-->
-            <div class="card ml-3 mr-3" style="border-radius: 10px;">
+            <!--TABLE SECTION-->
+            <div class="card ml-4 mr-4" style="border-radius: 10px;">
                 <!-- /.card-header -->
                 <div class="card-body table-responsive p-0"style="border: 1px solid #252525; border-radius: 10px;">
                     <!-- /.card-header -->

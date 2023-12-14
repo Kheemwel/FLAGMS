@@ -32,7 +32,7 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                    <button class="btn btn-primary" style="width: 450px; margin-left: 5px; background-color: #0A0863; color: white; font-size: 14px;" type="submit">Submit</button>
+                    <button class="btn btn-primary" style="width: 100%; margin-left: 5px; background-color: #0A0863; color: white; font-size: 14px;" type="submit">Submit</button>
                 </div>
             </form>
         </div>

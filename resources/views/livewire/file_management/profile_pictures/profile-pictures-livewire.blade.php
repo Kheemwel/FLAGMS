@@ -7,7 +7,7 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6 pl-5 pt-3">
+                <div class="col-sm-6 pl-4 pt-3">
                     <p class="font-weight-bold text-xl">Profile Pictures</p>
                 </div>
             </div>
@@ -15,14 +15,14 @@
         <!-- /.container-fluid -->
     </section>
 
-    <div class="col-12 col-sm-4 mb-2 pl-5 pr-5">
+    <div class="col-12 col-sm-4 mb-2 pr-4 pl-4">
         <div class="input-group">
             <input class="form-control" name="table_search" placeholder="Search" style="height: 35px;" type="text" wire:model.live.debounce.500ms='search'>
         </div>
     </div>
     
     <div class="row mt-2 mr-1">
-        <div class="col-12 col-sm-12 pt-2 pr-5 d-flex justify-content-end">
+        <div class="col-12 col-sm-12 pt-2 pr-4 pl-4 d-flex justify-content-end">
             <label for="per-page" class="font-weight-normal text-sm">Show
                 <select class="form-select form-select-sm" id='per-page'
                     wire:model.live.debounce.500ms="per_page">
@@ -42,7 +42,7 @@
     <div class="row">
         <div class="col-12">
             <!--PROFILE PICTURES TABLE SECTION-->
-            <div class="card ml-5 mr-5" style="border-radius: 10px;">
+            <div class="card ml-4 mr-4" style="border-radius: 10px;">
                 <!-- /.card-header -->
                 <div class="card-body table-responsive p-0" style="border: 1px solid #252525; border-radius: 10px;">
                     <!-- /.card-header -->
