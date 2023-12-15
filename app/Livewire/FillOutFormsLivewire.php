@@ -414,7 +414,7 @@ class FillOutFormsLivewire extends Component
             'address' =>  $this->violationForm->address,
             'teacher_name' => $formViolation->teacher_name,
             'offense_type' => $formViolation->offense_type,
-            'narrative' => $formViolation->narrative,
+            'narrative' => $this->violationForm->narrative,
             'action_taken' => $formViolation->action_taken,
             'case_status' => $formViolation->case_status,
             'recommendation' => $formViolation->recommendation,

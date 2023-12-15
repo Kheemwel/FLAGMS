@@ -221,27 +221,6 @@
         </div>
     </div>
 
-    <div class="row mb-2 mt-4">
-        <div class="col-8 ml-4 mr-4">
-            <label class="text-lg">Senior High School</label>
-        </div>
-    </div>
-
-    <div class="row mb-2">
-        <div class="col-3 ml-4 mr-4">
-            <label class="text-lg">Name of School</label>
-            <p class="text-lg">{{ $inventory->senior_school }}</p>
-        </div>
-        <div class="col-3 ml-4 mr-4">
-            <label class="text-lg">School Year Start</label>
-            <p class="text-lg">{{ $inventory->senior_start }}</p>
-        </div>
-        <div class="col-3 ml-4 mr-4">
-            <label class="text-lg">School Year Ends</label>
-            <p class="text-lg">{{ $inventory->senior_end }}</p>
-        </div>
-    </div>
-
     <!---------------------------->
     <div class="row mb-2 mt-4">
         <div class="col-8 ml-4 mr-4">
