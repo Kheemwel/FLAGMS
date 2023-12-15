@@ -150,7 +150,7 @@
                         <a class="nav-link  nav-link-button" href="#">
                             <iconify-icon icon="streamline:interface-file-clipboard-text-edition-form-task-checklist-edit-clipboard" style="color: #252525;"></iconify-icon>
                             <p style="color: #252525;">
-                                Records
+                                Guidance Records
                                 <i class="right fas fa-angle-left" style="color: #252525;"></i>
                             </p>
                         </a>

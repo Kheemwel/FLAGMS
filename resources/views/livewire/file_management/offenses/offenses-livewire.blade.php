@@ -1,21 +1,21 @@
 @section('head')
-    <title>Admin | Offenses</title>
+    <title>FLAGMS | Offenses</title>
 @endsection
 
-<div class="content-wrapper" style="background-color:  rgb(253, 253, 253); padding-left: 2rem;">
+<div class="content-wrapper pl-1 pr-1" style="background-color:  rgb(253, 253, 253);">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6" style="padding-left: 2rem; padding-top: 1rem;">
-                    <h1 style="font-weight: bold;">Offenses</h1>
+                <div class="col-sm-6 pl-4 pt-3">
+                    <p class="font-weight-bold text-xl">Offenses</p>
                 </div>
             </div>
         </div>
         <!-- /.container-fluid -->
     </section>
 
-    <div class="card card-primary card-tabs " style="background-color:  rgb(253, 253, 253); margin-left: 2rem; margin-right: 3rem;">
+    <div class="card card-primary card-tabs ml-4 mr-4" style="background-color:  rgb(253, 253, 253);">
         <div class="card-header p-0 pt-1" style="background-color: #7684B9 !important">
             <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
                 <li class="nav-item" wire:ignore>
@@ -41,7 +41,7 @@
             </ul>
         </div>
         <div class="card-body">
-            <div class="tab-content" id="custom-tabs-one-tabContent" style="padding-right: 2rem;">
+            <div class="tab-content" id="custom-tabs-one-tabContent">
                 <div aria-labelledby="custom-tabs-one-offense-tab" class="tab-pane fade active show" id="custom-tabs-one-offenses" role="tabpanel" wire:ignore.self>
                     @include('livewire.file_management.offenses.offenses-table')
                 </div>

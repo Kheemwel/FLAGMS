@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
-    <title>Admin | Violation Forms</title>
+    <title>FLAGMS | Violation Forms</title>
     <link href="favicon.ico" rel="icon" type="image/x-icon">
 
     <!--Dropdown Button Bootstrap-->
@@ -92,16 +92,17 @@
         @livewire('top-navigation-livewire')
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper" style="background-color:  rgb(253, 253, 253); padding-left: 2rem;">
+        <div class="content-wrapper pl-1 pr-1" style="background-color:  rgb(253, 253, 253);">
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
-                        <div class="col-sm-6" style="padding-left: 2rem; padding-top: 1rem;">
-                            <h1 style="font-weight: bold;">Violation</h1>
+                        <div class="col-sm-6 pl-4 pt-3">
+                            <p class="text-xl font-weight-bold">Violation</p>
                         </div>
                     </div>
-                </div><!-- /.container-fluid -->
+                </div>
+                <!-- /.container-fluid -->
             </section>
 
             <div class="row">
@@ -299,47 +300,73 @@
                 </div>
             </div>
 
-            <!--HOME VISITATION TABLE SECTION-->
-            <div class="card" style="margin-left: 2rem; margin-right: 2rem;">
-                <!-- /.card-header -->
-                <div class="card-body table-responsive p-0" style="border: 1px solid #252525;">
-                    <table class="table text-nowrap" style="text-align: center;">
-                        <thead style="background-color: #7684B9; color: white;">
-                            <tr>
-                                <th style="border-right: 1px solid #252525;">Teacher Name</th>
-                                <th style="border-right: 1px solid #252525;">Student Name</th>
-                                <th style="border-right: 1px solid #252525;">School Level</th>
-                                <th style="border-right: 1px solid #252525;">Grade Level</th>
-                                <th style="border-right: 1px solid #252525;">Date Created</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Anne Lopez</td>
-                                <td>Val Dela Cruz</td>
-                                <td>Senior High School</td>
-                                <td>Grade 11</td>
-                                <td>12/08/23</td>
-                                <td>
-                                    <!--Home Visitation STUDENT INFO EDIT BUTTON-->
-                                    <a class="btn btn-primary action-btn" data-target="#stud-info-edit" data-toggle="modal" href="#">
-                                        <i class="fa fa-solid fa-pen"></i>
-                                    </a>
+            <div class="row mt-2 mr-1">
+                <div class="col-12 col-sm-12 pt-2 pr-4 pl-4 d-flex justify-content-end">
+                    <label for="per-page" class="font-weight-normal text-sm">Show
+                        <select class="form-select form-select-sm" id='per-page'
+                            wire:model.live.debounce.500ms="per_page">
+                            <option>10</option>
+                            <option>15</option>
+                            <option>20</option>
+                            <option>25</option>
+                            <option selected>30</option>
+                            <option>50</option>
+                            <option>100</option>
+                        </select>
+                        Entries
+                    </label>
+                </div>
+            </div>
 
-                                    <!--HOME VISITATION STUDENT INFO VIEW BUTTON-->
-                                    <a class="btn btn-primary action-btn" data-target="#Home Visitation-btn" data-toggle="modal" href="#">
-                                        <i aria-hidden="true" class="fa fa-eye"></i>
-                                    </a>
+            <!--VIOLATION TABLE SECTION-->
+            <div class="row">
+                <div class="col-12">
+                    <!--TABLE SECTION-->
+                    <div class="card ml-4 mr-4" style="border-radius: 10px;">
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-0"style="border: 1px solid #252525; border-radius: 10px;">
+                            <!-- /.card-header -->
+                            <div class="card-body table-responsive p-0">
+                                <table class="table table-hover" style="text-align: center;">
+                                    <thead style="background-color: #7684B9; color: white;">
+                                        <tr>
+                                            <th>Teacher Name</th>
+                                            <th>Student Name</th>
+                                            <th>School Level</th>
+                                            <th>Grade Level</th>
+                                            <th>Date Created</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Anne Lopez</td>
+                                            <td>Val Dela Cruz</td>
+                                            <td>Senior High School</td>
+                                            <td>Grade 11</td>
+                                            <td>12/08/23</td>
+                                            <td>
+                                                <!--Home Visitation STUDENT INFO EDIT BUTTON-->
+                                                <a class="btn btn-primary action-btn" data-target="#stud-info-edit" data-toggle="modal" href="#">
+                                                    <i class="fa fa-solid fa-pen"></i>
+                                                </a>
 
-                                    <!--DELETE BUTTON-->
-                                    <a class="btn btn-primary action-btn" href="#">
-                                        <i class="fa fa-solid fa-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                                <!--HOME VISITATION STUDENT INFO VIEW BUTTON-->
+                                                <a class="btn btn-primary action-btn" data-target="#Home Visitation-btn" data-toggle="modal" href="#">
+                                                    <i aria-hidden="true" class="fa fa-eye"></i>
+                                                </a>
+
+                                                <!--DELETE BUTTON-->
+                                                <a class="btn btn-primary action-btn" href="#">
+                                                    <i class="fa fa-solid fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>            
                 </div>
                 <!-- /.card-body -->
             </div>
