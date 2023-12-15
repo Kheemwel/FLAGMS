@@ -53,9 +53,6 @@ return new class extends Migration
             $table->string('junior_school');
             $table->string('junior_start');
             $table->string('junior_end');
-            $table->string('senior_school');
-            $table->string('senior_start');
-            $table->string('senior_end');
 
             
             $table->text('medical_conditions')->nullable();

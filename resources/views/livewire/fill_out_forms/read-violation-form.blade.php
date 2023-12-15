@@ -202,7 +202,9 @@
                 </div> <!-- /.card-body -->
 
                 <div class="modal-footer">
-                    <button class="btn btn-block btn-default" onclick="printViolationForm()" style="border-color: transparent; background-color: #0A0863; color: #252525; color:white; margin-left: 2rem;" type="button">Print</button>
+                    @if ($role == 'Guidance')
+                        <button class="btn btn-block btn-default" onclick="printViolationForm()" style="border-color: transparent; background-color: #0A0863; color: #252525; color:white; margin-left: 2rem;" type="button">Print</button>
+                    @endif
                 </div>
             </form>
         </div>

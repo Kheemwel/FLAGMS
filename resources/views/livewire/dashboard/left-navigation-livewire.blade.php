@@ -119,11 +119,11 @@
                                         <p style="color: #252525;">Item Tags</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <a class="nav-link nav-link-button {{ setActiveLink('guidance-records-page') }}" href="{{ route('guidance-records-page') }}">
                                         <p style="color: #252525;">Guidance Records</p>
                                     </a>
-                                </li>
+                                </li> --}}
                             @endif
                             @if (in_array('ManageDatabase', $privileges))
                                 <li class="nav-item">
