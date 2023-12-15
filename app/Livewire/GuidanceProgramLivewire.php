@@ -52,8 +52,6 @@ class GuidanceProgramLivewire extends Component
 
     public function renderCalendar()
     {
-        $programs = GuidancePrograms::join('guidance_schedule_tags', 'guidance_programs.schedule_tag_id', '=', 'guidance_schedule_tags.id')
-            ->select('guidance_programs.*', 'guidance_schedule_tags.tag_name', 'guidance_schedule_tags.color')->get();
         $programs = GuidancePrograms::leftJoin('guidance_private_schedules', function ($join) {
             $join->on('guidance_programs.id', '=', 'guidance_private_schedules.guidance_program_id')
                 ->where('guidance_private_schedules.user_account_id', '=', $this->user_id);

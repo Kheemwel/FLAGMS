@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\DisciplinaryActions;
 use App\Models\GuardianAnecdotalSignatures;
+use App\Models\HomeVisitationForms;
 use App\Models\OffenseLevels;
 use App\Models\Offenses;
 use App\Models\OffensesDisciplinaryActions;
@@ -11,6 +12,7 @@ use App\Models\StudentAnecdotalSignatures;
 use App\Models\Students;
 use App\Models\StudentsAnecdotals;
 use App\Models\UserAccounts;
+use App\Models\ViolationFormsStudents;
 use App\Traits\Notify;
 use App\Traits\Toasts;
 use Livewire\Component;
@@ -26,6 +28,7 @@ class StudentsLivewire extends Component
     public $offenses;
     public $privileges = [];
     public $studentSignature, $guardianSignature;
+    public $numViolations, $numViolationForms, $numHomeVisitationForms;
 
     protected $listeners = ['setInputOffense'];
 
@@ -96,6 +99,30 @@ class StudentsLivewire extends Component
             $this->hasDismissal = in_array($this->dismissalID, $ids);
         } else {
             $this->hasDismissal = false;
+        }
+
+        if ($this->anecdotal) {
+            $offensesWithCount = Offenses::withCount('Anecdotals')
+                ->whereHas('Anecdotals', function ($query) use ($id) {
+                    $query->where('student_id', $id);
+                })
+                ->get()
+                ->map(function ($offense) {
+                    return [
+                        'offense' => $offense->offense_name, // Replace `name` with the relevant attribute
+                        'count' => $offense->anecdotals_count, // Adjust the count attribute name if different
+                    ];
+                })
+                ->toArray();
+            // Format the result as an array with offense as key and count as value
+            $offenses = array_combine(
+                array_column($offensesWithCount, 'offense'),
+                array_column($offensesWithCount, 'count')
+            );
+            $this->dispatch('summary', $offenses);
+            $this->numViolations = $this->anecdotal->count();
+            $this->numViolationForms = ViolationFormsStudents::where('student_id', $id)->count();
+            $this->numHomeVisitationForms = HomeVisitationForms::where('student_id', $id)->count();
         }
     }
 

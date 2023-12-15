@@ -1,8 +1,15 @@
 <div class="modal fade" id="summary-btn" style="max-width: 100%;" wire:ignore.self>
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
+            <div wire:loading wire:target='getData, saveAnecdotal'>
+                <div class="overlay bg-white" style="border-radius: 20px;">
+                    <div>
+                        <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+                    </div>
+                </div>
+            </div>
             <div class="modal-header" style="border: transparent; padding: 10px;">
-                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button" wire:click='resetInputs()'>
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -23,7 +30,7 @@
                             <p class="card-title">Name</p>
                         </div>
                         <div class="form-group col-sm-6" style="font-size: 12px; color: #252525;">
-                            <p class="card-title" style="font-weight: bold;">Kimwel Beller</p>
+                            <p class="card-title" style="font-weight: bold;">{{ $student_name }}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -32,7 +39,7 @@
                             <p class="card-title">LRN</p>
                         </div>
                         <div class="form-group col-sm-6" style="font-size: 12px; color: #252525;">
-                            <p class="card-title" style="font-weight: bold;">0215752152025</p>
+                            <p class="card-title" style="font-weight: bold;">{{ $lrn }}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -41,7 +48,7 @@
                             <p class="card-title">School Level</p>
                         </div>
                         <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
-                            <p class="card-title" style="font-weight: bold;">Senior High School</p>
+                            <p class="card-title" style="font-weight: bold;">{{ $school_level }}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -50,7 +57,7 @@
                             <p class="card-title">Grade Level</p>
                         </div>
                         <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
-                            <p class="card-title" style="font-weight: bold;">Grade 11</p>
+                            <p class="card-title" style="font-weight: bold;">Grade {{ $grade_level }}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -59,7 +66,7 @@
                             <p class="card-title">No. of Violations</p>
                         </div>
                         <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
-                            <p class="card-title" style="font-weight: bold;">1</p>
+                            <p class="card-title" style="font-weight: bold;">{{ $numViolations }}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -68,7 +75,7 @@
                             <p class="card-title">No. of Home Visitation <br> Forms</p>
                         </div>
                         <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
-                            <p class="card-title" style="font-weight: bold;">0</p>
+                            <p class="card-title" style="font-weight: bold;">{{ $numHomeVisitationForms }}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -77,7 +84,7 @@
                             <p class="card-title">No. of Violations Forms</p>
                         </div>
                         <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
-                            <p class="card-title" style="font-weight: bold;">1</p>
+                            <p class="card-title" style="font-weight: bold;">{{ $numViolationForms }}</p>
                         </div>
                     </div><br><br>
                     <!---------PIE CHART VIOLATIONS----------->
@@ -88,8 +95,8 @@
                         <div class="col-sm-12">
                             <div class="card" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); margin-right: 1rem;">
                                 <!--Violation PieChart-->
-                                <div class="tab-content p-0">
-                                    <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;margin-top: 1rem;"></canvas>
+                                <div class="tab-content p-0" wire:ignore>
+                                    <canvas id="pieChart" style="min-height: 250px; max-height: 250px; max-width: 100%;margin-top: 1rem;"></canvas>
                                     <br>
                                 </div>
                             </div>

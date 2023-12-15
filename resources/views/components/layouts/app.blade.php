@@ -221,6 +221,24 @@
                 toastr.warning(message)
             }
         });
+
+        
+
+        function formatDate(dateTimeString) {
+            const originalDate = new Date(dateTimeString);
+
+            // Format the date using toLocaleString
+            const formattedDatetimeString = originalDate.toLocaleString('en-US', {
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                hour12: true,
+            });
+
+            return formattedDatetimeString;
+        }
     </script>
     <script>
         // Enable pusher logging - don't include this in production

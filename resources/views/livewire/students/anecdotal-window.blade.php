@@ -63,7 +63,7 @@
                             <p class="card-title font-weight-bold">{{ $grade_level }}</p>
                         </div>
                     </div>
-                    <div class="row">
+                    {{-- <div class="row">
                         <!--FATHER'S NAME-->
                         <div class="form-group col-sm-2 col-md-3 text-sm" style="color: #252525;">
                             <p class="card-title">Father's Name</p>
@@ -96,7 +96,7 @@
                         <div class="form-group col-sm-2 col-md-3" style="color: #252525;">
                             <p class="card-title font-weight-bold" >0939 258 1123</p>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <br><br>
                     <div class="input-group-prepend">

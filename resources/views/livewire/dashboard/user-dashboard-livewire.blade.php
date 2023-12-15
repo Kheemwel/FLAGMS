@@ -48,7 +48,7 @@
                                     <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 80px;">
                                         <div class="inner">
                                             <p class="mb-0 text-truncate text-sm">Total No. of Students</p>
-                                            <p class="mb-0 font-weight-bold" style="font-size: 1.5rem;">5,656</p>
+                                            <p class="mb-0 font-weight-bold" style="font-size: 1.5rem;">2,000</p>
                                         </div>
                                     </div>
                                 </div>
@@ -57,7 +57,7 @@
                                     <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 80px;">
                                         <div class="inner">
                                             <p class="mb-0 text-truncate text-sm">No. of Junior High Students</p>
-                                            <p class="mb-0 font-weight-bold" style="font-size: 1.5rem;">2,345</p>
+                                            <p class="mb-0 font-weight-bold" style="font-size: 1.5rem;">1,500</p>
                                         </div>
                                     </div>
                                 </div>
@@ -66,7 +66,7 @@
                                     <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 80px;">
                                         <div class="inner">
                                             <p class="mb-0 text-truncate text-sm">No. of Senior High Students</p>
-                                            <p class="mb-0 font-weight-bold" style="font-size: 1.5rem;">1,235</p>
+                                            <p class="mb-0 font-weight-bold" style="font-size: 1.5rem;">500</p>
                                         </div>
                                     </div>
                                 </div>
@@ -77,7 +77,7 @@
                                     <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0,0, 0.2); border-radius: 10px; height: 80px;">
                                         <div class="inner">
                                             <p class="mb-0 text-truncate text-sm">No. of Anecdotal Reports</p>
-                                            <p class="mb-0 font-weight-bold" style="font-size: 1.5rem;">2</p>
+                                            <p class="mb-0 font-weight-bold" style="font-size: 1.5rem;">{{ $numAnecdotalReports }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -86,7 +86,7 @@
                                     <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 80px;">
                                         <div class="inner">
                                             <p class="mb-0 text-truncate text-sm">No. of Violation Reports</p>
-                                            <p class="mb-0 font-weight-bold" style="font-size: 1.5rem;">24</p>
+                                            <p class="mb-0 font-weight-bold" style="font-size: 1.5rem;">{{ $numViolationReports }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -95,7 +95,7 @@
                                     <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 80px;">
                                         <div class="inner">
                                             <p class="mb-0 text-truncate text-sm">No. of Home Visitation Reports</p>
-                                            <p class="mb-0 font-weight-bold" style="font-size: 1.5rem;">5</p>
+                                            <p class="mb-0 font-weight-bold" style="font-size: 1.5rem;">{{ $numHomeVisitationReports }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -389,10 +389,12 @@
                                             <a class="see-all-link text-sm" href="{{ route('guidance-program-page') }}" style="color: #252525; float: right;">See All</a>
                                         </div>
                                     </div>
+                                    @foreach ($upcomingEvents as $events)
+                                        
                                     <div class="row">
                                         <div class="col-3 d-flex align-items-center justify-content-center">
                                             <div class="p-2">
-                                                <p class="text-sm text-center font-weight-bold" style="color: #006400;">
+                                                <p class="text-sm text-center font-weight-bold" style="color: {{ $events->color() }};">
                                                     <i class="fa fa-solid fa-circle"></i>
                                                 </p>
                                             </div>
@@ -400,52 +402,15 @@
                                         <div class="col d-flex flex-column justify-content-center">
                                             <div class="p-2">
                                                 <div class="row">
-                                                    <p class="h6 mb-0 text-truncate" style="color: #252525;">Guidance Career Program</p>
+                                                    <p class="h6 mb-0 text-truncate" style="color: #252525;">{{ $events->title }}</p>
                                                 </div>
                                                 <div class="row">
-                                                    <p class="text-muted mb-0 small">10:00 AM - 12:30 PM</p>
+                                                    <p class="text-muted mb-0 small">{{ date('F d,Y   h:i A', strtotime($events->program_start)) . " to " . date('F d,Y   h:i A', strtotime($events->program_end)) }}</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-3 d-flex align-items-center justify-content-center">
-                                            <div class="p-2">
-                                                <p class="text-sm font-weight-bold text-center" style="color: #3C58FF;">
-                                                    <i class="fa fa-solid fa-circle"></i>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="col d-flex flex-column justify-content-center">
-                                            <div class="p-2">
-                                                <div class="row">
-                                                    <p class="h6 mb-0 text-truncate" style="color: #252525;">Mental Health Program</p>
-                                                </div>
-                                                <div class="row">
-                                                    <p class="text-muted mb-0 small" style="color: #252525;">10:00AM - 12:30PM</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-3 d-flex align-items-center justify-content-center">
-                                            <div class="p-2">
-                                                <p class="text-sm font-weight-bold text-center" style="color: #6256AC;">
-                                                    <i class="fa fa-solid fa-circle"></i>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="col d-flex flex-column justify-content-center">
-                                            <div class="p-2">
-                                                <div class="row">
-                                                    <p class="h6 mb-0 text-truncate" style="color: #252525;">Academic Advising Session</p>
-                                                </div>
-                                                <div class="row">
-                                                    <p class="text-muted mb-0 small" style="color: #252525;">10:00AM - 12:30PM</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -475,16 +440,37 @@
     <!----------------------------------------------------->
 
     <script>
+        let offenses = [];
+        let offensesData = [];
+
+        Livewire.on('offensesData', (data) => {
+
+            // Convert the object to an array of entries
+            const entries = Object.entries(data[0]);
+
+            // Sort the entries by count in descending order
+            entries.sort((a, b) => b[1] - a[1]);
+
+            // Extract the top 3 items (key-value pairs)
+            const top5 = entries.slice(0, 5);
+
+            // Extract the top 3 keys (fruit names)
+            offenses = top5.map(([key, value]) => key);
+            offensesData = top5.map(([key, value]) => value);
+        });
+
         $(function() {
             var donutData = {
-                labels: [
-                    'Verbal Offense',
-                    'Physical Offense',
-                    'Social Media Offense'
-                ],
+                // labels: [
+                //     'Verbal Offense',
+                //     'Physical Offense',
+                //     'Social Media Offense'
+                // ],
+                labels: offenses,
                 datasets: [{
-                    data: [800, 500, 200],
-                    backgroundColor: ['#0A0863', '#7684B9', '#F5C91A'],
+                    // data: [800, 500, 200],
+                    data: offensesData,
+                    backgroundColor: ['#3C58FF', '#6256AC', '#05ADC7', '#FA4481', '#FC993E'],
                 }]
             }
             //- PIE CHART -

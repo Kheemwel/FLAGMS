@@ -22,6 +22,11 @@ class Offenses extends Model
         return $this->belongsTo(OffensesCategories::class, 'offenses_category_id');
     }
 
+    public function Anecdotals()
+    {
+        return $this->hasMany(StudentsAnecdotals::class, 'offense_id');
+    }
+
     public function getCategoryAttribute()
     {
         return $this->getCategory->offenses_category;
