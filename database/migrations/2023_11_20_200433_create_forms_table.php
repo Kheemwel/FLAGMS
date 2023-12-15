@@ -57,7 +57,7 @@ return new class extends Migration
             $table->string('mother_contact')->nullable();
             $table->string('guardian_name')->nullable();
             $table->string('guardian_contact')->nullable();
-            $table->string('reason');
+            $table->string('reason')->nullable();
             $table->date('visitation_date')->nullable();
             $table->string('place')->nullable();
             $table->string('remark')->nullable();
@@ -85,6 +85,7 @@ return new class extends Migration
             $table->text('action_taken')->nullable();
             $table->text('case_status')->nullable();
             $table->text('recommendation')->nullable();
+            $table->string('teacher_name');
             $table->foreign('form_id')->references('id')->on('forms')->cascadeOnDelete();
             $table->timestamps();
         });
@@ -102,7 +103,6 @@ return new class extends Migration
             $table->string('parent')->nullable();
             $table->string('contact')->nullable();
             $table->string('address')->nullable();
-            $table->string('teacher')->nullable();
             $table->text('narrative')->nullable();
             $table->foreign('violation_forms_id')->references('id')->on('violation_forms')->cascadeOnDelete();
             $table->foreign('student_id')->references('id')->on('students')->cascadeOnDelete();

@@ -72,6 +72,7 @@
 @section('head-scripts')
     {{-- Select2 JS --}}
     <script src="adminLTE-3.2/plugins/select2/js/select2.full.min.js"></script>
+    <script src="js/jQuery.print.min.js"></script>
 @endsection
 
 <div class="content-wrapper" style="background-color:  rgb(253, 253, 253); padding-left: 2rem;">
@@ -151,8 +152,10 @@
                                         <td style="vertical-align: bottom; width: 20%;">
                                             <!--READ BUTTON-->
                                             <button class="btn btn-default" data-target="#read-violation-form" data-toggle="modal" style="color: white; background-color: #080743; font-size: 14px; width: 80px; margin-right: 1rem;" wire:click="getViolationForm({{ $form->violationForm->id }}, {{ $violationFormStudent->id }})">Read</button>
-                                            <!--FILL OUT BUTTON-->
-                                            <button class="btn btn-default" data-target="#fill-violation-form" data-toggle="modal" style="color: white; background-color: #080743; font-size: 14px; width: 80px;" wire:click="getViolationForm({{ $form->violationForm->id }}, {{ $violationFormStudent->id }})">Fill Out</button>
+                                            @if (($role == 'Guidance') | ($role == 'Student'))
+                                                <!--FILL OUT BUTTON-->
+                                                <button class="btn btn-default" data-target="#fill-violation-form" data-toggle="modal" style="color: white; background-color: #080743; font-size: 14px; width: 80px;" wire:click="getViolationForm({{ $form->violationForm->id }}, {{ $violationFormStudent->id }})">Fill Out</button>
+                                            @endif
                                         </td>
                                     </tr>
                                 </table>
@@ -240,5 +243,96 @@
                 selectedTeacher = $(this).val();
             });
         }
+
+        Livewire.on('clearSelections', () => {
+            $('#multiple-select-optgroup-clear-field').val(null).trigger('change');
+            $('#student-select').val(null).trigger('change');
+            $('.teacher-select').val(null).trigger('change');
+        })
+    </script>
+    <script>
+        function printHomeVisitationForm() {
+            $('#home-visitation-form-content').print();
+        }
+
+        function printViolationForm() {
+            $('#violation-form-content').print();
+        }
+    </script>
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('signaturePad', () => ({
+                drawing: false,
+                context: null,
+
+                startDrawing(event) {
+                    event.preventDefault();
+                    this.drawing = true;
+                    this.context = this.$refs.canvas.getContext("2d");
+                    this.context.lineWidth = 2;
+                    this.context.lineCap = "round";
+
+                    const {
+                        offsetX,
+                        offsetY
+                    } = this.getCoordinates(event);
+                    this.context.beginPath();
+                    this.context.moveTo(offsetX, offsetY);
+                },
+
+                draw(event) {
+                    if (!this.drawing) return;
+                    event.preventDefault();
+
+                    const {
+                        offsetX,
+                        offsetY
+                    } = this.getCoordinates(event);
+                    this.context.lineTo(offsetX, offsetY);
+                    this.context.stroke();
+                },
+
+                stopDrawing() {
+                    this.drawing = false;
+                },
+
+                clearSignature() {
+                    this.context.clearRect(
+                        0,
+                        0,
+                        this.$refs.canvas.width,
+                        this.$refs.canvas.height
+                    );
+                },
+
+                saveSignature() {
+                    const dataUrl = this.$refs.canvas.toDataURL("image/png");
+                },
+
+                getContent() {
+                    return this.$refs.canvas.toDataURL("image/png");
+                },
+
+                getCoordinates(event) {
+                    const rect = this.$refs.canvas.getBoundingClientRect();
+                    let offsetX, offsetY;
+
+                    if (event.touches && event.touches.length > 0) {
+                        // Touch event
+                        offsetX = (event.touches[0].clientX - rect.left) * (this.$refs.canvas.width / rect.width);
+                        offsetY = (event.touches[0].clientY - rect.top) * (this.$refs.canvas.height / rect.height);
+                    } else {
+                        // Mouse event
+                        offsetX = (event.clientX - rect.left) * (this.$refs.canvas.width / rect.width);
+                        offsetY = (event.clientY - rect.top) * (this.$refs.canvas.height / rect.height);
+                    }
+
+                    return {
+                        offsetX,
+                        offsetY
+                    };
+                },
+            }));
+        });
     </script>
 @endsection

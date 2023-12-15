@@ -1,7 +1,7 @@
 <div x-init="initMultiSelect()">
     <div class="row form-group" style="font-size: 14px; color: #252525;">
         <div class="col-12" wire:ignore>
-            <label for="single-select-optgroup-clear-field" style="font-weight: normal;">Select Teacher Reporter</label>
+            <label for="single-select-optgroup-clear-field" style="font-weight: normal;">Select Student Adviser</label>
             <select class="form-select single-select2 teacher-select" data-placeholder="Select Teacher" style="border: 1px solid #252525;">
                 <option></option>
                 @foreach ($teachers as $teacher)

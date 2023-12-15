@@ -1,9 +1,9 @@
 <!--FILL VIOLATION REQUEST MODAL-->
-<div class="modal as-modal fade" id="fill-violation-form" data-backdrop="static" style="max-width: 100%;" wire:ignore.self>
+<div class="modal as-modal fade" data-backdrop="static" id="fill-violation-form" style="max-width: 100%; overflow-y: auto" wire:ignore.self>
     <div class="modal-dialog as-dialog modal-xl">
         <div class="modal-content">
-            <div wire:loading wire:target='getViolationForm'>
-                <div class="overlay bg-white" style="border-radius: 20px; height: 75vh;">
+            <div wire:loading wire:target='getViolationForm, updateViolationForm'>
+                <div class="overlay bg-white" style="border-radius: 20px;">
                     <div>
                         <i class="fas fa-3x fa-sync-alt fa-spin"></i>
                     </div>
@@ -14,8 +14,8 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form>
-                <div class="modal-body" style="margin-left: 1rem; margin-right: 1rem; max-height: 500px; overflow-y: auto; text-align: left;">
+            <form wire:submit='updateViolationForm()'>
+                <div class="modal-body" style="margin-left: 1rem; margin-right: 1rem; text-align: left;">
                     <!--MODAL TITLE-->
                     <div class="row">
                         <div class="col-1 float-right">
@@ -43,7 +43,7 @@
                             <p style="font-size: 18px;">Date:</p>
                         </div>
                         <div class="form-group col-sm-3" style="font-size: 16px; color: #252525;">
-                            <input class="form-control" id="input-date" style="border: 1px solid black; border-top: none; border-left: none; border-right: none;" type="date">
+                            <input @disabled($role == 'Student') class="form-control" id="input-date" style="border: 1px solid black; border-top: none; border-left: none; border-right: none;" type="date" wire:model='violationFormFields.date'>
                         </div>
                     </div>
 
@@ -53,7 +53,7 @@
                             <p style="font-size: 18px;">Time:</p>
                         </div>
                         <div class="form-group col-sm-3" style="font-size: 16px; color: #252525;">
-                            <input class="form-control" id="input-date" style="border: 1px solid black; border-top: none; border-left: none; border-right: none;" type="time">
+                            <input @disabled($role == 'Student') class="form-control" id="input-date" style="border: 1px solid black; border-top: none; border-left: none; border-right: none;" type="time" wire:model="violationFormFields.time">
                         </div>
                     </div>
 
@@ -63,7 +63,7 @@
                             <p style="font-size: 18px;">Name of Student:</p>
                         </div>
                         <div class="form-group col-sm-9" style="font-size: 16px; color: #252525;">
-                            <input class="form-control" id="input-date" style="border: 1px solid black; border-top: none; border-left: none; border-right: none;" type="text">
+                            <input @disabled($role == 'Student') class="form-control" id="input-date" style="border: 1px solid black; border-top: none; border-left: none; border-right: none;" type="text" wire:model="violationFormFields.student_name">
                         </div>
                     </div>
 
@@ -73,7 +73,7 @@
                             <p style="font-size: 18px;">Level & Section:</p>
                         </div>
                         <div class="form-group col-sm-8" style="font-size: 16px; color: #252525;">
-                            <input class="form-control" id="input-date" style="border: 1px solid black; border-top: none; border-left: none; border-right: none;" type="text">
+                            <input @disabled($role == 'Student') class="form-control" id="input-date" style="border: 1px solid black; border-top: none; border-left: none; border-right: none;" type="text" wire:model="violationFormFields.level_section">
                         </div>
                     </div>
 
@@ -83,19 +83,19 @@
                             <p style="font-size: 18px;">Age:</p>
                         </div>
                         <div class="form-group col-sm-1" style="font-size: 16px; color: #252525;">
-                            <input class="form-control" id="input-date" style="border: 1px solid black; border-top: none; border-left: none; border-right: none;" type="number">
+                            <input @disabled($role == 'Student') class="form-control" id="input-date" style="border: 1px solid black; border-top: none; border-left: none; border-right: none;" type="number" wire:model="violationFormFields.age">
                         </div>
                         <div class="form-group col-sm-1" style=" color: #252525;">
                             <p style="font-size: 18px;">Gender:</p>
                         </div>
                         <div class="form-group col-sm-1" style="font-size: 16px; color: #252525;">
-                            <input class="form-control" id="input-date" style="border: 1px solid black; border-top: none; border-left: none; border-right: none;" type="text">
+                            <input @disabled($role == 'Student') class="form-control" id="input-date" style="border: 1px solid black; border-top: none; border-left: none; border-right: none;" type="text" wire:model="violationFormFields.gender">
                         </div>
                         <div class="form-group col-sm-2" style=" color: #252525;">
                             <p style="font-size: 18px;">Birthdate:</p>
                         </div>
                         <div class="form-group col-sm-2" style="font-size: 16px; color: #252525;">
-                            <input class="form-control" id="input-date" style="border: 1px solid black; border-top: none; border-left: none; border-right: none;" type="date">
+                            <input @disabled($role == 'Student') class="form-control" id="input-date" style="border: 1px solid black; border-top: none; border-left: none; border-right: none;" type="date" wire:model="violationFormFields.birthday">
                         </div>
                     </div>
 
@@ -105,7 +105,7 @@
                             <p style="font-size: 18px;">Parent/Guardian:</p>
                         </div>
                         <div class="form-group col-sm-3" style="font-size: 16px; color: #252525;">
-                            <input class="form-control" id="input-date" style="border: 1px solid black; border-top: none; border-left: none; border-right: none;" type="text">
+                            <input @disabled($role == 'Student') class="form-control" id="input-date" style="border: 1px solid black; border-top: none; border-left: none; border-right: none;" type="text" wire:model="violationFormFields.parent">
                         </div>
                     </div>
 
@@ -115,13 +115,13 @@
                             <p style="font-size: 18px;">Contact No.:</p>
                         </div>
                         <div class="form-group col-sm-2" style="font-size: 16px; color: #252525;">
-                            <input class="form-control" id="input-date" style="border: 1px solid black; border-top: none; border-left: none; border-right: none;" type="number">
+                            <input @disabled($role == 'Student') class="form-control" id="input-date" style="border: 1px solid black; border-top: none; border-left: none; border-right: none;" type="text" wire:model="violationFormFields.contact">
                         </div>
                         <div class="form-group col-sm-1" style=" color: #252525;">
                             <p style="font-size: 18px;">Address:</p>
                         </div>
                         <div class="form-group col-sm-6" style="font-size: 16px; color: #252525;">
-                            <input class="form-control" id="input-date" style="border: 1px solid black; border-top: none; border-left: none; border-right: none;" type="text">
+                            <input @disabled($role == 'Student') class="form-control" id="input-date" style="border: 1px solid black; border-top: none; border-left: none; border-right: none;" type="text" wire:model="violationFormFields.address">
                         </div>
                     </div>
 
@@ -131,7 +131,7 @@
                             <p style="font-size: 18px;">Teacher-in-charge:</p>
                         </div>
                         <div class="form-group col-sm-3" style="font-size: 16px; color: #252525;">
-                            <input class="form-control" id="input-date" style="border: 1px solid black; border-top: none; border-left: none; border-right: none;" type="text">
+                            <input @disabled($role == 'Student') class="form-control" id="input-date" style="border: 1px solid black; border-top: none; border-left: none; border-right: none;" type="text" wire:model="violationFormFields.teacher_name">
                         </div>
                     </div>
 
@@ -140,18 +140,11 @@
                         <div class="form-group col-sm-3" style=" color: #252525;">
                             <p style="font-size: 18px;">Type of Offense:</p>
                         </div>
-                        <div class="form-group col-sm-2" style="font-size: 16px; color: #252525;">
-                            <input class="form-check-input" id="cbPass" type="checkbox"> Physical
-                        </div>
-                        <div class="form-group col-sm-2" style=" color: #252525;">
-                            <input class="form-check-input" id="cbPass" type="checkbox"> Verbal
-                        </div>
-                        <div class="form-group col-sm-2" style="font-size: 16px; color: #252525;">
-                            <input class="form-check-input" id="cbPass" type="checkbox"> Social
-                        </div>
-                        <div class="form-group col-sm-2" style="font-size: 16px; color: #252525;">
-                            <input class="form-check-input" id="cbPass" type="checkbox"> Others
-                        </div>
+                        @foreach ($offenseTypes as $type)
+                            <div class="form-group col-sm-2" style="font-size: 16px; color: #252525;">
+                                <input @disabled($role == 'Student') @checked($type == $violationFormFields['offense_type']) class="form-check-input" id="cbPass-{{ $type }}" type="radio" value='{{ $type }}' wire:model="violationFormFields.offense_type">{{ $type }}
+                            </div>
+                        @endforeach
                     </div>
 
                     <div class="row">
@@ -160,18 +153,30 @@
                             <p style="font-size: 18px;">Narrative Report:</p>
                         </div>
                         <div class="form-group col-sm-10" style="font-size: 16px; color: #252525; text-align: justify;">
-                            <textarea class="form-control" id="input-date" style="border: 1px solid black; width: 100%; height: 150px; resize: none;"> </textarea>
+                            <textarea @disabled($role == 'Guidance') class="form-control" id="input-date" style="border: 1px solid black; width: 100%; height: 150px; resize: none;" wire:model='violationFormFields.narrative'> </textarea>
                         </div>
                     </div>
 
                     <div class="row">
                         <!--Stud Sign-->
                         <div class="form-group col-sm-12" style=" color: #252525; text-align: right; margin-top: 5rem;">
-                            <a class="btn btn-primary action-btn" data-target="#add-signature" data-toggle="modal" href="#" style="color: #0A0863; font-weight: bold; text-align: center;">
-                                <i class="fa fa-solid fa-file-signature" style="color: #0A0863;"></i> Add Signature
-                            </a>
-                            
-                            <p style="font-size: 18px; text-decoration: overline;">Student Signature Over Printed Name</p>
+                            @if ($role == 'Student')
+                                <div data-target="#add-signature" data-toggle="modal" wire:click="$set('signatureType', 'studentViolation')">
+                                    <a class="btn btn-primary action-btn {{ $violationFormFields['student_signature_id'] ? 'd-none' : '' }}" href="#" style="color: #0A0863; font-weight: bold; text-align: center;">
+                                        <i class="fa fa-solid fa-file-signature" style="color: #0A0863;"></i> Add Signature
+                                    </a>
+
+                                    @if ($violationFormFields['student_signature_id'])
+                                        <img height="150px" src="{{ $violationForm->student_signature() }}" width='150px'>
+                                    @endif
+                                </div>
+                            @else
+                                @if ($violationFormFields['student_signature_id'])
+                                    <img height="150px" src="{{ $violationForm->student_signature() }}" width='150px'>
+                                @endif
+                            @endif
+                            <p style="font-size: 18px; text-decoration: overline;">{{ strtoupper($violationFormFields['student_name']) }}</p>
+                            <p style="font-size: 16px;">Student Signature Over Printed Name</p>
                         </div>
                     </div>
 
@@ -181,7 +186,7 @@
                             <p style="font-size: 18px;">Action Taken:</p>
                         </div>
                         <div class="form-group col-sm-10" style="font-size: 16px; color: #252525; text-align: justify;">
-                            <textarea class="form-control" id="input-date" style="border: 1px solid black; width: 100%; height: 150px; resize: none;"> </textarea>
+                            <textarea @disabled($role == 'Student') class="form-control" id="input-date" style="border: 1px solid black; width: 100%; height: 150px; resize: none;" wire:model='violationFormFields.action_taken'> </textarea>
                         </div>
                     </div>
 
@@ -191,13 +196,13 @@
                             <p style="font-size: 18px;">Case Status:</p>
                         </div>
                         <div class="form-group col-sm-3" style=" color: #252525;">
-                            <input class="form-check-input" name="radio1" type="radio">Resolved
+                            <input @disabled($role == 'Student') class="form-check-input" name="radio1" type="radio" wire:model="violationFormFields.case_status">Resolved
                         </div>
                         <div class="form-group col-sm-3" style=" color: #252525;">
-                            <input class="form-check-input" name="radio1" type="radio">Unresolved
+                            <input @disabled($role == 'Student') class="form-check-input" name="radio1" type="radio" wire:model="violationFormFields.case_status">Unresolved
                         </div>
                         <div class="form-group col-sm-3" style="font-size: 16px; color: #252525;">
-                            <input class="form-check-input" name="radio1" type="radio">Pending
+                            <input @disabled($role == 'Student') class="form-check-input" name="radio1" type="radio" wire:model="violationFormFields.case_status">Pending
                         </div>
                     </div>
 
@@ -207,13 +212,13 @@
                             <p style="font-size: 18px;">Recommendation:</p>
                         </div>
                         <div class="form-group col-sm-10" style="font-size: 16px; color: #252525; text-align: justify; margin-bottom: 2rem;">
-                            <textarea class="form-control" id="input-date" style="border: 1px solid black; width: 100%; height: 150px; resize: none;"> </textarea>
+                            <textarea @disabled($role == 'Student') class="form-control" id="input-date" style="border: 1px solid black; width: 100%; height: 150px; resize: none;" wire:model='violationFormFields.recommendation'> </textarea>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-sm-12">
-                            <button class="btn btn-block btn-default" style="border-color: transparent; background-color: #0A0863; color: #252525; color:white; margin-bottom: 3rem;">Complete</button>
+                            <button class="btn btn-block btn-default" style="border-color: transparent; background-color: #0A0863; color: #252525; color:white; margin-bottom: 3rem;" type="submt">Submit</button>
                         </div>
                     </div>
                 </div> <!-- /.card-body -->

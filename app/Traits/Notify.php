@@ -26,6 +26,9 @@ trait Notify
             case 'child-anecdotal':
                 $url_path = '/my-child-records';
                 break;
+            case 'fill-out':
+                $url_path = '/fill-out-forms';
+                break;
         }
         Notifications::create([
             'from_user' => $from,

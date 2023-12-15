@@ -13,7 +13,7 @@ class ViolationFormsStudents extends Model
     protected $fillable = [
         'violation_forms_id', 'student_id', 'narrative', 'student_signature_id',
         'student_name', 'level_section', 'age', 'gender', 'birthday', 'parent', 'contact',
-        'address', 'teacher',
+        'address'
     ];
 
     public function violationForm()
@@ -24,5 +24,15 @@ class ViolationFormsStudents extends Model
     public function student()
     {
         return $this->belongsTo(Students::class, 'student_id');
+    }
+
+    public function StudentSignature()
+    {
+        return $this->belongsTo(StudentViolationSignatures::class, 'student_signature_id');
+    }
+
+    public function student_signature()
+    {
+        return $this->student_signature_id ? imageBinaryToSRC($this->StudentSignature->signature) : blankSignature();
     }
 }

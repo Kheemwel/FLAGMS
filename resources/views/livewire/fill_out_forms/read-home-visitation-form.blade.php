@@ -1,5 +1,5 @@
 <!--READ HOME VISITATION REQUEST MODAL-->
-<div class="modal as-modal fade" id="read-home-visitation-form" style="max-width: 100%;" wire:ignore.self>
+<div class="modal as-modal fade" id="read-home-visitation-form" style="max-width: 100%; overflow-y: auto" wire:ignore.self>
     <div class="modal-dialog as-dialog modal-xl">
         <div class="modal-content" x-on:click.outside="$wire.resetFields()">
             <div wire:loading wire:target='getHomeVisitationForm'>
@@ -15,7 +15,7 @@
                 </button>
             </div>
             <form>
-                <div class="modal-body" style="margin-left: 1rem; margin-right: 1rem; max-height: 500px; overflow-y: auto; text-align: left;">
+                <div class="modal-body" id="home-visitation-form-content" style="margin-left: 1rem; margin-right: 1rem;  text-align: left;">
                     <!--MODAL TITLE-->
                     <div class="row">
                         <div class="col-1 float-right">
@@ -184,10 +184,19 @@
 
                     <div class="row">
                         <div class="form-group col-sm-6" style=" color: #252525; text-align: center; margin-top: 5rem;">
-                            <p style="font-size: 18px; text-decoration: overline;">Parent Signature Over Printed Name</p>
+
+                            @if ($homeVisitationFormFields['parent_signature_id'])
+                                <img height="150px" src="{{ $homeVisitationForm->parent_signature() }}" width='150px'>
+                            @endif
+                            <p style="font-size: 18px; text-decoration: overline;">{{ strtoupper($homeVisitationFormFields['parent_name']) }}</p>
+                            <p style="font-size: 16px;">Parent Signature Over Printed Name</p>
                         </div>
                         <div class="form-group col-sm-6" style=" color: #252525; text-align: center; margin-top: 5rem;">
-                            <p style="font-size: 18px; text-decoration: overline;">Student Signature Over Printed Name</p>
+                            @if ($homeVisitationFormFields['student_signature_id'])
+                                <img height="150px" src="{{ $homeVisitationForm->student_signature() }}" width='150px'>
+                            @endif
+                            <p style="font-size: 18px; text-decoration: overline;">{{ strtoupper($homeVisitationFormFields['student_name']) }}</p>
+                            <p style="font-size: 16px;">Student Signature Over Printed Name</p>
                         </div>
                     </div>
 
@@ -202,10 +211,16 @@
 
                     <div class="row">
                         <div class="form-group col-sm-5" style=" color: #252525; text-align: center; margin-top: 3rem;">
+                            @if ($homeVisitationFormFields['teacher_signature_id'])
+                                <img height="150px" src="{{ $homeVisitationForm->teacher_signature() }}" width='150px'>
+                            @endif
                             <p style="font-size: 18px; text-decoration: overline;">{{ $homeVisitationFormFields['teacher_name'] }}</p>
                             <p style="font-size: 16px;">Adviser</p>
                         </div>
                         <div class="form-group col-sm-7" style=" color: #252525; text-align: center; margin-top: 3rem;">
+                            @if ($homeVisitationFormFields['junior_principal_signature_id'])
+                                <img height="150px" src="{{ $homeVisitationForm->junior_principal_signature() }}" width='150px'>
+                            @endif
                             <p style="font-size: 18px; text-decoration: overline;">{{ $homeVisitationFormFields['junior_principal_name'] }}</p>
                             <p style="font-size: 16px;">Junior High School Principal</p>
                         </div>
@@ -219,15 +234,24 @@
 
                     <div class="row">
                         <div class="form-group col-sm-6" style=" color: #252525; text-align: center; margin-top: 3rem;">
+                            @if ($homeVisitationFormFields['guidance_signature_id'])
+                                <img height="150px" src="{{ $homeVisitationForm->guidance_signature() }}" width='150px'>
+                            @endif
                             <p style="font-size: 18px; text-decoration: overline;">{{ $homeVisitationFormFields['guidance_name'] }}</p>
                             <p style="font-size: 16px;">GUIDANCE ADVOCATE</p>
                         </div>
                         <div class="form-group col-sm-6" style=" color: #252525; text-align: center; margin-top: 3rem;">
+                            @if ($homeVisitationFormFields['senior_principal_signature_id'])
+                                <img height="150px" src="{{ $homeVisitationForm->senior_principal_signature() }}" width='150px'>
+                            @endif
                             <p style="font-size: 18px; text-decoration: overline;">{{ $homeVisitationFormFields['senior_principal_name'] }}</p>
                             <p style="font-size: 16px;">Senior High School Principal</p>
                         </div>
                     </div>
                 </div> <!-- /.card-body -->
+                <div class="modal-footer">
+                    <button class="btn btn-block btn-default" onclick="printHomeVisitationForm()" style="border-color: transparent; background-color: #0A0863; color: #252525; color:white; margin-left: 2rem;" type="button">Print</button>
+                </div>
             </form>
         </div>
     </div>

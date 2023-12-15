@@ -86,7 +86,7 @@ return new class extends Migration
         $pr1 = Parents::create([
             'user_account_id' => $parent1->id
         ]);
-        $pr1->children()->attach([$stud1->id, $stud2->id]);
+        $pr1->children()->attach([$stud1->id, $stud3->id]);
 
         $parent2 = UserAccounts::create([
             'first_name' => 'Fatima',
@@ -99,7 +99,7 @@ return new class extends Migration
         $pr2 = Parents::create([
             'user_account_id' => $parent2->id
         ]);
-        $pr2->children()->attach([$stud3->id]);
+        $pr2->children()->attach([$stud2->id]);
 
         
     }

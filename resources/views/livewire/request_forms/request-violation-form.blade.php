@@ -13,7 +13,7 @@
     </div>
 
     <div class="row form-group" style="font-size: 14px; color: #252525;">
-        <label for="reason" style="font-weight: normal;">Reason of Violation</label>
+        <label for="reason" style="font-weight: normal;">Reason for Request</label>
         <textarea class="form-control" cols="30" id="reason" name="reason" rows="10" wire:model='violationReason'></textarea>
         <x-error field="violationReason" />
     </div>

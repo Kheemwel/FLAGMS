@@ -30,8 +30,80 @@ class HomeVisitationForms extends Model
         return $this->belongsTo(Students::class, 'student_id');
     }
 
+    public function parent()
+    {
+        return $this->belongsTo(Parents::class, 'parent_id');
+    }
+
+    public function junior_principal()
+    {
+        return $this->belongsTo(Principals::class, 'junior_principal_id');
+    }
+
+    public function senior_principal()
+    {
+        return $this->belongsTo(Principals::class, 'senior_principal_id');
+    }
     public function teacherName()
     {
         return $this->form->teacher_name;
+    }
+
+    
+    public function StudentSignature()
+    {
+        return $this->belongsTo(StudentHomeVisitationSignatures::class, 'student_signature_id');
+    }
+
+    public function student_signature()
+    {
+        return $this->student_signature_id ? imageBinaryToSRC($this->StudentSignature->signature) : blankSignature();
+    }
+
+    public function ParentSignature()
+    {
+        return $this->belongsTo(ParentFormSignatures::class, 'parent_signature_id');
+    }
+
+    public function parent_signature()
+    {
+        return $this->parent_signature_id ? imageBinaryToSRC($this->ParentSignature->signature) : blankSignature();
+    }
+
+    public function GuidanceSignature()
+    {
+        return $this->belongsTo(GuidanceFormSignatures::class, 'guidance_signature_id');
+    }
+
+    public function guidance_signature()
+    {
+        return $this->guidance_signature_id ? imageBinaryToSRC($this->GuidanceSignature->signature) : blankSignature();
+    }
+    public function TeacherSignature()
+    {
+        return $this->belongsTo(TeacherFormSignatures::class, 'teacher_signature_id');
+    }
+
+    public function Teacher_signature()
+    {
+        return $this->teacher_signature_id ? imageBinaryToSRC($this->TeacherSignature->signature) : blankSignature();
+    }
+    public function JuniorPrincipalSignature()
+    {
+        return $this->belongsTo(JuniorPrincipalSignatures::class, 'junior_principal_signature_id');
+    }
+
+    public function junior_principal_signature()
+    {
+        return $this->junior_principal_signature_id ? imageBinaryToSRC($this->JuniorPrincipalSignature->signature) : blankSignature();
+    }
+    public function SeniorPrincipalSignature()
+    {
+        return $this->belongsTo(SeniorPrincipalSignatures::class, 'senior_principal_signature_id');
+    }
+
+    public function senior_principal_signature()
+    {
+        return $this->senior_principal_signature_id ? imageBinaryToSRC($this->SeniorPrincipalSignature->signature) : blankSignature();
     }
 }

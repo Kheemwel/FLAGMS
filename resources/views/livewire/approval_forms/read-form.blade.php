@@ -50,7 +50,7 @@
                         <!--TYPE OF DEFENSE-->
                         <div class="row">
                             <div class="form-group col-sm-6" style="color: #252525;">
-                                <p style="font-size: 14px; ">Reason for Home Visitation</p>
+                                <p style="font-size: 14px; ">Reason for Request</p>
                             </div>
                         </div>
                         <div class="row">
@@ -109,7 +109,7 @@
 
                         <div class="row">
                             <div class="form-group col-sm-6" style="color: #252525;">
-                                <p style="font-size: 14px; ">Reason of Violation</p>
+                                <p style="font-size: 14px; ">Reason for Request</p>
                             </div>
                         </div>
                         <div class="row">

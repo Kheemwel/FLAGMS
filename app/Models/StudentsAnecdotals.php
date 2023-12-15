@@ -10,6 +10,7 @@ class StudentsAnecdotals extends Model
     use HasFactory;
     protected $table = 'students_anecdotals';
     protected $primaryKey = 'id';
+    protected $appends = ['category', 'level'];
     protected $fillable = [
         'student_id', 'date', 'time', 'offense_id', 'disciplinary_action_id', 'student_signature_id', 'guardian_name', 'guardian_signature_id'
     ];

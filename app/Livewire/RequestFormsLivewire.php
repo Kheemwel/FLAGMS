@@ -123,5 +123,6 @@ class RequestFormsLivewire extends Component
         $this->violationForm = null;
         $this->homeVisitationForm = null;
         $this->resetErrorBag();
+        $this->dispatch('clearSelections');
     }
 }

@@ -12,6 +12,7 @@ class Offenses extends Model
     use HasFactory;
     protected $table = 'offenses';
     protected $primaryKey = 'id';
+    protected $appends = ['category'];
     protected $fillable = [
         'offense_name', 'offenses_category_id'
     ];
@@ -21,7 +22,10 @@ class Offenses extends Model
         return $this->belongsTo(OffensesCategories::class, 'offenses_category_id');
     }
 
-    
+    public function getCategoryAttribute()
+    {
+        return $this->getCategory->offenses_category;
+    }
     public function disciplinaryActions()
     {
         return $this->belongsToMany(DisciplinaryActions::class, 'offenses_disciplinary_actions', 'offense_id', 'disciplinary_action_id');

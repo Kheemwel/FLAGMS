@@ -1,5 +1,5 @@
 <!--READ VIOLATION REQUEST MODAL-->
-<div class="modal as-modal fade" id="read-violation-form" style="max-width: 100%;" wire:ignore.self>
+<div class="modal as-modal fade" id="read-violation-form" style="max-width: 100%; overflow-y: auto" wire:ignore.self>
     <div class="modal-dialog as-dialog modal-xl">
         <div class="modal-content" x-on:click.outside="$wire.resetFields()">
             <div wire:loading wire:target='getViolationForm'>
@@ -15,7 +15,7 @@
                 </button>
             </div>
             <form>
-                <div class="modal-body" style="margin-left: 1rem; margin-right: 1rem; max-height: 500px; overflow-y: auto; text-align: left;">
+                <div class="modal-body" id="violation-form-content" style="margin-left: 1rem; margin-right: 1rem; text-align: left;">
                     <!--MODAL TITLE-->
                     <div class="row">
                         <div class="col-1 float-right">
@@ -131,7 +131,7 @@
                             <p style="font-size: 18px;">Teacher-in-charge:</p>
                         </div>
                         <div class="form-group col-sm-3" style="font-size: 16px; color: #252525;">
-                            <p style="font-size: 18px; text-decoration: underline;">{{ $violationFormFields['teacher'] }}</p>
+                            <p style="font-size: 18px; text-decoration: underline;">{{ $violationFormFields['teacher_name'] }}</p>
                         </div>
                     </div>
 
@@ -142,7 +142,7 @@
                         </div>
                         @foreach ($offenseTypes as $type)
                             <div class="form-group col-sm-2" style="font-size: 16px; color: #252525;">
-                                <input class="form-check-input" @checked($type == $violationFormFields['offense_type']) id="cbPass" type="radio" value='{{ $type }}' wire:model='violationFormFields.offense_type'>{{ $type }}
+                                <input @checked($type == $violationFormFields['offense_type']) class="form-check-input" id="cbPass" type="radio" value='{{ $type }}' wire:model='violationFormFields.offense_type'>{{ $type }}
                             </div>
                         @endforeach
                     </div>
@@ -160,7 +160,11 @@
                     <div class="row">
                         <!--Stud Sign-->
                         <div class="form-group col-sm-12" style=" color: #252525; text-align: right; margin-top: 5rem;">
-                            <p style="font-size: 18px; text-decoration: overline;">Student Signature Over Printed Name</p>
+                            @if ($violationFormFields['student_signature_id'])
+                                <img height="150px" src="{{ $violationForm->student_signature() }}" width='150px'>
+                            @endif
+                            <p style="font-size: 18px; text-decoration: overline;">{{ strtoupper($violationFormFields['student_name']) }}</p>
+                            <p style="font-size: 16px;">Student Signature Over Printed Name</p>
                         </div>
                     </div>
 
@@ -181,7 +185,7 @@
                         </div>
                         @foreach ($caseStatuses as $status)
                             <div class="form-group col-sm-3" style=" color: #252525;">
-                                <input class="form-check-input" @checked($status == $violationFormFields['case_status']) value="{{ $status }}" name="radio1" type="radio" wire:model="violationFormFields.case_status">{{ $status }}
+                                <input @checked($status == $violationFormFields['case_status']) class="form-check-input" name="radio1" type="radio" value="{{ $status }}" wire:model="violationFormFields.case_status">{{ $status }}
                             </div>
                         @endforeach
                     </div>
@@ -196,6 +200,10 @@
                         </div>
                     </div>
                 </div> <!-- /.card-body -->
+
+                <div class="modal-footer">
+                    <button class="btn btn-block btn-default" onclick="printViolationForm()" style="border-color: transparent; background-color: #0A0863; color: #252525; color:white; margin-left: 2rem;" type="button">Print</button>
+                </div>
             </form>
         </div>
     </div>
