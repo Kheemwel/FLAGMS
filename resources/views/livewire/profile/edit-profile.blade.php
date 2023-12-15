@@ -20,9 +20,9 @@
                         <div class="form-group col-sm-12" style="margin-bottom: 3rem; text-align: center;">
                             <div onclick="$('#editPic').trigger('click')">
                                 @if ($profile_picture)
-                                    <img height="150px" src="{{ $profile_picture->temporaryUrl() }}" width='150px'>
+                                    <img height="150px" style="border-radius: 50%;" src="{{ $profile_picture->temporaryUrl() }}" width='150px'>
                                 @else
-                                    <img alt="user profile" height="150px" src="{{ $this->viewProfile() }}" width='150px'>
+                                    <img alt="user profile" style="border-radius: 50%;" height="150px" src="{{ $this->viewProfile() }}" width='150px'>
                                 @endif
                                 <i class="fa fa-solid fa-camera" style="vertical-align: bottom;"></i>
                             </div>
