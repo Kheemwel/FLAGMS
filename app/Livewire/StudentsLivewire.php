@@ -151,7 +151,7 @@ class StudentsLivewire extends Component
         $this->hasDismissal = in_array($this->dismissalID, $ids);
 
         $offense = Offenses::find($validateData['input_offense']);
-        $this->notify($this->my_id, $student->getUserAccount->id, "You committed $offense", 'student-anecdotal');
+        $this->notify($this->my_id, $student->getUserAccount->id, "You committed {$offense->offense_name}", 'student-anecdotal');
         $this->notify(
             $this->my_id,
             $parent->getUserAccount->id,
