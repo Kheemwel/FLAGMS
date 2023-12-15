@@ -45,7 +45,7 @@
             <div class="row mb-3">
                 <div class="col-md-3 col-sm-6">
                     <label class="text-sm">LRN</label>
-                    <input wire:model="input.lrn" class="form-control text-sm" maxlength="12" minlength="12" required style="border: 1px solid black" type="text">
+                    <input wire:model="input.lrn" class="form-control text-sm" maxlength="12" minlength="12" required style="border: 1px solid black" type="number">
                     <x-error field="input.lrn" />
                 </div>
                 <div class="col-md-3 col-sm-6">
@@ -60,7 +60,7 @@
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <label class="text-sm">Citizenship</label>
-                    <input wire:model="input.citizenship" class="form-control text-sm" maxlength="255" placeholder="(e.g, Jr.)" required style="border: 1px solid black" type="text">
+                    <input wire:model="input.citizenship" class="form-control text-sm" maxlength="255" required style="border: 1px solid black" type="text">
                     <x-error field="input.citizenship" />
                 </div>
             </div>
@@ -175,7 +175,7 @@
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <label class="text-sm">Zip Code</label>
-                    <input wire:model="input.zipcode" class="form-control text-sm" maxlength="4" minlength="4" required style="border: 1px solid black" type="text">
+                    <input wire:model="input.zipcode" class="form-control text-sm" maxlength="4" minlength="4" required style="border: 1px solid black" type="number">
                     <x-error field="input.zipcode" />
                 </div>
             </div>
@@ -192,12 +192,12 @@
             <div class="row mb-2">
                 <div class="col-md-3 col-sm-6">
                     <label class="text-sm">Telephone No.</label>
-                    <input wire:model="input.tel_no" class="form-control text-sm" style="border: 1px solid black" type="tel">
+                    <input wire:model="input.tel_no" class="form-control text-sm" style="border: 1px solid black" type="number">
                     <x-error field="input.tel_no" />
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <label class="text-sm">Mobile No.</label>
-                    <input wire:model="input.mobile_no" class="form-control text-sm" required style="border: 1px solid black" type="tel">
+                    <input wire:model="input.mobile_no" class="form-control text-sm" required style="border: 1px solid black" type="number">
                     <x-error field="input.mobile_no" />
                 </div>
                 <div class="col-md-3 col-sm-6">
@@ -230,12 +230,12 @@
                 </div>
                 <div class="col-md-3 col-sm-3">
                     <label class="text-sm">SY Start</label>
-                    <input wire:model="input.primary_start" class="form-control text-sm" maxlength="4" minlength="4" required style="border: 1px solid black" type="text">
+                    <input wire:model="input.primary_start" class="form-control text-sm" maxlength="4" minlength="4" required style="border: 1px solid black" type="number" min="1900" max="2023">
                     <x-error field="input.primary_start" />
                 </div>
                 <div class="col-md-3 col-sm-3">
                     <label class="text-sm">SY Ends</label>
-                    <input wire:model="input.primary_end" class="form-control text-sm" maxlength="4" minlength="4" required style="border: 1px solid black" type="text">
+                    <input wire:model="input.primary_end" class="form-control text-sm" maxlength="4" minlength="4" required style="border: 1px solid black" type="number" min="1900" max="2023">
                     <x-error field="input.primary_end" />
                 </div>
             </div>
@@ -254,12 +254,12 @@
                 </div>
                 <div class="col-md-3 col-sm-3">
                     <label class="text-sm">SY Start</label>
-                    <input wire:model="input.junior_start" class="form-control text-sm" maxlength="4" minlength="4" required style="border: 1px solid black" type="text">
+                    <input wire:model="input.junior_start" class="form-control text-sm" maxlength="4" minlength="4" required style="border: 1px solid black" type="number" min="1900" max="2023">
                     <x-error field="input.junior_start" />
                 </div>
                 <div class="col-md-3 col-sm-3">
                     <label class="text-sm">SY Ends</label>
-                    <input wire:model="input.junior_end" class="form-control text-sm" maxlength="4" minlength="4" required style="border: 1px solid black" type="text">
+                    <input wire:model="input.junior_end" class="form-control text-sm" maxlength="4" minlength="4" required style="border: 1px solid black" type="number" min="1900" max="2023">
                     <x-error field="input.junior_end" />
                 </div>
             </div>
@@ -278,12 +278,12 @@
                 </div>
                 <div class="col-md-3 col-sm-3">
                     <label class="text-sm">SY Start</label>
-                    <input wire:model="input.senior_start" class="form-control text-sm" maxlength="4" minlength="4" required style="border: 1px solid black" type="text">
+                    <input wire:model="input.senior_start" class="form-control text-sm" maxlength="4" minlength="4" required style="border: 1px solid black" type="number" min="1900" max="2023">
                     <x-error field="input.senior_start" />
                 </div>
                 <div class="col-md-3 col-sm-3">
                     <label class="text-sm">SY Ends</label>
-                    <input wire:model="input.senior_end" class="form-control text-sm" maxlength="4" minlength="4" required style="border: 1px solid black" type="text">
+                    <input wire:model="input.senior_end" class="form-control text-sm" maxlength="4" minlength="4" required style="border: 1px solid black" type="number" min="1900" max="2023">
                     <x-error field="input.senior_end" />
                 </div>
             </div>

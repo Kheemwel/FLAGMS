@@ -1,4 +1,4 @@
-<div class="modal fade as-modal" id="student-signature" role="dialog" style="max-width: 100%;" wire:ignore.self>
+<div class="modal fade as-modal signaturePadModal" id="student-signature" role="dialog" style="max-width: 100%;" wire:ignore.self>
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content" style="border-radius: 20px;">
             <div class="modal-header p-3 border-0">

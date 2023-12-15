@@ -62,49 +62,47 @@
         <!-- /.container-fluid -->
     </section>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="card card-primary card-tabs" style="background-color: rgb(253, 253, 253);">
-                    <div class="card-header p-0 pt-1" style="background-color: #7684B9 !important">
-                        <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+    <div class="row">
+        <div class="col-12">
+            <div class="card card-primary card-tabs  ml-4 mr-4" style="background-color: rgb(253, 253, 253);">
+                <div class="card-header p-0 pt-1" style="background-color: #7684B9 !important">
+                    <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                        <li class="nav-item" wire:ignore>
+                            <a aria-controls="custom-tabs-one-active-accounts" aria-selected="true" class="nav-link active" data-toggle="pill" href="#custom-tabs-one-active-accounts" id="custom-tabs-one-active-accounts-tab" role="tab">
+                                <p class="font-weight-bold text-lg">Active Accounts</p>
+                            </a>
+                        </li>
+                        @if (wordsExistInArray(['Archive', 'Account'], $privileges))
                             <li class="nav-item" wire:ignore>
-                                <a aria-controls="custom-tabs-one-active-accounts" aria-selected="true" class="nav-link active" data-toggle="pill" href="#custom-tabs-one-active-accounts" id="custom-tabs-one-active-accounts-tab" role="tab">
-                                    <p class="font-weight-bold text-lg">Active Accounts</p>
+                                <a aria-controls="custom-tabs-one-archived-accounts" aria-selected="false" class="nav-link" data-toggle="pill" href="#custom-tabs-one-archived-accounts" id="custom-tabs-one-archived-accounts-tab" role="tab">
+                                    <p class="font-weight-bold text-lg">Archived Accounts</p>
                                 </a>
                             </li>
-                            @if (wordsExistInArray(['Archive', 'Account'], $privileges))
-                                <li class="nav-item" wire:ignore>
-                                    <a aria-controls="custom-tabs-one-archived-accounts" aria-selected="false" class="nav-link" data-toggle="pill" href="#custom-tabs-one-archived-accounts" id="custom-tabs-one-archived-accounts-tab" role="tab">
-                                        <p class="font-weight-bold text-lg">Archived Accounts</p>
-                                    </a>
-                                </li>
-                            @endif
-                        </ul>
-                    </div>
-                    <div class="card-body">
-                        <div class="tab-content" id="custom-tabs-one-tabContent">
-                            <div aria-labelledby="custom-tabs-one-active-accounts-tab" class="tab-pane fade active show" id="custom-tabs-one-active-accounts" role="tabpanel" wire:ignore.self>
-                                @include('livewire.user_accounts.accounts-table')
-                            </div>
-                            <div aria-labelledby="custom-tabs-one-archived-accounts-tab" class="tab-pane fade" id="custom-tabs-one-archived-accounts" role="tabpanel" wire:ignore.self>
-                                @include('livewire.user_accounts.archive-table')
-                            </div>
+                        @endif
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content" id="custom-tabs-one-tabContent">
+                        <div aria-labelledby="custom-tabs-one-active-accounts-tab" class="tab-pane fade active show" id="custom-tabs-one-active-accounts" role="tabpanel" wire:ignore.self>
+                            @include('livewire.user_accounts.accounts-table')
+                        </div>
+                        <div aria-labelledby="custom-tabs-one-archived-accounts-tab" class="tab-pane fade" id="custom-tabs-one-archived-accounts" role="tabpanel" wire:ignore.self>
+                            @include('livewire.user_accounts.archive-table')
                         </div>
                     </div>
-                    <!-- /.card -->
                 </div>
-
-                @include('livewire.user_accounts.add-user')
-                @include('livewire.user_accounts.edit-user')
-                @include('livewire.user_accounts.view-user')
-                @include('livewire.user_accounts.import-users')
-                @include('livewire.user_accounts.confirm-delete')
-                @include('livewire.user_accounts.confirm-save')
-                @include('livewire.user_accounts.confirm-archive')
-                @include('livewire.user_accounts.confirm-unarchive')
                 <!-- /.card -->
             </div>
+
+            @include('livewire.user_accounts.add-user')
+            @include('livewire.user_accounts.edit-user')
+            @include('livewire.user_accounts.view-user')
+            @include('livewire.user_accounts.import-users')
+            @include('livewire.user_accounts.confirm-delete')
+            @include('livewire.user_accounts.confirm-save')
+            @include('livewire.user_accounts.confirm-archive')
+            @include('livewire.user_accounts.confirm-unarchive')
+            <!-- /.card -->
         </div>
     </div>
 </div>
@@ -545,21 +543,5 @@
                 },
             }));
         });
-
-        function formatDate(dateTimeString) {
-            const originalDate = new Date(dateTimeString);
-
-            // Format the date using toLocaleString
-            const formattedDatetimeString = originalDate.toLocaleString('en-US', {
-                month: 'long',
-                day: 'numeric',
-                year: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-                hour12: true,
-            });
-
-            return formattedDatetimeString;
-        }
     </script>
 @endsection

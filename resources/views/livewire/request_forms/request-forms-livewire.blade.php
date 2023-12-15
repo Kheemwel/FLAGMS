@@ -112,5 +112,10 @@
                 selectedStudent = $(this).val();
             });
         }
+
+        Livewire.on('clearSelections', () => {
+            $('#multiple-select-optgroup-clear-field').val(null).trigger('change');
+            $('#single-select-optgroup-clear-field').val(null).trigger('change');
+        })
     </script>
 @endsection

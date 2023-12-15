@@ -10,14 +10,11 @@ class Forms extends Model
     use HasFactory;
     protected $table = 'forms';
     protected $primaryKey = 'id';
-    protected $fillable = [
-        'request_form_id'
-    ];
 
-    public function requestForm()
-    {
-        return $this->belongsTo(RequestForms::class, 'request_form_id');
-    }
+    protected $appedends = ['teacher_name', 'guidance_name'];
+    protected $fillable = [
+        'guidance_id', 'teacher_id', 'form_type', 'status',
+    ];
 
     public function homeVisitationForm()
     {
@@ -29,31 +26,24 @@ class Forms extends Model
         return $this->hasOne(ViolationForms::class, 'form_id');
     }
 
-    public function createHomeVisitationForms()
+
+    public function Teacher()
     {
-        $homeVisitationForm = $this->requestForm->homeVisitationForm;
-        $this->homeVisitationForm()->create(
-            [
-                'student_id' => $homeVisitationForm->student_id,
-                'reason' => $homeVisitationForm->reason
-            ]
-        );
+        return $this->belongsTo(Teachers::class, 'teacher_id');
     }
 
-    public function createViolationForms()
+    public function getTeacherNameAttribute()
     {
-        $students = $this->requestForm->violationStudentsInvolve();
-        $offense_type = $this->requestForm->violationForm->offense_type;
-        $this->violationForm()->create()->createViolationFormStudents($students);
+        return $this->Teacher->name;
+    }    
+
+    public function Guidance()
+    {
+        return $this->belongsTo(Guidance::class, 'teacher_id');
     }
 
-    public function formType()
+    public function getGuidanceNameAttribute()
     {
-        return $this->requestForm->form_type;
-    }
-
-    public function teacherName()
-    {
-        return $this->requestForm->teacher->name;
+        return $this->Guidance->name;
     }
 }

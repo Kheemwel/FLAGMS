@@ -23,6 +23,13 @@ if (!function_exists('defaultProfilePicture')) {
     }
 }
 
+if (!function_exists('blankSignature')) {
+    function blankSignature()
+    {
+        return asset('images/blank-signature.jpg'); // Update the path as needed
+    }
+}
+
 if (!function_exists('imageBinaryToSRC')) {
     function imageBinaryToSRC($binary_content)
     {

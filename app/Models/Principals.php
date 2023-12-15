@@ -11,6 +11,8 @@ class Principals extends Model
     use HasFactory;
     protected $table = 'principals';
     protected $primaryKey = 'id';
+
+    protected $appends = ['position', 'name'];
     protected $fillable = [
         'user_account_id', 'principal_position_id'
     ];
@@ -20,8 +22,18 @@ class Principals extends Model
         return $this->belongsTo(UserAccounts::class, 'user_account_id');
     }
 
+    public function getNameAttribute()
+    {
+        return $this->getUserAccount->name;
+    }
+
     public function getPrincipalPosition() : BelongsTo
     {
         return $this->belongsTo(PrincipalPositions::class, 'principal_position_id');
+    }
+
+    public function getPositionAttribute()
+    {
+        return $this->getPrincipalPosition->position;
     }
 }

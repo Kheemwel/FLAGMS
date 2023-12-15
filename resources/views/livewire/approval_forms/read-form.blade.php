@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div wire:loading wire:target='read, approveRequest'>
-                <div class="overlay bg-white">
+                <div class="overlay bg-white" style=" height: 500px;">
                     <i class="fas fa-3x fa-sync-alt fa-spin"></i>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                         <!--TYPE OF DEFENSE-->
                         <div class="row">
                             <div class="form-group col-sm-6" style="color: #252525;">
-                                <p style="font-size: 14px; ">Reason for Home Visitation</p>
+                                <p style="font-size: 14px; ">Reason for Request</p>
                             </div>
                         </div>
                         <div class="row">
@@ -60,6 +60,21 @@
                                 </p>
                             </div>
                         </div>
+
+                        @if ($homeVisitationForm->requestForm->isDisapproved())
+                            <div class="row">
+                                <div class="form-group col-sm-6" style="color: #252525;">
+                                    <p style="font-size: 14px; ">Reason of Disapproval</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-12" style="font-size: 16px; color: #252525; text-align: justify;">
+                                    <p style="font-weight: bold;">
+                                        {{ $homeVisitationForm->requestForm->disapproval_reason }}
+                                    </p>
+                                </div>
+                            </div>
+                        @endif
                     </div> <!-- /.card-body -->
                     @if ($homeVisitationForm->requestForm->status == 'pending')
                         <div class="modal-footer justify-content-center">
@@ -94,7 +109,7 @@
 
                         <div class="row">
                             <div class="form-group col-sm-6" style="color: #252525;">
-                                <p style="font-size: 14px; ">Reason of Violation</p>
+                                <p style="font-size: 14px; ">Reason for Request</p>
                             </div>
                         </div>
                         <div class="row">
@@ -104,6 +119,22 @@
                                 </p>
                             </div>
                         </div>
+
+
+                        @if ($violationForm->requestForm->isDisapproved())
+                            <div class="row">
+                                <div class="form-group col-sm-6" style="color: #252525;">
+                                    <p style="font-size: 14px; ">Reason of Disapproval</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-12" style="font-size: 16px; color: #252525; text-align: justify;">
+                                    <p style="font-weight: bold;">
+                                        {{ $violationForm->requestForm->disapproval_reason }}
+                                    </p>
+                                </div>
+                            </div>
+                        @endif
                     </div> <!-- /.card-body -->
                     @if ($violationForm->requestForm->status == 'pending')
                         <div class="modal-footer justify-content-center">

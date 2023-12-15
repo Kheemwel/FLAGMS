@@ -19,6 +19,8 @@ class StudentsAnecdotals extends Model
         return $this->belongsTo(Offenses::class, 'offense_id');
     }
 
+    
+
     public function getDisciplinaryAction()
     {
         return $this->belongsTo(DisciplinaryActions::class, 'disciplinary_action_id');
@@ -36,11 +38,11 @@ class StudentsAnecdotals extends Model
 
     public function student_signature()
     {
-        return $this->student_signature_id ? imageBinaryToSRC($this->StudentSignature->student_signature) : '';
+        return $this->student_signature_id ? imageBinaryToSRC($this->StudentSignature->student_signature) : blankSignature();
     }
 
     public function guardian_signature()
     {
-        return $this->guardian_signature_id ? imageBinaryToSRC($this->GuardianSignature->guardian_signature) : '';
+        return $this->guardian_signature_id ? imageBinaryToSRC($this->GuardianSignature->guardian_signature) : blankSignature();
     }
 }

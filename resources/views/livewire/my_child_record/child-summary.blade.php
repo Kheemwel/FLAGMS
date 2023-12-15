@@ -67,7 +67,7 @@
                                 <p class="card-title">No. of Violations</p>
                             </div>
                             <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
-                                <p class="card-title" style="font-weight: bold;">1</p>
+                                <p class="card-title" style="font-weight: bold;">{{ $summary['numViolations'] }}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -76,7 +76,7 @@
                                 <p class="card-title">No. of Home Visitation <br> Forms</p>
                             </div>
                             <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
-                                <p class="card-title" style="font-weight: bold;">0</p>
+                                <p class="card-title" style="font-weight: bold;">{{ $summary['numViolationForms'] }}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -85,18 +85,18 @@
                                 <p class="card-title">No. of Violations Forms</p>
                             </div>
                             <div class="form-group col-sm-6" style="font-size: 14px; color: #252525;">
-                                <p class="card-title" style="font-weight: bold;">1</p>
+                                <p class="card-title" style="font-weight: bold;">{{ $summary['numHomeVisitationForms'] }}</p>
                             </div>
                         </div><br><br>
                         <!---------PIE CHART VIOLATIONS----------->
                         <div class="input-group-prepend">
                             <p class="card-title" style="font-size: 18px; color: #252525; font-weight: bold; margin-bottom: 1rem;">Total Offenses</p>
                         </div>
-                        <div class="row" x-init="initChart()">
+                        <div class="row">
                             <div class="col-sm-12">
                                 <div class="card" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); margin-right: 1rem;">
                                     <!--Violation PieChart-->
-                                    <div class="tab-content p-0">
+                                    <div class="tab-content p-0" wire:ignore>
                                         <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;margin-top: 1rem;"></canvas>
                                         <br>
                                     </div>

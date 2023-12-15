@@ -129,6 +129,87 @@
                                         </li>
                                     </ul>
                                 </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link nav-link-button nav-link-button" href="#">
+                                        <iconify-icon icon="clarity:dashboard-solid" style="color: #252525;"></iconify-icon>
+                                        <p style="color: #252525;">
+                                           Adding New Offense
+                                        </p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link nav-link-button nav-link-button" href="#">
+                                        <iconify-icon icon="clarity:dashboard-solid" style="color: #252525;"></iconify-icon>
+                                        <p style="color: #252525;">
+                                            Adding New Offense Category
+                                        </p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link nav-link-button nav-link-button" href="#">
+                                        <iconify-icon icon="clarity:dashboard-solid" style="color: #252525;"></iconify-icon>
+                                        <p style="color: #252525;">
+                                            Adding New Offense Level
+                                        </p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link nav-link-button nav-link-button" href="#">
+                                        <iconify-icon icon="clarity:dashboard-solid" style="color: #252525;"></iconify-icon>
+                                        <p style="color: #252525;">
+                                            Adding New Disciplinary Actions
+                                        </p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link nav-link-button nav-link-button" href="#">
+                                        <iconify-icon icon="clarity:dashboard-solid" style="color: #252525;"></iconify-icon>
+                                        <p style="color: #252525;">
+                                            Create an Event
+                                        </p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link nav-link-button nav-link-button" href="#">
+                                        <iconify-icon icon="clarity:dashboard-solid" style="color: #252525;"></iconify-icon>
+                                        <p style="color: #252525;">
+                                            Add Schedule Tag
+                                        </p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link nav-link-button nav-link-button" href="#">
+                                        <iconify-icon icon="clarity:dashboard-solid" style="color: #252525;"></iconify-icon>
+                                        <p style="color: #252525;">
+                                            Add Item Type
+                                        </p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link nav-link-button nav-link-button" href="#">
+                                        <iconify-icon icon="clarity:dashboard-solid" style="color: #252525;"></iconify-icon>
+                                        <p style="color: #252525;">
+                                            Add Item Tag
+                                        </p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link nav-link-button nav-link-button" href="#">
+                                        <iconify-icon icon="clarity:dashboard-solid" style="color: #252525;"></iconify-icon>
+                                        <p style="color: #252525;">
+                                            Edit the Content in Home Page
+                                        </p>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -167,6 +248,14 @@
                                                 <li class="nav-item">
                                                     <a aria-controls="custom-tabs-one-accounts" aria-selected="false" class="nav-link" data-toggle="pill" href="#custom-tabs-one-accounts" id="custom-tabs-one-accounts-tab" role="tab" style="color: #252525;">2. Accounts</a>
                                                 </li>
+
+                                                {{--FOR PARENTS: 
+                                                    
+                                                    <li class="nav-item">
+                                                    <a aria-controls="custom-tabs-one-child-rec" aria-selected="false" class="nav-link" data-toggle="pill" href="#custom-tabs-one-child-rec" id="custom-tabs-one-child-rec-tab" role="tab" style="color: #252525;">2. My Child's Records</a>
+
+                                                </li> --}}
+
                                                 <li class="nav-item">
                                                     <a aria-controls="custom-tabs-one-students" aria-selected="false" class="nav-link" data-toggle="pill" href="#custom-tabs-one-students" id="custom-tabs-one-students-tab" role="tab" style="color: #252525;">3. Students</a>
                                                 </li>
@@ -182,22 +271,39 @@
                                         <div class="card-body">
                                             <div class="tab-content" id="custom-tabs-one-tabContent">
                                                 <div aria-labelledby="custom-tabs-one-dashboard-tab" class="tab-pane fade show active" id="custom-tabs-one-dashboard" role="tabpanel">
-                                                    It is where you'll find a comprehensive summary of your completed
-                                                    activities, your calendar, and upcoming events.
+                                                    {{-- FOR ADMIN, STUDENTS, TEACHERS & PARENTS: --}}
+                                                    This shows the comprehensive summary of your completed activities, your calendar, and upcoming events.
+
+                                                    {{-- FOR PRINCIPAL:
+                                                    This shows the comprehensive summary of your completed activities, your calendar, list of forms that need to fill out, and upcoming events. --}}
                                                 </div>
                                                 <div aria-labelledby="custom-tabs-one-accounts-tab" class="tab-pane fade" id="custom-tabs-one-accounts" role="tabpanel">
-                                                    Mauris tincidunt mi at erat gravida, eget tristique urna bibendum. Mauris
-                                                    pharetra purus ut ligula tempor, et vulputate metus facilisis.
+                                                    {{-- FOR ADMIN --}}
+                                                    This allows you to manage user accounts. First, you can add new users and customize their access. Second, you can add many users by importing them for time-saving efficiency. Third, easily export user data for comprehensive reports or backups. 
                                                 </div>
+
+                                                {{-- FOR PARENTS:
+
+                                                <div aria-labelledby="custom-tabs-one-child-rec-tab" class="tab-pane fade" id="custom-tabs-one-child-rec" role="tabpanel">
+                                                    
+                                                    This shows the anecdotal record, individual inventory report and summary information of your child/children. 
+
+                                                </div> --}}
+
                                                 <div aria-labelledby="custom-tabs-one-students-tab" class="tab-pane fade" id="custom-tabs-one-students" role="tabpanel">
-                                                    Morbi turpis dolor, vulputate vitae felis non, tincidunt congue mauris.
+                                                    {{-- ADMIN --}}
+                                                    This shows the detailed list of students alongside their anecdotal records and student information.
+
+                                                    {{-- TEACHER:
+                                                    This shows the list of students alongside their anecdotal records. --}}
                                                 </div>
                                                 <div aria-labelledby="custom-tabs-one-file-management-tab" class="tab-pane fade" id="custom-tabs-one-file-management" role="tabpanel">
-                                                    Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna,
-                                                    iaculis tempus turpis ac, ornare sodales tellus.
+                                                    {{-- ADMIN: --}}
+                                                    This allows you to easily manage important components in the guidance management system. It includes pages for roles, profile pictures, offenses, guidance schedule tags, item images, item types, item tags, guidance records, and database management.
                                                 </div>
                                                 <div aria-labelledby="custom-tabs-one-content-management-tab" class="tab-pane fade" id="custom-tabs-one-content-management" role="tabpanel">
-                                                    Quisque tincidunt venenatis vulputate. Morbi euismod molestie tristique.
+                                                    {{-- ADMIN: --}}
+                                                    This allows you to easily customize and update the content on the homepage, ensuring that it reflects the most relevant and important information.
                                                 </div>
                                             </div>
                                         </div>
@@ -218,32 +324,47 @@
                                                     <a aria-controls="custom-tabs-one-records" aria-selected="true" class="nav-link active" data-toggle="pill" href="#custom-tabs-one-records" id="custom-tabs-one-records-tab" role="tab" style="color: #252525;">6. Records</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a aria-controls="custom-tabs-one-guidance-program" aria-selected="false" class="nav-link" data-toggle="pill" href="#custom-tabs-one-guidance-program" id="custom-tabs-one-guidance-program-tab" role="tab" style="color: #252525;">7. Guidance Program</a>
+                                                    <a aria-controls="custom-tabs-one-lnf" aria-selected="false" class="nav-link" data-toggle="pill" href="#custom-tabs-one-lnf" id="custom-tabs-one-lnf-tab" role="tab" style="color: #252525;">7. Lost and Found</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a aria-controls="custom-tabs-one-lnf" aria-selected="false" class="nav-link" data-toggle="pill" href="#custom-tabs-one-lnf" id="custom-tabs-one-lnf-tab" role="tab" style="color: #252525;">8. Lost and Found</a>
+                                                    <a aria-controls="custom-tabs-one-forms" aria-selected="false" class="nav-link" data-toggle="pill" href="#custom-tabs-one-forms" id="custom-tabs-one-forms-tab" role="tab" style="color: #252525;">8. Forms</a>
                                                 </li>
-                                                <li class="nav-item">
-                                                    <a aria-controls="custom-tabs-one-forms" aria-selected="false" class="nav-link" data-toggle="pill" href="#custom-tabs-one-forms" id="custom-tabs-one-forms-tab" role="tab" style="color: #252525;">9. Forms</a>
-                                                </li>
+
+                                                {{-- FOR PARENT:
+                                                    <li class="nav-item">
+                                                    <a aria-controls="custom-tabs-one-forms" aria-selected="false" class="nav-link" data-toggle="pill" href="#custom-tabs-one-forms" id="custom-tabs-one-forms-tab" role="tab" style="color: #252525;">3. Forms</a>
+                                                    </li>
+                                                 --}}
                                             </ul>
                                         </div>
                                         <div class="card-body">
                                             <div class="tab-content" id="custom-tabs-one-tabContent">
                                                 <div aria-labelledby="custom-tabs-one-records-tab" class="tab-pane fade show active" id="custom-tabs-one-records" role="tabpanel">
-                                                    It is where you'll find a comprehensive summary of your completed
-                                                    activities, your calendar, and upcoming events.
-                                                </div>
-                                                <div aria-labelledby="custom-tabs-one-guidance-program-tab" class="tab-pane fade" id="custom-tabs-one-guidance-program" role="tabpanel">
-                                                    Mauris tincidunt mi at erat gravida, eget tristique urna bibendum. Mauris
-                                                    pharetra purus ut ligula tempor, et vulputate metus facilisis.
+                                                    {{-- ADMIN: --}}
+                                                    This allows you to easily manage crucial documentation including anecdotal records, violation forms, home visitation forms, and individual inventory.  
+
+                                                    {{-- STUDENT:
+                                                    This shows your anecdotal record and individual inventory report. In the anecdotal record, it allows you to track your records and submit your signature digitally. Also, you can create or edit your individual inventory report.  --}}
                                                 </div>
                                                 <div aria-labelledby="custom-tabs-one-lnf-tab" class="tab-pane fade" id="custom-tabs-one-lnf" role="tabpanel">
-                                                    Morbi turpis dolor, vulputate vitae felis non, tincidunt congue mauris.
+                                                    {{-- ADMIN: --}}
+                                                    This allows you to effortlessly add found items to the system. You can also keep track of claimed items and easily identify expired items. This ensures a smooth and organized approach to managing lost and found items.
+
+                                                    {{-- STUDENTS:
+                                                    This shows the list of lost items in your school.  --}}
+
+                                                    {{-- TEACHERS:
+                                                    This shows the list of students alongside their anecdotal records. --}}
                                                 </div>
                                                 <div aria-labelledby="custom-tabs-one-forms-tab" class="tab-pane fade" id="custom-tabs-one-forms" role="tabpanel">
-                                                    Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna,
-                                                    iaculis tempus turpis ac, ornare sodales tellus.
+                                                    {{-- ADMIN: --}}
+                                                    In Forms, it consists of Approval Forms and Fill Out Forms pages. In the Approval Forms section, you can easily manage pending, approved, and disapproved requests. While the Fill Out Forms page enables you to view forms that need to be fill out for completion, with statuses indicating whether they are completed, incomplete, or pending.
+
+                                                    {{-- STUDENTS:
+                                                    In Forms, it has the Fill Out forms that enables you to view forms that need to be fill out for completion, with statuses indicating whether they are completed, incomplete, or pending. --}}
+
+                                                    {{-- TEACHERS:
+                                                    Forms consists of Requested Forms and Fill Out Forms. (PENDING!) --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -262,22 +383,36 @@
                                         <div class="card-header p-0 pt-1">
                                             <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
                                                 <li class="nav-item">
-                                                    <a aria-controls="custom-tabs-one-notif" aria-selected="true" class="nav-link active" data-toggle="pill" href="#custom-tabs-one-notif" id="custom-tabs-one-notif-tab" role="tab" style="color: #252525;">10. Notification</a>
+                                                    <a aria-controls="custom-tabs-one-user-guide" aria-selected="false" class="nav-link active" data-toggle="pill" href="#custom-tabs-one-user-guide" id="custom-tabs-one-forms-user-guide" role="tab" style="color: #252525;">9. User Guide</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a aria-controls="custom-tabs-one-profile" aria-selected="false" class="nav-link" data-toggle="pill" href="#custom-tabs-one-profile" id="custom-tabs-one-profile-tab" role="tab" style="color: #252525;">11. Profile</a>
+                                                    <a aria-controls="custom-tabs-one-guidance-prog" aria-selected="true" class="nav-link" data-toggle="pill" href="#custom-tabs-one-guidance-prog" id="custom-tabs-one-guidance-prog-tab" role="tab" style="color: #252525;">10. Guidance Program</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a aria-controls="custom-tabs-one-notif" aria-selected="true" class="nav-link" data-toggle="pill" href="#custom-tabs-one-notif" id="custom-tabs-one-notif-tab" role="tab" style="color: #252525;">11. Notification</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a aria-controls="custom-tabs-one-profile" aria-selected="false" class="nav-link" data-toggle="pill" href="#custom-tabs-one-profile" id="custom-tabs-one-profile-tab" role="tab" style="color: #252525;">12. Profile</a>
                                                 </li>
                                             </ul>
                                         </div>
                                         <div class="card-body">
                                             <div class="tab-content" id="custom-tabs-one-tabContent">
-                                                <div aria-labelledby="custom-tabs-one-notif-tab" class="tab-pane fade show active" id="custom-tabs-one-notif" role="tabpanel">
-                                                    It is where you'll find a comprehensive summary of your completed
-                                                    activities, your calendar, and upcoming events.
+                                                <div aria-labelledby="custom-tabs-one-user-guide-tab" class="tab-pane fade show active" id="custom-tabs-one-user-guide" role="tabpanel">
+                                                    {{-- ALL: --}}
+                                                    A user guide contains information about the features and functions of FLAGMS. This will help you to learn how to use the FLAGMS effectively and efficiently, as well as to solve any problems that you may encounter.
+                                                </div>
+                                                <div aria-labelledby="custom-tabs-one-guidance-prog-tab" class="tab-pane fade" id="custom-tabs-one-guidance-prog" role="tabpanel">
+                                                    {{-- ALL: --}}
+                                                    This shows the guidance-related programs. This allows you to easily create a guidance-related event or program. 
+                                                </div>
+                                                <div aria-labelledby="custom-tabs-one-notif-tab" class="tab-pane fade" id="custom-tabs-one-notif" role="tabpanel">
+                                                    {{-- ALL: --}}
+                                                    This allows you to receive timely updates, announcements, and important alerts. This module ensures that users are promptly notified of critical information, enhancing communication and keeping everyone informed. 
                                                 </div>
                                                 <div aria-labelledby="custom-tabs-one-profile-tab" class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel">
-                                                    Mauris tincidunt mi at erat gravida, eget tristique urna bibendum. Mauris
-                                                    pharetra purus ut ligula tempor, et vulputate metus facilisis.
+                                                    {{-- ALL: --}}
+                                                    This shows your personal information. This allows you to easily edit your profile and change password. 
                                                 </div>
                                             </div>
                                         </div>

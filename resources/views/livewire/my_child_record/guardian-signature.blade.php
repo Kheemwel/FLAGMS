@@ -1,4 +1,4 @@
-<div class="modal fade as-modal" data-backdrop="static" id="guardian-signature" role="dialog" style="max-width: 100%;" wire:ignore.self>
+<div class="modal fade as-modal signaturePadModal" data-backdrop="static" id="guardian-signature" role="dialog" style="max-width: 100%;" wire:ignore.self>
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content" style="border-radius: 20px;">
             <div wire:loading wire:target='updateSignature'>

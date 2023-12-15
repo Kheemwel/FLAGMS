@@ -64,7 +64,7 @@
 
                     <div class="row">
                         <div class="col-12">
-                            <label style="text-align: left; color: #252525;">Accessibility</label>
+                            <label style="text-align: left; color: #252525;">Choose Audience</label>
                         </div>
                     </div>
 

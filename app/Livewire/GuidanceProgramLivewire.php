@@ -8,6 +8,7 @@ use App\Models\GuidancePrograms;
 use App\Models\GuidanceScheduleTags;
 use App\Models\Notifications;
 use App\Models\UserAccounts;
+use App\Traits\Notify;
 use App\Traits\Toasts;
 use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Facades\Request;
@@ -16,6 +17,7 @@ use Livewire\Component;
 class GuidanceProgramLivewire extends Component
 {
     use Toasts;
+    use Notify;
     public $id, $title, $program_start, $program_end, $description, $schedule_tag_id, $is_public = true;
     public $schedule_tags, $tag_name;
     public $privileges = [];
@@ -50,8 +52,6 @@ class GuidanceProgramLivewire extends Component
 
     public function renderCalendar()
     {
-        $programs = GuidancePrograms::join('guidance_schedule_tags', 'guidance_programs.schedule_tag_id', '=', 'guidance_schedule_tags.id')
-            ->select('guidance_programs.*', 'guidance_schedule_tags.tag_name', 'guidance_schedule_tags.color')->get();
         $programs = GuidancePrograms::leftJoin('guidance_private_schedules', function ($join) {
             $join->on('guidance_programs.id', '=', 'guidance_private_schedules.guidance_program_id')
                 ->where('guidance_private_schedules.user_account_id', '=', $this->user_id);
@@ -87,23 +87,20 @@ class GuidanceProgramLivewire extends Component
         if (!$guidance_program->is_public) {
             $this->selected_users[] = $this->user_id;
             $users = [];
-            $notifs = [];
             foreach ($this->selected_users as $id) {
                 $users[] = [
                     'user_account_id' => $id
                 ];
                 if ($id != $this->user_id) {
-                    $notifs[] = [
-                        'from_user' => $this->user_id,
-                        'to_user' => $id,
-                        'message' => "Private Schedule: ".$validatedData['title'],
-                        'created_at' => now(),
-                    ];
+                    $this->notify(
+                        $this->user_id,
+                        $id,
+                        "I created a private schedule. Title: \"".$validatedData['title']."\"",
+                        'schedule',
+                    );
                 }
             }
             $guidance_program->PrivateSchedules()->createMany($users);
-            Notifications::insert($notifs);
-            NewNotification::dispatch();
             $this->showToast('success', 'The Private Schedule is Added Successfully');
         } else {
             $this->showToast('success', 'The Event is Added Successfully');

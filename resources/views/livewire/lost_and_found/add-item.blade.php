@@ -96,13 +96,12 @@
                         @enderror
                     </div>
 
-                    <!--IMAGE OF THE LOST ITEM-->
-                    <div class="form-group col-sm-13 text-sm" style="color: #252525;">
-                        <label class="font-weight-normal" for="input-item-desc">Image of the Lost Item</label>
+                    <div class="form-group col-sm-13 text-sm text-left" style="color: #252525;" x-data="{ uploading: false, progress: 0 }" x-on:livewire-upload-error="uploading = false" x-on:livewire-upload-finish="uploading = false; progress = 0" x-on:livewire-upload-progress="progress = $event.detail.progress" x-on:livewire-upload-start="uploading = true">
+                        <label for="input-item-desc font-weight-normal">Profile Picture</label>
 
-                        <div class="form-group col-sm-12 d-flex flex-column align-items-center" style="border: 1px dashed gray;">
+                        <div class="form-group col-sm-12 d-flex flex-column justify-content-center align-items-center" style="border: 1px dashed gray;">
                             <input accept=".png, .jpg, .jpeg" class="custom-file-input position-absolute z-50 m-0 p-0 w-100 h-100 border border-black" id="uploadPic" type="file" wire:model="upload_item_image">
-                            <div class="pt-4 pb-5">
+                            <div class="pt-3 pb-5">
                                 @if ($upload_item_image && in_array($upload_item_image->getClientOriginalExtension(), ['png', 'jpg', 'jpeg']) && strpos($upload_item_image->getMimeType(), 'image/') === 0)
                                     <img height="150px" src="{{ $upload_item_image->temporaryUrl() }}" width='150px'>
                                 @else
@@ -114,6 +113,10 @@
                                     </div>
                                 @endif
                             </div>
+                        </div>
+                        <!-- Progress Bar -->
+                        <div class="progress" x-show="uploading">
+                            <div aria-valuemax="100" aria-valuemin="0" class="progress-bar" role="progressbar" x-bind:style="`width: ${progress}%;`"></div>
                         </div>
                         @error('upload_item_image')
                             <span class="text-danger">{{ $message }}</span>

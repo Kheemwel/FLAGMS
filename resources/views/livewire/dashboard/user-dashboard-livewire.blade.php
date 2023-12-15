@@ -48,7 +48,7 @@
                                     <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 80px;">
                                         <div class="inner">
                                             <p class="mb-0 text-truncate text-sm">Total No. of Students</p>
-                                            <p class="mb-0 font-weight-bold" style="font-size: 1.5rem;">5,656</p>
+                                            <p class="mb-0 font-weight-bold" style="font-size: 1.5rem;">2,000</p>
                                         </div>
                                     </div>
                                 </div>
@@ -57,7 +57,7 @@
                                     <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 80px;">
                                         <div class="inner">
                                             <p class="mb-0 text-truncate text-sm">No. of Junior High Students</p>
-                                            <p class="mb-0 font-weight-bold" style="font-size: 1.5rem;">2,345</p>
+                                            <p class="mb-0 font-weight-bold" style="font-size: 1.5rem;">1,500</p>
                                         </div>
                                     </div>
                                 </div>
@@ -66,7 +66,7 @@
                                     <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 80px;">
                                         <div class="inner">
                                             <p class="mb-0 text-truncate text-sm">No. of Senior High Students</p>
-                                            <p class="mb-0 font-weight-bold" style="font-size: 1.5rem;">1,235</p>
+                                            <p class="mb-0 font-weight-bold" style="font-size: 1.5rem;">500</p>
                                         </div>
                                     </div>
                                 </div>
@@ -77,7 +77,7 @@
                                     <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0,0, 0.2); border-radius: 10px; height: 80px;">
                                         <div class="inner">
                                             <p class="mb-0 text-truncate text-sm">No. of Anecdotal Reports</p>
-                                            <p class="mb-0 font-weight-bold" style="font-size: 1.5rem;">2</p>
+                                            <p class="mb-0 font-weight-bold" style="font-size: 1.5rem;">{{ $numAnecdotalReports }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -86,7 +86,7 @@
                                     <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 80px;">
                                         <div class="inner">
                                             <p class="mb-0 text-truncate text-sm">No. of Violation Reports</p>
-                                            <p class="mb-0 font-weight-bold" style="font-size: 1.5rem;">24</p>
+                                            <p class="mb-0 font-weight-bold" style="font-size: 1.5rem;">{{ $numViolationReports }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -95,7 +95,7 @@
                                     <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 80px;">
                                         <div class="inner">
                                             <p class="mb-0 text-truncate text-sm">No. of Home Visitation Reports</p>
-                                            <p class="mb-0 font-weight-bold" style="font-size: 1.5rem;">5</p>
+                                            <p class="mb-0 font-weight-bold" style="font-size: 1.5rem;">{{ $numHomeVisitationReports }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -113,7 +113,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
                     @elseif ($role === 'Teacher')
                         <div class="col-lg-7">
@@ -243,17 +243,17 @@
 
                             <div class="row">
                                 <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 ">
-                                        <div class="card" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 395px;">
-                                            <!-- Violation PieChart -->
-                                            <div class="tab-content p-0">
-                                                <canvas class="mt-4 mb-4" id="pieChart" style="min-height: 270px; max-height: 310px; max-width: 100%;"></canvas>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                            <div class="card" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 395px;">
+                                                <!-- Violation PieChart -->
+                                                <div class="tab-content p-0">
+                                                    <canvas class="mt-4 mb-4" id="pieChart" style="min-height: 270px; max-height: 310px; max-width: 100%;"></canvas>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
                             </div>
                         </div>
@@ -287,7 +287,7 @@
                                                 <div class="row">
                                                     <div class="col-md-3  d-flex flex-row justify-content-center align-self-center">
                                                         <div class="text-center">
-                                                            <img class="img-fluid" alt="user profile" src="images/user-req.png" style="max-width: 80px;">
+                                                            <img alt="user profile" class="img-fluid" src="images/user-req.png" style="max-width: 80px;">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-5">
@@ -296,10 +296,10 @@
                                                                 <label class="text-md">Liam Anderson</label>
                                                             </div>
                                                         </div>
-                                                        <div  class="d-flex flex-row justify-content-center align-self-center">
+                                                        <div class="d-flex flex-row justify-content-center align-self-center">
                                                             <label class="text-sm">Tuesday, June 20 at 9:00AM</label>
                                                         </div>
-                                                        <div  class="d-flex flex-row justify-content-center align-self-center">
+                                                        <div class="d-flex flex-row justify-content-center align-self-center">
                                                             <label class="text-lg mt-2">Violation Form</label>
                                                         </div>
                                                     </div>
@@ -311,7 +311,7 @@
                                                 <div class="row mt-4">
                                                     <div class="col-md-3  d-flex flex-row justify-content-center align-self-center">
                                                         <div class="text-center">
-                                                            <img class="img-fluid" alt="user profile" src="images/user-req.png" style="max-width: 80px;">
+                                                            <img alt="user profile" class="img-fluid" src="images/user-req.png" style="max-width: 80px;">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-5">
@@ -320,10 +320,10 @@
                                                                 <label class="text-md">Liam Anderson</label>
                                                             </div>
                                                         </div>
-                                                        <div  class="d-flex flex-row justify-content-center align-self-center">
+                                                        <div class="d-flex flex-row justify-content-center align-self-center">
                                                             <label class="text-sm">Tuesday, June 20 at 9:00AM</label>
                                                         </div>
-                                                        <div  class="d-flex flex-row justify-content-center align-self-center">
+                                                        <div class="d-flex flex-row justify-content-center align-self-center">
                                                             <label class="text-lg mt-2">Home Visitation Form</label>
                                                         </div>
                                                     </div>
@@ -331,11 +331,11 @@
                                                         <label class="text-sm mt-2 p-1 text-center" style="color: #3C58FF; background-color: #D1D8FF; width: 100px; border-radius: 10px; float: left;">COMPLETED</label>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="row mt-4">
                                                     <div class="col-md-3  d-flex flex-row justify-content-center align-self-center">
                                                         <div class="text-center">
-                                                            <img class="img-fluid" alt="user profile" src="images/user-req.png" style="max-width: 80px;">
+                                                            <img alt="user profile" class="img-fluid" src="images/user-req.png" style="max-width: 80px;">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-5">
@@ -344,10 +344,10 @@
                                                                 <label class="text-md">Liam Anderson</label>
                                                             </div>
                                                         </div>
-                                                        <div  class="d-flex flex-row justify-content-center align-self-center">
+                                                        <div class="d-flex flex-row justify-content-center align-self-center">
                                                             <label class="text-sm">Tuesday, June 20 at 9:00AM</label>
                                                         </div>
-                                                        <div  class="d-flex flex-row justify-content-center align-self-center">
+                                                        <div class="d-flex flex-row justify-content-center align-self-center">
                                                             <label class="text-lg mt-2">Violation Form</label>
                                                         </div>
                                                     </div>
@@ -376,7 +376,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb-2 mt-1" style="max-height: 350px; overflow-y: auto;">
                                 <!-- UPCOMING EVENTS -->
@@ -389,10 +389,12 @@
                                             <a class="see-all-link text-sm" href="{{ route('guidance-program-page') }}" style="color: #252525; float: right;">See All</a>
                                         </div>
                                     </div>
+                                    @foreach ($upcomingEvents as $events)
+                                        
                                     <div class="row">
                                         <div class="col-3 d-flex align-items-center justify-content-center">
                                             <div class="p-2">
-                                                <p class="text-sm text-center font-weight-bold" style="color: #006400;">
+                                                <p class="text-sm text-center font-weight-bold" style="color: {{ $events->color() }};">
                                                     <i class="fa fa-solid fa-circle"></i>
                                                 </p>
                                             </div>
@@ -400,57 +402,20 @@
                                         <div class="col d-flex flex-column justify-content-center">
                                             <div class="p-2">
                                                 <div class="row">
-                                                    <p class="h6 mb-0 text-truncate" style="color: #252525;">Guidance Career Program</p>
+                                                    <p class="h6 mb-0 text-truncate" style="color: #252525;">{{ $events->title }}</p>
                                                 </div>
                                                 <div class="row">
-                                                    <p class="text-muted mb-0 small">10:00 AM - 12:30 PM</p>
+                                                    <p class="text-muted mb-0 small">{{ date('F d,Y   h:i A', strtotime($events->program_start)) . " to " . date('F d,Y   h:i A', strtotime($events->program_end)) }}</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-3 d-flex align-items-center justify-content-center">
-                                            <div class="p-2">
-                                                <p class="text-sm font-weight-bold text-center" style="color: #3C58FF;">
-                                                    <i class="fa fa-solid fa-circle"></i>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="col d-flex flex-column justify-content-center">
-                                            <div class="p-2">
-                                                <div class="row">
-                                                    <p class="h6 mb-0 text-truncate" style="color: #252525;">Mental Health Program</p>
-                                                </div>
-                                                <div class="row">
-                                                    <p class="text-muted mb-0 small" style="color: #252525;">10:00AM - 12:30PM</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-3 d-flex align-items-center justify-content-center">
-                                            <div class="p-2">
-                                                <p class="text-sm font-weight-bold text-center" style="color: #6256AC;">
-                                                    <i class="fa fa-solid fa-circle"></i>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="col d-flex flex-column justify-content-center">
-                                            <div class="p-2">
-                                                <div class="row">
-                                                    <p class="h6 mb-0 text-truncate" style="color: #252525;">Academic Advising Session</p>
-                                                </div>
-                                                <div class="row">
-                                                    <p class="text-muted mb-0 small" style="color: #252525;">10:00AM - 12:30PM</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </section>
@@ -472,77 +437,108 @@
     <!-- ChartJS -->
     <script src="adminLTE-3.2/plugins/chart.js/Chart.min.js"></script>
 
-
     <!----------------------------------------------------->
 
     <script>
+        let offenses = [];
+        let offensesData = [];
+
+        Livewire.on('offensesData', (data) => {
+
+            // Convert the object to an array of entries
+            const entries = Object.entries(data[0]);
+
+            // Sort the entries by count in descending order
+            entries.sort((a, b) => b[1] - a[1]);
+
+            // Extract the top 3 items (key-value pairs)
+            const top5 = entries.slice(0, 5);
+
+            // Extract the top 3 keys (fruit names)
+            offenses = top5.map(([key, value]) => key);
+            offensesData = top5.map(([key, value]) => value);
+        });
+
         $(function() {
             var donutData = {
-                labels: [
-                    'Verbal Offense',
-                    'Physical Offense',
-                    'Social Media Offense'
-                ],
+                // labels: [
+                //     'Verbal Offense',
+                //     'Physical Offense',
+                //     'Social Media Offense'
+                // ],
+                labels: offenses,
                 datasets: [{
-                    data: [800, 500, 200],
-                    backgroundColor: ['#0A0863', '#7684B9', '#F5C91A'],
+                    // data: [800, 500, 200],
+                    data: offensesData,
+                    backgroundColor: ['#3C58FF', '#6256AC', '#05ADC7', '#FA4481', '#FC993E'],
                 }]
             }
             //- PIE CHART -
             //-------------
             // Get context with jQuery - using jQuery's .get() method.
-            var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
-            var pieData = donutData;
-            var pieOptions = {
-                maintainAspectRatio: false,
-                responsive: true,
+            var pieChart = $('#pieChart');
+            try {
+                if (pieChart.length) {
+                    var pieChartCanvas = pieChart.get(0).getContext('2d');
+                    var pieData = donutData;
+                    var pieOptions = {
+                        maintainAspectRatio: false,
+                        responsive: true,
+                    }
+                    //Create pie or douhnut chart
+                    // You can switch between pie and douhnut using the method below.
+                    new Chart(pieChartCanvas, {
+                        type: 'pie',
+                        data: pieData,
+                        options: pieOptions
+                    })
+                } else {
+                    console.error("Element #pieChart not found!");
+                }
+            } catch (error) {
+                console.error("Error creating pie chart:", error);
             }
-            //Create pie or douhnut chart
-            // You can switch between pie and douhnut using the method below.
-            new Chart(pieChartCanvas, {
-                type: 'pie',
-                data: pieData,
-                options: pieOptions
-            })
 
             var Calendar = FullCalendar.Calendar;
 
             var calendarEl = document.getElementById('calendar');
 
-            var calendar = new Calendar(calendarEl, {
-                headerToolbar: {
-                    left: 'prev today',
-                    center: 'title',
-                    right: 'customMonthButton next'
-                },
-                themeSystem: 'bootstrap',
-                height: 'auto', // Let FullCalendar manage the height,
-                customButtons: {
-                    customMonthButton: {
-                        text: ' ', // Empty string as text
-                        click: function () {
-                            calendar.changeView('dayGridMonth');
+            try {
+                if (calendarEl) {
+                    var calendar = new Calendar(calendarEl, {
+                        headerToolbar: {
+                            left: 'prev today',
+                            center: 'title',
+                            right: 'customMonthButton next'
+                        },
+                        themeSystem: 'bootstrap',
+                        height: 'auto', // Let FullCalendar manage the height,
+                        customButtons: {
+                            customMonthButton: {
+                                text: ' ', // Empty string as text
+                                click: function() {
+                                    calendar.changeView('dayGridMonth');
+                                }
+                            }
                         }
-                    }
+                    });
+
+                    // Optionally, make the calendar container responsive
+                    var container = document.querySelector('.card-body');
+                    container.classList.add('d-flex', 'flex-column', 'align-items-stretch'); // Apply Bootstrap flex classes
+
+                    // Hide the custom month button using CSS
+                    var style = document.createElement('style');
+                    style.innerHTML = '.fc-customMonthButton-button { display: none; } .fc-next-button { margin-left: auto; }';
+                    document.head.appendChild(style);
+
+                    calendar.render();
+                } else {
+                    console.error("Element #calendar not found!");
                 }
-            });
-
-            // Optionally, make the calendar container responsive
-            var container = document.querySelector('.card-body');
-            container.classList.add('d-flex', 'flex-column', 'align-items-stretch'); // Apply Bootstrap flex classes
-
-            // Hide the custom month button using CSS
-            var style = document.createElement('style');
-            style.innerHTML = '.fc-customMonthButton-button { display: none; } .fc-next-button { margin-left: auto; }';
-            document.head.appendChild(style);
-
-            calendar.render();
-
-
-
-
-
-
+            } catch (error) {
+                console.error("Error creating calendar:", error);
+            }
         })
     </script>
 @endsection

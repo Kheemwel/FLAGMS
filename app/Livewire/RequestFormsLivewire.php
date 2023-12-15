@@ -9,13 +9,15 @@ use App\Models\RequestHomeVisitationForms;
 use App\Models\RequestViolationForms;
 use App\Models\Students;
 use App\Models\UserAccounts;
+use App\Traits\Notify;
 use App\Traits\Toasts;
 use Livewire\Component;
 
 class RequestFormsLivewire extends Component
 {
     use Toasts;
-    public $teacher_id;
+    use Notify;
+    public $teacher_id, $my_id;
     public $students;
     public $studentsInvolve, $selectedStudent;
     public $violationReason, $homeVisitationReason;
@@ -31,7 +33,9 @@ class RequestFormsLivewire extends Component
 
         $id = session('user_id');
         if ($id) {
-            $this->teacher_id = UserAccounts::find($id)->hasTeacher->id;
+            $user = UserAccounts::find($id);
+            $this->my_id = $user->id;
+            $this->teacher_id = $user->hasTeacher->id;
         }
 
         $this->guidanceIDs = UserAccounts::with('Roles')->where('is_archive', false)->whereHas('Roles', function ($sub) {
@@ -77,7 +81,7 @@ class RequestFormsLivewire extends Component
 
             $request_form = RequestForms::create([
                 'teacher_id' => $this->teacher_id,
-                'form_type' => $type
+                'form_type' => $type,
             ]);
 
             RequestHomeVisitationForms::create([
@@ -90,11 +94,13 @@ class RequestFormsLivewire extends Component
         $this->resetFields();
 
         foreach ($this->guidanceIDs as $id) {
-            Notifications::create([
-                'from_user' => $this->teacher_id,
-                'to_user' => $id,
-                'message' => "I request a $type"
-            ]);
+            $requestID = $type == 'Violation Form' ? "VF#{$request_form->id}" : "RF#{$request_form->id}";
+            $this->notify(
+                $this->my_id,
+                $id,
+                "I request a $type ($requestID)",
+                'approval'
+            );
         }
         NewNotification::dispatch();
     }
@@ -117,5 +123,6 @@ class RequestFormsLivewire extends Component
         $this->violationForm = null;
         $this->homeVisitationForm = null;
         $this->resetErrorBag();
+        $this->dispatch('clearSelections');
     }
 }

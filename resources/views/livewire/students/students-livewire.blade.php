@@ -228,7 +228,7 @@
 
                                     @if (in_array('ViewStudentSummary', $privileges))
                                         <td>
-                                            <button class="btn btn-primary action-btn" data-target="#summary-btn" data-toggle="modal">
+                                            <button class="btn btn-primary action-btn" data-target="#summary-btn" data-toggle="modal" wire:click='getData({{ $student->id }})'>
                                                 <i aria-hidden="true" class="fa fa-eye"></i>
                                             </button>
                                         </td>
@@ -242,7 +242,6 @@
         </div>
         @include('livewire.students.summary-window')
         @include('livewire.students.anecdotal-window')
-        @include('livewire.students.edit-student')
         @include('livewire.students.student-signature')
         @include('livewire.students.guardian-signature')
     </div>
@@ -354,34 +353,68 @@
             });
         }
 
-        $(function() {
+
+        Livewire.on('summary', (data) => {
+
+            // Convert the object to an array of entries
+            const entries = Object.entries(data[0]);
+
+            // Sort the entries by count in descending order
+            entries.sort((a, b) => b[1] - a[1]);
+
+            // Extract the top 3 items (key-value pairs)
+            const top5 = entries.slice(0, 5);
+
+            // Extract the top 3 keys (fruit names)
+            let offenses = top5.map(([key, value]) => key);
+            let offensesData = top5.map(([key, value]) => value);
+            setTimeout(() => {
+                initChart(offenses, offensesData);
+            },);
+        });
+
+
+
+        function initChart(offenses, offensesData) {
             var donutData = {
-                labels: [
-                    'Verbal Offense',
-                    'Physical Offense',
-                    'Social Media Offense'
-                ],
+                // labels: [
+                //     'Verbal Offense',
+                //     'Physical Offense',
+                //     'Social Media Offense'
+                // ],
+                labels: offenses,
                 datasets: [{
-                    data: [800, 500, 200],
-                    backgroundColor: ['#0A0863', '#7684B9', '#F5C91A'],
+                    // data: [800, 500, 200],
+                    data: offensesData,
+                    backgroundColor: ['#3C58FF', '#6256AC', '#05ADC7', '#FA4481', '#FC993E'],
                 }]
             }
             //- PIE CHART -
             //-------------
             // Get context with jQuery - using jQuery's .get() method.
-            var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
-            var pieData = donutData;
-            var pieOptions = {
-                maintainAspectRatio: false,
-                responsive: true,
+            var pieChart = $('#pieChart');
+            try {
+                if (pieChart.length) {
+                    var pieChartCanvas = pieChart.get(0).getContext('2d');
+                    var pieData = donutData;
+                    var pieOptions = {
+                        maintainAspectRatio: false,
+                        responsive: true,
+                    }
+                    //Create pie or douhnut chart
+                    // You can switch between pie and douhnut using the method below.
+                    new Chart(pieChartCanvas, {
+                        type: 'pie',
+                        data: pieData,
+                        options: pieOptions
+                    })
+                } else {
+                    console.error("Element #pieChart not found!");
+                }
+            } catch (error) {
+                console.error("Error creating pie chart:", error);
             }
-            //Create pie or douhnut chart
-            // You can switch between pie and douhnut using the method below.
-            new Chart(pieChartCanvas, {
-                type: 'pie',
-                data: pieData,
-                options: pieOptions
-            })
-        })
+
+        }
     </script>
 @endsection
