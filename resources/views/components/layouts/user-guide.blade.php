@@ -1,3 +1,24 @@
+
+<style>
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .carousel-control-prev:hover .carousel-control-prev-icon,
+    .carousel-control-next:hover .carousel-control-next-icon {
+        transform: scale(1.2);
+    }
+
+    .carousel-inner .carousel-item {
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-inner:hover .carousel-item {
+        transform: scale(1.2);
+    }
+</style>
+
 <!--USER GUIDE MODAL -->
 <div class="modal fade" id="user-guide">
     <div class="modal-dialog modal-dialog-scrollable modal-xl">
@@ -91,7 +112,7 @@
 
                                 <li class="nav-item">
                                     <a class="nav-link nav-link-button nav-link-button" href="#" x-on:click="view('role', 'role')">
-                                        <iconify-icon icon="clarity:dashboard-solid" style="color: #252525;"></iconify-icon>
+                                        <iconify-icon icon="solar:folder-with-files-bold" style="color: #252525;"></iconify-icon>
                                         <p style="color: #252525;">
                                             Add New Role
                                         </p>
@@ -132,7 +153,7 @@
 
                                 <li class="nav-item">
                                     <a class="nav-link nav-link-button nav-link-button" href="#">
-                                        <iconify-icon icon="clarity:dashboard-solid" style="color: #252525;"></iconify-icon>
+                                        <iconify-icon icon="solar:folder-with-files-bold" style="color: #252525;"></iconify-icon>
                                         <p style="color: #252525;">
                                            Adding New Offense
                                         </p>
@@ -141,7 +162,7 @@
 
                                 <li class="nav-item">
                                     <a class="nav-link nav-link-button nav-link-button" href="#">
-                                        <iconify-icon icon="clarity:dashboard-solid" style="color: #252525;"></iconify-icon>
+                                        <iconify-icon icon="solar:folder-with-files-bold" style="color: #252525;"></iconify-icon>
                                         <p style="color: #252525;">
                                             Adding New Offense Category
                                         </p>
@@ -150,7 +171,7 @@
 
                                 <li class="nav-item">
                                     <a class="nav-link nav-link-button nav-link-button" href="#">
-                                        <iconify-icon icon="clarity:dashboard-solid" style="color: #252525;"></iconify-icon>
+                                        <iconify-icon icon="solar:folder-with-files-bold" style="color: #252525;"></iconify-icon>
                                         <p style="color: #252525;">
                                             Adding New Offense Level
                                         </p>
@@ -159,7 +180,7 @@
 
                                 <li class="nav-item">
                                     <a class="nav-link nav-link-button nav-link-button" href="#">
-                                        <iconify-icon icon="clarity:dashboard-solid" style="color: #252525;"></iconify-icon>
+                                        <iconify-icon icon="solar:folder-with-files-bold" style="color: #252525;"></iconify-icon>
                                         <p style="color: #252525;">
                                             Adding New Disciplinary Actions
                                         </p>
@@ -168,7 +189,7 @@
 
                                 <li class="nav-item">
                                     <a class="nav-link nav-link-button nav-link-button" href="#">
-                                        <iconify-icon icon="clarity:dashboard-solid" style="color: #252525;"></iconify-icon>
+                                        <iconify-icon icon="solar:folder-with-files-bold" style="color: #252525;"></iconify-icon>
                                         <p style="color: #252525;">
                                             Create an Event
                                         </p>
@@ -177,7 +198,7 @@
 
                                 <li class="nav-item">
                                     <a class="nav-link nav-link-button nav-link-button" href="#">
-                                        <iconify-icon icon="clarity:dashboard-solid" style="color: #252525;"></iconify-icon>
+                                        <iconify-icon icon="solar:folder-with-files-bold" style="color: #252525;"></iconify-icon>
                                         <p style="color: #252525;">
                                             Add Schedule Tag
                                         </p>
@@ -186,7 +207,7 @@
 
                                 <li class="nav-item">
                                     <a class="nav-link nav-link-button nav-link-button" href="#">
-                                        <iconify-icon icon="clarity:dashboard-solid" style="color: #252525;"></iconify-icon>
+                                        <iconify-icon icon="solar:folder-with-files-bold" style="color: #252525;"></iconify-icon>
                                         <p style="color: #252525;">
                                             Add Item Type
                                         </p>
@@ -195,7 +216,7 @@
 
                                 <li class="nav-item">
                                     <a class="nav-link nav-link-button nav-link-button" href="#">
-                                        <iconify-icon icon="clarity:dashboard-solid" style="color: #252525;"></iconify-icon>
+                                        <iconify-icon icon="solar:folder-with-files-bold" style="color: #252525;"></iconify-icon>
                                         <p style="color: #252525;">
                                             Add Item Tag
                                         </p>
@@ -204,7 +225,7 @@
 
                                 <li class="nav-item">
                                     <a class="nav-link nav-link-button nav-link-button" href="#">
-                                        <iconify-icon icon="clarity:dashboard-solid" style="color: #252525;"></iconify-icon>
+                                        <iconify-icon icon="solar:folder-with-files-bold" style="color: #252525;"></iconify-icon>
                                         <p style="color: #252525;">
                                             Edit the Content in Home Page
                                         </p>
@@ -222,10 +243,7 @@
                                 </p>
 
                                 <p class="text-md text-lg mb-4 ml-5 mr-5">
-                                    Welcome to Fiat Lux Academe Guidance Management System (FLAGMS). It provides modules and
-                                    features that can help with the manual processing and managing of records and reports of
-                                    the guidance office of Fiat Lux Academe Dasmariñas. To get started, check out the guide
-                                    below for a quick tour.
+                                    Welcome to Fiat Lux Academe Guidance Management System (FLAGMS). It provides modules and features that can help with the manual processing and managing of records and reports of the guidance office of Fiat Lux Academe Dasmariñas. To get started,  check out the guide below for a quick tour.
                                 </p>
 
                                 <div x-ref="sidebar">
@@ -372,6 +390,8 @@
                                 </div>
 
                                 <div x-ref="notification"><!-- IMAGE DEMO -->
+                                    <p class="text-md text-xl mt-5 ml-5 mr-5 text-center">User Guide, Guidance Program, Notification and Profile</p>
+
                                     <div class="row">
                                         <div class="col-12 col-md-12 d-flex flex-column justify-content-center align-items-center p-5">
                                             <img alt="Image Guide 1" class="img-fluid" src="images/user-guide/img_guide3.png" style="max-width: 80%; height: auto;">
@@ -430,7 +450,7 @@
                                     </p>
 
                                     <!-- IMAGE CAROUSEL CHANGE EMAIL -->
-                                    <div class="carousel slide d-flex flex-column justify-content-center align-items-center mx-auto my-auto text-center" data-ride="carousel" id="carouselChangeEmail" style="max-width: 70%; height: auto; color: #252525;">
+                                    <div class="carousel slide d-flex flex-column justify-content-center align-items-center mx-auto my-auto text-center" data-ride="carousel" id="carouselChangeEmail" data-interval="1500" style="max-width: 70%; height: auto;">
                                         <div class="carousel-inner" role="listbox">
                                             <div class="carousel-item active">
                                                 <img alt="First slide" class="d-block w-100" src="images/user-guide/change_email_demo1.png">
@@ -443,20 +463,21 @@
                                             </div>
                                         </div>
                                         <a class="carousel-control-prev" data-slide="prev" href="#carouselChangeEmail" role="button">
-                                            <span aria-hidden="true" class="carousel-control-prev-icon"></span>
+                                            <span aria-hidden="true" class="carousel-control-prev-icon" style="background-color: black;  border-radius: 50px; padding: 10px;"></span>
                                             <span class="sr-only">Previous</span>
                                         </a>
                                         <a class="carousel-control-next" data-slide="next" href="#carouselChangeEmail" role="button">
-                                            <span aria-hidden="true" class="carousel-control-next-icon"></span>
+                                            <span aria-hidden="true" class="carousel-control-next-icon" style="background-color: black; border-radius: 50px; padding: 10px;"></span>
                                             <span class="sr-only">Next</span>
                                         </a>
-                                    </div> <!--Carousel End-->
+                                        
+                                    </div>
 
-                                    <div class="mt-5 mb-5 ml-5 mr-5">
-                                        <p class="text-md">1. Click your profile picture at the top right corner.</p>
-                                        <p class="text-md">2. Click Edit Profile</p>
-                                        <p class="text-md">3. Edit your email in the designated email text box.</p>
-                                        <p class="text-md">4. Click Save</p>
+                                    <div class="mt-5 mb-5 ml-5 mr-5" style="line-height: 1.2;">
+                                        <p class="text-lg">1. Click your profile picture at the top right corner.</p>
+                                        <p class="text-lg">2. Click <strong>Edit Profile</strong></p>
+                                        <p class="text-lg">3. Edit your email in the designated email text box.</p>
+                                        <p class="text-lg">4. Click <strong>Save</strong></p>
                                     </div>
                                 </div>
 
@@ -466,7 +487,7 @@
                                     </p>
 
                                     <!-- IMAGE CAROUSEL RESET YOUR PASSWORD -->
-                                    <div class="carousel slide d-flex flex-column justify-content-center align-items-center mx-auto my-auto text-center" data-ride="carousel" id="carouselResetPass" style="max-width: 70%; height: auto; color: #252525;">
+                                    <div class="carousel slide d-flex flex-column justify-content-center align-items-center mx-auto my-auto text-center" data-ride="carousel" id="carouselResetPass" data-interval="1500" style="max-width: 70%; height: auto;">
                                         <div class="carousel-inner" role="listbox">
                                             <div class="carousel-item active">
                                                 <img alt="First slide" class="d-block w-100" src="images/user-guide/reset_pass1.png">
@@ -479,20 +500,20 @@
                                             </div>
                                         </div>
                                         <a class="carousel-control-prev" data-slide="prev" href="#carouselResetPass" role="button">
-                                            <span aria-hidden="true" class="carousel-control-prev-icon"></span>
+                                            <span aria-hidden="true" class="carousel-control-prev-icon" style="background-color: black;  border-radius: 50px; padding: 10px;"></span>
                                             <span class="sr-only">Previous</span>
                                         </a>
                                         <a class="carousel-control-next" data-slide="next" href="#carouselResetPass" role="button">
-                                            <span aria-hidden="true" class="carousel-control-next-icon"></span>
+                                            <span aria-hidden="true" class="carousel-control-next-icon" style="background-color: black;  border-radius: 50px; padding: 10px;"></span>
                                             <span class="sr-only">Next</span>
                                         </a>
                                     </div> <!--Carousel End-->
 
-                                    <div class="mt-5 mb-5 ml-5 mr-5">
-                                        <p class="text-md">1. Click your profile picture at the top right corner. </p>
-                                        <p class="text-md">2. Click Change Password</p>
-                                        <p class="text-md">3. In the Create New Password window, change your password. </p>
-                                        <p class="text-md">4. Click Change Password</p>
+                                    <div class="mt-5 mb-5 ml-5 mr-5" style="line-height: 1.2;">
+                                        <p class="text-lg">1. Click your profile picture at the top right corner. </p>
+                                        <p class="text-lg">2. Click <strong> Change Password </strong></p>
+                                        <p class="text-lg">3. In the Create New Password window, change your password. </p>
+                                        <p class="text-lg">4. Click <strong> Change Password </strong></p>
                                     </div>
                                 </div>
                             </div>
@@ -506,7 +527,7 @@
                                     </p>
 
                                     <!-- IMAGE CAROUSEL ADDING USER -->
-                                    <div class="carousel slide d-flex flex-column justify-content-center align-items-center mx-auto my-auto text-center" data-ride="carousel" id="carouselAddingUser" style="max-width: 70%; height: auto; color: #252525;">
+                                    <div class="carousel slide d-flex flex-column justify-content-center align-items-center mx-auto my-auto text-center" data-ride="carousel" id="carouselAddingUser" data-interval="1500" style="max-width: 70%; height: auto;">
                                         <div class="carousel-inner" role="listbox">
                                             <div class="carousel-item active">
                                                 <img alt="First slide" class="d-block w-100" src="images/user-guide/add_user1.png">
@@ -519,21 +540,21 @@
                                             </div>
                                         </div>
                                         <a class="carousel-control-prev" data-slide="prev" href="#carouselAddingUser" role="button">
-                                            <span aria-hidden="true" class="carousel-control-prev-icon"></span>
+                                            <span aria-hidden="true" class="carousel-control-prev-icon" style="background-color: black;  border-radius: 50px; padding: 10px;"></span>
                                             <span class="sr-only">Previous</span>
                                         </a>
                                         <a class="carousel-control-next" data-slide="next" href="#carouselAddingUser" role="button">
-                                            <span aria-hidden="true" class="carousel-control-next-icon"></span>
+                                            <span aria-hidden="true" class="carousel-control-next-icon" style="background-color: black;  border-radius: 50px; padding: 10px;"></span>
                                             <span class="sr-only">Next</span>
                                         </a>
                                     </div> <!--Carousel End-->
 
-                                    <div class="mt-5 mb-5 ml-5 mr-5">
-                                        <p class="text-md">1. On the Sidebar, click Accounts</p>
+                                    <div class="mt-5 mb-5 ml-5 mr-5" style="line-height: 1.2;">
+                                        <p class="text-lg">1. On the Sidebar, click <strong> Accounts </strong></p>
 
-                                        <p class="text-md">2. Click Add User</p>
-                                        <p class="text-md">3. Fill Out the required information</p>
-                                        <p class="text-md">4. Click Submit User</p>
+                                        <p class="text-lg">2. Click <strong> Add User </strong></p>
+                                        <p class="text-lg">3. Fill Out the required information</p>
+                                        <p class="text-lg">4. Click <strong> Submit User </strong></p>
                                     </div>
                                 </div>
 
@@ -547,7 +568,7 @@
                                     </p>
 
                                     <!-- IMAGE CAROUSEL IMPORT USER ACCOUNTS -->
-                                    <div class="carousel slide d-flex flex-column justify-content-center align-items-center mx-auto my-auto text-center" data-ride="carousel" id="carouselImportUsers" style="max-width: 70%; height: auto; color: #252525;">
+                                    <div class="carousel slide d-flex flex-column justify-content-center align-items-center mx-auto my-auto text-center" data-ride="carousel" id="carouselImportUsers" data-interval="1500" style="max-width: 70%; height: auto;">
                                         <div class="carousel-inner" role="listbox">
                                             <div class="carousel-item active">
                                                 <img alt="First slide" class="d-block w-100" src="images/user-guide/import_export_user1.png">
@@ -557,18 +578,18 @@
                                             </div>
                                         </div>
                                         <a class="carousel-control-prev" data-slide="prev" href="#carouselImportUsers" role="button">
-                                            <span aria-hidden="true" class="carousel-control-prev-icon"></span>
+                                            <span aria-hidden="true" class="carousel-control-prev-icon" style="background-color: black;  border-radius: 50px; padding: 10px;"></span>
                                             <span class="sr-only">Previous</span>
                                         </a>
                                         <a class="carousel-control-next" data-slide="next" href="#carouselImportUsers" role="button">
-                                            <span aria-hidden="true" class="carousel-control-next-icon"></span>
+                                            <span aria-hidden="true" class="carousel-control-next-icon" style="background-color: black;  border-radius: 50px; padding: 10px;"></span>
                                             <span class="sr-only">Next</span>
                                         </a>
                                     </div> <!--Carousel End-->
 
-                                    <div class="mt-5 mb-5 ml-5 mr-5">
-                                        <p class="text-md">1. On the Sidebar, click Accounts</p>
-                                        <p class="text-md">2. Click Import User Accounts </p>
+                                    <div class="mt-5 mb-5 ml-5 mr-5" style="line-height: 1.2;">
+                                        <p class="text-lg">1. On the Sidebar, click <strong> Accounts </strong></p>
+                                        <p class="text-lg">2. Click <strong> Import User Accounts </strong> </p>
                                     </div>
                                 </div>
 
@@ -583,7 +604,7 @@
                                     </p>
 
                                     <!-- IMAGE CAROUSEL IMPORT USER ACCOUNTS -->
-                                    <div class="carousel slide d-flex flex-column justify-content-center align-items-center mx-auto my-auto text-center" data-ride="carousel" id="carouselExportUsers" style="max-width: 70%; height: auto; color: #252525;">
+                                    <div class="carousel slide d-flex flex-column justify-content-center align-items-center mx-auto my-auto text-center" data-ride="carousel" id="carouselExportUsers" data-interval="1500" style="max-width: 70%; height: auto;">
                                         <div class="carousel-inner" role="listbox">
                                             <div class="carousel-item active">
                                                 <img alt="First slide" class="d-block w-100" src="images/user-guide/import_export_user1.png">
@@ -593,18 +614,18 @@
                                             </div>
                                         </div>
                                         <a class="carousel-control-prev" data-slide="prev" href="#carouselExportUsers" role="button">
-                                            <span aria-hidden="true" class="carousel-control-prev-icon"></span>
+                                            <span aria-hidden="true" class="carousel-control-prev-icon" style="background-color: black;  border-radius: 50px; padding: 10px;"></span>
                                             <span class="sr-only">Previous</span>
                                         </a>
                                         <a class="carousel-control-next" data-slide="next" href="#carouselExportUsers" role="button">
-                                            <span aria-hidden="true" class="carousel-control-next-icon"></span>
+                                            <span aria-hidden="true" class="carousel-control-next-icon" style="background-color: black;  border-radius: 50px; padding: 10px;"></span>
                                             <span class="sr-only">Next</span>
                                         </a>
                                     </div> <!--Carousel End-->
 
-                                    <div class="mt-5 mb-5 ml-5 mr-5">
-                                        <p class="text-md">1. On the Sidebar, click Accounts</p>
-                                        <p class="text-md">2. Click Export User Accounts</p>
+                                    <div class="mt-5 mb-5 ml-5 mr-5" style="line-height: 1.2;">
+                                        <p class="text-lg">1. On the Sidebar, click <strong> Accounts </strong></p>
+                                        <p class="text-lg">2. Click <strong> Export User Accounts </strong></p>
                                     </div>
                                 </div>
                             </div>
@@ -619,7 +640,7 @@
                                     </p>
 
                                     <!-- IMAGE CAROUSEL ADDING NEW ROLE -->
-                                    <div class="carousel slide d-flex flex-column justify-content-center align-items-center mx-auto my-auto text-center" data-ride="carousel" id="carouselNewRole" style="max-width: 70%; height: auto; color: #252525;">
+                                    <div class="carousel slide d-flex flex-column justify-content-center align-items-center mx-auto my-auto text-center" data-ride="carousel" id="carouselNewRole" data-interval="1500" style="max-width: 70%; height: auto;">
                                         <div class="carousel-inner" role="listbox">
                                             <div class="carousel-item active">
                                                 <img alt="First slide" class="d-block w-100" src="images/user-guide/new_role1.png">
@@ -635,21 +656,21 @@
                                             </div>
                                         </div>
                                         <a class="carousel-control-prev" data-slide="prev" href="#carouselNewRole" role="button">
-                                            <span aria-hidden="true" class="carousel-control-prev-icon"></span>
+                                            <span aria-hidden="true" class="carousel-control-prev-icon" style="background-color: black;  border-radius: 50px; padding: 10px;"></span>
                                             <span class="sr-only">Previous</span>
                                         </a>
                                         <a class="carousel-control-next" data-slide="next" href="#carouselNewRole" role="button">
-                                            <span aria-hidden="true" class="carousel-control-next-icon"></span>
+                                            <span aria-hidden="true" class="carousel-control-next-icon" style="background-color: black;  border-radius: 50px; padding: 10px;"></span>
                                             <span class="sr-only">Next</span>
                                         </a>
                                     </div> <!--Carousel End-->
 
-                                    <div class="mt-5 mb-5 ml-5 mr-5">
-                                        <p class="text-md">1. On the Sidebar, click File Management</p>
-                                        <p class="text-md">2. Go to Roles</p>
-                                        <p class="text-md">3. Click Add Role</p>
-                                        <p class="text-md">4. Enter the Role name and set the permissions</p>
-                                        <p class="text-md">5. Click Submit</p>
+                                    <div class="mt-5 mb-5 ml-5 mr-5" style="line-height: 1.2;">
+                                        <p class="text-lg">1. On the Sidebar, click <strong> File Management </strong></p>
+                                        <p class="text-lg">2. Go to <strong> Roles </strong></p>
+                                        <p class="text-lg">3. Click <strong> Add Role </strong></p>
+                                        <p class="text-lg">4. Enter the Role name and set the permissions</p>
+                                        <p class="text-lg">5. Click <strong> Submit </strong></p>
                                     </div>
                                 </div>
                             </div>
@@ -663,7 +684,7 @@
                                     </p>
 
                                     <!-- IMAGE CAROUSEL ADDING NEW OFFENSE -->
-                                    <div class="carousel slide d-flex flex-column justify-content-center align-items-center mx-auto my-auto text-center" data-ride="carousel" id="carouselNewOffense" style="max-width: 70%; height: auto; color: #252525;">
+                                    <div class="carousel slide d-flex flex-column justify-content-center align-items-center mx-auto my-auto text-center" data-ride="carousel" id="carouselNewOffense" data-interval="1500" style="max-width: 70%; height: auto;">
                                         <div class="carousel-inner" role="listbox">
                                             <div class="carousel-item active">
                                                 <img alt="First slide" class="d-block w-100" src="images/user-guide/new_role1.png">
@@ -676,22 +697,22 @@
                                             </div>
                                         </div>
                                         <a class="carousel-control-prev" data-slide="prev" href="#carouselNewOffense" role="button">
-                                            <span aria-hidden="true" class="carousel-control-prev-icon"></span>
+                                            <span aria-hidden="true" class="carousel-control-prev-icon" style="background-color: black;  border-radius: 50px; padding: 10px;"></span>
                                             <span class="sr-only">Previous</span>
                                         </a>
                                         <a class="carousel-control-next" data-slide="next" href="#carouselNewOffense" role="button">
-                                            <span aria-hidden="true" class="carousel-control-next-icon"></span>
+                                            <span aria-hidden="true" class="carousel-control-next-icon" style="background-color: black;  border-radius: 50px; padding: 10px;"></span>
                                             <span class="sr-only">Next</span>
                                         </a>
                                     </div> <!--Carousel End-->
 
-                                    <div class="mt-5 mb-5 ml-5 mr-5">
-                                        <p class="text-md">1. On the Sidebar, click File Management</p>
-                                        <p class="text-md">2. Go to Offenses</p>
-                                        <p class="text-md">3. In the Offenses tab, click Add New Offense</p>
-                                        <p class="text-md">4. Enter the Offense name and select the Offense category and
+                                    <div class="mt-5 mb-5 ml-5 mr-5" style="line-height: 1.2;">
+                                        <p class="text-lg">1. On the Sidebar, click <strong> File Management </strong></p>
+                                        <p class="text-lg">2. Click <strong> Offenses </strong></p>
+                                        <p class="text-lg">3. In the <strong> Offenses </strong> tab, click <strong> Add New Offense </strong></p>
+                                        <p class="text-lg">4. Enter the Offense name and select the Offense category and
                                             Offense Level. </p>
-                                        <p class="text-md">5. Click Submit</p>
+                                        <p class="text-lg">5. Click <strong> Submit </strong></p>
                                     </div>
                                 </div>
 
@@ -701,7 +722,7 @@
                                     </p>
 
                                     <!-- IMAGE CAROUSEL NEW OFFENSE CATEGORY -->
-                                    <div class="carousel slide d-flex flex-column justify-content-center align-items-center mx-auto my-auto text-center" data-ride="carousel" id="carouselOffenseCategory" style="max-width: 70%; height: auto; color: #252525;">
+                                    <div class="carousel slide d-flex flex-column justify-content-center align-items-center mx-auto my-auto text-center" data-ride="carousel" id="carouselOffenseCategory" data-interval="1500" style="max-width: 70%; height: auto;">
                                         <div class="carousel-inner" role="listbox">
                                             <div class="carousel-item active">
                                                 <img alt="First slide" class="d-block w-100" src="images/user-guide/new_role1.png">
@@ -717,21 +738,21 @@
                                             </div>
                                         </div>
                                         <a class="carousel-control-prev" data-slide="prev" href="#carouselOffenseCategory" role="button">
-                                            <span aria-hidden="true" class="carousel-control-prev-icon"></span>
+                                            <span aria-hidden="true" class="carousel-control-prev-icon" style="background-color: black;  border-radius: 50px; padding: 10px;"></span>
                                             <span class="sr-only">Previous</span>
                                         </a>
                                         <a class="carousel-control-next" data-slide="next" href="#carouselOffenseCategory" role="button">
-                                            <span aria-hidden="true" class="carousel-control-next-icon"></span>
+                                            <span aria-hidden="true" class="carousel-control-next-icon" style="background-color: black;  border-radius: 50px; padding: 10px;"></span>
                                             <span class="sr-only">Next</span>
                                         </a>
                                     </div> <!--Carousel End-->
 
-                                    <div class="mt-5 mb-5 ml-5 mr-5">
-                                        <p class="text-md">1. On the Sidebar, click File Management</p>
-                                        <p class="text-md">2. Go to Offenses </p>
-                                        <p class="text-md">3. On the Offense Categories tab, click Add New Offense Category</p>
-                                        <p class="text-md">4. Enter the new offense category</p>
-                                        <p class="text-md">5. Click Submit</p>
+                                    <div class="mt-5 mb-5 ml-5 mr-5" style="line-height: 1.2;">
+                                        <p class="text-lg">1. On the Sidebar, click <strong>File Management</strong></p>
+                                        <p class="text-lg">2. Go to <strong> Offenses</strong> </p>
+                                        <p class="text-lg">3. On the <strong> Offense Categories </strong> tab, click <strong> Add New Offense Category </strong></p>
+                                        <p class="text-lg">4. Enter the new offense category</p>
+                                        <p class="text-lg">5. Click <strong> Submit </strong></p>
                                     </div>
                                 </div>
 
@@ -741,7 +762,7 @@
                                     </p>
 
                                     <!-- IMAGE CAROUSEL NEW OFFENSE LEVEL -->
-                                    <div class="carousel slide d-flex flex-column justify-content-center align-items-center mx-auto my-auto text-center" data-ride="carousel" id="carouselOffenseLevel" style="max-width: 70%; height: auto; color: #252525;">
+                                    <div class="carousel slide d-flex flex-column justify-content-center align-items-center mx-auto my-auto text-center" data-ride="carousel" id="carouselOffenseLevel" data-interval="1500" style="max-width: 70%; height: auto;">
                                         <div class="carousel-inner" role="listbox">
                                             <div class="carousel-item active">
                                                 <img alt="First slide" class="d-block w-100" src="images/user-guide/new_role1.png">
@@ -757,21 +778,21 @@
                                             </div>
                                         </div>
                                         <a class="carousel-control-prev" data-slide="prev" href="#carouselOffenseLevel" role="button">
-                                            <span aria-hidden="true" class="carousel-control-prev-icon"></span>
+                                            <span aria-hidden="true" class="carousel-control-prev-icon" style="background-color: black;  border-radius: 50px; padding: 10px;"></span>
                                             <span class="sr-only">Previous</span>
                                         </a>
                                         <a class="carousel-control-next" data-slide="next" href="#carouselOffenseLevel" role="button">
-                                            <span aria-hidden="true" class="carousel-control-next-icon"></span>
+                                            <span aria-hidden="true" class="carousel-control-next-icon" style="background-color: black;  border-radius: 50px; padding: 10px;"></span>
                                             <span class="sr-only">Next</span>
                                         </a>
                                     </div> <!--Carousel End-->
 
-                                    <div class="mt-5 mb-5 ml-5 mr-5">
-                                        <p class="text-md">1. On the Sidebar, click File Management</p>
-                                        <p class="text-md">2. Go to Offenses </p>
-                                        <p class="text-md">3. On the Offense Categories tab, click Add New Offense Level</p>
-                                        <p class="text-md">4. Enter the new offense level</p>
-                                        <p class="text-md">5. Click Submit</p>
+                                    <div class="mt-5 mb-5 ml-5 mr-5" style="line-height: 1.2;">
+                                        <p class="text-lg">1. On the Sidebar, click <strong> File Management </strong></p>
+                                        <p class="text-lg">2. Go to <strong> Offenses </strong> </p>
+                                        <p class="text-lg">3. On the <strong> Offense Categories </strong> tab, click <strong> Add New Offense Level </strong></p>
+                                        <p class="text-lg">4. Enter the new offense level</p>
+                                        <p class="text-lg">5. Click <strong> Submit </strong></p>
                                     </div>
                                 </div>
                             </div>

@@ -21,14 +21,14 @@
         <!-- RIGHT HAND UPPER SIDE NAVIGATION -->
         <div class="d-flex justify-content-center align-items-center">
             <li class="nav-item mr-1 mt-2"data-toggle="modal" data-target="#user-guide">
-                <iconify-icon icon="icon-park-solid:help" class="mt-1" style="color: #252525; font-size: 24px;"></iconify-icon>
+                <iconify-icon icon="icon-park-solid:help" class="mt-1" style="color: #252525; font-size: 27px;"></iconify-icon>
             </li>
         </div>
 
         <div class="d-flex justify-content-center align-items-center">
             <li class="nav-item">
                 <a class="nav-link ml-0 mt-1" href="{{ route('guidance-program-page') }}">
-                    <iconify-icon icon="bx:calendar" class=" text-center" style="color: #252525; font-size: 24px;"></iconify-icon>
+                    <iconify-icon icon="bx:calendar" class=" text-center" style="color: #252525; font-size: 27px;"></iconify-icon>
                     {{-- <span class="badge badge-primary navbar-badge">1</span> --}}
                 </a>
             </li>
@@ -42,10 +42,11 @@
         <li class="nav-item">
             <div class="image mt-2 mr-2">
                 <a href="{{ route('profile-page') }}">
-                    <img alt="User Image" class="img-circle elevation-2" height="30px" src="{{ $this->viewProfile() }}" width="30px">
+                    <img alt="User Image" class="img-circle elevation-1" height="50px" src="{{ $this->viewProfile() }}" width="50px">
                 </a>
             </div>
         </li>
+        
 
         <!--Interface FullScreen-->
         {{-- <li class="nav-item">
