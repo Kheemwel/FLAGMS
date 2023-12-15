@@ -20,7 +20,7 @@ class StudentIndividualInventory extends Model
         'street_no', 'street', 'subdivision', 'barangay', 'city', 'province', 'zipcode',
         'tel_no', 'mobile_no', 'email',
         'primary_school', 'primary_start', 'primary_end', 'junior_school', 'junior_start', 'junior_end',
-        'senior_school', 'senior_start', 'senior_end', 'medical_conditions', 'allergies',
+        'medical_conditions', 'allergies', 
         'emergency_first_name', 'emergency_last_name', 'emergency_contact', 'emergency_relationship',
     ];
 

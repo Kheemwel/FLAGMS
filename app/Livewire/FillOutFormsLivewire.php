@@ -365,7 +365,7 @@ class FillOutFormsLivewire extends Component
         $this->homeVisitationFormFields = [
             'student_surname' => $this->homeVisitationForm->student_surname,
             'student_firstname' => $this->homeVisitationForm->student_firstname,
-            'student_middlename' => $this->homeVisitationForm->student_middle_name,
+            'student_middlename' => $this->homeVisitationForm->student_middlename,
             'student_no' => $this->homeVisitationForm->student_no,
             'student_name' => $this->homeVisitationForm->student_name,
             'lrn' => $this->homeVisitationForm->lrn,
@@ -460,6 +460,7 @@ class FillOutFormsLivewire extends Component
         ]);
         $this->homeVisitationForm->update($this->homeVisitationFormFields);
         $this->showToast('success', 'The Home Visitation Form is Updated Successfully');
+        $this->dispatch('closeModals');
         $this->resetFields();
     }
 
@@ -507,6 +508,7 @@ class FillOutFormsLivewire extends Component
             'address' => $this->violationFormFields['address'],
         ]);
         $this->showToast('success', 'The Violation Form is Updated Successfully');
+        $this->dispatch('closeModals');
         $this->resetFields();
     }
 

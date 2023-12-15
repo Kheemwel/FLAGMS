@@ -42,11 +42,11 @@
                             <p style="font-size: 18px;">Name of Student:</p>
                         </div>
                         <div class="form-group col-sm-3" style="font-size: 16px; color: #252525;">
-                            <input @disabled($role != 'Guidance') class="form-control" id="input-date" style="border: 1px solid black; border-top: none; border-left: none; border-right: none;" type="text" wire:model="homeVisitationFormFields.student_surname" wire:model='homeVisitationFormFields.student_last_name'>
+                            <input @disabled($role != 'Guidance') class="form-control" id="input-date" style="border: 1px solid black; border-top: none; border-left: none; border-right: none;" type="text" wire:model="homeVisitationFormFields.student_surname">
                             <p style="font-size: 14px; text-align: center;">Surname</p>
                         </div>
                         <div class="form-group col-sm-3" style="font-size: 16px; color: #252525;">
-                            <input @disabled($role != 'Guidance') class="form-control" id="input-date" style="border: 1px solid black; border-top: none; border-left: none; border-right: none;" type="text" wire:model="homeVisitationFormFields.student_firstname" wire:model='homeVisitationFormFields.student_first_name'>
+                            <input @disabled($role != 'Guidance') class="form-control" id="input-date" style="border: 1px solid black; border-top: none; border-left: none; border-right: none;" type="text" wire:model="homeVisitationFormFields.student_firstname">
                             <p style="font-size: 14px; text-align: center;">First Name</p>
                         </div>
                         <div class="form-group col-sm-3" style="font-size: 16px; color: #252525;">
@@ -66,7 +66,7 @@
                             <p style="font-size: 18px;">LRN:</p>
                         </div>
                         <div class="form-group col-sm-2" style="font-size: 16px; color: #252525;">
-                            <input @disabled($role != 'Guidance') class="form-control" id="input-date" style="border: 1px solid black; border-top: none; border-left: none; border-right: none;" type="number" wire:model="homeVisitationFormFields.lrn" wire:model='homeVisitationFormFields.lrn'>
+                            <input @disabled($role != 'Guidance') class="form-control" id="input-date" style="border: 1px solid black; border-top: none; border-left: none; border-right: none;" type="number" wire:model="homeVisitationFormFields.lrn">
                         </div>
                         <div class="form-group col-sm-2" style="font-size: 16px; color: #252525;">
                             <p style="font-size: 18px;">Level & Section:</p>
@@ -147,7 +147,7 @@
                             <p style="font-size: 18px;">Date of Visitation:</p>
                         </div>
                         <div class="form-group col-sm-3" style="font-size: 16px; color: #252525;">
-                            <input @disabled($role != 'Guidance') class="form-control" id="input-date" style="border: 1px solid black; border-top: none; border-left: none; border-right: none;" type="date" wire:model="homeVisitationFormFields.visitation_date" wire:model='homeVisitationFormFields.visitation_date'>
+                            <input @disabled($role != 'Guidance') class="form-control" id="input-date" style="border: 1px solid black; border-top: none; border-left: none; border-right: none;" type="date" wire:model="homeVisitationFormFields.visitation_date">
                         </div>
                     </div>
 
@@ -156,7 +156,7 @@
                             <p style="font-size: 18px;">Place:</p>
                         </div>
                         <div class="form-group col-sm-3" style="font-size: 16px; color: #252525;">
-                            <input @disabled($role != 'Guidance') class="form-control" id="input-date" style="border: 1px solid black; border-top: none; border-left: none; border-right: none;" type="text" wire:model="homeVisitationFormFields.place" wire:model='homeVisitationFormFields.place'>
+                            <input @disabled($role != 'Guidance') class="form-control" id="input-date" style="border: 1px solid black; border-top: none; border-left: none; border-right: none;" type="text" wire:model="homeVisitationFormFields.place">
                         </div>
                     </div>
 
@@ -167,7 +167,7 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-sm-12" style="font-size: 16px; color: #252525; text-align: justify;">
-                            <textarea @disabled($role != 'Guidance') class="form-control" id="input-date" style="border: 1px solid black; width: 100%; height: 150px; resize: none;" wire:model="homeVisitationFormFields.reason" wire:model='homeVisitationFormFields.reason'> </textarea>
+                            <textarea @disabled($role != 'Guidance') class="form-control" id="input-date" style="border: 1px solid black; width: 100%; height: 150px; resize: none;" wire:model="homeVisitationFormFields.reason"> </textarea>
                         </div>
                     </div>
 
@@ -178,7 +178,7 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-sm-12" style="font-size: 16px; color: #252525; text-align: justify;">
-                            <textarea @disabled($role != 'Guidance') class="form-control" id="input-date" style="border: 1px solid black; width: 100%; height: 150px; resize: none;" wire:model="homeVisitationFormFields.remark" wire:model='homeVisitationFormFields.remark'> </textarea>
+                            <textarea @disabled($role != 'Guidance') class="form-control" id="input-date" style="border: 1px solid black; width: 100%; height: 150px; resize: none;" wire:model="homeVisitationFormFields.remark"> </textarea>
                         </div>
                     </div>
 

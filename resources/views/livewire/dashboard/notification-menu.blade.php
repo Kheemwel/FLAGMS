@@ -2,7 +2,7 @@
 <div class="d-flex justify-content-center align-items-center">
     <li class="nav-item dropdown mr-3 mt-1" wire:poll.5s>
         <a class="nav-link" data-toggle="dropdown" href="#" id="notificationsDropdown">
-            <i class="fa fa-solid fa-bell text-lg" style="color: #252525;"></i>
+            <i class="fa fa-solid fa-bell" style="color: #252525; font-size: 25px;"></i>
             @if ($unread_count && $unread_count > 0)
                 <span class="badge badge-warning navbar-badge">{{ $unread_count }}</span>
             @endif
