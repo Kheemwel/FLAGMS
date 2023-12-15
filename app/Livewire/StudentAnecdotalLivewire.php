@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\StudentAnecdotalSignatures;
 use App\Models\Students;
 use App\Models\StudentsAnecdotals;
+use App\Traits\Notify;
 use App\Traits\Toasts;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -13,15 +14,18 @@ class StudentAnecdotalLivewire extends Component
 {
     use WithFileUploads;
     use Toasts;
-    public $anecdotal, $student_id, $studentSignature, $selectedAnecdotalRow;
+    use Notify;
+    public $anecdotal, $student_id, $my_id, $studentSignature, $selectedAnecdotalRow, $parent_id;
 
     public function mount()
     {
         $id = session('user_id');
+        $this->my_id = $id;
         if ($id) {
             $student = Students::where('user_account_id', $id)->first();
             $this->student_id = $student->id;
             $this->anecdotal = StudentsAnecdotals::where('student_id', $student->id) ? StudentsAnecdotals::where('student_id', $student->id)->get() : null;
+            $this->parent_id = $student->parents()->first()->getUserAccount->id;
         }
     }
 
@@ -58,12 +62,14 @@ class StudentAnecdotalLivewire extends Component
 
                 $student_signature_id = $studentSignature->id;
 
-                $anecdotal = StudentsAnecdotals::find($this->selectedAnecdotalRow)->update([
+                $anecdotal = StudentsAnecdotals::find($this->selectedAnecdotalRow);
+                $anecdotal->update([
                     'student_signature_id' => $student_signature_id,
                 ]);
 
                 $this->anecdotal = StudentsAnecdotals::where('student_id', $this->student_id)->get();
                 $this->showToast('success', 'Signature Updated Successfully');
+                $this->notify($this->my_id, $this->parent_id, 'I updated my signature in anecdotal record', 'child-anecdotal');
                 $this->dispatch('closeSignaturePad');
                 $this->studentSignature = null;
             }

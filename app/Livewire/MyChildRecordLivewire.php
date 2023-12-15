@@ -7,6 +7,7 @@ use App\Models\Parents;
 use App\Models\StudentIndividualInventory;
 use App\Models\Students;
 use App\Models\StudentsAnecdotals;
+use App\Traits\Notify;
 use App\Traits\Toasts;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -15,11 +16,13 @@ class MyChildRecordLivewire extends Component
 {
     use Toasts;
     use WithFileUploads;
+    use Notify;
     public $children, $anecdotal = [], $inventory, $summary, $guardianSignature, $selectedAnecdotalRow;
-    public $student_id;
+    public $student_id, $my_id;
     public function mount()
     {
         $id = session('user_id');
+        $this->my_id = $id;
         if ($id) {
             $parent = Parents::where('user_account_id', $id)->first();
             $this->children = $parent->children()->get();
@@ -86,6 +89,9 @@ class MyChildRecordLivewire extends Component
 
                 $this->anecdotal = StudentsAnecdotals::where('student_id', $this->student_id)->get();
                 $this->showToast('success', 'Signature Updated Successfully');
+
+                $studentUserID = Students::find($this->student_id)->getUserAccount->id;
+                $this->notify($this->my_id, $studentUserID, 'I updated my signature in anecdotal record', 'student-anecdotal');
                 $this->dispatch('closeSignaturePad');
                 $this->guardianSignature = null;
             }

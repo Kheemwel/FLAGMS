@@ -1,6 +1,6 @@
 <div style="display: flex; flex-direction: column;">
     <p class="card-title" style="font-size: 14px; color: #252525; margin-bottom: 1rem;">School Level</p>
-    <div class="row" style="margin-left: 1rem;">
+    <div class="row" style="margin-left: 1rem;" wire:ignore>
         <template x-for="level in schoolLevels">
             <div class="form-check form-check-inline">
                 <input class="form-check-input" name="inlineRadioOptions" required type="radio" x-bind:checked="selectedSchoolLevel == level['school_level']" x-bind:id="'inlineRadio' + level['school_level']" x-bind:value="level['school_level']" x-model='selectedSchoolLevel'>
@@ -16,7 +16,7 @@
     <p class="card-title" style="font-size: 14px; color: #252525; margin-bottom: 1rem; margin-top: 1rem;">Grade Level</p>
     <!--ROLE DROPDOWN BUTTON-->
     <div class="input-group-prepend">
-        <div>
+        <div wire:ignore>
             <select class="form-select form-select-sm mb-2" id="roles" required x-model="selectedGradeLevel">
                 <template x-if="selectedGradeLevel == ''">
                     <option selected>Grade Level</option>

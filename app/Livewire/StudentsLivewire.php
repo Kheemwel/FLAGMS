@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\DisciplinaryActions;
 use App\Models\GuardianAnecdotalSignatures;
+use App\Models\OffenseLevels;
 use App\Models\Offenses;
 use App\Models\OffensesDisciplinaryActions;
 use App\Models\StudentAnecdotalSignatures;
@@ -21,7 +22,7 @@ class StudentsLivewire extends Component
     use WithFileUploads;
     use Notify;
     public $students, $student_id, $student_name, $lrn, $school_level, $grade_level;
-    public $anecdotal, $input_date, $input_time, $input_offense, $input_disciplinary_action, $display_disciplinary_action;
+    public $anecdotal, $input_date, $input_time, $input_offense, $input_disciplinary_action, $display_disciplinary_action, $offenseLevel;
     public $offenses;
     public $privileges = [];
     public $studentSignature, $guardianSignature;
@@ -71,6 +72,7 @@ class StudentsLivewire extends Component
                     //throw $th;
                 }
             }
+            $this->offenseLevel = OffenseLevels::find($offense_level)->level;
             $this->input_disciplinary_action = OffensesDisciplinaryActions::where('offense_id', $this->input_offense)
                 ->where('offense_level_id', $offense_level)->first()->disciplinary_action_id;
             $this->display_disciplinary_action = DisciplinaryActions::find($this->input_disciplinary_action)->action;
@@ -121,9 +123,14 @@ class StudentsLivewire extends Component
         $ids = $this->anecdotal->pluck('disciplinary_action_id')->toArray();
         $this->hasDismissal = in_array($this->dismissalID, $ids);
 
-        $offense = Offenses::find($validateData['input_offense'])->offense_name;
-        $this->notify($this->my_id, $student->getUserAccount->id, "You committed $offense");
-        $this->notify($this->my_id, $parent->getUserAccount->id, "{$student->name} committed $offense");
+        $offense = Offenses::find($validateData['input_offense']);
+        $this->notify($this->my_id, $student->getUserAccount->id, "You committed $offense", 'student-anecdotal');
+        $this->notify(
+            $this->my_id,
+            $parent->getUserAccount->id,
+            "{$student->name} committed {$offense->category} which is {$offense->offense_name} for the {$this->offenseLevel}. The Disciplinary Action is {$this->display_disciplinary_action}.",
+            'child-anecdotal'
+        );
 
         $this->showToast('success', 'Andedotal Record Added Successfully');
         $this->resetInputs();

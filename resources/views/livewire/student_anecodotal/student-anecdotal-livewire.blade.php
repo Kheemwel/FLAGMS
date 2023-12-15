@@ -60,8 +60,16 @@
                                 <td class="text-center">{{ date('h:i A', strtotime($anec->time)) }}</td>
                                 <td class="text-center">{{ $anec->getOffense->offense_name }}</td>
                                 <td class="text-center">{{ $anec->getDisciplinaryAction->action }}</td>
-                                <td wire:click="$set('selectedAnecdotalRow', {{ $anec->id }})" data-toggle="modal" data-target="#student-signature" class="text-center"><img height="150px" src="{{ $anec->student_signature() }}" width="150px"></td>
-                                <td class="text-center"></td>
+                                <td class="text-center" data-target="#student-signature" data-toggle="modal" wire:click="$set('selectedAnecdotalRow', {{ $anec->id }})">
+                                    <button class="btn btn-primary action-btn {{ $anec->student_signature_id ? 'd-none' : '' }}" style="color: #0A0863; font-weight: bold;">
+                                        <i class="fa fa-solid fa-file-signature" style="color: #0A0863;"></i> Add Signature
+                                    </button>
+
+                                    @if ($anec->student_signature_id)
+                                        <img height="150px" src="{{ $anec->student_signature() }}" width='150px'>
+                                    @endif
+                                </td>
+                                <td class="text-center">{{ $anec->guardian_name }}</td>
                                 <td class="text-center"><img height="150px" src="{{ $anec->guardian_signature() }}" width="150px"></td>
                             </tr>
                         @endforeach
@@ -75,80 +83,80 @@
 </div>
 
 @section('scripts')
-<script>
-    document.addEventListener('alpine:init', () => {
-        Alpine.data('signaturePad', () => ({
-            drawing: false,
-            context: null,
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('signaturePad', () => ({
+                drawing: false,
+                context: null,
 
-            startDrawing(event) {
-                event.preventDefault();
-                this.drawing = true;
-                this.context = this.$refs.canvas.getContext("2d");
-                this.context.lineWidth = 2;
-                this.context.lineCap = "round";
+                startDrawing(event) {
+                    event.preventDefault();
+                    this.drawing = true;
+                    this.context = this.$refs.canvas.getContext("2d");
+                    this.context.lineWidth = 2;
+                    this.context.lineCap = "round";
 
-                const {
-                    offsetX,
-                    offsetY
-                } = this.getCoordinates(event);
-                this.context.beginPath();
-                this.context.moveTo(offsetX, offsetY);
-            },
+                    const {
+                        offsetX,
+                        offsetY
+                    } = this.getCoordinates(event);
+                    this.context.beginPath();
+                    this.context.moveTo(offsetX, offsetY);
+                },
 
-            draw(event) {
-                if (!this.drawing) return;
-                event.preventDefault();
+                draw(event) {
+                    if (!this.drawing) return;
+                    event.preventDefault();
 
-                const {
-                    offsetX,
-                    offsetY
-                } = this.getCoordinates(event);
-                this.context.lineTo(offsetX, offsetY);
-                this.context.stroke();
-            },
+                    const {
+                        offsetX,
+                        offsetY
+                    } = this.getCoordinates(event);
+                    this.context.lineTo(offsetX, offsetY);
+                    this.context.stroke();
+                },
 
-            stopDrawing() {
-                this.drawing = false;
-            },
+                stopDrawing() {
+                    this.drawing = false;
+                },
 
-            clearSignature() {
-                this.context.clearRect(
-                    0,
-                    0,
-                    this.$refs.canvas.width,
-                    this.$refs.canvas.height
-                );
-            },
+                clearSignature() {
+                    this.context.clearRect(
+                        0,
+                        0,
+                        this.$refs.canvas.width,
+                        this.$refs.canvas.height
+                    );
+                },
 
-            saveSignature() {
-                const dataUrl = this.$refs.canvas.toDataURL("image/png");
-            },
+                saveSignature() {
+                    const dataUrl = this.$refs.canvas.toDataURL("image/png");
+                },
 
-            getContent() {
-                return this.$refs.canvas.toDataURL("image/png");
-            },
+                getContent() {
+                    return this.$refs.canvas.toDataURL("image/png");
+                },
 
-            getCoordinates(event) {
-                const rect = this.$refs.canvas.getBoundingClientRect();
-                let offsetX, offsetY;
+                getCoordinates(event) {
+                    const rect = this.$refs.canvas.getBoundingClientRect();
+                    let offsetX, offsetY;
 
-                if (event.touches && event.touches.length > 0) {
-                    // Touch event
-                    offsetX = (event.touches[0].clientX - rect.left) * (this.$refs.canvas.width / rect.width);
-                    offsetY = (event.touches[0].clientY - rect.top) * (this.$refs.canvas.height / rect.height);
-                } else {
-                    // Mouse event
-                    offsetX = (event.clientX - rect.left) * (this.$refs.canvas.width / rect.width);
-                    offsetY = (event.clientY - rect.top) * (this.$refs.canvas.height / rect.height);
-                }
+                    if (event.touches && event.touches.length > 0) {
+                        // Touch event
+                        offsetX = (event.touches[0].clientX - rect.left) * (this.$refs.canvas.width / rect.width);
+                        offsetY = (event.touches[0].clientY - rect.top) * (this.$refs.canvas.height / rect.height);
+                    } else {
+                        // Mouse event
+                        offsetX = (event.clientX - rect.left) * (this.$refs.canvas.width / rect.width);
+                        offsetY = (event.clientY - rect.top) * (this.$refs.canvas.height / rect.height);
+                    }
 
-                return {
-                    offsetX,
-                    offsetY
-                };
-            },
-        }));
-    });
-</script>
+                    return {
+                        offsetX,
+                        offsetY
+                    };
+                },
+            }));
+        });
+    </script>
 @endsection

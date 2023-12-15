@@ -11,7 +11,7 @@ class Notifications extends Model
     protected $table = 'notifications';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'from_user', 'to_user', 'message', 'is_read'
+        'from_user', 'to_user', 'message', 'is_read', 'url'
     ];
 
     public function FromUser()

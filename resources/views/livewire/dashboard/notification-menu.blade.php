@@ -1,7 +1,7 @@
 <!-- Notifications Dropdown Menu -->
 <div class="d-flex justify-content-center align-items-center">
     <li class="nav-item dropdown mr-3 mt-1" wire:poll.5s>
-        <a class="nav-link" id="notificationsDropdown" data-toggle="dropdown" href="#">
+        <a class="nav-link" data-toggle="dropdown" href="#" id="notificationsDropdown">
             <i class="fa fa-solid fa-bell text-lg" style="color: #252525;"></i>
             @if ($unread_count && $unread_count > 0)
                 <span class="badge badge-warning navbar-badge">{{ $unread_count }}</span>
@@ -19,7 +19,7 @@
 
             @foreach ($notifications as $notif)
                 <!-- NOTIF CONTENT -->
-                <a class="dropdown-item mb-1" href="#">
+                <a class="dropdown-item mb-1" href="{{ $notif->url }}">
                     <div class="d-flex flex-row align-items-center">
                         <div>
                             <img src="{{ $notif->sender_profile() }}" style="width: 50px; height: 50px;">
@@ -40,13 +40,16 @@
                 </a>
             @endforeach
 
-            <a class="btn mr-2 ml-2 d-block d-sm-none" href="{{ route('notification-page') }}" style="background-color: #0A0863; color: white; width: 100%;">See All Notifications</a>
-            <a class="btn mr-2 ml-2 d-none d-sm-block" href="{{ route('notification-page') }}" style="background-color: #0A0863; color: white; width: 350px;">See All Notifications</a>
+        
+            <div class="d-flex justify-content-center mt-3">
+                <a class="btn mr-2 ml-2 d-none d-sm-block" href="{{ route('notification-page') }}" style="background-color: #0A0863; color: white; width: 350px;">See All Notifications</a>
+            </div>
         </div>
     </li>
 </div>
 
-@section('scripts')
+
+@push('scripts')
     <script>
         document.addEventListener('click', function(event) {
             const notificationsDropdown = document.getElementById('notificationsDropdown');
@@ -58,4 +61,4 @@
             }
         });
     </script>
-@endsection
+@endpush

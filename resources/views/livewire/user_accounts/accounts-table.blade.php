@@ -16,7 +16,7 @@
                     </div>
                 </div>
             </div>
-        
+
             <!-- Buttons -->
             <div class="col-md-7 col-sm-12 mb-3 mt-3">
                 <!-- Add User and Batch Add User Buttons -->
@@ -33,19 +33,21 @@
                             </button>
                         </div>
                     @endif
-                    
+
                     <!-- Download Table Button -->
                     <div class="col-lg-2 col-md-4 col-sm-12 mb-2">
                         @if (wordsExistInArray(['Export', 'Account'], $privileges))
-                            <button class="btn btn-default text-xs" style="width: 100%; border-radius: 10px; background-color: #0A0863; color: white;" type="button" wire:click='export()'>
-                                <i class="fa fa-solid fa-file-export" style="color: white;"></i> Export
+                            <button wire:loading.attr='disabled' wire:target='export' class="btn btn-default text-xs" style="width: 100%; border-radius: 10px; background-color: #0A0863; color: white;" type="button" wire:click='export()'>
+                                <i wire:loading.remove wire:target='export' class="fa fa-solid fa-file-export" style="color: white;"></i>
+                                <i wire:loading wire:target='export' class="fas fa-3x fa-sync-alt fa-spin text-sm"></i>
+                                Export
                             </button>
                         @endif
                     </div>
                 </div>
             </div>
         </div>
-        
+
 
         <div class="row mt-1">
             <div class="col-md-3 col-sm-12 d-flex justify-content-start mb-2">
@@ -74,7 +76,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="card ml-2 mr-2" style="border-radius: 10px;">
         <div wire:loading wire:target='markArchive, resetInputFields'>
             <div class="overlay" style="position: absolute; width: 100%; height: 100%;">
@@ -124,7 +126,7 @@
                             </td>
                         </tr>
                     </template>
-                    <tr x-show="noResult" x-cloak class="font-weight-bold">
+                    <tr class="font-weight-bold" x-cloak x-show="noResult">
                         <td colspan="6">No results found</td>
                     </tr>
                 </tbody>
@@ -138,7 +140,7 @@
         <div class="col-12 font-weight-bold text-center text-md-left">
             <p x-text="showedEntries"></p>
         </div>
-        
+
         <div class="col-12 d-md-flex justify-content-md-end justify-content-center text-center">
             <button class="btn btn-sm btn-light text-dark mx-1 font-weight-bold" x-bind:disabled="currentPage == 1" x-on:click="currentPage = 1">
                 &lt;&lt;
@@ -147,7 +149,7 @@
                 &lt;
             </button>
             <template x-for="item in pages">
-                <button class="btn btn-sm mx-1" style="border-radius: 50%;" x-bind:class="{'bg-blue': currentPage == item, 'btn-primary text-white': currentPage == item, 'btn-light text-dark': currentPage != item}" x-on:click="currentPage = item" x-text="item"></button>
+                <button class="btn btn-sm mx-1" style="border-radius: 50%;" x-bind:class="{ 'bg-blue': currentPage == item, 'btn-primary text-white': currentPage == item, 'btn-light text-dark': currentPage != item }" x-on:click="currentPage = item" x-text="item"></button>
             </template>
             <button class="btn btn-sm btn-light text-dark mx-1 font-weight-bold" x-bind:disabled="currentPage >= totalPages" x-on:click="nextPage()">
                 &gt;
@@ -157,5 +159,5 @@
             </button>
         </div>
     </div>
-    
+
 </div>

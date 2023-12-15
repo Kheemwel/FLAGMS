@@ -9,11 +9,11 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link btn" target="blank" href="https://docs.google.com/forms/d/e/1FAIpQLSe2qMR2pI9wHH1csWALMKe2V4OcvYCkVpDyr0_-Hc-0WnKY4w/viewform">
                 <p class="pr-4 pl-4 pt-1 pb-1" style="color: white; font-size: 14px; background-color: #0A0863; border-radius: 15px;">Take Survey</p>
             </a>
-        </li>
+        </li> --}}
         <!-------LOGIN BUTTON--------->
         <li class="nav-item">
             <button class="nav-link btn" wire:click='authenticateWithRememberToken'>

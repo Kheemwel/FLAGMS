@@ -91,7 +91,14 @@ class ApprovalFormsLivewire extends Component
         $this->showToast('success', "Requested $this->selectedRequestFormType is Approved Successfully");
         $this->resetFields();
 
-        $this->notify($this->my_id, $request->teacher->user_account_id, "Your requested $request->form_type is approved");
+        
+        $requestID = $request->form_type == 'Violation Form' ? "VF#{$request->id}" : "RF#{$request->id}";
+        $this->notify(
+            $this->my_id, 
+            $request->teacher->user_account_id, 
+            "Your requested $request->form_type ($requestID) is approved",
+            'request',
+        );
 
         redirect()->route('guidance-program-page', ['private_schedule' => [
             'users' => $users,
@@ -113,7 +120,13 @@ class ApprovalFormsLivewire extends Component
         $this->showToast('success', "Requested Home Visitation Form is Disapproved Successfully");
         $this->resetFields();
         
-        $this->notify($this->my_id, $request->teacher->user_account_id, "Your requested $request->form_type is disapproved");
+        $requestID = $request->form_type == 'Violation Form' ? "VF#{$request->id}" : "RF#{$request->id}";
+        $this->notify(
+            $this->my_id, 
+            $request->teacher->user_account_id, 
+            "Your requested $request->form_type ($requestID) is disapproved",
+            'request',
+        );
     }
 
     public function resetFields()

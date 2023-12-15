@@ -23,7 +23,7 @@
                     <div class="d-flex flex-column">
                         <p class="card-title text-sm mb-1">Role</p>
                         <!--ROLE DROPDOWN BUTTON-->
-                        <div class="input-group-prepend">
+                        <div class="input-group-prepend" wire:ignore>
                             <select class="form-select form-select-sm mb-2" id="roles" required x-model="role">
                                 @if ($role == '')
                                     <option selected>Select Role</option>
