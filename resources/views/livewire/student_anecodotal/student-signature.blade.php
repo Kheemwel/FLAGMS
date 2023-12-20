@@ -74,7 +74,7 @@
                                                 </div>
                                                 <!-- Progress Bar -->
                                                 <div class="progress" x-show="uploading">
-                                                    <div aria-valuemax="100" aria-valuemin="0" class="progress-bar" role="progressbar" x-bind:style="`width: ${progress}%;`"></div>
+                                                    <div aria-valuemax="100" aria-valuemin="0" class="progress-bar progress-bar-striped progress-bar-animated" x-text="progress + '%'" role="progressbar" x-bind:style="`width: ${progress}%;`"></div>
                                                 </div>
                                                 @error('studentSignature')
                                                     <span class="text-danger">{{ $message }}</span>
