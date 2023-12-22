@@ -195,15 +195,15 @@
                     <table class="table table-hover text-center">
                         <thead style="background-color: #7684B9; color: white;">
                             <tr>
-                                <th>
-                                    <input type="checkbox">
-                                </th>
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>School Level</th>
                                 <th>Grade Level</th>
                                 @if (in_array('ViewStudentsAnecdotal', $privileges) || in_array('WriteStudentsAnecdotal', $privileges))
                                     <th>Anecdotal</th>
+                                @endif
+                                @if (in_array('ViewStudentsInventory', $privileges))
+                                    <th>Individual Inventory</th>
                                 @endif
                                 @if (in_array('ViewStudentSummary', $privileges))
                                     <th>Summary</th>
@@ -213,7 +213,6 @@
                         <tbody>
                             @foreach ($students as $student)
                                 <tr>
-                                    <td></td>
                                     <th scope="row">{{ $student->id }}</th>
                                     <td>{{ $student->getUserAccount->name }}</td>
                                     <td>{{ $student->schoolLevel->school_level }}</td>
@@ -225,7 +224,13 @@
                                             </button>
                                         </td>
                                     @endif
-
+                                    @if (in_array('ViewStudentsInventory', $privileges))
+                                        <td>
+                                            <button class="btn btn-primary action-btn" data-target="#student-inventory" data-toggle="modal" wire:click='getData({{ $student->id }})'>
+                                                <i aria-hidden="true" class="fa fa-eye"></i>
+                                            </button>
+                                        </td>
+                                    @endif
                                     @if (in_array('ViewStudentSummary', $privileges))
                                         <td>
                                             <button class="btn btn-primary action-btn" data-target="#summary-btn" data-toggle="modal" wire:click='getData({{ $student->id }})'>
@@ -242,89 +247,12 @@
         </div>
         @include('livewire.students.summary-window')
         @include('livewire.students.anecdotal-window')
-        @include('livewire.students.student-signature')
-        @include('livewire.students.guardian-signature')
+        @include('livewire.students.student-inventory')
     </div>
 </div> <!-- /.card-body -->
 
 
 @section('scripts')
-    <script>
-        document.addEventListener('alpine:init', () => {
-            Alpine.data('signaturePad', () => ({
-                drawing: false,
-                context: null,
-
-                startDrawing(event) {
-                    event.preventDefault();
-                    this.drawing = true;
-                    this.context = this.$refs.canvas.getContext("2d");
-                    this.context.lineWidth = 2;
-                    this.context.lineCap = "round";
-
-                    const {
-                        offsetX,
-                        offsetY
-                    } = this.getCoordinates(event);
-                    this.context.beginPath();
-                    this.context.moveTo(offsetX, offsetY);
-                },
-
-                draw(event) {
-                    if (!this.drawing) return;
-                    event.preventDefault();
-
-                    const {
-                        offsetX,
-                        offsetY
-                    } = this.getCoordinates(event);
-                    this.context.lineTo(offsetX, offsetY);
-                    this.context.stroke();
-                },
-
-                stopDrawing() {
-                    this.drawing = false;
-                },
-
-                clearSignature() {
-                    this.context.clearRect(
-                        0,
-                        0,
-                        this.$refs.canvas.width,
-                        this.$refs.canvas.height
-                    );
-                },
-
-                saveSignature() {
-                    const dataUrl = this.$refs.canvas.toDataURL("image/png");
-                },
-
-                getContent() {
-                    return this.$refs.canvas.toDataURL("image/png");
-                },
-
-                getCoordinates(event) {
-                    const rect = this.$refs.canvas.getBoundingClientRect();
-                    let offsetX, offsetY;
-
-                    if (event.touches && event.touches.length > 0) {
-                        // Touch event
-                        offsetX = (event.touches[0].clientX - rect.left) * (this.$refs.canvas.width / rect.width);
-                        offsetY = (event.touches[0].clientY - rect.top) * (this.$refs.canvas.height / rect.height);
-                    } else {
-                        // Mouse event
-                        offsetX = (event.clientX - rect.left) * (this.$refs.canvas.width / rect.width);
-                        offsetY = (event.clientY - rect.top) * (this.$refs.canvas.height / rect.height);
-                    }
-
-                    return {
-                        offsetX,
-                        offsetY
-                    };
-                },
-            }));
-        });
-    </script>
     <script>
         $(document).ready(function() {
             const today = new Date();
@@ -370,7 +298,7 @@
             let offensesData = top5.map(([key, value]) => value);
             setTimeout(() => {
                 initChart(offenses, offensesData);
-            },);
+            }, );
         });
 
 
