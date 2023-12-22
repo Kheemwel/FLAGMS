@@ -1,7 +1,7 @@
 <div class="modal fade as-modal signaturePadModal" data-backdrop="static" id="add-signature" role="dialog" style="max-width: 100%;" wire:ignore.self>
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content" style="border-radius: 20px;">
-            <div wire:loading wire:target='updateSignature'>
+            <div wire:loading wire:target='setSignature'>
                 <div class="overlay bg-white" style="border-radius: 20px;">
                     <div>
                         <i class="fas fa-3x fa-sync-alt fa-spin"></i>
@@ -14,7 +14,7 @@
                 </button>
             </div>
             <form>
-                <div class="modal-body mx-md-1 mx-lg-5" style="max-height: 80vh; overflow-y: auto;">
+                <div class="modal-body mx-md-1 mx-lg-5" style="max-height: 80vh; overflow-y: auto;" x>
                     <div class="row">
                         <div class="col-12 col-sm-12">
                             <!-- SIGNATURE TABS -->
@@ -45,7 +45,7 @@
                                                     <button class="btn btn-block btn-default float-right clear-button text-sm" type="button" x-on:click="clearSignature()">Clear and draw again</button>
                                                 </div>
                                                 <div class="form-group col-sm-6 button-container text-sm">
-                                                    <button class="btn btn-block btn-primary text-sm border-0" wire:click.prevent="$set('signature', getContent())">Submit</button>
+                                                    <button class="btn btn-block btn-primary text-sm border-0" wire:click.prevent="setSignature(getContent())">Submit</button>
                                                 </div>
                                             </div>
                                             @error('signature')
@@ -80,9 +80,9 @@
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
-                                            <div class="form-group col-sm-12 button-container text-sm">
+                                            {{-- <div class="form-group col-sm-12 button-container text-sm">
                                                 <button class="btn btn-block btn-primary text-sm border-0" type="button">Submit</button>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                     <!-- /.tab-content -->

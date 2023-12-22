@@ -14,7 +14,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form wire:submit='updateViolationForm()'>
+            <form>
                 <div class="modal-body" style="margin-left: 1rem; margin-right: 1rem; text-align: left;">
                     <!--MODAL TITLE-->
                     <div class="row">
@@ -218,7 +218,7 @@
 
                     <div class="row">
                         <div class="form-group col-sm-12">
-                            <button class="btn btn-block btn-default" style="border-color: transparent; background-color: #0A0863; color: #252525; color:white; margin-bottom: 3rem;" type="submt">Submit</button>
+                            <button type="button" class="btn btn-block btn-default" data-target="#confirm-violation" data-toggle="modal" style="border-color: transparent; background-color: #0A0863; color: #252525; color:white; margin-bottom: 3rem;">Submit</button>
                         </div>
                     </div>
                 </div> <!-- /.card-body -->

@@ -208,6 +208,8 @@
     @include('livewire.fill_out_forms.fill-home-visitation-form')
     @include('livewire.fill_out_forms.add-signature')
     @include('livewire.fill_out_forms.create-form')
+    @include('livewire.fill_out_forms.submit-home-visitation-form')
+    @include('livewire.fill_out_forms.submit-violation-form')
 </div>
 
 @section('scripts')
