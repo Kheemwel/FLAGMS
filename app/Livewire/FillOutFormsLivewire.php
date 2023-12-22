@@ -23,11 +23,13 @@ use App\Traits\Notify;
 use App\Traits\Toasts;
 use Carbon\Carbon;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class FillOutFormsLivewire extends Component
 {
     use Toasts;
     use Notify;
+    use WithFileUploads;
     public $forms, $role, $studentID, $homeVisitationForm, $violationForm, $myChildIDs, $teacherID, $guidanceID, $principalID, $principalPosition;
     public $caseStatuses = ['Resolved', 'Unresolved', 'Pending'];
     public $offenseTypes = ['Physical', 'Verbal', 'Social', 'Others'];
@@ -125,6 +127,11 @@ class FillOutFormsLivewire extends Component
         return view('livewire.fill_out_forms.fill-out-forms-livewire');
     }
 
+    public function setSignature($value)
+    {
+        $this->updatedSignature($value);
+    }
+
     public function updatedSignature($value)
     {
         $signature = null;
@@ -148,6 +155,7 @@ class FillOutFormsLivewire extends Component
 
             $this->violationFormFields['student_signature_id'] = $studentSignatureViolation->id;
             $this->showToast('success', 'Signature Updated Successfully');
+            $this->dispatch('closeSignaturePad');
         } else if ($this->signatureType == 'studentHomeVisitation') {
             $studentSignatureHomeVisitation = StudentHomeVisitationSignatures::create([
                 'signature' => $signature,
@@ -159,6 +167,7 @@ class FillOutFormsLivewire extends Component
 
             $this->homeVisitationFormFields['student_signature_id'] = $studentSignatureHomeVisitation->id;
             $this->showToast('success', 'Signature Updated Successfully');
+            $this->dispatch('closeSignaturePad');
         } else if ($this->signatureType == 'parent') {
             $parentSignature = ParentFormSignatures::create([
                 'signature' => $signature,
@@ -170,6 +179,7 @@ class FillOutFormsLivewire extends Component
 
             $this->homeVisitationFormFields['parent_signature_id'] = $parentSignature->id;
             $this->showToast('success', 'Signature Updated Successfully');
+            $this->dispatch('closeSignaturePad');
         } else if ($this->signatureType == 'guidance') {
             $guidanceSignature = GuidanceFormSignatures::create([
                 'signature' => $signature,
@@ -181,6 +191,7 @@ class FillOutFormsLivewire extends Component
 
             $this->homeVisitationFormFields['guidance_signature_id'] = $guidanceSignature->id;
             $this->showToast('success', 'Signature Updated Successfully');
+            $this->dispatch('closeSignaturePad');
         } else if ($this->signatureType == 'teacher') {
             $teacherSignature = TeacherFormSignatures::create([
                 'signature' => $signature,
@@ -192,6 +203,7 @@ class FillOutFormsLivewire extends Component
 
             $this->homeVisitationFormFields['teacher_signature_id'] = $teacherSignature->id;
             $this->showToast('success', 'Signature Updated Successfully');
+            $this->dispatch('closeSignaturePad');
         } else if ($this->signatureType == 'juniorPrincipal') {
             $juniorPrincipalSignature = JuniorPrincipalSignatures::create([
                 'signature' => $signature,
@@ -203,6 +215,7 @@ class FillOutFormsLivewire extends Component
 
             $this->homeVisitationFormFields['junior_principal_signature_id'] = $juniorPrincipalSignature->id;
             $this->showToast('success', 'Signature Updated Successfully');
+            $this->dispatch('closeSignaturePad');
         } else if ($this->signatureType == 'seniorPrincipal') {
             $seniorPrincipalSignature = SeniorPrincipalSignatures::create([
                 'signature' => $signature,
@@ -214,6 +227,7 @@ class FillOutFormsLivewire extends Component
 
             $this->homeVisitationFormFields['senior_principal_signature_id'] = $seniorPrincipalSignature->id;
             $this->showToast('success', 'Signature Updated Successfully');
+            $this->dispatch('closeSignaturePad');
         }
     }
 

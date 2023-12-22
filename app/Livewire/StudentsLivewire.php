@@ -25,7 +25,7 @@ class StudentsLivewire extends Component
     use Notify;
     public $students, $student_id, $student_name, $lrn, $school_level, $grade_level;
     public $anecdotal, $input_date, $input_time, $input_offense, $input_disciplinary_action, $display_disciplinary_action, $offenseLevel;
-    public $offenses;
+    public $offenses, $inventory;
     public $privileges = [];
     public $studentSignature, $guardianSignature;
     public $numViolations, $numViolationForms, $numHomeVisitationForms;
@@ -90,6 +90,7 @@ class StudentsLivewire extends Component
         $student = Students::find($id);
         $this->student_id = $student->id;
         $this->anecdotal = StudentsAnecdotals::where('student_id', $student->id)->first() ? StudentsAnecdotals::where('student_id', $student->id)->get() : null;
+        $this->inventory = $student->IndividualInventory;
         $this->student_name = $student->getUserAccount->first_name . " " . $student->getUserAccount->last_name;
         $this->lrn = $student->lrn;
         $this->school_level = $student->schoolLevel->school_level;

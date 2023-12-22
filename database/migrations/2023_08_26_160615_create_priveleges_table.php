@@ -260,6 +260,10 @@ return new class extends Migration
                 'privilege' => 'CreateForms',
                 'is_exclusive' => 1
             ],
+            [
+                'privilege' => 'ViewStudentsInventory',
+                'is_exclusive' => 0,
+            ],
         ]);
     }
 

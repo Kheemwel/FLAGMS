@@ -68,7 +68,13 @@ class ApprovalFormsLivewire extends Component
                 $request->teacher->user_account_id,
                 ...$request->violationForm->students->pluck('user_account_id')->toArray(),
             ];
-            // $request->createViolationForm();
+
+            $this->notify(
+                $this->my_id,
+                $request->teacher->user_account_id,
+                "Your requested Violation Form (VF#$request->id) is approved",
+                'request',
+            );
         } else if ($this->selectedRequestFormType == 'Home Visitation Form') {
             $users = [
                 $request->teacher->user_account_id,
@@ -111,53 +117,52 @@ class ApprovalFormsLivewire extends Component
                 'junior_principal_name' => Principals::find(1)->name,
                 'senior_principal_name' => Principals::find(2)->name,
             ]);
+
+            $this->notify(
+                $this->my_id,
+                $request->teacher->user_account_id,
+                "Your requested Home Visitation Form (HF#$request->id) is approved",
+                'request',
+            );
+            $this->notify(
+                $this->my_id,
+                $request->teacher->user_account_id,
+                "I created Home Visitation Form (HF#{$homeVisitationForm->id}) for {$homeVisitationForm->student_name}",
+                'fill-out',
+            );
+            $studentUserID = Students::find($homeVisitationForm->student_id)->getUserAccount->id;
+            $parentUserID = Parents::find($homeVisitationForm->parent_id)->getUserAccount->id;
+            $this->notify(
+                $this->my_id,
+                $parentUserID,
+                "I created Home Visitation Form (HF#{$homeVisitationForm->id}) for your child {$homeVisitationForm->student_name}",
+                'fill-out',
+            );
+            $this->notify(
+                $this->my_id,
+                $studentUserID,
+                "I created Home Visitation Form (HF#{$homeVisitationForm->id}) for you",
+                'fill-out',
+            );
+            $juniorPrincipal = Principals::find(1)->getUserAccount->id;
+            $seniorPrincipal = Principals::find(2)->getUserAccount->id;
+            $this->notify(
+                $this->my_id,
+                $juniorPrincipal,
+                "I created Home Visitation Form (HF#{$homeVisitationForm->id}) for {$homeVisitationForm->student_name}",
+                'fill-out',
+            );
+            $this->notify(
+                $this->my_id,
+                $seniorPrincipal,
+                "I created Home Visitation Form (HF#{$homeVisitationForm->id}) for {$homeVisitationForm->student_name}",
+                'fill-out',
+            );
         }
 
         $this->showToast('success', "Requested $this->selectedRequestFormType is Approved Successfully");
         $this->resetFields();
 
-
-        $requestID = $request->form_type == 'Violation Form' ? "VF#{$request->id}" : "RF#{$request->id}";
-        $this->notify(
-            $this->my_id,
-            $request->teacher->user_account_id,
-            "Your requested $request->form_type ($requestID) is approved",
-            'request',
-        );
-        $this->notify(
-            $this->my_id,
-            $request->teacher->user_account_id,
-            "I created Home Visitation Form (HF#{$homeVisitationForm->id}) for {$homeVisitationForm->student_name}",
-            'fill-out',
-        );
-        $studentUserID = Students::find($homeVisitationForm->student_id)->getUserAccount->id;
-        $parentUserID = Parents::find($homeVisitationForm->parent_id)->getUserAccount->id;
-        $this->notify(
-            $this->my_id,
-            $parentUserID,
-            "I created Home Visitation Form (HF#{$homeVisitationForm->id}) for your child {$homeVisitationForm->student_name}",
-            'fill-out',
-        );
-        $this->notify(
-            $this->my_id,
-            $studentUserID,
-            "I created Home Visitation Form (HF#{$homeVisitationForm->id}) for you",
-            'fill-out',
-        );
-        $juniorPrincipal = Principals::find(1)->getUserAccount->id;
-        $seniorPrincipal = Principals::find(2)->getUserAccount->id;
-        $this->notify(
-            $this->my_id,
-            $juniorPrincipal,
-            "I created Home Visitation Form (HF#{$homeVisitationForm->id}) for {$homeVisitationForm->student_name}",
-            'fill-out',
-        );
-        $this->notify(
-            $this->my_id,
-            $seniorPrincipal,
-            "I created Home Visitation Form (HF#{$homeVisitationForm->id}) for {$homeVisitationForm->student_name}",
-            'fill-out',
-        );
 
         redirect()->route('guidance-program-page', ['private_schedule' => [
             'users' => $users,
