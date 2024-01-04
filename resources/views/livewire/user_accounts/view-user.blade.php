@@ -159,16 +159,7 @@
                         <p class="card-title" style="font-weight: bold;">{{ $email ? $email : 'There is no registered email.' }}</p>
                     </div>
                 </div>
-                {{-- <div class="row" style="margin-bottom: 1rem;">
-                    <!--PASSWORD-->
-                    <div class="form-group col-sm-5" style="font-size: 14px; color: #252525;">
-                        <p class="card-title">Password</p>
-                    </div>
-                    <div class="form-group col-sm-4" style="font-size: 14px; color: #252525;">
-                        <p class="card-title" style="font-weight: bold;">{{ $password }}</p>
-                    </div>
-                </div> --}}
-                {{-- <div class="row" style="margin-bottom: 1rem;">
+                <div class="row" style="margin-bottom: 1rem;">
                     <div class="form-group col-sm-5" style="font-size: 14px; color: #252525;">
                         <p class="card-title">Total Login</p>
                     </div>
@@ -185,7 +176,7 @@
                             {{ $last_login ? date('F d,Y   h:i A', strtotime($last_login)) : 'User has not logged in yet.' }}
                         </p>
                     </div>
-                </div> --}}
+                </div>
             </div> <!-- /.card-body -->
         </div>
         <!-- /.modal-content -->

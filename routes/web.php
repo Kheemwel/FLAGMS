@@ -4,6 +4,7 @@ use App\Http\Controllers\UserAccountsMaker;
 use App\Http\Controllers\UserAccountsSeeder;
 use App\Http\Middleware\CheckUserCredentials;
 use App\Livewire\ApprovalFormsLivewire;
+use App\Livewire\AuditTrailLivewire;
 use App\Livewire\CalendarColorsLivewire;
 use App\Livewire\ContentManagementLivewire;
 use App\Livewire\DatabaseLivewire;
@@ -146,13 +147,10 @@ Route::middleware([CheckUserCredentials::class])->group(function () {
     Route::get('/item-types', ItemTypesLivewire::class)->name('item-types-page');
     Route::get('/item-tags', ItemTagsLivewire::class)->name('item-tags-page');
     Route::get('/database-management', DatabaseManagementLivewire::class)->name('database-management-page');
+    Route::get('/audit-trail', AuditTrailLivewire::class)->name('audit-trail-page');
 
     //Guidance
     Route::get('/students', StudentsLivewire::class)->name('students-page');
-    Route::view('anecdotal-records', 'guidance.anecdotal-records')->name('anecdotal-records-page');
-    Route::view('/violation-forms', 'guidance.violation-forms')->name('violation-forms-page');
-    Route::view('/home-visitation-forms', 'guidance.home-visitation-forms')->name('home-visitation-forms-page');
-    Route::view('/individual-inventory', 'guidance.individual-inventory')->name('individual-inventory-page');
     Route::get('/guidance-program', GuidanceProgramLivewire::class)->name('guidance-program-page');
     Route::get('/approval-forms', ApprovalFormsLivewire::class)->name('approval-forms-page');
     Route::get('/physical-records', PhysicalRecordsLivewire::class)->name('physical-records-page');

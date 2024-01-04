@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Exports\UsersAccountsExport;
 use App\Imports\UserAccountsImport;
 use App\Mail\AccountCreationMail;
+use App\Models\AuditLogs;
 use App\Models\GradeLevels;
 use App\Models\Guidance;
 use App\Models\Parents;
@@ -145,6 +146,13 @@ class UserAccountsLivewire extends Component
             $this->showToast('success', 'Users Are Added Successfully');
             $this->loadAccounts();
             $this->loadStudents();
+
+            AuditLogs::create([
+                'user_account_id' => $this->my_id,
+                'action' => 'Import',
+                'description' => 'The user successfully imported a user accounts record',
+            ]);
+
         } catch (Throwable $th) {
             Log::error($th->getMessage());
             $this->showToast('error', 'Failed to import user accounts');
@@ -157,10 +165,16 @@ class UserAccountsLivewire extends Component
 
     public function export()
     {
+        AuditLogs::create([
+            'user_account_id' => $this->my_id,
+            'action' => 'Export',
+            'description' => 'The user exported the user accounts record',
+        ]);
+
         return Excel::download(new UsersAccountsExport, 'user_accounts.xlsx');
     }
 
-    public function store($anotherRule)
+    public function store($anotherRule): UserAccounts
     {
         $rules = [
             'first_name' => 'required|max:255',
@@ -204,6 +218,12 @@ class UserAccountsLivewire extends Component
                 'email' => $validatedData['email']
             ]);
 
+            AuditLogs::create([
+                'user_account_id' => $this->my_id,
+                'action' => 'Add',
+                'description' => "The user add a new {$user->role} user with ID#{$user->id}",
+            ]);
+
             if ($user->email) {
                 try {
                     Mail::to($user->email)->send(new AccountCreationMail($user->password));
@@ -212,6 +232,7 @@ class UserAccountsLivewire extends Component
                     $this->showToast('error', 'Failed to Send User Credentials to Email');
                 }
             }
+
         } catch (Throwable $th) {
             Log::error($th->getMessage());
             $this->showToast('error', 'Failed to Add User');
@@ -375,6 +396,14 @@ class UserAccountsLivewire extends Component
             'profile_picture_id' => $this->profile_picture_id
         ]);
 
+        
+        AuditLogs::create([
+            'user_account_id' => $this->my_id,
+            'action' => 'Update',
+            'description' => "The user update the user with ID#{$user->id}",
+        ]);
+
+
         $this->showToast('success', 'User Updated Successfully');
         $this->dispatch('closeModals');
         $this->resetInputFields();
@@ -413,6 +442,14 @@ class UserAccountsLivewire extends Component
         $this->total_login = $user->total_login;
         $this->last_login = $user->last_login;
         $this->user_is_archive = $user->is_archive;
+
+        
+        AuditLogs::create([
+            'user_account_id' => $this->my_id,
+            'action' => 'View',
+            'description' => "The user view the user with ID#{$user->id} info",
+        ]);
+
 
         if ($this->role == 'Student') {
             $student = Students::where('user_account_id', $this->user_id)->first();
@@ -458,6 +495,13 @@ class UserAccountsLivewire extends Component
             $user->delete();
             $user->getProfilePicture()->delete();
             $this->showToast('success', 'User Deleted Successfully');
+
+            AuditLogs::create([
+                'user_account_id' => $this->my_id,
+                'action' => 'Delete',
+                'description' => "The user delete the user with ID#{$user->id}",
+            ]);
+
             $this->dispatch('closeModals');
             $this->loadAccounts();
         }
@@ -484,6 +528,13 @@ class UserAccountsLivewire extends Component
             ]);
 
             $this->showToast('success', 'User Archived Successfully');
+
+            AuditLogs::create([
+                'user_account_id' => $this->my_id,
+                'action' => 'Archive',
+                'description' => "The user archive the user with ID#{$user->id}",
+            ]);
+
             $this->dispatch('closeModals');
             $this->loadAccounts();
         }
@@ -500,6 +551,13 @@ class UserAccountsLivewire extends Component
             ]);
 
             $this->showToast('success', 'User Unarchived Successfully');
+
+            AuditLogs::create([
+                'user_account_id' => $this->my_id,
+                'action' => 'Unarchive',
+                'description' => "The user unarchive th user with ID#{$user->id}",
+            ]);
+
             $this->dispatch('closeModals');
             $this->loadAccounts();
         }

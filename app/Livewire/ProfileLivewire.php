@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\AuditLogs;
 use App\Models\ProfilePictures;
 use App\Models\Roles;
 use App\Models\UserAccounts;
@@ -96,6 +97,14 @@ class ProfileLivewire extends Component
             'email' => $validatedData['email'],
             'profile_picture_id' => $this->profile_picture_id
         ]);
+
+        AuditLogs::create([
+            'user_account_id' => $this->user_id,
+            'action' => 'Update',
+            'description' => 'Change Profile Picture',
+        ]);
+
+
         $this->showToast('success', 'Your Profile Updated Successfully');
         $this->updateProfilePicture($this->profile_picture_id);
         $this->resetInputs();
@@ -116,6 +125,12 @@ class ProfileLivewire extends Component
         UserAccounts::find($this->user_id)->update([
             'password' => $validatedData['confirm_password'],
             'hashed_password' => bcrypt($validatedData['confirm_password'])
+        ]);
+
+        AuditLogs::create([
+            'user_account_id' => $this->user_id,
+            'action' => 'Update',
+            'description' => 'Change Password',
         ]);
 
         $this->showToast('success', 'Your password has been updated successfully.');
