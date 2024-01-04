@@ -119,11 +119,6 @@
                                         <p style="color: #252525;">Item Tags</p>
                                     </a>
                                 </li>
-                                {{-- <li class="nav-item">
-                                    <a class="nav-link nav-link-button {{ setActiveLink('guidance-records-page') }}" href="{{ route('guidance-records-page') }}">
-                                        <p style="color: #252525;">Guidance Records</p>
-                                    </a>
-                                </li> --}}
                             @endif
                             @if (in_array('ManageDatabase', $privileges))
                                 <li class="nav-item">
@@ -156,6 +151,16 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
+                                <a class="nav-link nav-link-button {{ setActiveLink('physical-records-page') }}" href="{{ route('physical-records-page') }}">
+                                    <p style="color: #252525;">Physical Records</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link nav-link-button {{ setActiveLink('digital-records-page') }}" href="{{ route('digital-records-page') }}">
+                                    <p style="color: #252525;">Digital Records</p>
+                                </a>
+                            </li>
+                            {{-- <li class="nav-item">
                                 <a class="nav-link nav-link-button {{ setActiveLink('anecdotal-records-page') }}" href="{{ route('anecdotal-records-page') }}">
                                     <p style="color: #252525;">Anecdotal Records</p>
                                 </a>
@@ -174,7 +179,7 @@
                                 <a class="nav-link nav-link-button {{ setActiveLink('individual-inventory-page') }}" href="{{ route('individual-inventory-page') }}">
                                     <p style="color: #252525;">Individual Inventory</p>
                                 </a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </li>
                 @endif

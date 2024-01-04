@@ -8,6 +8,7 @@ use App\Livewire\CalendarColorsLivewire;
 use App\Livewire\ContentManagementLivewire;
 use App\Livewire\DatabaseLivewire;
 use App\Livewire\DatabaseManagementLivewire;
+use App\Livewire\DigitalRecordsLivewire;
 use App\Livewire\FillOutFormsLivewire;
 use App\Livewire\GuidanceLivewire;
 use App\Livewire\GuidanceProgramLivewire;
@@ -21,6 +22,7 @@ use App\Livewire\MyChildRecordLivewire;
 use App\Livewire\NotificationLivewire;
 use App\Livewire\OffensesLivewire;
 use App\Livewire\ParentsLivewire;
+use App\Livewire\PhysicalRecordsLivewire;
 use App\Livewire\PrincipalsLivewire;
 use App\Livewire\ProfileLivewire;
 use App\Livewire\ProfilePicturesLivewire;
@@ -143,7 +145,6 @@ Route::middleware([CheckUserCredentials::class])->group(function () {
     Route::get('/item-images', ItemImagesLivewire::class)->name('item-images-page');
     Route::get('/item-types', ItemTypesLivewire::class)->name('item-types-page');
     Route::get('/item-tags', ItemTagsLivewire::class)->name('item-tags-page');
-    Route::view('/guidance-records', 'admin.guidance-records')->name('guidance-records-page');
     Route::get('/database-management', DatabaseManagementLivewire::class)->name('database-management-page');
 
     //Guidance
@@ -154,6 +155,8 @@ Route::middleware([CheckUserCredentials::class])->group(function () {
     Route::view('/individual-inventory', 'guidance.individual-inventory')->name('individual-inventory-page');
     Route::get('/guidance-program', GuidanceProgramLivewire::class)->name('guidance-program-page');
     Route::get('/approval-forms', ApprovalFormsLivewire::class)->name('approval-forms-page');
+    Route::get('/physical-records', PhysicalRecordsLivewire::class)->name('physical-records-page');
+    Route::get('/digital-records', DigitalRecordsLivewire::class)->name('digital-records-page');
 
     //Student
     Route::get('/student-anecdotal-record', StudentAnecdotalLivewire::class)->name('student-anecdotal-record-page');
