@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\AuditLogs;
 use App\Models\UserAccounts;
 use App\Models\WebsiteLogo;
 use App\Models\WebsiteSchoolName;
@@ -9,7 +10,7 @@ use Livewire\Component;
 
 class LeftNavigationLivewire extends Component
 {
-    public $role, $logo, $school_name;
+    public $myID, $role, $logo, $school_name;
     public $privileges = [];
 
     public function mount()
@@ -17,6 +18,7 @@ class LeftNavigationLivewire extends Component
         $userId = session('user_id');
         if ($userId) {
             $user = UserAccounts::find($userId);
+            $this->myID = $user->id;
             $this->role = $user->role;
             $this->privileges = $user->Roles->privileges()->pluck('privilege')->toArray();
         }
@@ -27,6 +29,12 @@ class LeftNavigationLivewire extends Component
     public function logout()
     {
         session()->forget('user_id');
+        
+        AuditLogs::create([
+            'user_account_id' => $this->myID,
+            'action' => 'Logout',
+        ]);
+
         return redirect()->route('home-page');
     }
     public function render()

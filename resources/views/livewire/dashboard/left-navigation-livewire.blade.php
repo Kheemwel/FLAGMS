@@ -9,7 +9,7 @@
     <div class="sidebar" style="margin-top: 5rem;">
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" id="left-nav-links" data-accordion="true" data-widget="treeview" role="menu">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-accordion="true" data-widget="treeview" id="left-nav-links" role="menu">
                 <!-- Add icons to the links using the .nav-icon class
                     with font-awesome or any other icon font library -->
                 <li class="nav-item">
@@ -119,11 +119,11 @@
                                         <p style="color: #252525;">Item Tags</p>
                                     </a>
                                 </li>
-                                {{-- <li class="nav-item">
-                                    <a class="nav-link nav-link-button {{ setActiveLink('guidance-records-page') }}" href="{{ route('guidance-records-page') }}">
-                                        <p style="color: #252525;">Guidance Records</p>
+                                <li class="nav-item">
+                                    <a class="nav-link nav-link-button {{ setActiveLink('audit-trail-page') }}" href="{{ route('audit-trail-page') }}">
+                                        <p style="color: #252525;">Audit Trail</p>
                                     </a>
-                                </li> --}}
+                                </li>
                             @endif
                             @if (in_array('ManageDatabase', $privileges))
                                 <li class="nav-item">
@@ -156,23 +156,13 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a class="nav-link nav-link-button {{ setActiveLink('anecdotal-records-page') }}" href="{{ route('anecdotal-records-page') }}">
-                                    <p style="color: #252525;">Anecdotal Records</p>
+                                <a class="nav-link nav-link-button {{ setActiveLink('physical-records-page') }}" href="{{ route('physical-records-page') }}">
+                                    <p style="color: #252525;">Physical Records</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link nav-link-button {{ setActiveLink('violation-forms-page') }}" href="{{ route('violation-forms-page') }}">
-                                    <p style="color: #252525;">Violation Forms</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link nav-link-button {{ setActiveLink('home-visitations-page') }}" href="{{ route('home-visitation-forms-page') }}">
-                                    <p style="color: #252525;">Home Visitation Forms</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link nav-link-button {{ setActiveLink('individual-inventory-page') }}" href="{{ route('individual-inventory-page') }}">
-                                    <p style="color: #252525;">Individual Inventory</p>
+                                <a class="nav-link nav-link-button {{ setActiveLink('digital-records-page') }}" href="{{ route('digital-records-page') }}">
+                                    <p style="color: #252525;">Digital Records</p>
                                 </a>
                             </li>
                         </ul>

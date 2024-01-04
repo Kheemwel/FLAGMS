@@ -100,3 +100,21 @@ if (!function_exists('wordsExistInString')) {
         return false;
     }
 }
+
+if (!function_exists('checkFileType')) {
+    function checkFileType($binaryData)
+    {
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        $mimeType = finfo_buffer($finfo, $binaryData);
+        finfo_close($finfo);
+        
+        return $mimeType;
+    }
+}
+
+if (!function_exists('pdfBinaryToSRC')) {
+    function pdfBinaryToSRC($binary_content)
+    {
+        return 'data:application/pdf;base64,' . base64_encode($binary_content);
+    }
+}

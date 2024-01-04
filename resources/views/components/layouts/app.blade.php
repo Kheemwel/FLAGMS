@@ -104,8 +104,6 @@
     <script src="adminLTE-3.2/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 JS -->
     <script src="adminLTE-3.2/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- jQuery UI -->
-    {{-- <script src="adminLTE-3.2/plugins/jquery-ui/jquery-ui.min.js"></script> --}}
     <!-- overlayScrollbars -->
     <script src="adminLTE-3.2/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->

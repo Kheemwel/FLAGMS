@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Mail\ForgotPasswordMail;
+use App\Models\AuditLogs;
 use App\Models\UserAccounts;
 use App\Traits\Toasts;
 use Illuminate\Support\Facades\Mail;
@@ -46,6 +47,12 @@ class LoginLivewire extends Component
             session(['user_id' => $user->id]);
             $this->resetInputFields();
             $this->dispatch('loginSuccess');
+
+            AuditLogs::create([
+                'user_account_id' => $user->id,
+                'action' => 'Login',
+            ]);
+            
             return redirect()->route('user-dashboard-page');
         } else {
             $this->errorMessage = 'Invalid email or password';
@@ -57,7 +64,7 @@ class LoginLivewire extends Component
         if ($this->email) {
             if (UserAccounts::where('email', $this->email)->first()) {
                 $this->code = mt_rand(10000000, 99999999);
-    
+
                 try {
                     Mail::to($this->email)->send(new ForgotPasswordMail($this->code));
                 } catch (Throwable $th) {
@@ -93,8 +100,14 @@ class LoginLivewire extends Component
         ]);
 
         // Update the password
-        UserAccounts::where('email', $this->email)->first()->update([
+        $user = UserAccounts::where('email', $this->email);
+        $user->first()->update([
             'password' => bcrypt($validatedData['confirm_password'])
+        ]);
+
+        AuditLogs::create([
+            'user_account_id' => $user->id,
+            'action' => 'Reset Password',
         ]);
 
         $this->showToast('success', 'Your password has been reset successfully.');
