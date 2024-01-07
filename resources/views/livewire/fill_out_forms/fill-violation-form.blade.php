@@ -195,15 +195,11 @@
                         <div class="form-group col-sm-3" style=" color: #252525;">
                             <p style="font-size: 18px;">Case Status:</p>
                         </div>
-                        <div class="form-group col-sm-3" style=" color: #252525;">
-                            <input @disabled($role == 'Student') class="form-check-input" name="radio1" type="radio" wire:model="violationFormFields.case_status">Resolved
-                        </div>
-                        <div class="form-group col-sm-3" style=" color: #252525;">
-                            <input @disabled($role == 'Student') class="form-check-input" name="radio1" type="radio" wire:model="violationFormFields.case_status">Unresolved
-                        </div>
-                        <div class="form-group col-sm-3" style="font-size: 16px; color: #252525;">
-                            <input @disabled($role == 'Student') class="form-check-input" name="radio1" type="radio" wire:model="violationFormFields.case_status">Pending
-                        </div>
+                        @foreach ($caseStatuses as $status)
+                            <div class="form-group col-sm-3" style=" color: #252525;">
+                                <input @disabled($role == 'Student') @checked($status == $violationFormFields['case_status']) class="form-check-input" name="radio-{{ $status }}" type="radio" value='{{ $status }}' wire:model="violationFormFields.case_status">{{ $status }}
+                            </div>
+                        @endforeach
                     </div>
 
                     <div class="row">
