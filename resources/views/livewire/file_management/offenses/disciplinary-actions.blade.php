@@ -8,7 +8,7 @@
         <div class="col-6 d-flex justify-content-end ml-auto">
             <!--ADD ROLE BUTTON-->
             <button class="btn btn-default" data-target="#addDisciplinaryActionModal" data-toggle="modal" style="border-radius: 10px; font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button">
-                <i aria-hidden="true" class="fa fa-plus"></i> 
+                <i aria-hidden="true" class="fa fa-plus"></i> &nbsp;
                 Add New Disciplinary Action
             </button>
         </div>

@@ -1,6 +1,6 @@
 <!--USER INFORMATION FORM MODAL-->
 <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" data-backdrop="static" id="addScheduleTagModal" role='dialog' style="max-width: 100%;" wire:ignore.self>
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-md">
         <div class="modal-content" x-data="privileges">
             <div wire:loading wire:target='addRole'>
                 <div class="overlay bg-white">
@@ -33,7 +33,7 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div> --}}
-                    <div class="form-group">
+                    <div class="form-group mr-3">
                         <label>Color</label>
 
                         <div class="input-group my-colorpicker2 colorpicker-element" data-colorpicker-id="2">
@@ -49,7 +49,7 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer d-flex justify-content-center">
-                    <button class="btn btn-primary" style="width: 200px; margin-left: 5px; background-color: #0A0863; color: white; font-size: 14px;" type="submit">Submit</button>
+                    <button class="btn btn-primary" style="width: 100%; background-color: #0A0863; color: white; font-size: 14px;" type="submit">Submit</button>
                 </div>
             </form>
         </div>
