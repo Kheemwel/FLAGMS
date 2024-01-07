@@ -3,6 +3,7 @@
 
     <!-- fullCalendar -->
     <link href="adminLTE-3.2/plugins/fullcalendar/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inria+Serif:wght@400;700&display=swap">
 
     <style>
         /*FOR CALENDAR*/
@@ -20,7 +21,6 @@
         }
     </style>
 @endsection()
-
 
 <div>
     <!-- Content Wrapper. Contains page content -->

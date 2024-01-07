@@ -20,21 +20,19 @@
     <ul class="navbar-nav ml-auto">
         <!-- RIGHT HAND UPPER SIDE NAVIGATION -->
         <div class="d-flex justify-content-center align-items-center">
-            <li class="nav-item mr-1 mt-2"data-toggle="modal" data-target="#user-guide">
+            <li class="nav-item mr-1 mt-2" data-toggle="tooltip" data-placement="bottom" title="User Guide" data-target="#user-guide">
                 <iconify-icon icon="icon-park-solid:help" class="mt-1" style="color: #252525; font-size: 27px;"></iconify-icon>
             </li>
         </div>
-
+        
         <div class="d-flex justify-content-center align-items-center">
             <li class="nav-item">
-                <a class="nav-link ml-0 mt-1" href="{{ route('guidance-program-page') }}">
+                <a class="nav-link ml-0 mt-1" href="{{ route('guidance-program-page') }}" data-toggle="tooltip" data-placement="bottom" title="Guidance Program">
                     <iconify-icon icon="bx:calendar" class=" text-center" style="color: #252525; font-size: 27px;"></iconify-icon>
                     {{-- <span class="badge badge-primary navbar-badge">1</span> --}}
                 </a>
             </li>
         </div>
-        
-
 
         @include('livewire.dashboard.notification-menu')
 
@@ -56,3 +54,10 @@
         </li> --}}
     </ul>
 </nav>
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip(),
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
