@@ -1,5 +1,5 @@
 @section('head')
-    <title>FLAGMS | Audit Trail</title>
+    <title>FLAGMS | Transaction History</title>
 @endsection
 
 <div class="content-wrapper pl-1 pr-1" style="background-color:  rgb(253, 253, 253);"  x-data='auditTrail'>
@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6 pl-4 pt-3">
-                    <p class="font-weight-bold text-xl">Audit Trail</p>
+                    <p class="font-weight-bold text-xl">Transaction History</p>
                 </div>
             </div>
         </div>

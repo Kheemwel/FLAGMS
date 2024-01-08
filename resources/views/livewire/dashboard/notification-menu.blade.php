@@ -1,12 +1,13 @@
 <!-- Notifications Dropdown Menu -->
 <div class="d-flex justify-content-center align-items-center">
     <li class="nav-item dropdown mr-3 mt-1" wire:poll.5s>
-        <a class="nav-link" data-toggle="dropdown" href="#" id="notificationsDropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#" id="notificationsDropdown" data-toggle="tooltip" data-placement="bottom" title="Notification">
             <i class="fa fa-solid fa-bell" style="color: #252525; font-size: 25px;"></i>
             @if ($unread_count && $unread_count > 0)
                 <span class="badge badge-warning navbar-badge">{{ $unread_count }}</span>
             @endif
         </a>
+        
         <div class="dropdown-menu dropdown-menu-right" id="notificationsDropdownMenu" style="max-width: 500px; max-height: 300px; overflow-y: auto; overflow-x: hidden;" wire:ignore.self>
             <div class="row">
                 <div class="col-sm-6 d-flex flex-row justify-content-start">
@@ -62,3 +63,9 @@
         });
     </script>
 @endpush
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>

@@ -1,7 +1,7 @@
 <!--FILLOUT HOME VISITATION REQUEST MODAL-->
 <div class="modal as-modal fade" data-backdrop="static" id="fill-home-visitation-form" style="max-width: 100%; overflow-y: auto" wire:ignore.self>
     <div class="modal-dialog as-dialog modal-xl">
-        <div class="modal-content">
+        <div class="modal-content" style="border-radius: 20px;">
             <div wire:loading wire:target='getHomeVisitationForm, updateHomeVisitationForm'>
                 <div class="overlay bg-white" style="border-radius: 20px;">
                     <div>

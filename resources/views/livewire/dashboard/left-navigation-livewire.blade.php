@@ -1,10 +1,10 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #FFFF; font-size: 16px;">
     <!-- Brand Logo -->
-    <a class="brand-link" href="#" style="border: transparent;">
-        <img alt="AdminLTE Logo" class="brand-image img-circle" src="images/fiat.png" style="width: auto; height: auto;">
-        <span class="brand-text font-weight-bold" style="color: #080743;">FLAGMS</span>
+    <a class="brand-link" href="#" style="border: transparent; display: flex; align-items: center;">
+        <img alt="AdminLTE Logo" class="brand-image img-circle" src="images/fiat.png" style="width: 50px; max-height: 60px;">
+        <span class="brand-text font-weight-bold" style="color: #080743; font-family: 'Inria Serif', serif; margin-left: 10px; font-size: 24px;">FLAGMS</span>
     </a>
-
+    
     <!-- Sidebar -->
     <div class="sidebar" style="margin-top: 5rem;">
         <!-- Sidebar Menu -->

@@ -70,7 +70,7 @@
         <!-- Add Role Button - Right Corner on Big Screens -->
         <div class="col-12 col-sm-12 col-md-6 d-flex justify-content-end pr-4 pl-4 mb-2">
             <button class="btn btn-default" data-target="#addRoleModal" data-toggle="modal" style="border-radius: 10px; font-size: 12px; background-color: #0A0863; color: white;" type="button">
-                <i aria-hidden="true" class="fa fa-plus"></i>
+                <i aria-hidden="true" class="fa fa-plus"></i> &nbsp;
                 Add Role
             </button>
         </div>
