@@ -26,8 +26,8 @@
         <div class="col-12 col-sm-12 col-md-6 d-flex justify-content-end pr-4 pl-4 mb-2">
             <!--BUTTON-->
             <button class="btn btn-default" data-target="#addTagModal" data-toggle="modal" style="border-radius: 10px; font-size: 12px; margin-left: 1rem; background-color: #0A0863; color: white;" type="button">
-                <i aria-hidden="true" class="fa fa-plus"></i>
-                Define New Item Tag
+                <i aria-hidden="true" class="fa fa-plus"></i> &nbsp;
+                Add New Item Tag
             </button>
         </div>
     </div>

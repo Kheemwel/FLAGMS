@@ -46,7 +46,7 @@
                         @enderror
                     </div>
 
-                    <div class="row">
+                    <div class="row ml-1 mr-1">
                         @foreach ($privilege_categories as $category)
                             <div class="col-12 border border-dark rounded mb-3 p-4 pt-2 pl-2">
                                 <div class="row">
@@ -57,7 +57,7 @@
                                     <div class='col-12 d-flex justify-content-end'>
                                         <input class="toggle-checkbox" id="switch-{{ $category }}" type="checkbox" x-model="selectAlls['{{ $category }}']" x-on:click="checkPrivileges('{{ $category }}', !selectAlls['{{ $category }}'])">
                                         <label class="toggle-label" for="switch-{{ $category }}">Toggle</label>
-                                        <span class="ml-1">Check All {{ $category }} Privileges</span>
+                                        <span class="ml-1">Enable All {{ $category }} Privileges</span>
                                     </div>
                                 </div>
 

@@ -10,7 +10,7 @@
             <form wire:submit.prevent="addType()">
                 <div class="modal-body" style="margin-left: 1rem; max-height: 500px; overflow-y: auto;">
                     <!--MODAL FORM TITLE-->
-                    <p class="card-title" style="color: #0A0863; font-weight: bold; font-size: 22px;">Add New type</p> <br><br><br>
+                    <p class="card-title" style="color: #0A0863; font-weight: bold; font-size: 22px;">Add New Type</p> <br><br><br>
 
                     <div class="input-group">
                         <div class="custom-file" style="border: 1px solid #252525; border-radius: 5px; margin-bottom: 2rem; margin-right: 1rem;">

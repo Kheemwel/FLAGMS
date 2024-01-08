@@ -40,7 +40,7 @@ class FillOutFormsLivewire extends Component
     public $homeVisitationFormFields = [
         'student_surname' => null,
         'student_firstname' => null,
-        'student_middlename' => null,
+        'student_middlename' => "",
         'student_no' => null,
         'lrn' => null,
         'level_section' => null,
@@ -235,39 +235,54 @@ class FillOutFormsLivewire extends Component
     {
         if ($this->role == 'Student') {
             $this->forms = Forms::with('homeVisitationForm', 'violationForm', 'violationForm.violationFormStudents')
-                ->whereHas('homeVisitationForm', function ($query) {
-                    $query->where('student_id', $this->studentID);
-                })->orWhereHas('violationForm', function ($query) {
-                    $query->WhereHas('violationFormStudents',  function ($subQuery) {
-                        $subQuery->where('student_id', $this->studentID);
+                ->where(function ($query) {
+                    // Filter for incomplete homeVisitationForms
+                    $query->whereHas('homeVisitationForm', function ($query) {
+                        $query->where('student_id', $this->studentID)
+                            ->where('status', 'INCOMPLETE'); // Add status condition here
+                    });
+                    // Filter for incomplete violationForms
+                    $query->orWhereHas('violationForm', function ($query) {
+                        $query->whereHas('violationFormStudents', function ($subQuery) {
+                            $subQuery->where('student_id', $this->studentID);
+                        })->where('status', 'INCOMPLETE'); // Add status condition here
                     });
                 })->get();
         } elseif ($this->role == 'Parent') {
             $this->forms = Forms::with('homeVisitationForm', 'violationForm', 'violationForm.violationFormStudents')
-                ->whereHas('homeVisitationForm', function ($query) {
-                    $query->whereIn('student_id', $this->myChildIDs);
-                })->orWhereHas('violationForm', function ($query) {
-                    $query->WhereHas('violationFormStudents',  function ($subQuery) {
-                        $subQuery->whereIn('student_id', $this->myChildIDs);
+                ->where(function ($query) {
+                    // Filter for incomplete homeVisitationForms
+                    $query->whereHas('homeVisitationForm', function ($query) {
+                        $query->whereIn('student_id', $this->myChildIDs)
+                            ->where('status', 'INCOMPLETE'); // Add status condition here
+                    });
+                    // Filter for incomplete violationForms
+                    $query->orWhereHas('violationForm', function ($query) {
+                        $query->whereHas('violationFormStudents', function ($subQuery) {
+                            $subQuery->whereIn('student_id', $this->myChildIDs);
+                        })->where('status', 'INCOMPLETE'); // Add status condition here
                     });
                 })->get();
         } elseif ($this->role == 'Teacher') {
-            $this->forms = Forms::with('homeVisitationForm', 'violationForm', 'violationForm.violationFormStudents')->where('teacher_id', $this->teacherID)->get();
+            $this->forms = Forms::with('homeVisitationForm', 'violationForm', 'violationForm.violationFormStudents')
+                ->where('teacher_id', $this->teacherID)
+                ->where('status', 'INCOMPLETE')->get();
         } elseif ($this->role == 'Principal') {
             $position = Principals::find($this->principalID)->position;
             if ($position === 'Junior High School Principal') {
                 $this->forms = Forms::with('homeVisitationForm')
                     ->whereHas('homeVisitationForm', function ($query) {
                         $query->where('junior_principal_id', $this->principalID);
-                    })->get();
+                    })->where('status', 'INCOMPLETE')->get();
             } else if ($position === 'Senior High School Principal') {
                 $this->forms = Forms::with('homeVisitationForm')
                     ->whereHas('homeVisitationForm', function ($query) {
                         $query->where('senior_principal_id', $this->principalID);
-                    })->get();
+                    })->where('status', 'INCOMPLETE')->get();
             }
-        } else {
-            $this->forms = Forms::with('homeVisitationForm', 'violationForm', 'violationForm.violationFormStudents')->get();
+        } elseif ($this->role == 'Guidance') {
+            $this->forms = Forms::with('homeVisitationForm', 'violationForm', 'violationForm.violationFormStudents')
+                ->where('status', 'INCOMPLETE')->get();
         }
     }
 
@@ -379,7 +394,7 @@ class FillOutFormsLivewire extends Component
         $this->homeVisitationFormFields = [
             'student_surname' => $this->homeVisitationForm->student_surname,
             'student_firstname' => $this->homeVisitationForm->student_firstname,
-            'student_middlename' => $this->homeVisitationForm->student_middlename,
+            'student_middlename' => $this->homeVisitationForm->student_middlename ?? "",
             'student_no' => $this->homeVisitationForm->student_no,
             'student_name' => $this->homeVisitationForm->student_name,
             'lrn' => $this->homeVisitationForm->lrn,
@@ -472,9 +487,20 @@ class FillOutFormsLivewire extends Component
             'homeVisitationFormFields.senior_principal_name' => 'nullable',
             'homeVisitationFormFields.student_name' => 'nullable',
         ]);
+
         $this->homeVisitationForm->update($this->homeVisitationFormFields);
+
+        if ($this->checkFormCompletion($this->homeVisitationFormFields) == 'COMPLETE') {
+            $form = $this->homeVisitationForm->form;
+            $form->status = "COMPLETE";
+            $form->save();
+
+            $this->loadForms();
+        }
+
         $this->showToast('success', 'The Home Visitation Form is Updated Successfully');
         $this->dispatch('closeModals');
+
         $this->resetFields();
     }
 
@@ -499,6 +525,7 @@ class FillOutFormsLivewire extends Component
             'violationFormFields.recommendation' => 'nullable',
             'violationFormFields.student_signature_id' => 'nullable',
         ]);
+
         $formViolation = $this->violationForm->violationForm;
         $formViolation->update([
             'offense_type' => $this->violationFormFields['offense_type'],
@@ -521,9 +548,37 @@ class FillOutFormsLivewire extends Component
             'contact' => $this->violationFormFields['contact'],
             'address' => $this->violationFormFields['address'],
         ]);
+
+        if ($this->checkFormCompletion($this->violationFormFields) == 'COMPLETE') {
+            $form = $formViolation->form;
+            $form->status = "COMPLETE";
+            $form->save();
+
+            $this->loadForms();
+        }
+
         $this->showToast('success', 'The Violation Form is Updated Successfully');
         $this->dispatch('closeModals');
+
         $this->resetFields();
+    }
+
+    function checkFormCompletion($data)
+    {
+        $nonNullCount = 0;
+        $totalCount = count($data);
+
+        foreach ($data as $value) {
+            if ($value !== null) {
+                $nonNullCount++;
+            }
+        }
+
+        if ($nonNullCount === $totalCount) {
+            return "COMPLETE";
+        } else {
+            return "$nonNullCount/$totalCount";
+        }
     }
 
 

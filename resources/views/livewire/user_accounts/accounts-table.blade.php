@@ -24,12 +24,12 @@
                     @if (wordsExistInArray(['Add', 'Account'], $privileges))
                         <div class="col-lg-2 col-md-4 col-sm-12 mb-2">
                             <button class="btn btn-default text-xs mb-1 mb-md-0" data-target="#addUserModal" data-toggle="modal" style="width: 100%; border-radius: 10px; background-color: #0A0863; color: white;" type="button">
-                                <i aria-hidden="true" class="fa fa-plus"></i> Add User
+                                <i aria-hidden="true" class="fa fa-plus"></i> &nbsp; Add User
                             </button>
                         </div>
                         <div class="col-lg-2 col-md-4 col-sm-12 mb-2">
                             <button class="btn btn-default text-xs mb-1 mb-md-0" data-target="#importUsersModal" data-toggle="modal" style="width: 100%; border-radius: 10px; background-color: #0A0863; color: white;" type="button">
-                                <i class="fa fa-solid fa-file-import" style="color: white;"></i> Import
+                                <i class="fa fa-solid fa-file-import" style="color: white;"></i> &nbsp; Import
                             </button>
                         </div>
                     @endif
@@ -39,7 +39,7 @@
                         @if (wordsExistInArray(['Export', 'Account'], $privileges))
                             <button wire:loading.attr='disabled' wire:target='export' class="btn btn-default text-xs" style="width: 100%; border-radius: 10px; background-color: #0A0863; color: white;" type="button" wire:click='export()'>
                                 <i wire:loading.remove wire:target='export' class="fa fa-solid fa-file-export" style="color: white;"></i>
-                                <i wire:loading wire:target='export' class="fas fa-3x fa-sync-alt fa-spin text-sm"></i>
+                                <i wire:loading wire:target='export' class="fas fa-3x fa-sync-alt fa-spin text-sm"></i> &nbsp;
                                 Export
                             </button>
                         @endif
