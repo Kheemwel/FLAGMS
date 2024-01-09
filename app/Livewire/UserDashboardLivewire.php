@@ -7,6 +7,7 @@ use App\Models\Offenses;
 use App\Models\ProfilePictures;
 use App\Models\RequestHomeVisitationForms;
 use App\Models\RequestViolationForms;
+use App\Models\Students;
 use App\Models\StudentsAnecdotals;
 use App\Models\UserAccounts;
 use Carbon\Carbon;
@@ -16,6 +17,7 @@ class UserDashboardLivewire extends Component
 {
     public $user_id, $role, $first_name, $profile_picture_id, $privileges = [];
     public $numAnecdotalReports, $numViolationReports, $numHomeVisitationReports;
+    public $numJuniorHigh, $numSeniorHigh;
     public $upcomingEvents;
 
     public function mount()
@@ -28,6 +30,9 @@ class UserDashboardLivewire extends Component
             $this->profile_picture_id = $user->profile_picture_id;
             $this->privileges = $user->Roles->privileges()->pluck('privilege')->toArray();
         }
+
+        $this->numJuniorHigh = Students::where('school_level_id', 1)->count();
+        $this->numSeniorHigh = Students::where('school_level_id', 2)->count();
 
         $offensesWithCount = Offenses::withCount('Anecdotals')
             ->get()

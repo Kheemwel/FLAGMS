@@ -2,6 +2,10 @@
     <title>FLAGMS | Digital Records</title>
 @endsection
 
+@section('head-scripts')
+    <script src="js/jQuery.print.min.js"></script>
+@endsection
+
 <div class="content-wrapper pl-1 pr-1" style="background-color: rgb(253, 253, 253);">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -49,3 +53,15 @@
         </div>
     </div>
 </div>
+
+@section('scripts')
+    <script>
+        function printHomeVisitationForm() {
+            $('#home-visitation-form-content').print();
+        }
+
+        function printViolationForm() {
+            $('#violation-form-content').print();
+        }
+    </script>
+@endsection

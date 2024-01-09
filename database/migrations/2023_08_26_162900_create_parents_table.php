@@ -56,7 +56,7 @@ return new class extends Migration
         $stud2 = Students::create([
             'user_account_id' => $student2->id,
             'school_level_id' => 2,
-            'grade_level_id' => 1,
+            'grade_level_id' => 5,
             'lrn' => '123456789001',
         ]);
 
