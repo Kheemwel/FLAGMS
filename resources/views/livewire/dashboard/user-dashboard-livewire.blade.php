@@ -48,7 +48,7 @@
                                     <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 80px;">
                                         <div class="inner">
                                             <p class="mb-0 text-truncate text-sm">Total No. of Students</p>
-                                            <p class="mb-0 font-weight-bold" style="font-size: 1.5rem;">2,000</p>
+                                            <p class="mb-0 font-weight-bold" style="font-size: 1.5rem;">{{ $numJuniorHigh + $numSeniorHigh }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -57,7 +57,7 @@
                                     <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 80px;">
                                         <div class="inner">
                                             <p class="mb-0 text-truncate text-sm">No. of Junior High Students</p>
-                                            <p class="mb-0 font-weight-bold" style="font-size: 1.5rem;">1,500</p>
+                                            <p class="mb-0 font-weight-bold" style="font-size: 1.5rem;">{{ $numJuniorHigh }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -66,7 +66,7 @@
                                     <div class="small-box bg-info" style="background-color: white !important; color: #252525 !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; height: 80px;">
                                         <div class="inner">
                                             <p class="mb-0 text-truncate text-sm">No. of Senior High Students</p>
-                                            <p class="mb-0 font-weight-bold" style="font-size: 1.5rem;">500</p>
+                                            <p class="mb-0 font-weight-bold" style="font-size: 1.5rem;">{{ $numSeniorHigh }}</p>
                                         </div>
                                     </div>
                                 </div>

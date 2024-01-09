@@ -77,15 +77,11 @@
                             <!-- Table Header -->
                             <thead class="text-center" style="color: white; background-color: #7684B9;">
                                 <tr>
-                                    <th x-on:click="checkAll()">
-                                        <input type="checkbox" x-model="selectAll">
-                                    </th>
                                     <th sortFirst x-bind="sortColumn">ID</th>
                                     <th x-bind="sortColumn">User Name</th>
                                     <th x-bind="sortColumn">Action</th>
                                     <th x-bind="sortColumn">Description</th>
                                     <th x-bind="sortColumn">Date and Time</th>
-                                    <th>Action</th>
                                 </tr>
                             </thead>
             
@@ -93,20 +89,11 @@
                             <tbody class="text-center">
                                 <template x-for="audit in filteredData">
                                     <tr>
-                                        
-                                        <td x-on:click='rows[audit.id] = !rows[audit.id]'>
-                                            <input type="checkbox" x-model="rows[audit.id]">
-                                        </td>
                                         <td x-text="audit.id"></td>
                                         <td><span x-text="audit.user_name">
                                         <td x-text="audit.action"></td>
                                         <td x-text="audit.description"></td>
                                         <td x-text="formatDate(audit.created_at)"></td>
-                                        <td>
-                                            <button class="btn btn-primary action-btn" wire:click='deleteLog(audit.id)'>
-                                                <i aria-hidden="true" class="fa fa-trash"></i>
-                                            </button>
-                                        </td>
                                     </tr>
                                 </template>
                                 <tr class="font-weight-bold" x-cloak x-show="noResult">

@@ -121,7 +121,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link nav-link-button {{ setActiveLink('audit-trail-page') }}" href="{{ route('audit-trail-page') }}">
-                                        <p style="color: #252525;">Audit Trail</p>
+                                        <p style="color: #252525;">Transaction History</p>
                                     </a>
                                 </li>
                             @endif

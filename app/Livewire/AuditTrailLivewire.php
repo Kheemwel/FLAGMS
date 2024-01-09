@@ -29,11 +29,4 @@ class AuditTrailLivewire extends Component
     {  
         return Excel::download(new AuditLogsExport, 'flagms_audit_logs.xlsx');
     }
-
-    
-    public function deleteSelected($ids)
-    {
-        $user = AuditLogs::whereIn('id', $ids)->delete();
-        $this->showToast('success', 'Selected Audit Logs Are Deleted Successfully');
-    }
 }
