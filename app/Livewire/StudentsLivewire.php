@@ -28,7 +28,7 @@ class StudentsLivewire extends Component
     public $offenses, $inventory;
     public $privileges = [];
     public $studentSignature, $guardianSignature;
-    public $numViolations, $numViolationForms, $numHomeVisitationForms;
+    public $numViolations = 0, $numViolationForms = 0, $numHomeVisitationForms = 0;
 
     protected $listeners = ['setInputOffense'];
 
@@ -124,7 +124,7 @@ class StudentsLivewire extends Component
             $this->numViolations = $this->anecdotal->count();
             $this->numViolationForms = ViolationFormsStudents::where('student_id', $id)->count();
             $this->numHomeVisitationForms = HomeVisitationForms::where('student_id', $id)->count();
-        }
+        } 
     }
 
     public function saveAnecdotal()
@@ -171,7 +171,11 @@ class StudentsLivewire extends Component
         $this->input_offense = null;
         $this->input_disciplinary_action = null;
         $this->display_disciplinary_action = null;
+        $this->numViolations = 0;
+        $this->numViolationForms = 0;
+        $this->numHomeVisitationForms = 0;
         $this->dispatch('clearSelection');
+        $this->dispatch('clearSummary');
         $this->resetErrorBag();
     }
 }

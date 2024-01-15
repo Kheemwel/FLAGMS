@@ -22,9 +22,6 @@
                         <div class="input-group-prepend">
                             <p class="card-title text-md font-weight-bold mb-3" style="color: #0A0863;">
                                 Student Information
-                                {{-- <a class="btn btn-primary action-btn" data-target="#stud-info-edit" data-toggle="modal" href="#">
-                                    <i class="fa fa-solid fa-pen"></i>
-                                </a> --}}
                             </p>
                         </div>
                     </div>
@@ -63,40 +60,6 @@
                             <p class="card-title font-weight-bold">{{ $grade_level }}</p>
                         </div>
                     </div>
-                    {{-- <div class="row">
-                        <!--FATHER'S NAME-->
-                        <div class="form-group col-sm-2 col-md-3 text-sm" style="color: #252525;">
-                            <p class="card-title">Father's Name</p>
-                        </div>
-                        <div class="form-group col-sm-2 col-md-3 text-sm" style="color: #252525;">
-                            <p class="card-title font-weight-bold">Benjamin Beller</p>
-                        </div>
-
-                        <!--FATHER'S CONTACT NO-->
-                        <div class="form-group col-sm-2 col-md-3 text-sm" style=" color: #252525;">
-                            <p class="card-title">Contact No.</p>
-                        </div>
-                        <div class="form-group col-sm-2 col-md-3 text-sm" style="color: #252525;">
-                            <p class="card-title font-weight-bold">0915 445 6789</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <!--MOTHER'S NAME-->
-                        <div class="form-group col-sm-2 col-md-3 text-sm" style="color: #252525;">
-                            <p class="card-title">Mother's Name</p>
-                        </div>
-                        <div class="form-group col-sm-2 col-md-3 text-sm" style="color: #252525;">
-                            <p class="card-title font-weight-bold">Amelia Beller</p>
-                        </div>
-
-                        <!--FATHER'S CONTACT NO-->
-                        <div class="form-group col-sm-2 col-md-3 text-sm" style="color: #252525;">
-                            <p class="card-title">Contact No.</p>
-                        </div>
-                        <div class="form-group col-sm-2 col-md-3" style="color: #252525;">
-                            <p class="card-title font-weight-bold" >0939 258 1123</p>
-                        </div>
-                    </div> --}}
 
                     <br><br>
                     <div class="input-group-prepend">
@@ -132,9 +95,9 @@
                                                     <td class="text-center"><img height="150px" src="{{ $anec->guardian_signature() }}" width="150px"></td>
                                                     @if (in_array('ModifyStudentsAnecdotal', $privileges))
                                                         <td style="text-align: center;">
-                                                            <button class="btn btn-primary action-btn" title='Edit Row' tooltip='enable' wire:click.prevent>
+                                                            {{-- <button class="btn btn-primary action-btn" title='Edit Row' tooltip='enable' wire:click.prevent>
                                                                 <i class="fa fa-solid fa-pen"></i>
-                                                            </button>
+                                                            </button> --}}
                                                         </td>
                                                     @endif
                                                 </tr>
@@ -164,23 +127,9 @@
                                                     </td>
                                                     <td class="text-center">{{ $display_disciplinary_action }}</td>
                                                     <td class="text-center" data-target="#student-signature" data-toggle="modal" wire:click.prevent>
-                                                        {{-- <button class="btn btn-primary action-btn {{ $studentSignature ? 'd-none' : '' }}" style="color: #0A0863; font-weight: bold;">
-                                                        <i class="fa fa-solid fa-file-signature" style="color: #0A0863;"></i> Add Signature
-                                                    </button>
-
-                                                    @if ($studentSignature)
-                                                        <img height="150px" src="{{ $studentSignature }}" width='150px'>
-                                                    @endif --}}
                                                     </td>
                                                     <td class="text-center"></td>
                                                     <td class="text-center" data-target="#parent-signature" data-toggle="modal" wire:click.prevent>
-                                                        {{-- <button class="btn btn-primary action-btn {{ $guardianSignature ? 'd-none' : '' }}"  style="color: #0A0863; font-weight: bold;">
-                                                        <i class="fa fa-solid fa-file-signature" style="color: #0A0863;"></i> Add Signature
-                                                    </button>
-
-                                                    @if ($guardianSignature)
-                                                        <img height="150px" src="{{ $guardianSignature }}" width='150px'>
-                                                    @endif --}}
                                                     </td>
                                                     <td class="text-center">
                                                         <button class="btn btn-primary action-btn" title='Save' tooltip='enable' type="submit" wire:click.prevent="saveAnecdotal()">
