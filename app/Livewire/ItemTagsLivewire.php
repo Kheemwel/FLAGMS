@@ -9,7 +9,7 @@ use Livewire\Component;
 class ItemTagsLivewire extends Component
 {
     use Toasts;
-    public $item_tags, $priority_tag, $days_expired;
+    public $selected_id, $item_tags, $priority_tag, $days_expired;
     public function render()
     {
         $this->item_tags = ItemTags::all();
@@ -26,6 +26,28 @@ class ItemTagsLivewire extends Component
         ItemTags::create($validatedData);
 
         $this->showToast('success', 'The New Tag is Added Successfully');
+        $this->resetInputs();
+    }
+
+    public function edit($id)
+    {
+        $tag = ItemTags::find($id);
+        $this->selected_id = $tag->id;
+        $this->priority_tag = $tag->priority_tag;
+        $this->days_expired = $tag->days_expired;
+    }
+
+    public function updateTag()
+    {
+        $validatedData = $this->validate([
+            'priority_tag' => 'required|string|max:255',
+            'days_expired' => 'required|integer|min:1'
+        ]);
+
+        ItemTags::find($this->selected_id)->update($validatedData);
+
+        $this->showToast('success', 'The Selected Tag is Updated Successfully');
+        $this->dispatch('closeModals');
         $this->resetInputs();
     }
 
