@@ -43,7 +43,7 @@
                                                 <td class="text-center">{{ $anec->getDisciplinaryAction->action }}</td>
                                                 <td class="text-center"><img height="150px" src="{{ $anec->student_signature() }}" width="150px"></td>
                                                 <td class="text-center">{{ $anec->guardian_name }}</td>
-                                                <td class="text-center" data-target="#guardian-signature" data-toggle="modal" wire:click="$set('selectedAnecdotalRow', {{ $anec->id }})">
+                                                <td class="text-center" data-target="#guardian-signature" data-toggle="modal" wire:click.prevent="$set('selectedAnecdotalRow', {{ $anec->id }})">
                                                     <button class="btn btn-primary action-btn {{ $anec->guardian_signature_id ? 'd-none' : '' }}" style="color: #0A0863; font-weight: bold;">
                                                         <i class="fa fa-solid fa-file-signature" style="color: #0A0863;"></i> Add Signature
                                                     </button>
