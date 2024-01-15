@@ -1,8 +1,8 @@
 <!--USER INFORMATION FORM MODAL-->
 <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" data-backdrop="static" id="editScheduleTagModal" role='dialog' style="max-width: 100%;" wire:ignore.self>
     <div class="modal-dialog modal-lg">
-        <div class="modal-content" x-data="privileges">
-            <div wire:loading wire:target='addRole'>
+        <div class="modal-content">
+            <div wire:loading wire:target='updateScheduleTag'>
                 <div class="overlay bg-white">
                     <i class="fas fa-3x fa-sync-alt fa-spin"></i>
                 </div>
@@ -17,7 +17,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form wire:submit.prevent="updateColor()">
+            <form wire:submit.prevent="updateScheduleTag()">
                 <div class="modal-body" style="margin-left: 1rem; max-height: 500px; overflow-y: auto;">
                     <!--MODAL FORM TITLE-->
                     <p class="card-title" style="color: #0A0863; font-weight: bold; font-size: 22px;">Edit Schedule Tag</p> <br><br><br>
@@ -30,14 +30,6 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                    {{-- <div class="input-group myc-colorpicker2 color-picker-element" data-colorpicker style="font-size: 18px; color: #252525; margin-right: 1rem;">
-                        <label for="color-code">Color Code</label>
-                        <input class="form-control" id="color-code" style="border: 1px solid #252525;" type="color" wire:model.live="color_code">
-
-                        @error('color_code')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div> --}}
                     <div class="form-group">
                         <label>Color</label>
 
@@ -48,7 +40,9 @@
                                 <span class="input-group-text"><i class="fas fa-square"></i></span>
                             </div>
                         </div>
-                        <!-- /.input group -->
+                        @error('color')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
 
                 </div>
