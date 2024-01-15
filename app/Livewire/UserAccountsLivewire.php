@@ -226,7 +226,7 @@ class UserAccountsLivewire extends Component
 
             if ($user->email) {
                 try {
-                    Mail::to($user->email)->send(new AccountCreationMail($user->password));
+                    Mail::to($user->email)->send(new AccountCreationMail($validatedData['password']));
                 } catch (Throwable $th) {
                     Log::error($th->getMessage());
                     $this->showToast('error', 'Failed to Send User Credentials to Email');
