@@ -100,8 +100,8 @@ class LoginLivewire extends Component
         ]);
 
         // Update the password
-        $user = UserAccounts::where('email', $this->email);
-        $user->first()->update([
+        $user = UserAccounts::where('email', $this->email)->first();
+        $user->update([
             'password' => bcrypt($validatedData['confirm_password'])
         ]);
 

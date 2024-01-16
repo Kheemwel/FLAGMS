@@ -1,8 +1,8 @@
 <!--USER INFORMATION FORM MODAL-->
-<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="addTagModal" role='dialog' style="max-width: 100%;" wire:ignore.self>
+<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="editTagModal"  data-backdrop="static" role='dialog' style="max-width: 100%;" wire:ignore.self>
     <div class="modal-dialog">
         <div class="modal-content">
-            <div wire:loading wire:target='addTag'>
+            <div wire:loading wire:target='updateTag, edit'>
                 <div class="overlay bg-white" style="border-radius: 20px;">
                     <div>
                         <i class="fas fa-3x fa-sync-alt fa-spin"></i>
@@ -14,7 +14,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form wire:submit.prevent="addTag()">
+            <form wire:submit.prevent="updateTag()">
                 <div class="modal-body" style="margin-left: 1rem; max-height: 500px; overflow-y: auto;">
                     <!--MODAL FORM TITLE-->
                     <p class="card-title" style="color: #0A0863; font-weight: bold; font-size: 22px;">Add New Tag</p> <br><br><br>

@@ -60,7 +60,7 @@
                                 <td class="text-center">{{ date('h:i A', strtotime($anec->time)) }}</td>
                                 <td class="text-center">{{ $anec->getOffense->offense_name }}</td>
                                 <td class="text-center">{{ $anec->getDisciplinaryAction->action }}</td>
-                                <td class="text-center" data-target="#student-signature" data-toggle="modal" wire:click="$set('selectedAnecdotalRow', {{ $anec->id }})">
+                                <td class="text-center" data-target="#student-signature" data-toggle="modal" wire:click.prevent="$set('selectedAnecdotalRow', {{ $anec->id }})">
                                     <button class="btn btn-primary action-btn {{ $anec->student_signature_id ? 'd-none' : '' }}" style="color: #0A0863; font-weight: bold;">
                                         <i class="fa fa-solid fa-file-signature" style="color: #0A0863;"></i> Add Signature
                                     </button>

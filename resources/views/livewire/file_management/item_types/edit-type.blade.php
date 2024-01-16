@@ -1,8 +1,8 @@
 <!--USER INFORMATION FORM MODAL-->
-<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade"  data-backdrop="static" id="addTypeModal" role='dialog' style="max-width: 100%;" wire:ignore.self>
+<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="editTypeModal" role='dialog' data-backdrop="static" style="max-width: 100%;" wire:ignore.self>
     <div class="modal-dialog">
         <div class="modal-content">
-            <div wire:loading wire:target='addType'>
+            <div wire:loading wire:target='updateType, edit'>
                 <div class="overlay bg-white" style="border-radius: 20px;">
                     <div>
                         <i class="fas fa-3x fa-sync-alt fa-spin"></i>
@@ -10,14 +10,14 @@
                 </div>
             </div>
             <div class="modal-header" style="border: transparent; padding: 10px;">
-                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button" wire:click="resetInputFields()">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form wire:submit.prevent="addType()">
+            <form wire:submit.prevent="updateType()">
                 <div class="modal-body" style="margin-left: 1rem; max-height: 500px; overflow-y: auto;">
                     <!--MODAL FORM TITLE-->
-                    <p class="card-title" style="color: #0A0863; font-weight: bold; font-size: 22px;">Add New Item Type</p> <br><br><br>
+                    <p class="card-title" style="color: #0A0863; font-weight: bold; font-size: 22px;">Edit Item Type</p> <br><br><br>
 
                     <div class="input-group">
                         <div class="custom-file" style="border: 1px solid #252525; border-radius: 5px; margin-bottom: 2rem; margin-right: 1rem;">

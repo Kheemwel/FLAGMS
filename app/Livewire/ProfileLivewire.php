@@ -8,6 +8,7 @@ use App\Models\Roles;
 use App\Models\UserAccounts;
 use App\Traits\Toasts;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -107,13 +108,21 @@ class ProfileLivewire extends Component
 
         $this->showToast('success', 'Your Profile Updated Successfully');
         $this->updateProfilePicture($this->profile_picture_id);
+        $this->dispatch('closeModals');
         $this->resetInputs();
     }
 
     public function changePassword()
     {
         $validatedData = $this->validate([
-            'current_password' => 'required|same:password',
+            'current_password' => [
+                'required',
+                function ($attribute, $value, $fail) {
+                    if (!Hash::check($value, $this->password)) {
+                        $fail(__('The current password is incorrect.'));
+                    }
+                },
+            ],
             'new_password' => 'required|min:4', // Change the min length as needed
             'confirm_password' => 'required|same:new_password',
         ], [
@@ -123,8 +132,7 @@ class ProfileLivewire extends Component
 
         // Update the password
         UserAccounts::find($this->user_id)->update([
-            'password' => $validatedData['confirm_password'],
-            'hashed_password' => bcrypt($validatedData['confirm_password'])
+            'password' => bcrypt($validatedData['confirm_password']),
         ]);
 
         AuditLogs::create([
@@ -134,6 +142,7 @@ class ProfileLivewire extends Component
         ]);
 
         $this->showToast('success', 'Your password has been updated successfully.');
+        $this->dispatch('closeModals');
         $this->resetInputs();
     }
 

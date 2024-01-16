@@ -71,14 +71,12 @@ class OffensesLivewire extends Component
     {
         // If "Dismissal" is selected, disable subsequent selections and discard options
         $index = array_search($selected_disciplinary_action_id,  $this->selected_disciplinary_action_ids);
-        // dd($index);
-        if ($selected_disciplinary_action_id == $this->dismissal_id) {
+        if ($selected_disciplinary_action_id == $this->dismissal_id || $selected_disciplinary_action_id == null) {
             foreach ($this->selected_disciplinary_action_ids as $key => $value) {
                 if ($key > $index) {
                     $this->selected_disciplinary_action_ids[$key] = null;
                 }
             }
-            // dd($this->selected_disciplinary_action_ids);
         }
     }
 
@@ -133,7 +131,7 @@ class OffensesLivewire extends Component
         $rules = [
             'offense' => 'required|max:255',
             'category_id' => 'required|integer',
-            "selected_disciplinary_action_ids.*" => 'required|integer'
+            "selected_disciplinary_action_ids.1" => 'required|integer',
         ];
 
         $validatedData = $this->validate($rules);
@@ -157,10 +155,14 @@ class OffensesLivewire extends Component
             $offense_disciplinary_action = OffensesDisciplinaryActions::where('offense_id', $offense->id)
                 ->where('offense_level_id', $index)->first();
             if ($offense_disciplinary_action) {
-                $offense_disciplinary_action->update([
-                    'disciplinary_action_id' => $dsc
-                ]);
-            } else {
+                if ($dsc != null) {
+                    $offense_disciplinary_action->update([
+                        'disciplinary_action_id' => $dsc
+                    ]);
+                } else {
+                    $offense_disciplinary_action->delete();
+                }
+            } else if($dsc != null) {
                 OffensesDisciplinaryActions::create([
                     'offense_id' => $offense->id,
                     'offense_level_id' => $index,
@@ -171,7 +173,7 @@ class OffensesLivewire extends Component
 
         $this->showToast('success', 'Offense updated successfully.');
         $this->resetInputFields();
-        
+        $this->dispatch('closeModals');
         $this->offenses = Offenses::all();
     }
 
@@ -209,6 +211,7 @@ class OffensesLivewire extends Component
 
         $this->showToast('success', 'The offense category is updated successfully.');
         $this->resetInputFields();
+        $this->dispatch('closeModals');
         $this->categories = OffensesCategories::all();
     }
 
@@ -246,6 +249,7 @@ class OffensesLivewire extends Component
 
         $this->showToast('success', 'The disciplinary action is updated successfully.');
         $this->resetInputFields();
+        $this->dispatch('closeModals');
         $this->disciplinary_actions = DisciplinaryActions::all();
     }
 
@@ -283,6 +287,7 @@ class OffensesLivewire extends Component
 
         $this->showToast('success', 'The new offense level is added successfully.');
         $this->resetInputFields();
+        $this->dispatch('closeModals');
         $this->offense_levels = OffenseLevels::all();
     }
 

@@ -114,7 +114,7 @@
 
         $('.my-colorpicker2').on('colorpickerChange', function(event) {
             $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
-            @this.set('color_code', event.color.toString());
+            @this.set('color', event.color.toString());
         })
     </script>
 @endsection

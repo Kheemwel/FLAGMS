@@ -1,4 +1,4 @@
-<div class="modal fade" id="summary-btn" style="max-width: 100%;" wire:ignore.self>
+<div class="modal fade" id="summary-btn" style="max-width: 100%;" data-backdrop="static" wire:ignore.self>
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div wire:loading wire:target='getData, saveAnecdotal'>

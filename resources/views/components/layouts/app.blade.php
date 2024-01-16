@@ -102,8 +102,6 @@
 
     <!-- jQuery -->
     <script src="adminLTE-3.2/plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 JS -->
-    <script src="adminLTE-3.2/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- overlayScrollbars -->
     <script src="adminLTE-3.2/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
@@ -114,12 +112,13 @@
     <script src="adminLTE-3.2/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
     <!-- Toastr -->
     <script src="adminLTE-3.2/plugins/toastr/toastr.min.js"></script>
-    {{-- For Tooltip --}}
-    <script src="adminLTE-3.2/plugins/popper/popper.min.js"></script>
     <script src="js/app.js"></script>
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 
     @yield('head-scripts')
+
+    <!-- Bootstrap 4 JS -->
+    <script src="adminLTE-3.2/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed sidebar-collapse">

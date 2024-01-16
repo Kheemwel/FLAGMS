@@ -32,24 +32,6 @@
         </div>
     </div>
 
-    <div class="row mt-2 mr-1">
-        <div class="col-12 col-sm-12 pt-2 pr-4 pl-4 d-flex justify-content-end">
-            <label for="per-page" class="font-weight-normal text-sm">Show
-                <select class="form-select form-select-sm" id='per-page'
-                    wire:model.live.debounce.500ms="per_page">
-                    <option>10</option>
-                    <option>15</option>
-                    <option>20</option>
-                    <option>25</option>
-                    <option selected>30</option>
-                    <option>50</option>
-                    <option>100</option>
-                </select>
-                Entries
-            </label>
-        </div>
-    </div>
-
     <div class="row">
         <div class="col-12">
             <!--PROFILE PICTURES TABLE SECTION-->
@@ -61,9 +43,6 @@
                         <table class="table table-hover text-center">
                             <thead style="background-color: #7684B9; color: white;">
                                 <tr>
-                                    <th>
-                                        <input type="checkbox">
-                                    </th>
                                     <th>ID</th>
                                     <th>Item Type Name</th>
                                     {{-- <th style="border-right: 1px solid #252525;">Number of Items</th> --}}
@@ -73,13 +52,12 @@
                             <tbody>
                                 @foreach ($item_types as $type)
                                     <tr>
-                                        <td> </td>
                                         <th scope="row">{{ $type->id }}</th>
                                         <td>{{ $type->item_type }}</td>
                                         {{-- <td>{{ '' }}</td> --}}
                                         <td>
                                             <!--EDIT PROFILE-->
-                                            <button class="btn btn-primary action-btn" data-target="#stud-info-edit" data-toggle="modal">
+                                            <button class="btn btn-primary action-btn" data-target="#editTypeModal" data-toggle="modal" wire:click="edit({{ $type->id }})">
                                                 <i class="fa fa-solid fa-pen"></i>
                                             </button>
                                             <!-------------------------------------------------------------------------------------------------------------------------->
@@ -101,4 +79,5 @@
         </div>
     </div>
     @include('livewire.file_management.item_types.add-type')
+    @include('livewire.file_management.item_types.edit-type')
 </div>

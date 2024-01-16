@@ -300,6 +300,11 @@
                 initChart(offenses, offensesData);
             }, );
         });
+        Livewire.on('clearSummary', (data) => {
+            setTimeout(() => {
+                initChart([], []);
+            }, );
+        });
 
 
 
