@@ -16,7 +16,7 @@ FLAGMS (Fiat Lux Academe Guidance Management System) is a comprehensive web-base
 - PHP (Laravel 10)
 - Livewire 3
 - MySQL Database
-- SCSS / Tailwind CSS
+- Bootstrap 5
 - Alpine.js
 - Pusher (Notifications)
 
