@@ -1,66 +1,64 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# FLAGMS
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+FLAGMS (Fiat Lux Academe Guidance Management System) is a comprehensive web-based platform designed to automate and streamline the operations of a school guidance office. This project was developed as a capstone project; it remains unfinished and was never officially implemented or used by the client. 🚀🏫
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- ✓ **Role-Based Access**: Specialized interfaces and permissions for Administrators, Guidance Counselors, Teachers, Parents, and Students.
+- ✓ **Student Records**: Digital management of student anecdotal records, individual inventories, and behavioral histories.
+- ✓ **Administrative Tools**: Automated approval workflows for forms, offense tracking, and lost-and-found management.
+- ✓ **Record Management**: Secure handling of both physical and digital records with detailed audit trails.
+- ✓ **Guidance Program**: Scheduling and management of guidance services, program tags, and notifications.
+- ✓ **Real-time Notifications**: Instant alerts for system updates and form approvals via Pusher integration.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Tech Stack
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- PHP (Laravel 10)
+- Livewire 3
+- MySQL Database
+- SCSS / Tailwind CSS
+- Alpine.js
+- Pusher (Notifications)
 
-## Learning Laravel
+## Project Structure
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```text
+FLAGMS_Laravel-Livewire/
+├── app/
+│   ├── Http/          # Middleware and Controller logic
+│   ├── Livewire/      # Core Livewire components for reactive UI
+│   └── Models/        # Eloquent models and database relations
+├── config/            # System configuration files
+├── database/          # Migrations, seeders, and factories
+├── public/            # Compiled assets and entry point
+├── resources/
+│   ├── css/           # Source styling files
+│   └── views/         # Blade and Livewire view templates
+└── routes/            # Web and system maintenance routes
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+The project follows the standard Laravel directory structure, leveraging Livewire for a modern, reactive user experience without complex JavaScript frameworks.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Usage
 
-## Laravel Sponsors
+1. **Authentication**: Use the login portal to access your role-specific dashboard (Admin, Guidance, Student, Parent, or Teacher).
+2. **Student Profiling**: Use the Students module to update inventory records, log anecdotal entries, and track behavioral history.
+3. **Form Submissions**: Students and Teachers can fill out and submit digital forms for guidance assistance or specific requests through the 'Fill Out Forms' section.
+4. **Monitoring**: Administrators can use the Audit Trail to monitor all system activities, manage user accounts, and oversee database backups.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## How to Install
 
-### Premium Partners
+1. Clone the repository to your local environment.
+2. Run `composer install` to install all PHP dependencies.
+3. Run `npm install` and `npm run dev` to compile the front-end assets.
+4. Create a `.env` file from `.env.example` and set up your database credentials.
+5. Run `php artisan key:generate` to generate the application security key.
+6. Run `php artisan migrate --seed` to initialize the database and create default users and roles.
+7. Run `php artisan serve` to launch the application on `http://localhost:8000`.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+## Development Team
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- **Project Manager**: Justine Mae B. Juanima
+- **Lead Developer / Back-end Developer**: Kimwel Lourence C. Beller
+- **Front-end Developer**: Allysah Valerie C. Dela Cruz
+- **UI/UX Designer**: Anne Louise D. Lopez
